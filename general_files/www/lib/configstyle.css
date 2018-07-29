@@ -1,0 +1,209 @@
+body, input, select, textarea {
+    font-family: verdana,arial,helvetica,sans-serif;
+    font-size: 11px;
+}
+p, h1, form, button{border:0; margin:0; padding:0;}
+.spacer{clear:both; height:1px;}
+
+/* ----------- CSS for tabs ----------- */
+
+.section {
+    margin: 0 0 30px;
+    margin:0 auto;
+    width:800px;
+    padding:14px;
+        -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        -khtml-border-radius: 20px;
+    border-radius: 20px;
+    border:solid 2px #b7ddf2;
+    background: #FDE2BB;
+}
+.myform {
+    height:560px;
+}
+.myform-adv {
+    height: 980px;
+}
+.myform-wireless {
+    height: 910px;
+}
+iframe {
+    width:100%;
+    overflow-y:auto;
+    overflow-x:auto;
+}
+.topbar {
+    width:650px;
+    height:100px;
+    display: inline;
+}
+.titletext       {
+    float: right;
+    text-align: right;
+}
+
+ul.tabs {
+    height: 28px;
+    line-height: 25px;
+    list-style: none;
+    border-bottom: 1px solid #DDD;
+}
+.tabs li {
+    float: left;
+    display: inline;
+    margin: 0 1px -1px 0;
+    padding: 0 13px 1px;
+    color: #777;
+    cursor: pointer;
+    border: 1px solid #E4E4E4;
+    border-bottom: 1px solid #F9F9F9;
+    position: relative;
+}
+.tabs li:hover,
+.vertical .tabs li:hover {
+    color: #F70;
+    padding: 0 13px;
+    background: #FFFFDF;
+    border: 1px solid #FFCA95;
+}
+.tabs li.current {
+    color: #444;
+    padding: 0 13px 2px;
+    border: 1px solid #D4D4D4;
+    background: #FFFFFF;
+    border-bottom: 1px solid #EFEFEF;
+}
+.box {
+    display: none;
+    border-width: 0 1px 1px;
+    padding: 0 12px;
+}
+.box.visible {
+    display: block;
+}
+
+
+/* ----------- stylized ----------- */
+
+#stylized{
+    background: #FDE2BB;
+}
+#stylized h1 {
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom:8px;
+    float: right;
+}
+#stylized fieldset {
+    margin: 14px 0px 14px 0px;
+    padding: 14px;
+       -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -khtml-border-radius: 10px;
+}
+
+#stylized p{
+font-size:11px;
+color:#666666;
+margin-bottom:0px;
+padding-bottom:10px;
+}
+
+#stylized table {
+    border-collapse: collapse;
+    empty-cells: show;
+}
+#stylized .label {
+    padding-right: 8px;
+    padding-top: 7px;
+    padding-bottom: 10px;
+    text-align: right;
+    vertical-align: top;
+    white-space: nowrap;
+    width: 125px;
+}
+#stylized .field {
+    vertical-align: top;
+    white-space: nowrap;
+}
+#stylized .ast_reg {
+    padding-right: 8px;
+    padding-top: 7px;
+    text-align: left;
+    color: #009900;
+    font-weight: bold;
+    vertical-align: top;
+    white-space: nowrap;
+    width: 125px;
+}
+#stylized table.submitform {
+    margin-top: 5px;
+    margin-left:auto;
+    margin-right:6px;
+    text-align: right;
+    vertical-align: top;
+    white-space: nowrap;
+    width: 100px;
+}
+#stylized table.buttons {
+    padding-right: 8px;
+    padding-top: 7px;
+    text-align: right;
+    vertical-align: top;
+    white-space: nowrap;
+    width: 275px;
+}
+#stylized table.buttons-adv {
+    padding-right: 8px;
+    padding-top: 7px;
+    text-align: right;
+    vertical-align: top;
+    white-space: nowrap;
+    width: 100px;
+}
+
+
+#stylized .textfield {
+    width: 150px;
+}
+#stylized label.error {
+    background: url("images/unchecked.gif") no-repeat scroll 0 0 transparent;
+    display: block;
+    color: #EA5200;
+    font-weight: bold;
+    padding-bottom: 1px;
+    padding-left: 16px;
+    margin-left: 5px;
+}
+#stylized label.checked {
+    background: url("") no-repeat scroll 0 0 transparent;
+    display: block;
+    color: #EA5200;
+    font-weight: bold;
+    padding-bottom: 1px;
+    padding-top: 12px;
+    padding-left: 16px;
+    margin-left: 5px;
+}
+#stylized .success_msg {
+    color: #0060BF;
+    font-weight: bold;
+    margin-left: 19px;
+}
+
+#stylized .go { 
+padding-top: 16px;
+height: 50px;
+width: 900px;
+float: left;
+}
+
+#stylized em { 
+font-weight: bold; 
+padding-right: 1em; 
+vertical-align: top; 
+}
+
+
+

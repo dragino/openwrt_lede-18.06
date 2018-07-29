@@ -1,0 +1,125 @@
+####################################################  
+#  
+# Get UC20 Devices Info  
+#  
+# Copyright (C) 2006  Paul Hardwick <paul@peck.org>  
+#  
+###################################################  
+opengt  
+set com 115200n81  
+set senddelay 0.05  
+waitquiet 2 0.5  
+system 'mkdir /var/cellular'
+open file "/var/cellular/info"
+:GetICCID
+	get 2 "^M" $s
+	get 2 "^M" $s
+	send "AT+QCCID^M"
+	get 2 "^M" $s
+	get 2 "^M" $s
+	let a=len($s)
+	let a=a-1
+	let $s=$right($s,a)
+	fprint "ICCID="$s"\n\r"
+	sleep 2
+	get 2 "^M" $s
+	get 2 "^M" $s
+:GetIMEI
+	send "AT+GSN^M"
+	get 2 "^M" $s
+	get 2 "^M" $s
+	let a=len($s)
+	let a=a-1
+	let $s=$right($s,a)
+	fprint "IMEI="$s"\n\r"
+	sleep 2
+	get 2 "^M" $s
+	get 2 "^M" $s
+:GetIMSI
+	send "AT+CIMI^M"
+	get 2 "^M" $s
+	get 2 "^M" $s
+	let a=len($s)
+	let a=a-1
+	let $s=$right($s,a)
+	fprint "IMSI="$s"\n\r"
+	sleep 2
+	get 2 "^M" $s
+	get 2 "^M" $s
+close file
+:loop1  
+	open file "/var/cellular/status"
+	:GetCOPS
+		send "AT+COPS?^M"
+		get 2 "^M" $s
+		get 2 "^M" $s
+		let a=len($s)
+		let a=a-1
+		let $s=$right($s,a)
+		fprint "OPERATOR="$s"\n\r"
+		sleep 2
+		get 2 "^M" $s
+		get 2 "^M" $s
+	:GetREGSTATUS
+		send "AT+CREG?^M"
+		get 2 "^M" $s
+		get 2 "^M" $s
+		let a=len($s)
+		let a=a-1
+		let $s=$right($s,a)
+		fprint "REG_STATE="$s"\n\r"
+		sleep 2
+		get 2 "^M" $s
+		get 2 "^M" $s
+	:GetBAND
+		send "AT+QGBAND=?^m"
+		waitfor 5 "OK","ERR"
+		if % = 0 goto QGBAND
+		if % = 1 goto check_QNWINFO
+	:QGBAND
+		send "AT+QGBAND^M"
+		get 2 "^M" $s
+		get 2 "^M" $s
+		let a=len($s)
+		let a=a-1
+		let $s=$right($s,a)
+		fprint "BAND="$s"\n\r"
+		sleep 2
+		get 2 "^M" $s
+		get 2 "^M" $s
+		goto GetCSQ
+	:check_QNWINFO
+		send "AT+QNWINFO=?^m"
+		waitfor 5 "OK","ERR"
+		if % = 0 goto QNWINFO
+		if % = 1 goto ErrBandCom
+	:QNWINFO
+		send "AT+QNWINFO^M"
+		get 2 "^M" $s
+		get 2 "^M" $s
+		let a=len($s)
+		let a=a-1
+		let $s=$right($s,a)
+		fprint "BAND="$s"\n\r"
+		sleep 2
+		get 2 "^M" $s
+		get 2 "^M" $s
+		goto GetCSQ
+	:ErrBandCom
+		fprint "BAND=unknown command\n\r"
+	:GetCSQ
+		send "AT+CSQ^M"
+		get 2 "^M" $s
+		get 2 "^M" $s
+		let a=len($s)
+		let a=a-1
+		let $s=$right($s,a)
+		fprint "SIGNAL="$s"\n\r"
+		sleep 2
+		get 2 "^M" $s
+		get 2 "^M" $s
+	close file
+	system '/usr/bin/check_file_size 10 /var/cellular/status'
+	sleep 10
+	goto loop1
+:end  

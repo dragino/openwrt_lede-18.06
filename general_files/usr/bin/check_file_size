@@ -1,0 +1,10 @@
+#!/bin/sh
+
+size=$1
+file=$2
+
+file_size=`du $file | awk '{print $1}`
+if [ $file_size -gt $size ]; then
+	rm $file
+fi
+

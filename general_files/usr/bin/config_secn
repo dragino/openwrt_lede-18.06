@@ -1,0 +1,328 @@
+#!/bin/sh
+# /etc/init.d/config_secn  
+
+# This script creates various config files based on parameters in 
+# /etc/config/secn, /etc/config/network and /etc/config/wireless
+
+# Set up WiFi 
+
+# Get the params from uci config file /etc/config/secn and wireless
+SSID=`uci get secn.accesspoint.ssid`
+PASSPHRASE=`uci get secn.accesspoint.passphrase`
+ENCRYPT=`uci get secn.accesspoint.encryption`
+AP_DISABLE=`uci get secn.accesspoint.ap_disable`
+MAXASSOC=`uci get secn.accesspoint.maxassoc`
+CHANNEL=`uci get secn.accesspoint.channel`
+MESH_ENABLE=`uci get secn.mesh.mesh_enable`
+MESH_GROUP=`uci get secn.mesh.mesh_group`
+
+
+uci set wireless.radio0.channel=$CHANNEL
+uci set wireless.ap_0.encryption=$ENCRYPT
+uci set wireless.ap_0.key=$PASSPHRASE
+uci set wireless.ap_0.ssid=$SSID
+uci set wireless.ap_0.mode="ap"
+uci set wireless.ap_0.disabled=$AP_DISABLE
+uci set wireless.ap_0.maxassoc=$MAXASSOC
+
+#Convert Mesh Group to BSSID
+#-----------------------------
+mesh_hex=`printf %x $MESH_GROUP`
+cur_pos=${#mesh_hex}
+
+while [ $cur_pos -lt 10 ]
+do
+	cur_pos=`expr $cur_pos + 1`
+	mesh_hex=0$mesh_hex
+done
+
+mesh_bssid=02:${mesh_hex:0:2}:${mesh_hex:2:2}:${mesh_hex:4:2}:${mesh_hex:6:2}:${mesh_hex:8:2}
+uci set wireless.ah_0.bssid=$mesh_bssid
+
+#--------------------------------------------
+# SET Up LAN IP address
+LANIP=`uci get secn.dhcp.router`
+uci set network.lan.ipaddr=$LANIP
+
+#----------------------------------------------
+# Set up DHCP server
+# Get the DHCP parameters from uci config file /etc/config/secn
+
+DHCP_ENABLE=`uci get secn.dhcp.enable`
+
+DHCP_AUTH_CHK=`uci get secn.dhcp.dhcp_auth`
+if [ $DHCP_AUTH_CHK = "checked" ]; then
+  DHCP_AUTH='1'
+else
+  DHCP_AUTH='0'
+fi
+
+STARTIP=`uci get secn.dhcp.startip | cut -d = -f 2 | cut -d . -f 4`
+ENDIP=`uci get secn.dhcp.endip | cut -d = -f 2 | cut -d . -f 4`
+LIMIT=$((ENDIP - STARTIP))
+
+MAXLEASES=`uci get secn.dhcp.maxleases`
+LEASETERM=`uci get secn.dhcp.leaseterm`
+LEASETERM=$((LEASETERM / 60))'m'
+DOMAIN=`uci get secn.dhcp.domain`
+OPTION_DNS=`uci get secn.dhcp.dns`
+OPTION_DNS2=`uci get secn.dhcp.dns2`
+OPTION_SUBNET=`uci get secn.dhcp.subnet`
+OPTION_ROUTER=`uci get secn.dhcp.router`
+LANGATEWAY=`uci get secn.dhcp.gateway`
+
+uci set dhcp.setup.dhcpleasemax=$MAXLEASES
+uci set dhcp.setup.domain=$DOMAIN
+uci set dhcp.setup.authoritative=$DHCP_AUTH
+
+uci set dhcp.lan.start=$STARTIP
+uci set dhcp.lan.limit=$LIMIT
+uci set dhcp.lan.leasetime=$LEASETERM
+uci set dhcp.lan.dhcp_option="1,$OPTION_SUBNET  3,$OPTION_ROUTER  6,$OPTION_DNS,$OPTION_DNS2"
+
+#---------------------------------------------
+
+#Set up WAN Port
+
+# Set up 3G USB Modem
+VENDOR=`uci get secn.modem.vendor`
+PRODUCT=`uci get secn.modem.product`
+# Create the new usb-serial file
+rm /etc/modules.d/60-usb-serial
+if [ ! -z $VENDOR ] && [ ! -z $PRODUCT ]; then
+cat >> /etc/modules.d/60-usb-serial << EOF
+usbserial vendor=0x$VENDOR product=0x$PRODUCT
+EOF
+rmmod usbserial
+insmod usbserial vendor=0x$VENDOR product=0x$PRODUCT
+fi
+	
+# Get modem params
+SERVICE=`uci get secn.modem.service`
+APN=`uci get secn.modem.apn`
+APNUSER=`uci get secn.modem.user`
+APNPW=`uci get secn.modem.pass`
+PIN=`uci get secn.modem.pin`
+MODEMPORT=`uci get secn.modem.modemport`
+
+# Set up USBtty port string
+TTY="/dev/ttyUSB"$MODEMPORT
+
+# Get WAN settings
+WANPORT=`uci get secn.wan.wanport`
+ETHWANMODE=`uci get secn.wan.ethwanmode`
+WANIP=`uci get secn.wan.wanip`
+WANGATEWAY=`uci get secn.wan.wangateway`
+WANMASK=`uci get secn.wan.wanmask`
+WANDNS=`uci get secn.wan.wandns`
+WANSSID=`uci get secn.wan.wanssid`
+WANPASS=`uci get secn.wan.wanpass`
+WANENCR=`uci get secn.wan.wanencr`
+PPPUSERNAME=`uci get secn.wan.username`
+PPPPASSWORD=`uci get secn.wan.password`
+
+USE_ETH0_AS_WAN=`uci get secn.wan.use_eth0_as_wan`
+
+#####Set up defaults settings
+uci set wireless.sta_0.disabled='1'
+uci set network.wan.type=''
+uci set network.lan.ifname='eth0'
+if [ $USE_ETH0_AS_WAN = "1" ]; then
+	uci set network.lan.ifname='eth1'
+fi
+uci set network.lan.gateway=$LANGATEWAY
+# Set up for WAN disabled
+if [ $WANPORT = "Disable" ]; then
+	uci set network.wan.ifname=''
+	uci set network.wan.proto=''
+	uci set network.wan.ipaddr=''
+	uci set network.wan.gateway=''
+	uci set network.wan.netmask=''
+	uci set network.wan.dns=''
+
+	uci set network.wan.service=''
+	uci set network.wan.apn=''
+	uci set network.wan.username=''
+	uci set network.wan.password=''
+	uci set network.wan.pincode=''
+	uci set network.wan.device=''
+
+	uci set wireless.ah_0.disabled='0'
+fi
+
+#############################################################
+#### Use WAN port for Internet Access
+if [ $WANPORT = "Ethernet" ]; then
+ 	# Set up for Eth WAN port
+	uci set network.wan.ifname='eth1' # Single Eth port devices
+	if [ $USE_ETH0_AS_WAN = "1" ]; then
+		uci set network.wan.ifname='eth0'
+	fi
+fi
+
+#### Use MESH Interface for Internet Access
+if [ $WANPORT = "Mesh" ]; then
+ 	# Set up eth1 as LAN or WAN
+	uci set network.wan.ifname='bat0 eth1' 
+	if [ $USE_ETH0_AS_WAN = "1" ]; then
+		uci set network.wan.ifname='bat0 eth0'
+	fi
+	uci set network.wan.type='bridge' # Reqd. See /etc/init.d/set-mesh-gw-mode
+	MESH_ENABLE='1'
+	uci set secn.mesh.mesh_enable='1'
+fi
+
+#### Use WiFi Client mode for Internet Access
+if [ $WANPORT = "WiFi" ]; then
+    # Set up for wlan0 WAN port
+	uci set wireless.sta_0.disabled='0'
+	uci set wireless.sta_0.ssid=$WANSSID
+	uci set wireless.sta_0.key=$WANPASS
+	uci set wireless.sta_0.encryption=$WANENCR
+	uci set network.wan.ifname='wlan0-2'
+
+	# Disable WiFi AP mode
+	uci set wireless.ap_0.disabled='1'
+	uci set secn.accesspoint.ap_disable='1'
+	# Disable mesh
+	uci set secn.mesh.mesh_enable='0'
+	MESH_ENABLE='0'
+fi
+
+#### 4G USB Ethernet Modem ####
+if [ $WANPORT = "USB-Eth-Modem" ]; then
+	USB_ETH=`uci get secn.wan.usb_eth_if`
+	uci set network.wan.ifname=$USB_ETH
+fi
+
+# Disable mesh if required
+if [ $MESH_ENABLE = "1" ]; then
+	uci set wireless.ah_0.disabled='0'
+else
+	uci set wireless.ah_0.disabled='1'
+fi
+
+
+# Set up for DHCP or Static
+if [ $ETHWANMODE = "Static" ]; then
+	uci set network.wan.proto='static'
+	uci set network.wan.ipaddr=$WANIP
+	uci set network.wan.gateway=$WANGATEWAY
+	uci set network.wan.netmask=$WANMASK
+	uci set network.wan.dns=$WANDNS
+	uci set network.wan.username=''
+	uci set network.wan.password=''
+
+# Set up for DHCP
+elif [ $ETHWANMODE = "pppoe" ]; then
+	uci set network.wan.proto='pppoe'
+	uci set network.wan.username=$PPPUSERNAME
+	uci set network.wan.password=$PPPPASSWORD
+	uci set network.wan.ipaddr=''
+	uci set network.wan.gateway=''
+	uci set network.wan.netmask=''
+	uci set network.wan.dns=''
+else
+	uci set network.wan.proto='dhcp'
+	uci set network.wan.ipaddr=''
+	uci set network.wan.gateway=''
+	uci set network.wan.netmask=''
+	uci set network.wan.dns=''
+	uci set network.wan.username=''
+	uci set network.wan.password=''
+fi
+
+# Make sure firewall is enabled
+/etc/init.d/firewall enable  
+#--------------------------------
+
+### 3G WAN should placed after ETHWANMODE settings
+# Set up for 3G Modem
+if [ $WANPORT = "USB-Modem" ]; then
+	uci set network.lan.ifname='eth0 eth1'
+	uci set network.wan.ifname='ppp0'
+	uci set network.wan.proto='3g'
+	uci set network.wan.service=$SERVICE
+	uci set network.wan.apn=$APN
+	uci set network.wan.username=$APNUSER
+	uci set network.wan.password=$APNPW
+	uci set network.wan.pincode=$PIN
+	uci set network.wan.device=$TTY
+fi
+
+# Set up modem chat scripts
+# Fix # characters in dialstr
+DIALSTR=`uci get secn.modem.dialstr`
+
+DIALSTR=` echo $DIALSTR  | sed 's/'%23'/'#'/' `
+DIALSTR=` echo $DIALSTR  | sed 's/'%23'/'#'/' `
+DIALSTR=` echo $DIALSTR  | sed 's/'%23'/'#'/' `
+DIALSTR=` echo $DIALSTR  | sed 's/'%23'/'#'/' `
+DIALSTR=` echo $DIALSTR  | sed 's/'%23'/'#'/' `
+
+uci set secn.modem.dialstr=$DIALSTR
+
+# Set up dialstring line
+DIALSTR2='"ATD'$DIALSTR'"'
+DIALSTR3='ATD'$DIALSTR''
+
+# Create the new chatscript files
+rm /etc/chatscripts/3g.chat
+
+cat >> /etc/chatscripts/3g.chat << EOF
+
+ABORT   BUSY
+ABORT   'NO CARRIER'
+ABORT   ERROR
+REPORT  CONNECT
+TIMEOUT 10
+""      "AT&F"
+OK      "ATE1"
+OK      'AT+CGDCONT=1,"IP","\$USE_APN"'
+SAY     "Calling UMTS/GPRS"
+TIMEOUT 30
+OK      $DIALSTR2
+CONNECT ' '
+
+EOF
+
+rm /etc/chatscripts/evdo.chat
+cat >> /etc/chatscripts/evdo.chat << EOF
+
+# This is a simple chat script based off of the one provided by Sierra Wireless
+# for CDMA connections.  It should work for both Sprint and Verizon networks.
+# Default dial string: ATDT#777
+ABORT  	BUSY
+ABORT 	'NO CARRIER'
+ABORT   ERROR
+ABORT 	'NO DIAL TONE'
+ABORT 	'NO ANSWER'
+ABORT 	DELAYED
+REPORT	CONNECT
+TIMEOUT	10
+''      AT
+OK      ATZ
+SAY     'Calling CDMA/EVDO'
+TIMEOUT 30
+OK      $DIALSTR3
+CONNECT ''
+
+EOF
+
+uci commit dhcp
+uci commit network
+uci commit wireless
+uci commit secn
+
+sleep 1
+
+/etc/init.d/network restart
+
+# wait till the network completey start and process next
+sleep 5
+
+/etc/init.d/config_secn-2 start
+
+/etc/init.d/set-mesh-gw-mode.sh start
+
+/etc/init.d/iotd restart

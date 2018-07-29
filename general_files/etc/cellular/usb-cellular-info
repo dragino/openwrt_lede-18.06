@@ -1,0 +1,7 @@
+#List of USB modem info
+## Copyright (c) 2016 Dragino Tech <support@dragino.com>
+#Format: pid:vid=tty_port,info_script
+#Qualcomm, Inc. Acer Gobi 2000 Wireless Modem, Quctel EC20
+05c6:9215=3,/etc/cellular/uc20_status.comgt
+#Quctel UC20
+05c6:9003=3,/etc/cellular/uc20_status.comgt
