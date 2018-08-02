@@ -8,9 +8,9 @@ do
 	case $OPTION in
 	p)	OPENWRT_PATH="$OPTARG"
 		;;
-	h|?)	printf "Set Up build environment for MS14, HE \n\n"
+	h|?)	printf "Set Up OpenWrt LEDE build environment for MS14, HE \n\n"
 		printf "Usage: %s [-p <openwrt_source_path>]\n" $(basename $0) >&2
-		printf "	-p: set up build path, default path = dragino\n"
+		printf "	-p: set up build path, default path = openwrt\n"
 		printf "\n"
 		exit 1
 		;;
@@ -21,8 +21,17 @@ shift $(($OPTIND - 1))
 
 REPO_PATH=$(pwd)
 
+echo "*** Get OpenWrt LEDE source code"
+git clone https://github.com/openwrt/openwrt.git $OPENWRT_PATH
+cd $OPENWRT_PATH 
+
+echo "*** Switch to Brance openwrt-18.06 and tag v18.06.0-rc2"
+git checkout -b openwrt-18.06_v18.06.0-rc2
+
+
+cd $REPO_PATH
 echo "*** Backup original feeds files if they exist"
-[ -f $OPENWRT_PATH/feeds.conf.default ] &&  mv $OPENWRT_PATH/feeds.conf.default  $OPENWRT_PATH/feeds.conf.default.bak
+[ -f $OPENWRT_PATH/feeds.conf.default ] &&  mv $OPENWRT_PATH/feeds.conf.default $OPENWRT_PATH/feeds.conf.default.bak
 
 echo "*** Copy feeds used in Dragino"
 cp feeds.dragino $OPENWRT_PATH/feeds.conf.default
