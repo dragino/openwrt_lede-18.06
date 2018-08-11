@@ -17,11 +17,6 @@ config interface 'lan'
 config interface
 	option ifname 'bat0'
 
-config interface 'mesh_0'
-	option proto 'static'
-	option mtu '1528'
-	option ipaddr '10.10.1.20'
-	option netmask '255.255.255.0'
 
 config interface 'wan'
 	option ifname 'eth1'

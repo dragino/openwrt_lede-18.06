@@ -23,7 +23,7 @@ local type,assert,print,pairs,string,io,os,table,tonumber = type,assert,print,pa
 
 local uci = require("luci.model.uci")
 local util = require("luci.util")
-local luci_fs = require("luci.fs")
+local luci_fs = require("nixio.fs")
 
 setfenv(1,M)
 

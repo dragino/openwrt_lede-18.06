@@ -54,11 +54,11 @@ echo "*** Change to build directory"
 cd $OPENWRT_PATH
 echo " "
 
-echo "*** Run make defconfig to set up initial .config file (see ./defconfig.log)"
-make defconfig > ./defconfig.log
+#echo "*** Run make defconfig to set up initial .config file (see ./defconfig.log)"
+#make defconfig > ./defconfig.log
 
 # Backup the .config file
-cp .config .config.orig
-echo " "
+#cp .config .config.orig
+#echo " "
 
 echo "End of script"
