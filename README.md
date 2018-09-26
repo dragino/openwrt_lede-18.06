@@ -1,10 +1,15 @@
 IoT Build for Dragino Devices -- Base on OpenWrt LEDE-18.06
 ===============
-
+This repository is a generic OpenWrt version from Dragino devices such as:
 [MS14](http://www.dragino.com/products/mother-board.html), [HE](http://www.dragino.com/products/linux-module/item/87-he.html), [LG02](http://www.dragino.com/products/lora/item/135-lg02.html),[OLG02](http://www.dragino.com/products/lora/item/136-olg02.html).
 
-How to compile the image?
-===============
+<!-- TOC depthFrom:1 -->
+ - [How to compile the firmware](#How-to-compile-the-firmware)
+
+<!-- /TOC -->
+
+## How to compile the firmware?
+
 ``` bash
 git clone https://github.com/dragino/openwrt_lede-18.06 dragino-lede-18.06
 cd dragino-lede-18.06
@@ -57,6 +62,13 @@ Then run the customzied build by running:
 ./build_image.sh -a mybuild
 ```
 The build process will auto overwrite the default files or pacakges with the customized one. User can customize only default files or pacakges. The build will use the default from IoT build if not specify.
+
+How to develop a C software before build the image?
+===============
+The fastest way is to use the SDK. 
+Step 1 
+
+
 
 Have Fun!
 
