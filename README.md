@@ -6,6 +6,7 @@ This repository is a generic OpenWrt version from Dragino devices such as:
 <!-- TOC depthFrom:1 -->
  - [How to compile the firmware?](#how-to-compile-the-firmware)
  - [How to customize a build?](#how-to-customize-a-build)
+ - [How to develop a C software before build the image?](how-to-develop-a-c-software-before-build-the-image)
 <!-- /TOC -->
 
 ## How to compile the firmware
@@ -64,9 +65,21 @@ Then run the customzied build by running:
 The build process will auto overwrite the default files or pacakges with the customized one. User can customize only default files or pacakges. The build will use the default from IoT build if not specify.
 
 ## How to develop a C software before build the image
-===============
 The fastest way is to use the SDK. 
-Step 1 
+1: Download the [LEDE-SDK](http://www.dragino.com/downloads/index.php?dir=LoRa_Gateway/LG02-OLG02/&file=lede-sdk.tar.gz) 
+2: Extra the SDK to Linux OS. 
+``` bash
+   tar -xzvf lede-sdk.tar.gz
+```
+3: Download the demo [hello package](http://www.dragino.com/downloads/index.php?dir=LoRa_Gateway/LG02-OLG02/&file=hello.tgz) and put it in the lede-sdk/package
+4: Enable hello package by running make menuconfig in lede-sdk. and enable hello package in the utility
+``` bash
+   make meunconfig
+```
+5: make the package 
+``` bash
+   make
+```
 
 
 
