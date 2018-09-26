@@ -81,7 +81,7 @@ The fastest way is to use the SDK.
    make
 ```
 
-An video instruction can be seen from [LEDE SDK Video](https://youtu.be/SVtAVF93cpw)
+A video instruction can be seen from [LEDE SDK Video](https://youtu.be/SVtAVF93cpw)
 
 Have Fun!
 
