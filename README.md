@@ -5,7 +5,7 @@ This repository is a generic OpenWrt version from Dragino devices such as:
 
 <!-- TOC depthFrom:1 -->
  - [How to compile the firmware](#How-to-compile-the-firmware?)
-
+ - [How to customize a build?](#How-to-customize-a-build?)
 <!-- /TOC -->
 
 ## How to compile the firmware?
@@ -36,8 +36,8 @@ How to debug if build fails?
 ```
 Above commands will enable verbose and build in single thread to get a view of the error during build.
 
-How to customized a build?
-===============
+##How to customize a build?
+
 As a example, if user want to customize a build named mybuild. mybuild include different packages and default files from the default build. User can do as below: To customize the packages
 
 ``` bash
