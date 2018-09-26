@@ -6,7 +6,7 @@ This repository is a generic OpenWrt version from Dragino devices such as:
 <!-- TOC depthFrom:1 -->
  - [How to compile the firmware?](#how-to-compile-the-firmware)
  - [How to customize a build?](#how-to-customize-a-build)
- - [How to develop a C software before build the image?](how-to-develop-a-c-software-before-build-the-image)
+ - [How to develop a C software before build the image?](#how-to-develop-a-c-software-before-build-the-image)
 <!-- /TOC -->
 
 ## How to compile the firmware
