@@ -4,7 +4,7 @@ This repository is a generic OpenWrt version from Dragino devices such as:
 [MS14](http://www.dragino.com/products/mother-board.html), [HE](http://www.dragino.com/products/linux-module/item/87-he.html), [LG02](http://www.dragino.com/products/lora/item/135-lg02.html),[OLG02](http://www.dragino.com/products/lora/item/136-olg02.html).
 
 <!-- TOC depthFrom:1 -->
- - [How to compile the firmware](#How-to-compile-the-firmware)
+ - [How to compile the firmware](#How-to-compile-the-firmware?)
 
 <!-- /TOC -->
 
