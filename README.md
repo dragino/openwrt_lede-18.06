@@ -66,12 +66,16 @@ The build process will auto overwrite the default files or pacakges with the cus
 
 ## How to develop a C software before build the image
 The fastest way is to use the SDK. 
-1: Download the [LEDE-SDK](http://www.dragino.com/downloads/index.php?dir=LoRa_Gateway/LG02-OLG02/&file=lede-sdk.tar.gz) 
+1: Download the [LEDE-SDK](http://www.dragino.com/downloads/downloads/LoRa_Gateway/LG02-OLG02/lede-sdk.tar.gz) 
+``` bash
+   wget http://www.dragino.com/downloads/downloads/LoRa_Gateway/LG02-OLG02/lede-sdk.tar.gz
+```
+
 2: Extra the SDK to Linux OS. 
 ``` bash
    tar -xzvf lede-sdk.tar.gz
 ```
-3: Download the demo [hello package](http://www.dragino.com/downloads/index.php?dir=LoRa_Gateway/LG02-OLG02/&file=hello.tgz) and put it in the lede-sdk/package
+3: Download the demo [hello package](http://www.dragino.com/downloads/downloads/LoRa_Gateway/LG02-OLG02/hello.tgz) and put it in the lede-sdk/package
 4: Enable hello package by running make menuconfig in lede-sdk. and enable hello package in the utility
 ``` bash
    make meunconfig
