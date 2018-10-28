@@ -1,0 +1,124 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+R	template_lualib.c	/^static const luaL_reg R[] = {$/;"	v	file:
+TEMPLATE_LUALIB_META	template_lualib.h	26;"	d
+T_TYPE_CODE	template_parser.h	46;"	d
+T_TYPE_COMMENT	template_parser.h	41;"	d
+T_TYPE_EOF	template_parser.h	47;"	d
+T_TYPE_EXPR	template_parser.h	42;"	d
+T_TYPE_I18N	template_parser.h	44;"	d
+T_TYPE_I18N_RAW	template_parser.h	45;"	d
+T_TYPE_INCLUDE	template_parser.h	43;"	d
+T_TYPE_INIT	template_parser.h	39;"	d
+T_TYPE_TEXT	template_parser.h	40;"	d
+_TEMPLATE_LMO_H_	template_lmo.h	20;"	d
+_TEMPLATE_LUALIB_H_	template_lualib.h	20;"	d
+_TEMPLATE_PARSER_H_	template_parser.h	20;"	d
+_TEMPLATE_UTILS_H_	template_utils.h	20;"	d
+_lmo_active_catalog	template_lmo.c	/^lmo_catalog_t *_lmo_active_catalog = NULL;$/;"	v
+_lmo_catalogs	template_lmo.c	/^lmo_catalog_t *_lmo_catalogs = NULL;$/;"	v
+_validate_utf8	template_utils.c	/^static int _validate_utf8(unsigned char **s, int l, struct template_buffer *buf)$/;"	f	file:
+archives	template_lmo.h	/^	struct lmo_archive *archives;$/;"	m	struct:lmo_catalog	typeref:struct:lmo_catalog::lmo_archive
+buf_append	template_utils.c	/^int buf_append(struct template_buffer *buf, const char *s, int len)$/;"	f
+buf_destroy	template_utils.c	/^char * buf_destroy(struct template_buffer *buf)$/;"	f
+buf_grow	template_utils.c	/^int buf_grow(struct template_buffer *buf, int size)$/;"	f
+buf_init	template_utils.c	/^struct template_buffer * buf_init(int size)$/;"	f
+buf_length	template_utils.c	/^int buf_length(struct template_buffer *buf)$/;"	f
+buf_putchar	template_utils.c	/^int buf_putchar(struct template_buffer *buf, char c)$/;"	f
+cmp_index	po2lmo.c	/^static int cmp_index(const void *a, const void *b)$/;"	f	file:
+cur_chunk	template_parser.h	/^	struct template_chunk cur_chunk;$/;"	m	struct:template_parser	typeref:struct:template_parser::template_chunk
+data	template_parser.h	/^	char *data;$/;"	m	struct:template_parser
+data	template_utils.h	/^	char *data;$/;"	m	struct:template_buffer
+die	po2lmo.c	/^static void die(const char *msg)$/;"	f	file:
+dptr	template_utils.h	/^	char *dptr;$/;"	m	struct:template_buffer
+e	template_parser.h	/^	const char *e;$/;"	m	struct:template_chunk
+end	template_lmo.h	/^	char		*end;$/;"	m	struct:lmo_archive
+extract_string	po2lmo.c	/^static int extract_string(const char *src, char *dest, int len)$/;"	f	file:
+fd	template_lmo.h	/^	int         fd;$/;"	m	struct:lmo_archive
+fd	template_parser.h	/^	int fd;$/;"	m	struct:template_parser
+file	template_parser.h	/^	const char *file;$/;"	m	struct:template_parser
+fill	template_utils.h	/^	unsigned int fill;$/;"	m	struct:template_buffer
+gc	template_parser.h	/^	char *gc;$/;"	m	struct:template_parser
+gen_code	template_parser.c	/^const char *gen_code[9][2] = {$/;"	v
+in_expr	template_parser.h	/^	int in_expr;$/;"	m	struct:template_parser
+index	template_lmo.h	/^	lmo_entry_t *index;$/;"	m	struct:lmo_archive
+key_id	template_lmo.h	/^	uint32_t key_id;$/;"	m	struct:lmo_entry
+lang	template_lmo.h	/^	char lang[6];$/;"	m	struct:lmo_catalog
+length	template_lmo.h	/^	int	        length;$/;"	m	struct:lmo_archive
+length	template_lmo.h	/^	uint32_t length;$/;"	m	struct:lmo_entry
+line	template_parser.h	/^	int line;$/;"	m	struct:template_chunk
+line	template_parser.h	/^	int line;$/;"	m	struct:template_parser
+lmo_archive	template_lmo.h	/^struct lmo_archive {$/;"	s
+lmo_archive_t	template_lmo.h	/^typedef struct lmo_archive lmo_archive_t;$/;"	t	typeref:struct:lmo_archive
+lmo_canon_hash	template_lmo.c	/^uint32_t lmo_canon_hash(const char *str, int len)$/;"	f
+lmo_catalog	template_lmo.h	/^struct lmo_catalog {$/;"	s
+lmo_catalog_t	template_lmo.h	/^typedef struct lmo_catalog lmo_catalog_t;$/;"	t	typeref:struct:lmo_catalog
+lmo_change_catalog	template_lmo.c	/^int lmo_change_catalog(const char *lang)$/;"	f
+lmo_close	template_lmo.c	/^void lmo_close(lmo_archive_t *ar)$/;"	f
+lmo_close_catalog	template_lmo.c	/^void lmo_close_catalog(const char *lang)$/;"	f
+lmo_entry	template_lmo.h	/^struct lmo_entry {$/;"	s
+lmo_entry_t	template_lmo.h	/^typedef struct lmo_entry lmo_entry_t;$/;"	t	typeref:struct:lmo_entry
+lmo_find_entry	template_lmo.c	/^static lmo_entry_t * lmo_find_entry(lmo_archive_t *ar, uint32_t hash)$/;"	f	file:
+lmo_load_catalog	template_lmo.c	/^int lmo_load_catalog(const char *lang, const char *dir)$/;"	f
+lmo_open	template_lmo.c	/^lmo_archive_t * lmo_open(const char *file)$/;"	f
+lmo_translate	template_lmo.c	/^int lmo_translate(const char *key, int keylen, char **out, int *outlen)$/;"	f
+luaopen_luci_template_parser	template_lualib.c	/^LUALIB_API int luaopen_luci_template_parser(lua_State *L) {$/;"	f
+luastr_escape	template_utils.c	/^void luastr_escape(struct template_buffer *out, const char *s, unsigned int l,$/;"	f
+luastr_translate	template_utils.c	/^void luastr_translate(struct template_buffer *out, const char *s, unsigned int l,$/;"	f
+main	po2lmo.c	/^int main(int argc, char *argv[])$/;"	f
+mb_is_cont	template_utils.c	/^static inline int mb_is_cont(unsigned char c)$/;"	f	file:
+mb_is_illegal	template_utils.c	/^static inline int mb_is_illegal(unsigned char *s, int n)$/;"	f	file:
+mb_is_shortest	template_utils.c	/^static inline int mb_is_shortest(unsigned char *s, int n)$/;"	f	file:
+mb_is_surrogate	template_utils.c	/^static inline int mb_is_surrogate(unsigned char *s, int n)$/;"	f	file:
+mb_num_chars	template_utils.c	/^static inline int mb_num_chars(unsigned char c)$/;"	f	file:
+mmap	template_lmo.h	/^	char        *mmap;$/;"	m	struct:lmo_archive
+next	template_lmo.h	/^	struct lmo_archive *next;$/;"	m	struct:lmo_archive	typeref:struct:lmo_archive::lmo_archive
+next	template_lmo.h	/^	struct lmo_catalog *next;$/;"	m	struct:lmo_catalog	typeref:struct:lmo_catalog::lmo_catalog
+off	template_parser.h	/^	char *off;$/;"	m	struct:template_parser
+offset	template_lmo.h	/^	uint32_t offset;$/;"	m	struct:lmo_entry
+pcdata	template_utils.c	/^char * pcdata(const char *s, unsigned int l)$/;"	f
+print	po2lmo.c	/^static void print(const void *ptr, size_t size, size_t nmemb, FILE *stream)$/;"	f	file:
+print_index	po2lmo.c	/^static void print_index(void *array, int n, FILE *out)$/;"	f	file:
+print_uint32	po2lmo.c	/^static void print_uint32(uint32_t x, FILE *out)$/;"	f	file:
+prv_chunk	template_parser.h	/^	struct template_chunk prv_chunk;$/;"	m	struct:template_parser	typeref:struct:template_parser::template_chunk
+s	template_parser.h	/^	const char *s;$/;"	m	struct:template_chunk
+sfh_get16	template_lmo.h	38;"	d
+sfh_get16	template_lmo.h	40;"	d
+sfh_hash	template_lmo.c	/^uint32_t sfh_hash(const char *data, int len)$/;"	f
+size	template_lmo.h	/^	uint32_t    size;$/;"	m	struct:lmo_archive
+size	template_parser.h	/^	uint32_t size;$/;"	m	struct:template_parser
+size	template_utils.h	/^	unsigned int size;$/;"	m	struct:template_buffer
+strfind	template_parser.c	/^static char *strfind(char *haystack, int hslen, const char *needle, int ndlen)$/;"	f	file:
+strip_after	template_parser.h	/^	int strip_after;$/;"	m	struct:template_parser
+strip_before	template_parser.h	/^	int strip_before;$/;"	m	struct:template_parser
+striptags	template_utils.c	/^char * striptags(const char *s, unsigned int l)$/;"	f
+template_L_change_catalog	template_lualib.c	/^static int template_L_change_catalog(lua_State *L) {$/;"	f	file:
+template_L_close_catalog	template_lualib.c	/^static int template_L_close_catalog(lua_State *L) {$/;"	f	file:
+template_L_do_parse	template_lualib.c	/^static int template_L_do_parse(lua_State *L, struct template_parser *parser, const char *chunkname)$/;"	f	file:
+template_L_hash	template_lualib.c	/^static int template_L_hash(lua_State *L) {$/;"	f	file:
+template_L_load_catalog	template_lualib.c	/^static int template_L_load_catalog(lua_State *L) {$/;"	f	file:
+template_L_parse	template_lualib.c	/^int template_L_parse(lua_State *L)$/;"	f
+template_L_parse_string	template_lualib.c	/^int template_L_parse_string(lua_State *L)$/;"	f
+template_L_pcdata	template_lualib.c	/^int template_L_pcdata(lua_State *L)$/;"	f
+template_L_striptags	template_lualib.c	/^int template_L_striptags(lua_State *L)$/;"	f
+template_L_translate	template_lualib.c	/^static int template_L_translate(lua_State *L) {$/;"	f	file:
+template_L_utf8	template_lualib.c	/^int template_L_utf8(lua_State *L)$/;"	f
+template_buffer	template_utils.h	/^struct template_buffer {$/;"	s
+template_chunk	template_parser.h	/^struct template_chunk {$/;"	s
+template_close	template_parser.c	/^void template_close(struct template_parser *parser)$/;"	f
+template_code	template_parser.c	/^void template_code(struct template_parser *parser, const char *e)$/;"	f
+template_error	template_parser.c	/^int template_error(lua_State *L, struct template_parser *parser)$/;"	f
+template_format_chunk	template_parser.c	/^template_format_chunk(struct template_parser *parser, size_t *sz)$/;"	f	file:
+template_open	template_parser.c	/^struct template_parser * template_open(const char *file)$/;"	f
+template_parser	template_parser.h	/^struct template_parser {$/;"	s
+template_reader	template_parser.c	/^const char *template_reader(lua_State *L, void *ud, size_t *sz)$/;"	f
+template_string	template_parser.c	/^struct template_parser * template_string(const char *str, uint32_t len)$/;"	f
+template_text	template_parser.c	/^void template_text(struct template_parser *parser, const char *e)$/;"	f
+type	template_parser.h	/^	int type;$/;"	m	struct:template_chunk
+usage	po2lmo.c	/^static void usage(const char *name)$/;"	f	file:
+utf8	template_utils.c	/^char * utf8(const char *s, unsigned int l)$/;"	f
+val_id	template_lmo.h	/^	uint32_t val_id;$/;"	m	struct:lmo_entry
