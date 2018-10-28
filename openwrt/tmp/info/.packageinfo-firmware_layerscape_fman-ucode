@@ -1,0 +1,39 @@
+Source-Makefile: package/firmware/layerscape/fman-ucode/Makefile
+
+Package: fman-layerscape-ls1043ardb
+Version: 2017-02-13-c275e91392e2adab1ed22f3867b8269ca3c54014-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_layerscape
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: ls1043ardb
+Section: firmware
+Category: Firmware
+Title: FMAN UCODE fman-ucode-2017-02-13-c275e91392e2adab1ed22f3867b8269ca3c54014 for NXP ls1043ardb 64b/32b Dev Board
+Maintainer: Jiang Yutang <jiangyutang1978@gmail.com>
+Source: fman-ucode-2017-02-13-c275e91392e2adab1ed22f3867b8269ca3c54014.tar.xz
+Type: ipkg
+Description: FMAN UCODE fman-ucode-2017-02-13-c275e91392e2adab1ed22f3867b8269ca3c54014 for NXP ls1043ardb 64b/32b Dev Board
+https://github.com/qoriq-open-source/fm-ucode.git
+Jiang Yutang <jiangyutang1978@gmail.com>
+@@
+
+Package: fman-layerscape-ls1046ardb
+Version: 2017-02-13-c275e91392e2adab1ed22f3867b8269ca3c54014-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_layerscape
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: ls1046ardb
+Section: firmware
+Category: Firmware
+Title: FMAN UCODE fman-ucode-2017-02-13-c275e91392e2adab1ed22f3867b8269ca3c54014 for NXP ls1046ardb 64b/32b Dev Board
+Maintainer: Jiang Yutang <jiangyutang1978@gmail.com>
+Source: fman-ucode-2017-02-13-c275e91392e2adab1ed22f3867b8269ca3c54014.tar.xz
+Type: ipkg
+Description: FMAN UCODE fman-ucode-2017-02-13-c275e91392e2adab1ed22f3867b8269ca3c54014 for NXP ls1046ardb 64b/32b Dev Board
+https://github.com/qoriq-open-source/fm-ucode.git
+Jiang Yutang <jiangyutang1978@gmail.com>
+@@
+
+

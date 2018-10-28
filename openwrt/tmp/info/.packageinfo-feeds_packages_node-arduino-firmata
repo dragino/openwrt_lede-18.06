@@ -1,0 +1,25 @@
+Source-Makefile: package/feeds/packages/node-arduino-firmata/Makefile
+Build-Depends: node/host
+
+Package: node-arduino-firmata
+Submenu: Node.js
+Version: 0.3.4-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +node +node-npm +node-serialport
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: packages
+Title: Node.js package to access serial ports for reading and writing
+Maintainer: John Crispin <blogic@openwrt.org>
+Source: node-arduino-firmata-v0.3.4.tar.gz
+License: MIT
+LicenseFiles: LICENSE.txt
+Type: ipkg
+Description:  Node.js package to access serial ports for reading and writing OR Welcome your robotic JavaScript overlords. Better yet, program them!
+https://www.npmjs.org/package/serialport
+John Crispin <blogic@openwrt.org>
+@@
+
+

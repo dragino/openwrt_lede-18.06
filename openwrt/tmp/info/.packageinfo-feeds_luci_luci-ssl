@@ -1,0 +1,23 @@
+Source-Makefile: package/feeds/luci/luci-ssl/Makefile
+Build-Depends: lua/host luci-base/host 
+
+Package: luci-ssl
+Submenu: 1. Collections
+Version: x-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +luci +libustream-mbedtls +px5g
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: luci
+Title: LuCI with HTTPS support (mbedTLS as SSL backend)
+Maintainer: 
+Source: 
+License: Apache-2.0
+Type: ipkg
+Description: LuCI with HTTPS support (mbedTLS as SSL backend)
+
+@@
+
+

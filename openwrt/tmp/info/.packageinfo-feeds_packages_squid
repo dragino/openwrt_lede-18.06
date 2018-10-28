@@ -1,0 +1,47 @@
+Source-Makefile: package/feeds/packages/squid/Makefile
+
+Package: squid
+Menu: 1
+Submenu: Web Servers/Proxies
+Version: 3.5.27-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libopenssl +libpthread +librt +libltdl +libstdcpp
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: full-featured Web proxy cache
+Maintainer: Marko Ratkaj <marko.ratkaj@sartura.hr>
+Source: squid-3.5.27.tar.xz
+License: GPL-2.0
+Type: ipkg
+Description:   Squid is a caching proxy for the Web supporting HTTP, HTTPS, FTP, and more.
+  It reduces bandwidth and improves response times by caching and reusing
+  frequently-requested web pages.
+http://www.squid-cache.org/
+Marko Ratkaj <marko.ratkaj@sartura.hr>
+@@
+
+Package: squid-mod-cachemgr
+Menu: 1
+Submenu: Web Servers/Proxies
+Version: 3.5.27-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread squid
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: Web based proxy manager and reporting tool
+Maintainer: Marko Ratkaj <marko.ratkaj@sartura.hr>
+Source: squid-3.5.27.tar.xz
+License: GPL-2.0
+Type: ipkg
+Description: Web based proxy manager and reporting tool
+http://www.squid-cache.org/
+Marko Ratkaj <marko.ratkaj@sartura.hr>
+@@
+
+

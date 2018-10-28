@@ -1,0 +1,22 @@
+Source-Makefile: package/system/openwrt-keyring/Makefile
+
+Package: openwrt-keyring
+Version: 2018-05-18-103a32e9f52fd35a428dc08ddbca86fe41dfb918-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: lede-keyring
+Section: base
+Category: Base system
+Repository: base
+Title: OpenWrt Developer Keyring
+Maintainer: John Crispin <john@phrozen.org>
+Source: openwrt-keyring-2018-05-18-103a32e9f52fd35a428dc08ddbca86fe41dfb918.tar.xz
+License: GPL-2.0
+Type: ipkg
+Description:   The keyring of with the developer using and gpg public keys.
+https://openwrt.org/docs/guide-user/security/signatures
+John Crispin <john@phrozen.org>
+@@
+
+

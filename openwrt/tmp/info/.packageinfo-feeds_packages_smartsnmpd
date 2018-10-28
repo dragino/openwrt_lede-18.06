@@ -1,0 +1,26 @@
+Source-Makefile: package/feeds/packages/smartsnmpd/Makefile
+
+Package: smartsnmpd
+Version: 2014-08-13-fb93473d895f058b2d8975d3cfa280ae2a8ae98d
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +lua +liblua +libubox +libuci-lua +libubus-lua
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: Smart-SNMP (Agent)
+Maintainer: Xiongfei Guo <xfguo@credosemi.com>
+Source: smartsnmpd-2014-08-13-fb93473d895f058b2d8975d3cfa280ae2a8ae98d.tar.gz
+License: GPL-2.0
+LicenseFiles: LICENSE
+Type: ipkg
+Description: smartsnmpd is an implementation of SNMP Agent. Its goal is "Easily
+writing boring SNMP MIB with Lua". This package add native support
+for OpenWrt. Include using ubus and uci to get system info/status. 
+And, it use libubox/uloop as low level event-driven library.
+https://github.com/credosemi/smartsnmp
+Xiongfei Guo <xfguo@credosemi.com>
+@@
+
+

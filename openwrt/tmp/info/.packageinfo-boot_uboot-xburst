@@ -1,0 +1,24 @@
+Source-Makefile: package/boot/uboot-xburst/Makefile
+
+Package: uboot-xburst-qi_lb60
+Version: 2012.10-rc2-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_xburst
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: qi_lb60
+Section: boot
+Category: Boot Loaders
+Repository: base
+Title: U-boot for the qi_lb60 board
+Maintainer: 
+Source: u-boot-2012.10-rc2.tar.bz2
+License: GPL-2.0 GPL-2.0+
+LicenseFiles: Licenses/README
+Type: bin
+Description: U-boot for the qi_lb60 board
+http://www.denx.de/wiki/UBoot/WebHome
+
+@@
+
+

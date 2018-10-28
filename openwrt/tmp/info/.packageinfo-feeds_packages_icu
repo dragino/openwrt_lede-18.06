@@ -1,0 +1,25 @@
+Source-Makefile: package/feeds/packages/icu/Makefile
+Build-Depends: icu/host
+Build-Types: host
+
+Package: icu
+Version: 61.1-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libstdcpp +libpthread
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: libs
+Category: Libraries
+Repository: packages
+Title: International Components for Unicode
+Maintainer: Hirokazu MORIKAWA <morikw2@gmail.com>
+Source: icu4c-61_1-src.tgz
+License: ICU-1.8.1+
+LicenseFiles: LICENSE
+Type: ipkg
+Description: International Components for Unicode
+http://icu-project.org
+Hirokazu MORIKAWA <morikw2@gmail.com>
+@@
+
+

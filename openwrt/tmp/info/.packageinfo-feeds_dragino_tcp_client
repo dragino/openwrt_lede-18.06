@@ -1,0 +1,20 @@
+Source-Makefile: package/feeds/dragino/tcp_client/Makefile
+
+Package: tcp_client
+Version: 1.0.0-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libuci +librt
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: dragino
+Title: tcp_client
+Maintainer: skerlan <myEmail.add>
+Source: 
+Type: ipkg
+Description: 	This is a tcp_client package that contains a program to send senser data to a tcp server.
+skerlan <myEmail.add>
+@@
+
+

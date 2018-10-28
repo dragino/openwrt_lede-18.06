@@ -1,0 +1,72 @@
+Source-Makefile: package/system/procd/Makefile
+
+Package: procd
+Version: 2018-03-28-dfb68f8556df63878add145ad9c656381bc20656-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +ubusd +ubus +libjson-script +ubox +libubox +libubus
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: base
+Category: Base system
+Repository: base
+Title: OpenWrt system process manager
+Maintainer: John Crispin <john@phrozen.org>
+Source: procd-2018-03-28-dfb68f8556df63878add145ad9c656381bc20656.tar.xz
+License: GPL-2.0
+Type: ipkg
+Description: OpenWrt system process manager
+John Crispin <john@phrozen.org>
+@@
+Config:
+menu "Configuration"
+	depends on PACKAGE_procd
+
+config PROCD_SHOW_BOOT
+	bool
+	default n
+	prompt "Print the shutdown to the console as well as logging it to syslog"
+
+config PROCD_ZRAM_TMPFS
+	bool
+	default n
+	prompt "Mount /tmp using zram."
+endmenu
+@@
+
+Package: procd-ujail
+Version: 2018-03-28-dfb68f8556df63878add145ad9c656381bc20656-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @KERNEL_NAMESPACES +@KERNEL_UTS_NS +@KERNEL_IPC_NS +@KERNEL_PID_NS +libubox +libblobmsg-json
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: base
+Category: Base system
+Repository: base
+Title: OpenWrt process jail helper
+Maintainer: John Crispin <john@phrozen.org>
+Source: procd-2018-03-28-dfb68f8556df63878add145ad9c656381bc20656.tar.xz
+License: GPL-2.0
+Type: ipkg
+Description: OpenWrt process jail helper
+John Crispin <john@phrozen.org>
+@@
+
+Package: procd-seccomp
+Version: 2018-03-28-dfb68f8556df63878add145ad9c656381bc20656-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @arm||@armeb||@mips||@mipsel||@i386||@x86_64 @!TARGET_uml @KERNEL_SECCOMP +libubox +libblobmsg-json
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: base
+Category: Base system
+Repository: base
+Title: OpenWrt process seccomp helper + utrace
+Maintainer: John Crispin <john@phrozen.org>
+Source: procd-2018-03-28-dfb68f8556df63878add145ad9c656381bc20656.tar.xz
+License: GPL-2.0
+Type: ipkg
+Description: OpenWrt process seccomp helper + utrace
+John Crispin <john@phrozen.org>
+@@
+
+

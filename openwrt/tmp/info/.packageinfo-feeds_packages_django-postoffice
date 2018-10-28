@@ -1,0 +1,23 @@
+Source-Makefile: package/feeds/packages/django-postoffice/Makefile
+
+Package: django-postoffice
+Submenu: Python
+Version: 3.0.3-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python +django +django-jsonfield
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: packages
+Title: A Django app to monitor and send mail asynchronously, complete with template support.
+Maintainer: Gergely Kiss <mail.gery@gmail.com>
+Source: django-post_office-3.0.3.tar.gz
+License: MIT
+Type: ipkg
+Description:   A Django app to monitor and send mail asynchronously, complete with template support.
+https://github.com/ui/django-postoffice
+Gergely Kiss <mail.gery@gmail.com>
+@@
+
+

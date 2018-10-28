@@ -1,0 +1,68 @@
+Source-Makefile: package/boot/uboot-zynq/Makefile
+Build-Types: host
+
+Package: u-boot-zc702
+Version: 2016.03
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @!IN_SDK @TARGET_zynq
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: zc702
+Section: boot
+Category: Boot Loaders
+Title: U-Boot for Xilinx ZC702 Dev Board
+Maintainer: 
+Source: u-boot-2016.03.tar.bz2
+License: GPL-2.0 GPL-2.0+
+LicenseFiles: Licenses/README
+Type: bin
+Description: U-Boot for Xilinx ZC702 Dev Board
+http://www.denx.de/wiki/U-Boot
+
+@@
+
+Build-Types: host
+
+Package: u-boot-zed
+Version: 2016.03
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @!IN_SDK @TARGET_zynq
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: zed
+Section: boot
+Category: Boot Loaders
+Title: U-Boot for Avnet Digilent ZedBoard Dev Board
+Maintainer: 
+Source: u-boot-2016.03.tar.bz2
+License: GPL-2.0 GPL-2.0+
+LicenseFiles: Licenses/README
+Type: bin
+Description: U-Boot for Avnet Digilent ZedBoard Dev Board
+http://www.denx.de/wiki/U-Boot
+
+@@
+
+Build-Types: host
+
+Package: u-boot-zybo
+Version: 2016.03
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @!IN_SDK @TARGET_zynq
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: zybo
+Section: boot
+Category: Boot Loaders
+Title: U-Boot for Digilent Zybo Dev Board
+Maintainer: 
+Source: u-boot-2016.03.tar.bz2
+License: GPL-2.0 GPL-2.0+
+LicenseFiles: Licenses/README
+Type: bin
+Description: U-Boot for Digilent Zybo Dev Board
+http://www.denx.de/wiki/U-Boot
+
+@@
+
+

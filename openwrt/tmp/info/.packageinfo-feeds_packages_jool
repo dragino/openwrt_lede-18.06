@@ -1,0 +1,67 @@
+Source-Makefile: package/feeds/packages/jool/Makefile
+Build-Depends: USE_UCLIBC:argp-standalone USE_MUSL:argp-standalone
+
+Package: jool
+Version: 2018.01.17-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +kmod-jool +jool-tools
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: Jool meta-package
+Maintainer: Dan Luedtke <mail@danrl.com>
+Source: jool-9dfaf22e49f7905d94af9b73f9bee22c26d7dd4a.tar.xz
+License: GPL-3.0
+LicenseFiles: COPYING
+Type: ipkg
+Description:     Jool is an Open Source SIIT and NAT64 for Linux.
+https://www.jool.mx
+Dan Luedtke <mail@danrl.com>
+@@
+
+Package: kmod-jool
+Submenu: Network Support
+Version: <LINUX_VERSION>+2018.01.17-2
+Depends: @IPV6 +kmod-crypto-md5 +kmod-nf-conntrack +kmod-nf-conntrack6
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: Jool kernel module
+Maintainer: 
+Source: jool-9dfaf22e49f7905d94af9b73f9bee22c26d7dd4a.tar.xz
+License: GPL-3.0
+LicenseFiles: COPYING
+Type: ipkg
+Description:     Jool is an Open Source SIIT and NAT64 for Linux.
+
+  This package provides the kernel module for Jool.
+
+@@
+
+Package: jool-tools
+Version: 2018.01.17-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libnl +ethtool
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: Jool userspace control programs
+Maintainer: Dan Luedtke <mail@danrl.com>
+Source: jool-9dfaf22e49f7905d94af9b73f9bee22c26d7dd4a.tar.xz
+License: GPL-3.0
+LicenseFiles: COPYING
+Type: ipkg
+Description:     Jool is an Open Source SIIT and NAT64 for Linux.
+
+  This package provides the userspace control programs for Jool.
+https://www.jool.mx
+Dan Luedtke <mail@danrl.com>
+@@
+
+

@@ -1,0 +1,24 @@
+Source-Makefile: package/feeds/packages/libxml2/Makefile
+Build-Types: host
+
+Package: libxml2
+Version: 2.9.8-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +zlib
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: libs
+Category: Libraries
+Repository: packages
+Title: Gnome XML library
+Maintainer: Michael Heimpold <mhei@heimpold.de>
+Source: libxml2-2.9.8.tar.gz
+License: MIT
+LicenseFiles: COPYING
+Type: ipkg
+Description:   A library for manipulating XML and HTML resources.
+http://xmlsoft.org/
+Michael Heimpold <mhei@heimpold.de>
+@@
+
+

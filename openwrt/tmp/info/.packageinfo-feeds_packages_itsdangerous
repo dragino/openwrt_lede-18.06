@@ -1,0 +1,26 @@
+Source-Makefile: package/feeds/packages/itsdangerous/Makefile
+Build-Depends: python python3
+
+Package: python3-itsdangerous
+Submenu: Python
+Version: 0.24-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: python3
+Section: lang
+Category: Languages
+Repository: packages
+Title: python3-itsdangerous
+Maintainer: Daniel Golle <daniel@makrotopia.org>
+Source: itsdangerous-0.24.tar.gz
+License: BSD-3-Clause
+LicenseFiles: LICENSE
+Type: ipkg
+Description: Various helpers to pass trusted data to untrusted environments and back.
+http://github.com/mitsuhiko/itsdangerous
+Daniel Golle <daniel@makrotopia.org>
+@@
+
+

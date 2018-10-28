@@ -1,0 +1,657 @@
+Source-Makefile: package/feeds/packages/freeradius3/Makefile
+
+Package: freeradius3
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +freeradius3-common
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: A flexible RADIUS server (version 3)
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: A flexible RADIUS server (version 3)
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+Config:
+  source "feeds/packages/net/freeradius3/Config.in"
+@@
+
+Package: freeradius3-common
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +FREERADIUS3_OPENSSL:libopenssl +libcap +libpcap +libncurses +PACKAGE_libpcre:libpcre +libreadline +libtalloc
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: common files
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: common files
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-default
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3 +freeradius3-democerts +freeradius3-mod-always +freeradius3-mod-attr-filter +freeradius3-mod-chap +freeradius3-mod-detail +freeradius3-mod-digest +freeradius3-mod-eap +freeradius3-mod-eap-gtc +freeradius3-mod-eap-leap +freeradius3-mod-eap-md5 +freeradius3-mod-eap-mschapv2 +freeradius3-mod-eap-peap +freeradius3-mod-eap-tls +freeradius3-mod-eap-ttls +freeradius3-mod-exec +freeradius3-mod-expiration +freeradius3-mod-expr +freeradius3-mod-files +freeradius3-mod-logintime +freeradius3-mod-mschap +freeradius3-mod-pap +freeradius3-mod-preprocess +freeradius3-mod-radutmp +freeradius3-mod-realm +freeradius3-mod-unix
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: Modules needed for Radius default configuration
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: Modules needed for Radius default configuration
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-democerts
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: Demo certificates to test the server
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: Demo certificates to test the server
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-always
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: Always module
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: Always module
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-attr-filter
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: ATTR filter module
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: ATTR filter module
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-chap
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: CHAP module
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: CHAP module
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-detail
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: Detailed accounting module
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: Detailed accounting module
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-digest
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: HTTP Digest Authentication
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: HTTP Digest Authentication
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-eap-gtc
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3-mod-eap
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: EAP/GTC module
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: EAP/GTC module
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-eap-leap
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3-mod-eap
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: EAP/LEAP module
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: EAP/LEAP module
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-eap-md5
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3-mod-eap
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: EAP/MD5 module
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: EAP/MD5 module
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-eap-mschapv2
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3-mod-eap +freeradius3-mod-mschap
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: EAP/MS-CHAPv2 module
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: EAP/MS-CHAPv2 module
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-eap-peap
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3-mod-eap @FREERADIUS3_OPENSSL
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: EAP/PEAP module
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: EAP/PEAP module
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-eap
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: Base EAP module
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: Base EAP module
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-eap-tls
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3-mod-eap @FREERADIUS3_OPENSSL
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: EAP/TLS module
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: EAP/TLS module
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-eap-ttls
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3-mod-eap-tls
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: EAP/TTLS module
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: EAP/TTLS module
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-exec
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: EXEC module
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: EXEC module
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-expiration
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: Expiration module
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: Expiration module
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-expr
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: EXPR module
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: EXPR module
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-files
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: Module using local files for authorization
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: Module using local files for authorization
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-ldap
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3 +libopenldap @FREERADIUS3_OPENSSL
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: LDAP Authentication
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: LDAP Authentication
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-logintime
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: Logintime module
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: Logintime module
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-mschap
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: MS-CHAP and MS-CHAPv2 module
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: MS-CHAP and MS-CHAPv2 module
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-pap
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: PAP module
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: PAP module
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-passwd
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: Rlm passwd module
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: Rlm passwd module
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-preprocess
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: Request pre-processing module
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: Request pre-processing module
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-radutmp
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: Radius UTMP module
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: Radius UTMP module
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-realm
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: Realms handling module
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: Realms handling module
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-mod-unix
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeradius3
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: System Authentication
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: System Authentication
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+Package: freeradius3-utils
+Submenu: FreeRADIUS (version 3)
+Version: release_3_0_11-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +freeradius3-common
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: Misc. client utilities
+Maintainer: Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+Source: release_3_0_11.tar.gz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT LICENSE
+Type: ipkg
+Description: Misc. client utilities
+http://freeradius.org/
+Lucile Quirion <lucile.quirion@savoirfairelinux.com>
+@@
+
+

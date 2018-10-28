@@ -1,0 +1,25 @@
+Source-Makefile: package/firmware/ipq-wifi/Makefile
+
+Package: ipq-wifi-zyxel_wre6606
+Submenu: ath10k IPQ4019 Boarddata
+Version: 1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_ipq40xx
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: firmware
+Category: Firmware
+Repository: base
+Title: Board for ZyXEL WRE6606
+Maintainer: 
+Source: 
+Type: ipkg
+Description: This device custom package board-2.bin overwrites the board-2.bin
+file which is supplied by the ath10k-firmware-qca4019 package.
+
+This is package is only necessary for the ZyXEL WRE6606.
+Don't install it for any other device!
+
+@@
+
+

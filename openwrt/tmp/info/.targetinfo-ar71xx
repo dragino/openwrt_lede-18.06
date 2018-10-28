@@ -1,0 +1,123 @@
+Source-Makefile: target/linux/ar71xx/Makefile
+Target: ar71xx
+Target-Board: ar71xx
+Target-Name: Atheros AR7xxx/AR9xxx
+Target-Arch: mips
+Target-Arch-Packages: mips_24kc
+Target-Features: gpio mips16 usb usbgadget
+Target-Depends: 
+Target-Optimization: -Os -pipe -mno-branch-likely -mips32r2 -mtune=24kc
+CPU-Type: 24kc
+Linux-Version: 4.9.109
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools uclient-fetch logd dnsmasq iptables ip6tables ppp ppp-mod-pppoe firewall odhcpd-ipv6only odhcp6c kmod-gpio-button-hotplug swconfig kmod-ath9k wpad-mini uboot-envtools iwinfo
+Target: ar71xx/generic
+Target-Board: ar71xx
+Target-Name: Generic
+Target-Arch: mips
+Target-Arch-Packages: mips_24kc
+Target-Features: gpio mips16 pci squashfs usb usbgadget
+Target-Depends: 
+Target-Optimization: -Os -pipe -mno-branch-likely -mips32r2 -mtune=24kc
+CPU-Type: 24kc
+Linux-Version: 4.9.109
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+	Build firmware images for generic Atheros AR71xx/AR913x/AR934x based boards.
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools uclient-fetch logd dnsmasq iptables ip6tables ppp ppp-mod-pppoe firewall odhcpd-ipv6only odhcp6c kmod-gpio-button-hotplug swconfig kmod-ath9k wpad-mini uboot-envtools iwinfo
+Target-Profile: Default
+Target-Profile-Priority: 1
+Target-Profile-Name: Default Profile (all drivers)
+Target-Profile-Packages: kmod-usb-core kmod-usb-ohci kmod-usb2 kmod-usb-ledtrig-usbport 
+Target-Profile-Description:
+	Default package set compatible with most boards.
+@@
+
+Target-Profile: DRAGINO2
+Target-Profile-Name: DRAGINO2
+Target-Profile-Packages: kmod-ath9k kmod-usb-core kmod-usb-ohci kmod-usb2 kmod-ledtrig-usbdev 
+Target-Profile-Description:
+	Package set optimized for the DRAGINO v2.
+@@
+
+Target: ar71xx/tiny
+Target-Board: ar71xx
+Target-Name: Devices with small flash
+Target-Arch: mips
+Target-Arch-Packages: mips_24kc
+Target-Features: gpio mips16 pci small_flash squashfs usb usbgadget
+Target-Depends: 
+Target-Optimization: -Os -pipe -mno-branch-likely -mips32r2 -mtune=24kc
+CPU-Type: 24kc
+Linux-Version: 4.9.109
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+	Build firmware images for Atheros AR71xx/AR913x/AR934x based boards with small NOR flash.
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools uclient-fetch logd dnsmasq iptables ip6tables ppp ppp-mod-pppoe firewall odhcpd-ipv6only odhcp6c kmod-gpio-button-hotplug swconfig kmod-ath9k wpad-mini uboot-envtools iwinfo
+Target-Profile: Default
+Target-Profile-Priority: 1
+Target-Profile-Name: Default Profile (all drivers)
+Target-Profile-Packages: kmod-usb-core kmod-usb-ohci kmod-usb2 kmod-usb-ledtrig-usbport 
+Target-Profile-Description:
+	Default package set compatible with most boards.
+@@
+
+Target: ar71xx/nand
+Target-Board: ar71xx
+Target-Name: Generic devices with NAND flash
+Target-Arch: mips
+Target-Arch-Packages: mips_24kc
+Target-Features: gpio mips16 nand pci rtc squashfs usb usbgadget
+Target-Depends: 
+Target-Optimization: -Os -pipe -mno-branch-likely -mips32r2 -mtune=24kc
+CPU-Type: 24kc
+Linux-Version: 4.9.109
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+	Build firmware images for Atheros AR71xx/AR913x based boards with
+	NAND flash, e.g. Netgear WNDR4300.
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools uclient-fetch logd dnsmasq iptables ip6tables ppp ppp-mod-pppoe firewall odhcpd-ipv6only odhcp6c kmod-gpio-button-hotplug swconfig kmod-ath9k wpad-mini uboot-envtools iwinfo
+Target-Profile: Default
+Target-Profile-Priority: 1
+Target-Profile-Name: Default Profile
+Target-Profile-Packages: kmod-usb-core kmod-usb-ohci kmod-usb2 kmod-usb-ledtrig-usbport 
+Target-Profile-Description:
+	Default package set compatible with most boards.
+@@
+
+Target: ar71xx/mikrotik
+Target-Board: ar71xx
+Target-Name: Mikrotik devices with NAND/NOR flash
+Target-Arch: mips
+Target-Arch-Packages: mips_24kc
+Target-Features: gpio minor mips16 nand pci ramdisk squashfs usb usbgadget
+Target-Depends: 
+Target-Optimization: -Os -pipe -mno-branch-likely -mips32r2 -mtune=24kc
+CPU-Type: 24kc
+Linux-Version: 4.9.109
+Linux-Release: 1
+Linux-Kernel-Arch: mips
+Target-Description:
+	Build firmware images for Atheros AR71xx/AR913x based Mikrotik boards.
+	e.g. MikroTik RB-4xx or RB-750
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools uclient-fetch logd nand-utils dnsmasq iptables ip6tables ppp ppp-mod-pppoe firewall odhcpd-ipv6only odhcp6c kmod-gpio-button-hotplug swconfig kmod-ath9k wpad-mini uboot-envtools iwinfo
+Target-Profile: Default
+Target-Profile-Priority: 1
+Target-Profile-Name: Default Profile
+Target-Profile-Packages: kmod-usb-core kmod-usb-ohci kmod-usb2 kmod-usb-ledtrig-usbport nand-utils 
+Target-Profile-Description:
+	Default package set compatible with most boards.
+@@
+
+

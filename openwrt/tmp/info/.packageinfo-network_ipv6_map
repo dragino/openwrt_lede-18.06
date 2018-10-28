@@ -1,0 +1,24 @@
+Source-Makefile: package/network/ipv6/map/Makefile
+
+Package: map
+Version: 4-11
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @IPV6 +kmod-ip6-tunnel +libubox +libubus +iptables-mod-conntrack-extra
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: MAP-E and Lightweight 4over6 configuration support
+Maintainer: Hans Dedecker <dedeckeh@gmail.com>
+Source: 
+License: GPL-2.0
+Type: ipkg
+Description:  Provides support for MAP-E (draft-ietf-softwire-map) and
+ Lightweight 4over6 (draft-ietf-softwire-lw4over6) in /etc/config/network.
+ Refer to http://wiki.openwrt.org/doc/uci/network for
+ configuration details.
+Hans Dedecker <dedeckeh@gmail.com>
+@@
+
+

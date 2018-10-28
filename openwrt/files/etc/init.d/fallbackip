@@ -1,0 +1,16 @@
+#!/bin/sh /etc/rc.common
+START=99
+
+start()
+{	
+    echo "Adding FallBack IP"
+    echo "Checking bridge mode or not"
+    IS_BRIDGE=`uci get network.lan.type`
+    if [ "$IS_BRIDGE" = "bridge" ];then
+	    echo "Device is in bridging mode."
+	    ifconfig br-lan:9 172.31.255.254 netmask 255.255.255.252
+    else 
+	    echo "Device is not in bridging mode."
+	    ifconfig eth0:9 172.31.255.254 netmask 255.255.255.252
+    fi
+}

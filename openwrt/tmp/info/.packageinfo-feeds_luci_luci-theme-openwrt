@@ -1,0 +1,22 @@
+Source-Makefile: package/feeds/luci/luci-theme-openwrt/Makefile
+Build-Depends: lua/host luci-base/host 
+
+Package: luci-theme-openwrt
+Submenu: 4. Themes
+Version: x-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: luci
+Title: LuCI OpenWrt.org theme
+Maintainer: 
+Source: 
+Type: ipkg
+Description: LuCI OpenWrt.org theme
+
+@@
+
+

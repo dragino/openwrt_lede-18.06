@@ -1,1 +1,6 @@
 /image
+/openwrt/dl
+/openwrt/build_dir
+/openwrt/bin
+/openwrt/feeds
+/openwrt/staging_dir

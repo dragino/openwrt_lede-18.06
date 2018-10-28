@@ -1,0 +1,88 @@
+Source-Makefile: target/linux/brcm2708/Makefile
+Target: brcm2708
+Target-Board: brcm2708
+Target-Name: Broadcom BCM27xx
+Target-Arch: arm
+Target-Arch-Packages: arm_xscale
+Target-Features: audio display ext4 fpu gpio squashfs usb usbgadget
+Target-Depends: 
+Target-Optimization: -Os -pipe -mcpu=xscale
+CPU-Type: xscale
+Linux-Version: 4.9.109
+Linux-Release: 1
+Linux-Kernel-Arch: arm
+Target-Description:
+	Build firmware image for Broadcom BCM27xx SoC devices.
+	Currently produces SD Card image for Raspberry Pi.
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools uclient-fetch logd dnsmasq iptables ip6tables ppp ppp-mod-pppoe firewall odhcpd-ipv6only odhcp6c brcm2708-gpu-fw kmod-usb-hid kmod-sound-core kmod-sound-arm-bcm2835 kmod-fs-vfat kmod-nls-cp437 kmod-nls-iso8859-1 brcmfmac-firmware-43430-sdio kmod-brcmfmac wpad-mini partx-utils mkf2fs e2fsprogs iwinfo
+Target: brcm2708/bcm2708
+Target-Board: brcm2708
+Target-Name: BCM2708 based boards
+Target-Arch: arm
+Target-Arch-Packages: arm_arm1176jzf-s_vfp
+Target-Features: audio display dt ext4 fpu gpio squashfs usb usbgadget
+Target-Depends: 
+Target-Optimization: -Os -pipe -mcpu=arm1176jzf-s -mfpu=vfp
+CPU-Type: arm1176jzf-s+vfp
+Linux-Version: 4.9.109
+Linux-Release: 1
+Linux-Kernel-Arch: arm
+Target-Description:
+	Build firmware image for Broadcom BCM2708 SoC devices.
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools uclient-fetch logd dnsmasq iptables ip6tables ppp ppp-mod-pppoe firewall odhcpd-ipv6only odhcp6c brcm2708-gpu-fw kmod-usb-hid kmod-sound-core kmod-sound-arm-bcm2835 kmod-fs-vfat kmod-nls-cp437 kmod-nls-iso8859-1 brcmfmac-firmware-43430-sdio kmod-brcmfmac wpad-mini partx-utils mkf2fs e2fsprogs iwinfo
+Target-Profile: DEVICE_rpi
+Target-Profile-Name: Raspberry Pi B/B+/CM/Zero/ZeroW
+Target-Profile-Packages: 
+Target-Profile-Description:
+Build firmware images for Raspberry Pi B/B+/CM/Zero/ZeroW
+@@
+
+Target: brcm2708/bcm2709
+Target-Board: brcm2708
+Target-Name: BCM2709/BCM2710 32 bit based boards
+Target-Arch: arm
+Target-Arch-Packages: arm_cortex-a7_neon-vfpv4
+Target-Features: arm_v7 audio display dt ext4 fpu gpio squashfs usb usbgadget
+Target-Depends: 
+Target-Optimization: -Os -pipe -mcpu=cortex-a7 -mfpu=neon-vfpv4
+CPU-Type: cortex-a7+neon-vfpv4
+Linux-Version: 4.9.109
+Linux-Release: 1
+Linux-Kernel-Arch: arm
+Target-Description:
+	Build firmware image for Broadcom BCM2709/BCM2710 32 bit SoC devices.
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools uclient-fetch logd dnsmasq iptables ip6tables ppp ppp-mod-pppoe firewall odhcpd-ipv6only odhcp6c brcm2708-gpu-fw kmod-usb-hid kmod-sound-core kmod-sound-arm-bcm2835 kmod-fs-vfat kmod-nls-cp437 kmod-nls-iso8859-1 brcmfmac-firmware-43430-sdio kmod-brcmfmac wpad-mini partx-utils mkf2fs e2fsprogs iwinfo
+Target-Profile: DEVICE_rpi-2
+Target-Profile-Name: Raspberry Pi 2B/3B/3B+/3CM
+Target-Profile-Packages: 
+Target-Profile-Description:
+Build firmware images for Raspberry Pi 2B/3B/3B+/3CM
+@@
+
+Target: brcm2708/bcm2710
+Target-Board: brcm2708
+Target-Name: BCM2710 64 bit based boards
+Target-Arch: aarch64
+Target-Arch-Packages: aarch64_cortex-a53
+Target-Features: audio display dt ext4 fpu gpio squashfs usb usbgadget
+Target-Depends: 
+Target-Optimization: -Os -pipe -mcpu=cortex-a53
+CPU-Type: cortex-a53
+Linux-Version: 4.9.109
+Linux-Release: 1
+Linux-Kernel-Arch: arm64
+Target-Description:
+	Build firmware image for Broadcom BCM2710 64 bit SoC devices.
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools uclient-fetch logd dnsmasq iptables ip6tables ppp ppp-mod-pppoe firewall odhcpd-ipv6only odhcp6c brcm2708-gpu-fw kmod-usb-hid kmod-sound-core kmod-sound-arm-bcm2835 kmod-fs-vfat kmod-nls-cp437 kmod-nls-iso8859-1 brcmfmac-firmware-43430-sdio kmod-brcmfmac wpad-mini partx-utils mkf2fs e2fsprogs iwinfo
+Target-Profile: DEVICE_rpi-3
+Target-Profile-Name: Raspberry Pi 3B/3B+
+Target-Profile-Packages: 
+Target-Profile-Description:
+Build firmware images for Raspberry Pi 3B/3B+
+@@
+
+

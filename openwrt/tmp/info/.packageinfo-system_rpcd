@@ -1,0 +1,76 @@
+Source-Makefile: package/system/rpcd/Makefile
+
+Package: rpcd
+Version: 2018-05-13-820621952d537c49deba470c6f61c40df93f4ba8-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libubus +libubox +libuci +libblobmsg-json
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Base system
+Repository: base
+Title: OpenWrt ubus RPC backend server
+Maintainer: Jo-Philipp Wich <jo@mein.io>
+Source: rpcd-2018-05-13-820621952d537c49deba470c6f61c40df93f4ba8.tar.xz
+License: ISC
+Type: ipkg
+Description:  This package provides the UBUS RPC backend server to expose various
+ functionality to frontend programs via JSON-RPC.
+Jo-Philipp Wich <jo@mein.io>
+@@
+
+Package: rpcd-mod-file
+Version: 2018-05-13-820621952d537c49deba470c6f61c40df93f4ba8-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libubus +libubox rpcd
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Base system
+Repository: base
+Title: OpenWrt ubus RPC backend server (file plugin)
+Maintainer: Jo-Philipp Wich <jo@mein.io>
+Source: rpcd-2018-05-13-820621952d537c49deba470c6f61c40df93f4ba8.tar.xz
+License: ISC
+Type: ipkg
+Description:     Provides ubus calls for file and directory operations.
+Jo-Philipp Wich <jo@mein.io>
+@@
+
+Package: rpcd-mod-rpcsys
+Version: 2018-05-13-820621952d537c49deba470c6f61c40df93f4ba8-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libubus +libubox rpcd
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Base system
+Repository: base
+Title: OpenWrt ubus RPC backend server (rpcsys plugin)
+Maintainer: Jo-Philipp Wich <jo@mein.io>
+Source: rpcd-2018-05-13-820621952d537c49deba470c6f61c40df93f4ba8.tar.xz
+License: ISC
+Type: ipkg
+Description:     Provides ubus calls for sysupgrade and password changing.
+Jo-Philipp Wich <jo@mein.io>
+@@
+
+Package: rpcd-mod-iwinfo
+Version: 2018-05-13-820621952d537c49deba470c6f61c40df93f4ba8-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libubus +libubox rpcd +libiwinfo
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Base system
+Repository: base
+Title: OpenWrt ubus RPC backend server (iwinfo plugin)
+Maintainer: Jo-Philipp Wich <jo@mein.io>
+Source: rpcd-2018-05-13-820621952d537c49deba470c6f61c40df93f4ba8.tar.xz
+License: ISC
+Type: ipkg
+Description:     Provides ubus calls for accessing iwinfo data.
+Jo-Philipp Wich <jo@mein.io>
+@@
+
+

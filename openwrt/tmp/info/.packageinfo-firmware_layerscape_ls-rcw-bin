@@ -1,0 +1,71 @@
+Source-Makefile: package/firmware/layerscape/ls-rcw-bin/Makefile
+
+Package: rcw-layerscape-ls1012ardb
+Version: 2017-11-19-bf3ae3cb15829876007c553509501cdaa16745e7-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_layerscape
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: ls1012ardb
+Section: firmware
+Category: Firmware
+Title: NXP LS1012ARDB RCW Binary
+Maintainer: 
+Source: ls-rcw-bin-2017-11-19-bf3ae3cb15829876007c553509501cdaa16745e7.tar.xz
+Type: ipkg
+Description: NXP LS1012ARDB RCW Binary
+
+@@
+
+Package: rcw-layerscape-ls1088ardb
+Version: 2017-11-19-bf3ae3cb15829876007c553509501cdaa16745e7-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_layerscape
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: ls1088ardb
+Section: firmware
+Category: Firmware
+Title: NXP LS1088ARDB RCW Binary
+Maintainer: 
+Source: ls-rcw-bin-2017-11-19-bf3ae3cb15829876007c553509501cdaa16745e7.tar.xz
+Type: ipkg
+Description: NXP LS1088ARDB RCW Binary
+
+@@
+
+Package: rcw-layerscape-ls2088ardb
+Version: 2017-11-19-bf3ae3cb15829876007c553509501cdaa16745e7-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_layerscape
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: ls2088ardb
+Section: firmware
+Category: Firmware
+Title: NXP LS2088ARDB RCW Binary
+Maintainer: 
+Source: ls-rcw-bin-2017-11-19-bf3ae3cb15829876007c553509501cdaa16745e7.tar.xz
+Type: ipkg
+Description: NXP LS2088ARDB RCW Binary
+
+@@
+
+Package: rcw-layerscape-ls1012afrdm
+Version: 2017-11-19-bf3ae3cb15829876007c553509501cdaa16745e7-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_layerscape
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: ls1012afrdm
+Section: firmware
+Category: Firmware
+Title: NXP LS1012AFRDM RCW Binary
+Maintainer: 
+Source: ls-rcw-bin-2017-11-19-bf3ae3cb15829876007c553509501cdaa16745e7.tar.xz
+Type: ipkg
+Description: NXP LS1012AFRDM RCW Binary
+
+@@
+
+

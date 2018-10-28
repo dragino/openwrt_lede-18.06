@@ -1,0 +1,29 @@
+Source-Makefile: package/libs/wolfssl/Makefile
+Build-Depends: libtool gettext libiconv
+
+Package: libwolfssl
+Menu: 1
+Submenu: SSL
+Version: 3.12.2-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: libcyassl
+Section: libs
+Category: Libraries
+Repository: base
+Title: wolfSSL library
+Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
+Source: wolfssl-3.12.2.zip
+License: GPL-2.0+
+Type: ipkg
+Description: wolfSSL (formerly CyaSSL) is an SSL library optimized for small
+footprint, both on disk and for memory use.
+http://www.wolfssl.com/
+Alexandru Ardelean <ardeleanalex@gmail.com>
+@@
+Config:
+	source "package/libs/wolfssl/Config.in"
+@@
+
+

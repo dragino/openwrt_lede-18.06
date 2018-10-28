@@ -1,0 +1,21 @@
+Source-Makefile: package/feeds/dragino/luci-app-loragateway/Makefile
+
+Package: luci-app-loragateway
+Submenu: 3. Applications
+Version: 1.0-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +luci +luci-lib-json +uhttpd-mod-lua
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: dragino
+Title: Dragino loragateway web panel
+Maintainer: 
+Source: 
+Type: ipkg
+Description: 	dragino loragateway web panel
+
+@@
+
+

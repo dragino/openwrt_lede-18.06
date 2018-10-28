@@ -21,12 +21,12 @@ shift $(($OPTIND - 1))
 
 REPO_PATH=$(pwd)
 
-echo "*** Get OpenWrt LEDE source code"
-git clone https://github.com/openwrt/openwrt.git $OPENWRT_PATH
-cd $OPENWRT_PATH 
+#echo "*** Get OpenWrt LEDE source code"
+#git clone https://github.com/openwrt/openwrt.git $OPENWRT_PATH
+#cd $OPENWRT_PATH 
 
-echo "*** Switch to Brance openwrt-18.06 and tag v18.06.0-rc2"
-git checkout -b openwrt-18.06_v18.06.0-rc2
+#echo "*** Switch to Brance openwrt-18.06 and tag v18.06.0-rc2"
+#git checkout -b openwrt-18.06_v18.06.0-rc2
 
 
 cd $REPO_PATH

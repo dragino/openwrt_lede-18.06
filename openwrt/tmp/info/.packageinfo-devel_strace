@@ -1,0 +1,29 @@
+Source-Makefile: package/devel/strace/Makefile
+
+Package: strace
+Version: 4.20-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +PACKAGE_strace_libunwind:libunwind
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: System call tracer
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Source: strace-4.20.tar.xz
+License: BSD-3c
+LicenseFiles: COPYRIGHT
+Type: ipkg
+Description: A useful diagnostic, instructional, and debugging tool. Allows you to track what
+system calls a program makes while it is running.
+http://strace.sourceforge.net/
+Felix Fietkau <nbd@nbd.name>
+@@
+Config:
+config PACKAGE_strace_libunwind
+	bool "Enable stack tracing support using libunwind (experimental)"
+	default n
+@@
+
+

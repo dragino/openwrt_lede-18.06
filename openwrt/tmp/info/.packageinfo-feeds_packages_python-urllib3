@@ -1,0 +1,23 @@
+Source-Makefile: package/feeds/packages/python-urllib3/Makefile
+
+Package: python-urllib3
+Submenu: Python
+Version: 1.22-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: packages
+Title: HTTP library with thread-safe connection pooling, file post, and more.
+Maintainer: Gergely Kiss <mail.gery@gmail.com>
+Source: urllib3-1.22.tar.gz
+License: MIT
+Type: ipkg
+Description:   HTTP library with thread-safe connection pooling, file post, and more.
+https://urllib3.readthedocs.io/
+Gergely Kiss <mail.gery@gmail.com>
+@@
+
+

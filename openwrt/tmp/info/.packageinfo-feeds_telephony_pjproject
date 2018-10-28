@@ -1,0 +1,192 @@
+Source-Makefile: package/feeds/telephony/pjproject/Makefile
+
+Package: libpj
+Submenu: Telephony
+Version: 2.7.2-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +USE_UCLIBCXX:uclibcxx +USE_LIBSTDCXX:libstdcpp +libopenssl +libuuid +libpthread +librt
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lib
+Category: Libraries
+Repository: telephony
+Title: libpj library
+Maintainer: Jiri Slachta <jiri@slachta.eu>
+Source: pjproject-2.7.2.tar.bz2
+License: GPL-2.0
+LicenseFiles: COPYING
+Type: ipkg
+Description: libpj library
+http://www.pjsip.org
+Jiri Slachta <jiri@slachta.eu>
+@@
+
+Package: libpjlib-util
+Submenu: Telephony
+Version: 2.7.2-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +USE_UCLIBCXX:uclibcxx +USE_LIBSTDCXX:libstdcpp +libopenssl +libuuid +libpthread +libpj +librt
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lib
+Category: Libraries
+Repository: telephony
+Title: libpjlib-util library
+Maintainer: Jiri Slachta <jiri@slachta.eu>
+Source: pjproject-2.7.2.tar.bz2
+License: GPL-2.0
+LicenseFiles: COPYING
+Type: ipkg
+Description: libpjlib-util library
+http://www.pjsip.org
+Jiri Slachta <jiri@slachta.eu>
+@@
+
+Package: libpjmedia
+Submenu: Telephony
+Version: 2.7.2-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +USE_UCLIBCXX:uclibcxx +USE_LIBSTDCXX:libstdcpp +libopenssl +libuuid +libpthread +libpj +libpjlib-util +libpjnath +librt +libsrtp2
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lib
+Category: Libraries
+Repository: telephony
+Title: libpjmedia library
+Maintainer: Jiri Slachta <jiri@slachta.eu>
+Source: pjproject-2.7.2.tar.bz2
+License: GPL-2.0
+LicenseFiles: COPYING
+Type: ipkg
+Description: libpjmedia library
+http://www.pjsip.org
+Jiri Slachta <jiri@slachta.eu>
+@@
+
+Package: libpjnath
+Submenu: Telephony
+Version: 2.7.2-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +USE_UCLIBCXX:uclibcxx +USE_LIBSTDCXX:libstdcpp +libopenssl +libuuid +libpthread +libpj +libpjlib-util +librt
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lib
+Category: Libraries
+Repository: telephony
+Title: libpjnath library
+Maintainer: Jiri Slachta <jiri@slachta.eu>
+Source: pjproject-2.7.2.tar.bz2
+License: GPL-2.0
+LicenseFiles: COPYING
+Type: ipkg
+Description: libpjnath library
+http://www.pjsip.org
+Jiri Slachta <jiri@slachta.eu>
+@@
+
+Package: libpjsip-simple
+Submenu: Telephony
+Version: 2.7.2-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +USE_UCLIBCXX:uclibcxx +USE_LIBSTDCXX:libstdcpp +libopenssl +libuuid +libpthread +libpj +libpjlib-util +libpjsip +librt
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lib
+Category: Libraries
+Repository: telephony
+Title: libpjsip-simple library
+Maintainer: Jiri Slachta <jiri@slachta.eu>
+Source: pjproject-2.7.2.tar.bz2
+License: GPL-2.0
+LicenseFiles: COPYING
+Type: ipkg
+Description: libpjsip-simple library
+http://www.pjsip.org
+Jiri Slachta <jiri@slachta.eu>
+@@
+
+Package: libpjsip-ua
+Submenu: Telephony
+Version: 2.7.2-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +USE_UCLIBCXX:uclibcxx +USE_LIBSTDCXX:libstdcpp +libopenssl +libuuid +libpthread +libpj +libpjlib-util +libpjmedia +libpjsip-simple +libpjsip +librt
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lib
+Category: Libraries
+Repository: telephony
+Title: libpjsip-ua library
+Maintainer: Jiri Slachta <jiri@slachta.eu>
+Source: pjproject-2.7.2.tar.bz2
+License: GPL-2.0
+LicenseFiles: COPYING
+Type: ipkg
+Description: libpjsip-ua library
+http://www.pjsip.org
+Jiri Slachta <jiri@slachta.eu>
+@@
+
+Package: libpjsip
+Submenu: Telephony
+Version: 2.7.2-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +USE_UCLIBCXX:uclibcxx +USE_LIBSTDCXX:libstdcpp +libopenssl +libuuid +libpthread +libpj +libpjlib-util +librt +libsrtp2
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lib
+Category: Libraries
+Repository: telephony
+Title: libpjsip library
+Maintainer: Jiri Slachta <jiri@slachta.eu>
+Source: pjproject-2.7.2.tar.bz2
+License: GPL-2.0
+LicenseFiles: COPYING
+Type: ipkg
+Description: libpjsip library
+http://www.pjsip.org
+Jiri Slachta <jiri@slachta.eu>
+@@
+
+Package: libpjsua
+Submenu: Telephony
+Version: 2.7.2-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +USE_UCLIBCXX:uclibcxx +USE_LIBSTDCXX:libstdcpp +libopenssl +libuuid +libpthread +libpj +libpjlib-util +libpjmedia +libpjnath +libpjsip-simple +libpjsip-ua +libpjsip +librt
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lib
+Category: Libraries
+Repository: telephony
+Title: libpjsua library
+Maintainer: Jiri Slachta <jiri@slachta.eu>
+Source: pjproject-2.7.2.tar.bz2
+License: GPL-2.0
+LicenseFiles: COPYING
+Type: ipkg
+Description: libpjsua library
+http://www.pjsip.org
+Jiri Slachta <jiri@slachta.eu>
+@@
+
+Package: libpjsua2
+Submenu: Telephony
+Version: 2.7.2-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +USE_UCLIBCXX:uclibcxx +USE_LIBSTDCXX:libstdcpp +libopenssl +libuuid +libpthread +libpj +libpjlib-util +libpjmedia +libpjnath +libpjsip-simple +libpjsip-ua +libpjsip +librt +libpjsua
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lib
+Category: Libraries
+Repository: telephony
+Title: libpjsua2 library
+Maintainer: Jiri Slachta <jiri@slachta.eu>
+Source: pjproject-2.7.2.tar.bz2
+License: GPL-2.0
+LicenseFiles: COPYING
+Type: ipkg
+Description: libpjsua2 library
+http://www.pjsip.org
+Jiri Slachta <jiri@slachta.eu>
+@@
+
+

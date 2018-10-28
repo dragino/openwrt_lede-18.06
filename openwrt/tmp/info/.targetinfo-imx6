@@ -1,0 +1,47 @@
+Source-Makefile: target/linux/imx6/Makefile
+Target: imx6
+Target-Board: imx6
+Target-Name: Freescale i.MX 6
+Target-Arch: arm
+Target-Arch-Packages: arm_cortex-a9_neon
+Target-Features: arm_v7 audio display dt fpu gpio nand pci pcie rtc squashfs targz ubifs usb usbgadget
+Target-Depends: 
+Target-Optimization: -Os -pipe -mcpu=cortex-a9 -mfpu=neon
+CPU-Type: cortex-a9+neon
+Linux-Version: 4.14.50
+Linux-Release: 1
+Linux-Kernel-Arch: arm
+Target-Description:
+
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools uclient-fetch logd dnsmasq iptables ip6tables ppp ppp-mod-pppoe firewall odhcpd-ipv6only odhcp6c kmod-ipt-offload uboot-envtools 
+Target-Profile: Generic
+Target-Profile-Priority: 1
+Target-Profile-Name: Generic (default)
+Target-Profile-Packages:  
+Target-Profile-Description:
+ Package set compatible with most Freescale i.MX 6 based boards.
+@@
+
+Target-Profile: DEVICE_ventana
+Target-Profile-Name: Gateworks Ventana family (normal NAND flash)
+Target-Profile-Packages: kmod-sky2 kmod-sound-core kmod-sound-soc-imx kmod-sound-soc-imx-sgtl5000 kmod-can kmod-can-flexcan kmod-can-raw kmod-hwmon-gsc kmod-leds-gpio kmod-pps-gpio kobs-ng
+Target-Profile-Description:
+Build firmware images for Gateworks Ventana family (normal NAND flash)
+@@
+
+Target-Profile: DEVICE_ventana-large
+Target-Profile-Name: Gateworks Ventana family (large NAND flash)
+Target-Profile-Packages: kmod-sky2 kmod-sound-core kmod-sound-soc-imx kmod-sound-soc-imx-sgtl5000 kmod-can kmod-can-flexcan kmod-can-raw kmod-hwmon-gsc kmod-leds-gpio kmod-pps-gpio kobs-ng
+Target-Profile-Description:
+Build firmware images for Gateworks Ventana family (large NAND flash)
+@@
+
+Target-Profile: DEVICE_wandboard
+Target-Profile-Name: Wandboard Dual
+Target-Profile-Packages: 
+Target-Profile-Description:
+Build firmware images for Wandboard Dual
+@@
+
+

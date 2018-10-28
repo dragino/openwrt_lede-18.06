@@ -1,0 +1,120 @@
+Source-Makefile: target/linux/layerscape/Makefile
+Target: layerscape
+Target-Board: layerscape
+Target-Name: NXP Layerscape
+Target-Arch: 
+Target-Arch-Packages: 
+Target-Features: fpu gpio nand pcie squashfs ubifs usb
+Target-Depends: 
+Target-Optimization: -Os -pipe
+CPU-Type: 
+Linux-Version: 4.9.109
+Linux-Release: 1
+Linux-Kernel-Arch: arm64
+Target-Description:
+	Build firmware images for NXP Layerscape based boards.
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools uclient-fetch logd  kmod-usb3 kmod-usb-dwc3 kmod-usb-storage 
+Target: layerscape/armv8_64b
+Target-Board: layerscape
+Target-Name: ARMv8 64-bit based boards
+Target-Arch: aarch64
+Target-Arch-Packages: aarch64_generic
+Target-Features: display dt fpu gpio nand pci pcie rtc squashfs ubifs usb virtio
+Target-Depends: 
+Target-Optimization: -Os -pipe -mcpu=generic
+CPU-Type: generic
+Linux-Version: 4.9.109
+Linux-Release: 1
+Linux-Kernel-Arch: arm64
+Target-Description:
+	Build firmware images for NXP Layerscape ARMv8 64-bit based boards.
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools uclient-fetch logd  kmod-usb3 kmod-usb-dwc3 kmod-usb-storage 
+Target-Profile: DEVICE_ls1043ardb
+Target-Profile-Name: ls1043ardb-armv8_64b
+Target-Profile-Packages:  rcw-layerscape-ls1043ardb uboot-layerscape-armv8_64b-ls1043ardb fman-layerscape-ls1043ardb layerscape-ppa-ls1043ardb
+Target-Profile-Description:
+Build firmware images for ls1043ardb-armv8_64b
+@@
+
+Target-Profile: DEVICE_ls1046ardb
+Target-Profile-Name: ls1046ardb-armv8_64b
+Target-Profile-Packages:  rcw-layerscape-ls1046ardb uboot-layerscape-armv8_64b-ls1046ardb fman-layerscape-ls1046ardb layerscape-ppa-ls1046ardb
+Target-Profile-Description:
+Build firmware images for ls1046ardb-armv8_64b
+@@
+
+Target-Profile: DEVICE_ls1012ardb
+Target-Profile-Name: ls1012ardb-armv8_64b
+Target-Profile-Packages:  rcw-layerscape-ls1012ardb uboot-layerscape-armv8_64b-ls1012ardb kmod-ppfe layerscape-ppfe layerscape-ppa-ls1012ardb
+Target-Profile-Description:
+Build firmware images for ls1012ardb-armv8_64b
+@@
+
+Target-Profile: DEVICE_ls1012afrdm
+Target-Profile-Name: ls1012afrdm-armv8_64b
+Target-Profile-Packages:  rcw-layerscape-ls1012afrdm uboot-layerscape-armv8_64b-ls1012afrdm kmod-ppfe layerscape-ppfe layerscape-ppa-ls1012afrdm
+Target-Profile-Description:
+Build firmware images for ls1012afrdm-armv8_64b
+@@
+
+Target-Profile: DEVICE_ls1088ardb
+Target-Profile-Name: ls1088ardb-armv8_64b
+Target-Profile-Packages:  rcw-layerscape-ls1088ardb uboot-layerscape-armv8_64b-ls1088ardb layerscape-mc-ls1088ardb layerscape-dpl-ls1088ardb restool layerscape-ppa-ls1088ardb
+Target-Profile-Description:
+Build firmware images for ls1088ardb-armv8_64b
+@@
+
+Target-Profile: DEVICE_ls2088ardb
+Target-Profile-Name: ls2088ardb-armv8_64b
+Target-Profile-Packages:  rcw-layerscape-ls2088ardb uboot-layerscape-armv8_64b-ls2088ardb layerscape-mc-ls2088ardb layerscape-dpl-ls2088ardb restool layerscape-ppa-ls2088ardb
+Target-Profile-Description:
+Build firmware images for ls2088ardb-armv8_64b
+@@
+
+Target: layerscape/armv8_32b
+Target-Board: layerscape
+Target-Name: ARMv8 32-bit based boards
+Target-Arch: arm
+Target-Arch-Packages: arm_cortex-a15_neon-vfpv4
+Target-Features: arm_v7 display dt fpu gpio nand pci pcie rtc squashfs ubifs usb virtio
+Target-Depends: 
+Target-Optimization: -Os -pipe -mcpu=cortex-a15 -mfpu=neon-vfpv4
+CPU-Type: cortex-a15+neon-vfpv4
+Linux-Version: 4.9.109
+Linux-Release: 1
+Linux-Kernel-Arch: arm
+Target-Description:
+	Build firmware images for NXP Layerscape ARMv8 32-bit based boards.
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools uclient-fetch logd  kmod-usb3 kmod-usb-dwc3 kmod-usb-storage 
+Target-Profile: DEVICE_ls1043ardb
+Target-Profile-Name: ls1043ardb-armv8_32b
+Target-Profile-Packages:  rcw-layerscape-ls1043ardb uboot-layerscape-armv8_32b-ls1043ardb fman-layerscape-ls1043ardb layerscape-ppa-ls1043ardb
+Target-Profile-Description:
+Build firmware images for ls1043ardb-armv8_32b
+@@
+
+Target-Profile: DEVICE_ls1046ardb
+Target-Profile-Name: ls1046ardb-armv8_32b
+Target-Profile-Packages:  rcw-layerscape-ls1046ardb uboot-layerscape-armv8_32b-ls1046ardb fman-layerscape-ls1046ardb layerscape-ppa-ls1046ardb
+Target-Profile-Description:
+Build firmware images for ls1046ardb-armv8_32b
+@@
+
+Target-Profile: DEVICE_ls1012ardb
+Target-Profile-Name: ls1012ardb-armv8_32b
+Target-Profile-Packages:  rcw-layerscape-ls1012ardb uboot-layerscape-armv8_32b-ls1012ardb kmod-ppfe layerscape-ppfe layerscape-ppa-ls1012ardb
+Target-Profile-Description:
+Build firmware images for ls1012ardb-armv8_32b
+@@
+
+Target-Profile: DEVICE_ls1012afrdm
+Target-Profile-Name: ls1012afrdm-armv8_32b
+Target-Profile-Packages:  rcw-layerscape-ls1012afrdm uboot-layerscape-armv8_32b-ls1012afrdm kmod-ppfe layerscape-ppfe layerscape-ppa-ls1012afrdm
+Target-Profile-Description:
+Build firmware images for ls1012afrdm-armv8_32b
+@@
+
+

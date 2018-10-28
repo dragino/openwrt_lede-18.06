@@ -1,0 +1,23 @@
+Source-Makefile: package/feeds/packages/chaosvpn/Makefile
+
+Package: chaosvpn
+Submenu: VPN
+Version: 2014-01-24-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +tinc +ip +kmod-tun +libopenssl +zlib
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: Config generator for chaos vpn
+Maintainer: Norbert Summer <git@o-g.at>
+Source: chaosvpn-2014-01-24-2eb24810b5aa0b2d56f21562e52927020dc3090a.tar.gz
+License: Apache-2.0
+Type: ipkg
+Description: 		Configure tincd for the chaosvpn network
+https://wiki.hamburg.ccc.de/index.php/ChaosVPN::DebianHowto
+Norbert Summer <git@o-g.at>
+@@
+
+

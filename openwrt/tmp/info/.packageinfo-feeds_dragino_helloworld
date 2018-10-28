@@ -1,0 +1,20 @@
+Source-Makefile: package/feeds/dragino/helloworld/Makefile
+
+Package: helloworld
+Version: 1.0.0-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: dragino
+Title: helloworld
+Maintainer: Mazilo <myEmail.add>
+Source: 
+Type: ipkg
+Description: 	This is a hello world package that contains a program to only print "hello world".
+Mazilo <myEmail.add>
+@@
+
+

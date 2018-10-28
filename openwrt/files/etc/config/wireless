@@ -1,0 +1,23 @@
+
+config wifi-device 'radio0'
+	option type 'mac80211'
+	option phy 'phy0'
+	option htmode 'HT20'
+	list ht_capab 'SHORT-GI-40'
+	list ht_capab 'DSSS_CCK-40'
+	option channel '11'
+	option hwmode '11ng'
+	option disabled '0'
+	option noscan '1'
+
+config wifi-iface 'ap_0'
+	option device 'radio0'
+	option ifname 'wlan0'
+	option network 'lan'
+	option mode 'ap'
+	option hidden '0'
+	option maxassoc '30'
+	option disabled '0'
+	option encryption 'none'
+	option ssid 'SQD-1b8288'
+

@@ -1,0 +1,19 @@
+Source-Makefile: package/firmware/layerscape/ppfe-firmware/Makefile
+
+Package: layerscape-ppfe
+Version: 2017-12-05-848002fe4e0e3efb8d13a813e5c123bbc87aa95b-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_layerscape
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: firmware
+Category: Firmware
+Title: NXP Layerscape PPFE firmware
+Maintainer: 
+Source: ppfe-2017-12-05-848002fe4e0e3efb8d13a813e5c123bbc87aa95b.tar.xz
+Type: ipkg
+Description: NXP Layerscape PPFE firmware
+
+@@
+
+

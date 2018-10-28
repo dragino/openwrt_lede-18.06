@@ -1,0 +1,263 @@
+Source-Makefile: package/network/services/hostapd/Makefile
+
+Package: hostapd
+Version: 2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a-5
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +PACKAGE_kmod-cfg80211:libnl-tiny +hostapd-common +libubus
+Conflicts: wpad wpad-mini wpad-mesh
+Menu-Depends: 
+Provides: 
+Build-Variant: full
+Section: net
+Category: Network
+Repository: base
+Title: IEEE 802.1x Authenticator (full)
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Source: hostapd-2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a.tar.xz
+License: BSD-3-Clause
+Type: ipkg
+Description:  This package contains a full featured IEEE 802.1x/WPA/EAP/RADIUS
+ Authenticator.
+http://hostap.epitest.fi/
+Felix Fietkau <nbd@nbd.name>
+@@
+
+Package: hostapd-mini
+Version: 2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a-5
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +PACKAGE_kmod-cfg80211:libnl-tiny +hostapd-common +libubus
+Conflicts: wpad wpad-mini wpad-mesh
+Menu-Depends: 
+Provides: 
+Build-Variant: mini
+Section: net
+Category: Network
+Repository: base
+Title: IEEE 802.1x Authenticator (WPA-PSK only)
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Source: hostapd-2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a.tar.xz
+License: BSD-3-Clause
+Type: ipkg
+Description:  This package contains a minimal IEEE 802.1x/WPA Authenticator (WPA-PSK only).
+http://hostap.epitest.fi/
+Felix Fietkau <nbd@nbd.name>
+@@
+
+Package: wpad
+Version: 2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a-5
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +PACKAGE_kmod-cfg80211:libnl-tiny +hostapd-common +libubus +WPA_SUPPLICANT_OPENSSL:libopenssl
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: wpad-full
+Section: net
+Category: Network
+Repository: base
+Title: IEEE 802.1x Authenticator/Supplicant (full)
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Source: hostapd-2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a.tar.xz
+License: BSD-3-Clause
+Type: ipkg
+Description:  This package contains a full featured IEEE 802.1x/WPA/EAP/RADIUS
+ Authenticator and Supplicant
+http://hostap.epitest.fi/
+Felix Fietkau <nbd@nbd.name>
+@@
+
+Package: wpad-mesh
+Version: 2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a-5
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +PACKAGE_kmod-cfg80211:libnl-tiny +libubus +PACKAGE_wpad-mesh:libopenssl @PACKAGE_kmod-cfg80211 @(!TARGET_uml||BROKEN)
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: wpad-mesh
+Section: net
+Category: Network
+Repository: base
+Title: IEEE 802.1x Authenticator/Supplicant (with 802.11s mesh and SAE support)
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Source: hostapd-2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a.tar.xz
+License: BSD-3-Clause
+Type: ipkg
+Description:  This package contains a minimal IEEE 802.1x/WPA Authenticator and Supplicant (with 802.11s mesh and SAE support).
+http://hostap.epitest.fi/
+Felix Fietkau <nbd@nbd.name>
+@@
+
+Package: wpad-mini
+Version: 2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a-5
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +PACKAGE_kmod-cfg80211:libnl-tiny +hostapd-common +libubus
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: wpad-mini
+Section: net
+Category: Network
+Repository: base
+Title: IEEE 802.1x Authenticator/Supplicant (WPA-PSK only)
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Source: hostapd-2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a.tar.xz
+License: BSD-3-Clause
+Type: ipkg
+Description:  This package contains a minimal IEEE 802.1x/WPA Authenticator and Supplicant (WPA-PSK only).
+http://hostap.epitest.fi/
+Felix Fietkau <nbd@nbd.name>
+@@
+
+Package: wpa-supplicant
+Version: 2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a-5
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +PACKAGE_kmod-cfg80211:libnl-tiny +WPA_SUPPLICANT_OPENSSL:libopenssl
+Conflicts: wpad wpad-mini wpad-mesh
+Menu-Depends: 
+Provides: 
+Build-Variant: supplicant-full
+Section: net
+Category: Network
+Repository: base
+Title: WPA Supplicant
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Source: hostapd-2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a.tar.xz
+License: BSD-3-Clause
+Type: ipkg
+Description: WPA Supplicant
+http://hostap.epitest.fi/wpa_supplicant/
+Felix Fietkau <nbd@nbd.name>
+@@
+Config:
+	source "package/network/services/hostapd/Config.in"
+@@
+
+Package: wpa-supplicant-mesh
+Version: 2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a-5
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +PACKAGE_kmod-cfg80211:libnl-tiny +PACKAGE_wpa-supplicant-mesh:libopenssl @PACKAGE_kmod-cfg80211 @(!TARGET_uml||BROKEN)
+Conflicts: wpad wpad-mesh wpad-mesh
+Menu-Depends: 
+Provides: 
+Build-Variant: supplicant-mesh
+Section: net
+Category: Network
+Repository: base
+Title: WPA Supplicant (with 802.11s and SAE)
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Source: hostapd-2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a.tar.xz
+License: BSD-3-Clause
+Type: ipkg
+Description: WPA Supplicant (with 802.11s and SAE)
+http://hostap.epitest.fi/wpa_supplicant/
+Felix Fietkau <nbd@nbd.name>
+@@
+
+Package: wpa-supplicant-mini
+Version: 2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a-5
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +PACKAGE_kmod-cfg80211:libnl-tiny
+Conflicts: wpad wpad-mini wpad-mesh
+Menu-Depends: 
+Provides: 
+Build-Variant: supplicant-mini
+Section: net
+Category: Network
+Repository: base
+Title: WPA Supplicant (minimal version)
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Source: hostapd-2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a.tar.xz
+License: BSD-3-Clause
+Type: ipkg
+Description: WPA Supplicant (minimal version)
+http://hostap.epitest.fi/wpa_supplicant/
+Felix Fietkau <nbd@nbd.name>
+@@
+
+Package: wpa-supplicant-p2p
+Version: 2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a-5
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +PACKAGE_kmod-cfg80211:libnl-tiny @PACKAGE_kmod-cfg80211
+Conflicts: wpad wpad-mini wpad-mesh
+Menu-Depends: 
+Provides: 
+Build-Variant: supplicant-p2p
+Section: net
+Category: Network
+Repository: base
+Title: WPA Supplicant (with Wi-Fi P2P support)
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Source: hostapd-2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a.tar.xz
+License: BSD-3-Clause
+Type: ipkg
+Description: WPA Supplicant (with Wi-Fi P2P support)
+http://hostap.epitest.fi/wpa_supplicant/
+Felix Fietkau <nbd@nbd.name>
+@@
+
+Package: wpa-cli
+Version: 2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a-5
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @PACKAGE_wpa-supplicant||PACKAGE_wpa-supplicant-p2p||PACKAGE_wpad-mini||PACKAGE_wpad||PACKAGE_wpad-mesh
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: WPA Supplicant command line control utility
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Source: hostapd-2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a.tar.xz
+License: BSD-3-Clause
+Type: ipkg
+Description: WPA Supplicant command line control utility
+Felix Fietkau <nbd@nbd.name>
+@@
+
+Package: hostapd-utils
+Version: 2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a-5
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @PACKAGE_hostapd||PACKAGE_hostapd-mini||PACKAGE_wpad||PACKAGE_wpad-mesh||PACKAGE_wpad-mini
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: IEEE 802.1x Authenticator (utils)
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Source: hostapd-2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a.tar.xz
+License: BSD-3-Clause
+Type: ipkg
+Description:  This package contains a command line utility to control the
+ IEEE 802.1x/WPA/EAP/RADIUS Authenticator.
+http://hostap.epitest.fi/
+Felix Fietkau <nbd@nbd.name>
+@@
+
+Package: hostapd-common
+Version: 2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a-5
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: hostapd/wpa_supplicant common support files
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Source: hostapd-2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a.tar.xz
+License: BSD-3-Clause
+Type: ipkg
+Description: hostapd/wpa_supplicant common support files
+Felix Fietkau <nbd@nbd.name>
+@@
+
+Package: eapol-test
+Version: 2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a-5
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +PACKAGE_kmod-cfg80211:libnl-tiny +WPA_SUPPLICANT_OPENSSL:libopenssl
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: supplicant-full
+Section: net
+Category: Network
+Repository: base
+Title: 802.1x authentication test utility
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Source: hostapd-2018-04-09-fa617ee6a0b2d39e6372c93ef9437caa3bd9065a.tar.xz
+License: BSD-3-Clause
+Type: ipkg
+Description: 802.1x authentication test utility
+Felix Fietkau <nbd@nbd.name>
+@@
+
+

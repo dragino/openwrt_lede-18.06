@@ -1,0 +1,30 @@
+Source-Makefile: package/feeds/packages/libgcrypt/Makefile
+
+Package: libgcrypt
+Version: 1.6.6-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libgpg-error
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: libs
+Category: Libraries
+Repository: packages
+Title: GNU crypto library
+Maintainer: W. Michael Petullo <mike@flyn.org>
+Source: libgcrypt-1.6.6.tar.bz2
+License: LGPL-2.1+ GPL-2.0+
+LicenseFiles: COPYING
+Type: ipkg
+Description:  This is a general purpose cryptographic library based on the code from
+ GnuPG. It provides functions for all cryptograhic building blocks:
+ symmetric ciphers (AES, DES, Arcfour, CAST5), hash algorithms (MD5, SHA-1,
+ RIPE-MD160, SHA-224/256, SHA-384/512), MACs (HMAC for all hash
+ algorithms), public key algorithms (RSA, DSA), large integer functions,
+ random numbers and a lot of supporting functions. Some algorithms have
+ been disabled to reduce size (Blowfish, Twofish, Serpent,
+ RC2, SEED, Camellia, CRC, MD4, TIGER-192, Whirlpool, ElGamal, ECC).
+http://directory.fsf.org/security/libgcrypt.html
+W. Michael Petullo <mike@flyn.org>
+@@
+
+

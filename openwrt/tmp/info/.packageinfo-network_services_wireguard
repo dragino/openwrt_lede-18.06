@@ -1,0 +1,84 @@
+Source-Makefile: package/network/services/wireguard/Makefile
+
+Package: wireguard
+Submenu: VPN
+Version: 0.0.20180620-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +wireguard-tools +kmod-wireguard
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: WireGuard meta-package
+Maintainer: Jason A. Donenfeld <Jason@zx2c4.com> Kevin Darbyshire-Bryant <ldir@darbyshire-bryant.me.uk>
+Source: WireGuard-0.0.20180620.tar.xz
+License: GPL-2.0 Apache-2.0
+LicenseFiles: COPYING
+Type: ipkg
+Description:     WireGuard is a novel VPN that runs inside the Linux Kernel and utilizes
+  state-of-the-art cryptography. It aims to be faster, simpler, leaner, and
+  more useful than IPSec, while avoiding the massive headache. It intends to
+  be considerably more performant than OpenVPN.  WireGuard is designed as a
+  general purpose VPN for running on embedded interfaces and super computers
+  alike, fit for many different circumstances. It uses UDP.
+https://www.wireguard.com
+Jason A. Donenfeld <Jason@zx2c4.com> Kevin Darbyshire-Bryant <ldir@darbyshire-bryant.me.uk>
+@@
+
+Package: wireguard-tools
+Submenu: VPN
+Version: 0.0.20180620-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libmnl +ip
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: WireGuard userspace control program (wg)
+Maintainer: Jason A. Donenfeld <Jason@zx2c4.com> Kevin Darbyshire-Bryant <ldir@darbyshire-bryant.me.uk>
+Source: WireGuard-0.0.20180620.tar.xz
+License: GPL-2.0 Apache-2.0
+LicenseFiles: COPYING
+Type: ipkg
+Description:     WireGuard is a novel VPN that runs inside the Linux Kernel and utilizes
+  state-of-the-art cryptography. It aims to be faster, simpler, leaner, and
+  more useful than IPSec, while avoiding the massive headache. It intends to
+  be considerably more performant than OpenVPN.  WireGuard is designed as a
+  general purpose VPN for running on embedded interfaces and super computers
+  alike, fit for many different circumstances. It uses UDP.
+
+  This package provides the userspace control program for WireGuard,
+  `wg(8)`, and a netifd protocol helper.
+https://www.wireguard.com
+Jason A. Donenfeld <Jason@zx2c4.com> Kevin Darbyshire-Bryant <ldir@darbyshire-bryant.me.uk>
+@@
+
+Package: kmod-wireguard
+Submenu: Network Support
+Version: <LINUX_VERSION>+0.0.20180620-1
+Depends: +IPV6:kmod-udptunnel6 +kmod-udptunnel4
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: WireGuard kernel module
+Maintainer: 
+Source: WireGuard-0.0.20180620.tar.xz
+License: GPL-2.0 Apache-2.0
+LicenseFiles: COPYING
+Type: ipkg
+Description:     WireGuard is a novel VPN that runs inside the Linux Kernel and utilizes
+  state-of-the-art cryptography. It aims to be faster, simpler, leaner, and
+  more useful than IPSec, while avoiding the massive headache. It intends to
+  be considerably more performant than OpenVPN.  WireGuard is designed as a
+  general purpose VPN for running on embedded interfaces and super computers
+  alike, fit for many different circumstances. It uses UDP.
+
+  This package provides the kernel module for WireGuard.
+
+@@
+
+

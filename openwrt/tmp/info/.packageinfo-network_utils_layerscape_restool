@@ -1,0 +1,20 @@
+Source-Makefile: package/network/utils/layerscape/restool/Makefile
+
+Package: restool
+Version: 2017-12-03-90fe5c4054bb9a77adef76c0b16a5af68f3905d3-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_layerscape
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: Layerscape DPAA2 dynamical management tool
+Maintainer: 
+Source: restool-2017-12-03-90fe5c4054bb9a77adef76c0b16a5af68f3905d3.tar.xz
+Type: ipkg
+Description: Layerscape DPAA2 dynamical management tool
+
+@@
+
+

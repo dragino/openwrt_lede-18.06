@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Set 0 to disable OpenWrt UART console
+# Set 1 to enable OpenWrt UART console
+# Will take affect after reboot
+
+mode=$1
+
+if [ $mode == 0 ]; then
+	sed -i 's/^ttyATH0/#ttyATH0/g' /etc/inittab
+elif [ $mode == 1 ]; then
+	sed -i 's/^#ttyATH0/ttyATH0/g' /etc/inittab
+fi

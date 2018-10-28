@@ -1,0 +1,22 @@
+Source-Makefile: package/feeds/telephony/asterisk-15.x-chan-lantiq/Makefile
+
+Package: asterisk15-chan-lantiq
+Submenu: Telephony Lantiq
+Version: 20180215-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +asterisk15 +kmod-ltq-vmmc
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Title: Lantiq channel driver
+Maintainer: Jiri Slachta <jiri@slachta.eu>
+Source: asterisk15-chan-lantiq-20180215.tar.xz
+License: GPL-2.0
+Type: ipkg
+Description: An implementation of a Lantiq TAPI channel driver for Asterisk 15.
+https://github.com/kochstefan/asterisk_channel_lantiq
+Jiri Slachta <jiri@slachta.eu>
+@@
+
+

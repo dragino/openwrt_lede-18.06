@@ -1,0 +1,26 @@
+Source-Makefile: package/libs/libnetfilter-conntrack/Makefile
+
+Package: libnetfilter-conntrack
+Version: 2017-07-25-e870432649955d377a73ee5a72cb23f0f6b5e4c5-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libnfnetlink +kmod-nf-conntrack-netlink +libmnl
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: libs
+Category: Libraries
+Repository: base
+Title: API to the in-kernel connection tracking state table
+Maintainer: Jo-Philipp Wich <jo@mein.io>
+Source: libnetfilter_conntrack-2017-07-25-e870432649955d377a73ee5a72cb23f0f6b5e4c5.tar.xz
+License: GPL-2.0+
+Type: ipkg
+Description:  libnetfilter_conntrack is a userspace library providing a programming
+ interface (API) to the in-kernel connection tracking state table. The
+ library libnetfilter_conntrack has been previously known as
+ libnfnetlink_conntrack and libctnetlink. This library is currently
+ used by conntrack-tools among many other applications.
+http://www.netfilter.org/projects/libnetfilter_conntrack/
+Jo-Philipp Wich <jo@mein.io>
+@@
+
+

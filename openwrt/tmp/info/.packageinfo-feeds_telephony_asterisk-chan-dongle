@@ -1,0 +1,47 @@
+Source-Makefile: package/feeds/telephony/asterisk-chan-dongle/Makefile
+
+Package: asterisk13-chan-dongle
+Submenu: Telephony
+Version: 1.1-20180312-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +USE_UCLIBC:libiconv-full +kmod-usb-acm +kmod-usb-serial +kmod-usb-serial-option +libusb-1.0 +usb-modeswitch asterisk13
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: asterisk13
+Section: net
+Category: Network
+Repository: telephony
+Title: Huawei UMTS 3G dongle support
+Maintainer: Jiri Slachta <jiri@slachta.eu>
+Source: asterisk-chan-dongle-1.1-20180312.tar.xz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT.txt LICENSE.txt
+Type: ipkg
+Description:  Asterisk channel driver for Huawei UMTS 3G dongle.
+https://github.com/wdoekes/asterisk-chan-dongle
+Jiri Slachta <jiri@slachta.eu>
+@@
+
+Package: asterisk15-chan-dongle
+Submenu: Telephony
+Version: 1.1-20180312-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +USE_UCLIBC:libiconv-full +kmod-usb-acm +kmod-usb-serial +kmod-usb-serial-option +libusb-1.0 +usb-modeswitch asterisk15
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: asterisk15
+Section: net
+Category: Network
+Repository: telephony
+Title: Huawei UMTS 3G dongle support
+Maintainer: Jiri Slachta <jiri@slachta.eu>
+Source: asterisk-chan-dongle-1.1-20180312.tar.xz
+License: GPL-2.0
+LicenseFiles: COPYRIGHT.txt LICENSE.txt
+Type: ipkg
+Description:  Asterisk channel driver for Huawei UMTS 3G dongle.
+https://github.com/wdoekes/asterisk-chan-dongle
+Jiri Slachta <jiri@slachta.eu>
+@@
+
+

@@ -1,0 +1,22 @@
+Source-Makefile: package/network/utils/iw/Makefile
+
+Package: iw
+Version: 4.14-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libnl-tiny
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: base
+Title: cfg80211 interface configuration utility
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Source: iw-4.14.tar.xz
+License: GPL-2.0
+Type: ipkg
+Description: cfg80211 interface configuration utility
+http://wireless.kernel.org/en/users/Documentation/iw
+Felix Fietkau <nbd@nbd.name>
+@@
+
+

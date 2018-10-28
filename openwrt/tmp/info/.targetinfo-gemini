@@ -1,0 +1,67 @@
+Source-Makefile: target/linux/gemini/Makefile
+Target: gemini
+Target-Board: gemini
+Target-Name: Cortina Systems CS351x
+Target-Arch: arm
+Target-Arch-Packages: arm_fa526
+Target-Features: display dt gpio pci rtc squashfs usb
+Target-Depends: 
+Target-Optimization: -Os -pipe -mcpu=fa526
+CPU-Type: fa526
+Linux-Version: 4.14.50
+Linux-Release: 1
+Linux-Kernel-Arch: arm
+Target-Description:
+	Build firmware images for the StorLink/Cortina Gemini CS351x ARM FA526 CPU
+@@
+Default-Packages: base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools uclient-fetch logd dnsmasq iptables ip6tables ppp ppp-mod-pppoe firewall odhcpd-ipv6only odhcp6c kmod-ipt-offload kmod-leds-gpio kmod-led-trig-heartbeat kmod-gpio-button-hotplug 
+Target-Profile: DEVICE_dlink-dir-685
+Target-Profile-Name: D-Link DIR-685 Xtreme N Storage Router
+Target-Profile-Packages: kmod-md-mod kmod-md-linear kmod-md-multipath kmod-md-raid0 kmod-md-raid1 kmod-md-raid10 kmod-md-raid456 kmod-fs-btrfs kmod-fs-cifs kmod-fs-nfs kmod-fs-nfsd kmod-fs-ntfs kmod-fs-reiserfs kmod-fs-vfat kmod-nls-utf8 kmod-usb-storage-extras samba36-server mdadm cfdisk fdisk e2fsprogs badblocks kmod-switch-rtl8366rb swconfig
+Target-Profile-Description:
+Build firmware images for D-Link DIR-685 Xtreme N Storage Router
+@@
+
+Target-Profile: DEVICE_dlink-dns-313
+Target-Profile-Name: D-Link DNS-313 1-Bay Network Storage Enclosure
+Target-Profile-Packages: kmod-md-mod kmod-md-linear kmod-md-multipath kmod-md-raid0 kmod-md-raid1 kmod-md-raid10 kmod-md-raid456 kmod-fs-btrfs kmod-fs-cifs kmod-fs-nfs kmod-fs-nfsd kmod-fs-ntfs kmod-fs-reiserfs kmod-fs-vfat kmod-nls-utf8 kmod-usb-storage-extras samba36-server mdadm cfdisk fdisk e2fsprogs badblocks
+Target-Profile-Description:
+Build firmware images for D-Link DNS-313 1-Bay Network Storage Enclosure
+@@
+
+Target-Profile: DEVICE_nas4220b
+Target-Profile-Name: Raidsonic NAS IB-4220-B
+Target-Profile-Packages: kmod-md-mod kmod-md-linear kmod-md-multipath kmod-md-raid0 kmod-md-raid1 kmod-md-raid10 kmod-md-raid456 kmod-fs-btrfs kmod-fs-cifs kmod-fs-nfs kmod-fs-nfsd kmod-fs-ntfs kmod-fs-reiserfs kmod-fs-vfat kmod-nls-utf8 kmod-usb-storage-extras samba36-server mdadm cfdisk fdisk e2fsprogs badblocks
+Target-Profile-Description:
+Build firmware images for Raidsonic NAS IB-4220-B
+@@
+
+Target-Profile: DEVICE_rut1xx
+Target-Profile-Name: Teltonika RUT1xx
+Target-Profile-Packages: kmod-md-mod kmod-md-linear kmod-md-multipath kmod-md-raid0 kmod-md-raid1 kmod-md-raid10 kmod-md-raid456 kmod-fs-btrfs kmod-fs-cifs kmod-fs-nfs kmod-fs-nfsd kmod-fs-ntfs kmod-fs-reiserfs kmod-fs-vfat kmod-nls-utf8 kmod-usb-storage-extras samba36-server mdadm cfdisk fdisk e2fsprogs badblocks
+Target-Profile-Description:
+Build firmware images for Teltonika RUT1xx
+@@
+
+Target-Profile: DEVICE_sq201
+Target-Profile-Name: ITian Square One SQ201
+Target-Profile-Packages: kmod-md-mod kmod-md-linear kmod-md-multipath kmod-md-raid0 kmod-md-raid1 kmod-md-raid10 kmod-md-raid456 kmod-fs-btrfs kmod-fs-cifs kmod-fs-nfs kmod-fs-nfsd kmod-fs-ntfs kmod-fs-reiserfs kmod-fs-vfat kmod-nls-utf8 kmod-usb-storage-extras samba36-server mdadm cfdisk fdisk e2fsprogs badblocks rt61-pci-firmware
+Target-Profile-Description:
+Build firmware images for ITian Square One SQ201
+@@
+
+Target-Profile: DEVICE_wbd111
+Target-Profile-Name: Wiliboard WBD-111
+Target-Profile-Packages: 
+Target-Profile-Description:
+Build firmware images for Wiliboard WBD-111
+@@
+
+Target-Profile: DEVICE_wbd222
+Target-Profile-Name: Wiliboard WBD-222
+Target-Profile-Packages: 
+Target-Profile-Description:
+Build firmware images for Wiliboard WBD-222
+@@
+
+

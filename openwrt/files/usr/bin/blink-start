@@ -1,0 +1,15 @@
+#!/bin/sh
+
+is_siod=`cat /etc/banner | grep 'SIOD' -c`
+
+LED="dragino2:red:system"
+if [ $is_siod -gt 0 ];then
+	LED="dragino2:red:wan"
+	echo $is_siod
+fi
+
+
+echo "timer" > /sys/class/leds/$LED/trigger
+
+echo $1 > /sys/class/leds/$LED/delay_on
+echo $1 > /sys/class/leds/$LED/delay_off

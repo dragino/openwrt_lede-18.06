@@ -1,0 +1,47 @@
+Source-Makefile: package/libs/mbedtls/Makefile
+
+Package: libmbedtls
+Submenu: SSL
+Version: 2.8.0-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: libs
+Category: Libraries
+Repository: base
+Title: Embedded SSL (library)
+Maintainer: 
+Source: mbedtls-2.8.0-gpl.tgz
+License: GPL-2.0+
+Type: ipkg
+Description: The aim of the mbedtls project is to provide a quality, open-source
+cryptographic library written in C and targeted at embedded systems.
+This package contains the mbedtls library.
+https://tls.mbed.org
+
+@@
+
+Package: mbedtls-util
+Version: 2.8.0-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libmbedtls
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: base
+Title: Embedded SSL (utilities)
+Maintainer: 
+Source: mbedtls-2.8.0-gpl.tgz
+License: GPL-2.0+
+Type: ipkg
+Description: The aim of the mbedtls project is to provide a quality, open-source
+cryptographic library written in C and targeted at embedded systems.
+This package contains mbedtls helper programs for private key and
+CSR generation (gen_key, cert_req)
+https://tls.mbed.org
+
+@@
+
+

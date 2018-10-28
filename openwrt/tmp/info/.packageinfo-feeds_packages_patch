@@ -1,0 +1,24 @@
+Source-Makefile: package/feeds/packages/patch/Makefile
+
+Package: patch
+Version: 2.7.6-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: devel
+Category: Development
+Repository: packages
+Title: patch
+Maintainer: Russell Senior <russell@personaltelco.net>
+Source: patch-2.7.6.tar.xz
+License: GPL-3.0+
+LicenseFiles: COPYING
+Type: ipkg
+Description:   The Patch package contains a program for modifying or creating files
+  by applying a "patch" file typically created by the diff program.
+http://www.gnu.org/
+Russell Senior <russell@personaltelco.net>
+@@
+
+

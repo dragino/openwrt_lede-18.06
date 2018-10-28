@@ -1,0 +1,49 @@
+Source-Makefile: package/feeds/packages/smartmontools/Makefile
+
+Package: smartmontools
+Version: 6.6-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +USE_UCLIBCXX:uclibcxx +USE_LIBSTDCXX:libstdcpp
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: packages
+Title: S.M.A.R.T Monitoring Tool
+Maintainer: Maxim Storchak <m.storchak@gmail.com>
+Source: smartmontools-6.6.tar.gz
+License: GPL-2.0+
+LicenseFiles: COPYING
+Type: ipkg
+Description:   smartmontools contains utility programs (smartctl) to
+  control/monitor storage systems using the Self-Monitoring, Analysis
+  and Reporting Technology System (S.M.A.R.T.) built into most modern
+  ATA and SCSI disks. It is derived from smartsuite.
+http://smartmontools.sourceforge.net/
+Maxim Storchak <m.storchak@gmail.com>
+@@
+
+Package: smartd
+Version: 6.6-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +USE_UCLIBCXX:uclibcxx +USE_LIBSTDCXX:libstdcpp
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: packages
+Title: S.M.A.R.T Monitoring Daemon
+Maintainer: Maxim Storchak <m.storchak@gmail.com>
+Source: smartmontools-6.6.tar.gz
+License: GPL-2.0+
+LicenseFiles: COPYING
+Type: ipkg
+Description:   smartmontools contains utility programs (smartd) to
+  control/monitor storage systems using the Self-Monitoring, Analysis
+  and Reporting Technology System (S.M.A.R.T.) built into most modern
+  ATA and SCSI disks. It is derived from smartsuite.
+http://smartmontools.sourceforge.net/
+Maxim Storchak <m.storchak@gmail.com>
+@@
+
+

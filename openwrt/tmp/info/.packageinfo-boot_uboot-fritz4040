@@ -1,0 +1,23 @@
+Source-Makefile: package/boot/uboot-fritz4040/Makefile
+
+Package: u-boot-fritz4040
+Version: 2017-01-29-6946ebbaf7b12a4a092d763c8f0c87a25984f103-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @!IN_SDK @TARGET_ipq40xx
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: fritz4040
+Section: boot
+Category: Boot Loaders
+Title: U-Boot for FritzBox 4040
+Maintainer: 
+Source: u-boot-2017-01-29-6946ebbaf7b12a4a092d763c8f0c87a25984f103.tar.xz
+License: GPL-2.0 GPL-2.0+
+LicenseFiles: Licenses/README
+Type: bin
+Description: U-Boot for FritzBox 4040
+http://www.denx.de/wiki/U-Boot
+
+@@
+
+

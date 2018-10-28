@@ -1,0 +1,6 @@
+
+config mesh 'bat0'
+	option interfaces 'ath0-1 wlan0-1'
+	option bl '1'
+	option gw_mode 'off'
+

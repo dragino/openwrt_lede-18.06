@@ -1,0 +1,140 @@
+Source-Makefile: package/boot/uboot-layerscape/Makefile
+
+Package: u-boot-ls1043ardb
+Default: y if (TARGET_layerscape_armv8_64b_Default || TARGET_layerscape_armv8_64b_DEVICE_ls1043ardb || TARGET_DEVICE_layerscape_armv8_64b_DEVICE_ls1043ardb)
+Version: 2017-12-07-9f7df1b406ff11409021cd2112beedd6b57bb600-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @!IN_SDK @TARGET_layerscape_armv8_64b
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: ls1043ardb
+Section: boot
+Category: Boot Loaders
+Title: U-Boot for NXP ls1043ardb 64b Dev Board
+Maintainer: 
+Source: uboot-layerscape-2017-12-07-9f7df1b406ff11409021cd2112beedd6b57bb600.tar.xz
+License: GPL-2.0 GPL-2.0+
+LicenseFiles: Licenses/README
+Type: bin
+Hidden: y
+Description: U-Boot for NXP ls1043ardb 64b Dev Board
+http://www.denx.de/wiki/U-Boot
+
+@@
+
+
+Package: u-boot-ls1046ardb
+Default: y if (TARGET_layerscape_armv8_64b_Default || TARGET_layerscape_armv8_64b_DEVICE_ls1046ardb || TARGET_DEVICE_layerscape_armv8_64b_DEVICE_ls1046ardb)
+Version: 2017-12-07-9f7df1b406ff11409021cd2112beedd6b57bb600-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @!IN_SDK @TARGET_layerscape_armv8_64b
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: ls1046ardb
+Section: boot
+Category: Boot Loaders
+Title: U-Boot for NXP ls1046ardb 64b Dev Board
+Maintainer: 
+Source: uboot-layerscape-2017-12-07-9f7df1b406ff11409021cd2112beedd6b57bb600.tar.xz
+License: GPL-2.0 GPL-2.0+
+LicenseFiles: Licenses/README
+Type: bin
+Hidden: y
+Description: U-Boot for NXP ls1046ardb 64b Dev Board
+http://www.denx.de/wiki/U-Boot
+
+@@
+
+
+Package: u-boot-ls1012ardb
+Default: y if (TARGET_layerscape_armv8_64b_Default || TARGET_layerscape_armv8_64b_DEVICE_ls1012ardb || TARGET_DEVICE_layerscape_armv8_64b_DEVICE_ls1012ardb)
+Version: 2017-12-07-9f7df1b406ff11409021cd2112beedd6b57bb600-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @!IN_SDK @TARGET_layerscape_armv8_64b
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: ls1012ardb
+Section: boot
+Category: Boot Loaders
+Title: U-Boot for NXP ls1012ardb 64b Dev Board
+Maintainer: 
+Source: uboot-layerscape-2017-12-07-9f7df1b406ff11409021cd2112beedd6b57bb600.tar.xz
+License: GPL-2.0 GPL-2.0+
+LicenseFiles: Licenses/README
+Type: bin
+Hidden: y
+Description: U-Boot for NXP ls1012ardb 64b Dev Board
+http://www.denx.de/wiki/U-Boot
+
+@@
+
+
+Package: u-boot-ls1088ardb
+Default: y if (TARGET_layerscape_armv8_64b_Default || TARGET_layerscape_armv8_64b_DEVICE_ls1088ardb || TARGET_DEVICE_layerscape_armv8_64b_DEVICE_ls1088ardb)
+Version: 2017-12-07-9f7df1b406ff11409021cd2112beedd6b57bb600-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @!IN_SDK @TARGET_layerscape_armv8_64b
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: ls1088ardb
+Section: boot
+Category: Boot Loaders
+Title: U-Boot for NXP ls1088ardb 64b Dev Board
+Maintainer: 
+Source: uboot-layerscape-2017-12-07-9f7df1b406ff11409021cd2112beedd6b57bb600.tar.xz
+License: GPL-2.0 GPL-2.0+
+LicenseFiles: Licenses/README
+Type: bin
+Hidden: y
+Description: U-Boot for NXP ls1088ardb 64b Dev Board
+http://www.denx.de/wiki/U-Boot
+
+@@
+
+
+Package: u-boot-ls2088ardb
+Default: y if (TARGET_layerscape_armv8_64b_Default || TARGET_layerscape_armv8_64b_DEVICE_ls2088ardb || TARGET_DEVICE_layerscape_armv8_64b_DEVICE_ls2088ardb)
+Version: 2017-12-07-9f7df1b406ff11409021cd2112beedd6b57bb600-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @!IN_SDK @TARGET_layerscape_armv8_64b
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: ls2088ardb
+Section: boot
+Category: Boot Loaders
+Title: U-Boot for NXP ls2088ardb 64b Dev Board
+Maintainer: 
+Source: uboot-layerscape-2017-12-07-9f7df1b406ff11409021cd2112beedd6b57bb600.tar.xz
+License: GPL-2.0 GPL-2.0+
+LicenseFiles: Licenses/README
+Type: bin
+Hidden: y
+Description: U-Boot for NXP ls2088ardb 64b Dev Board
+http://www.denx.de/wiki/U-Boot
+
+@@
+
+
+Package: u-boot-ls1012afrdm
+Default: y if (TARGET_layerscape_armv8_64b_Default || TARGET_layerscape_armv8_64b_DEVICE_ls1012afrdm || TARGET_DEVICE_layerscape_armv8_64b_DEVICE_ls1012afrdm)
+Version: 2017-12-07-9f7df1b406ff11409021cd2112beedd6b57bb600-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @!IN_SDK @TARGET_layerscape_armv8_64b
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: ls1012afrdm
+Section: boot
+Category: Boot Loaders
+Title: U-Boot for NXP ls1012afrdm 64b Dev Board
+Maintainer: 
+Source: uboot-layerscape-2017-12-07-9f7df1b406ff11409021cd2112beedd6b57bb600.tar.xz
+License: GPL-2.0 GPL-2.0+
+LicenseFiles: Licenses/README
+Type: bin
+Hidden: y
+Description: U-Boot for NXP ls1012afrdm 64b Dev Board
+http://www.denx.de/wiki/U-Boot
+
+@@
+
+

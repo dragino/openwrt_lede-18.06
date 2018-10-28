@@ -1,0 +1,23 @@
+Source-Makefile: package/feeds/packages/django-restframework/Makefile
+
+Package: django-restframework
+Submenu: Python
+Version: 3.7.1-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python +django
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: packages
+Title: Web APIs for Django, made easy.
+Maintainer: Gergely Kiss <mail.gery@gmail.com>
+Source: djangorestframework-3.7.1.tar.gz
+License: BSD-3-Clause
+Type: ipkg
+Description:   Web APIs for Django, made easy.
+http://www.django-rest-framework.org/
+Gergely Kiss <mail.gery@gmail.com>
+@@
+
+

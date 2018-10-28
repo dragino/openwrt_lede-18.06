@@ -1,0 +1,43 @@
+Source-Makefile: package/feeds/routing/bird6-openwrt/Makefile
+
+Package: bird6-uci
+Submenu: Routing and Redirection
+Version: 0.3-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +bird6 +libuci +uci
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: routing
+Title: The BIRD UCI module
+Maintainer: Eloi Carbo <eloicaso@openmailbox.org>
+Source: 
+License: GPL-3.0+
+Type: ipkg
+Description: bird6 UCI integration module
+https://github.com/eloicaso/bird-openwrt/
+Eloi Carbo <eloicaso@openmailbox.org>
+@@
+
+Package: luci-app-bird6
+Submenu: 3. Applications
+Version: 0.3-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +bird6-uci +luci-base
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: routing
+Title: LuCI support for bird6
+Maintainer: Eloi Carbo <eloicaso@openmailbox.org>
+Source: 
+License: GPL-3.0+
+Type: ipkg
+Description: bird6 application for LuCI
+https://github.com/eloicaso/bird-openwrt/
+Eloi Carbo <eloicaso@openmailbox.org>
+@@
+
+

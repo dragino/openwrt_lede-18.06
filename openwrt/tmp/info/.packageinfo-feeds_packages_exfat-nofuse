@@ -1,0 +1,22 @@
+Source-Makefile: package/feeds/packages/exfat-nofuse/Makefile
+
+Package: kmod-fs-exfat
+Submenu: Filesystems
+Version: <LINUX_VERSION>+2017-06-20-de4c760bc9a05ead83bc3ec6eec6cf1fb106f523-1
+Depends: +kmod-nls-base @BUILD_PATENTED
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: kernel
+Category: Kernel modules
+Title: ExFAT Kernel driver
+Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
+Source: exfat-nofuse-2017-06-20-de4c760bc9a05ead83bc3ec6eec6cf1fb106f523.tar.xz
+License: GPL-2.0
+LicenseFiles: LICENSE
+Type: ipkg
+Description: 	Kernel module for ExFAT Filesytems
+Yousong Zhou <yszhou4tech@gmail.com>
+@@
+
+

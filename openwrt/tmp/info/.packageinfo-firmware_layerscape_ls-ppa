@@ -1,0 +1,105 @@
+Source-Makefile: package/firmware/layerscape/ls-ppa/Makefile
+
+Package: layerscape-ppa-ls1043ardb
+Version: 2018-01-18-cd295be24cadae51741154f3b1c935c7b9064230-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_layerscape
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: ls1043ardb
+Section: firmware
+Category: Firmware
+Title: PPA firmware 2018-01-18-cd295be24cadae51741154f3b1c935c7b9064230 for NXP ls1043ardb 64b/32b Dev Board
+Maintainer: 
+Source: ls-ppa-2018-01-18-cd295be24cadae51741154f3b1c935c7b9064230.tar.xz
+Type: ipkg
+Description: PPA firmware 2018-01-18-cd295be24cadae51741154f3b1c935c7b9064230 for NXP ls1043ardb 64b/32b Dev Board
+
+@@
+
+Package: layerscape-ppa-ls1046ardb
+Version: 2018-01-18-cd295be24cadae51741154f3b1c935c7b9064230-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_layerscape
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: ls1046ardb
+Section: firmware
+Category: Firmware
+Title: PPA firmware 2018-01-18-cd295be24cadae51741154f3b1c935c7b9064230 for NXP ls1046ardb 64b/32b Dev Board
+Maintainer: 
+Source: ls-ppa-2018-01-18-cd295be24cadae51741154f3b1c935c7b9064230.tar.xz
+Type: ipkg
+Description: PPA firmware 2018-01-18-cd295be24cadae51741154f3b1c935c7b9064230 for NXP ls1046ardb 64b/32b Dev Board
+
+@@
+
+Package: layerscape-ppa-ls1012ardb
+Version: 2018-01-18-cd295be24cadae51741154f3b1c935c7b9064230-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_layerscape
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: ls1012ardb
+Section: firmware
+Category: Firmware
+Title: PPA firmware 2018-01-18-cd295be24cadae51741154f3b1c935c7b9064230 for NXP ls1012ardb 64b/32b Dev Board
+Maintainer: 
+Source: ls-ppa-2018-01-18-cd295be24cadae51741154f3b1c935c7b9064230.tar.xz
+Type: ipkg
+Description: PPA firmware 2018-01-18-cd295be24cadae51741154f3b1c935c7b9064230 for NXP ls1012ardb 64b/32b Dev Board
+
+@@
+
+Package: layerscape-ppa-ls1088ardb
+Version: 2018-01-18-cd295be24cadae51741154f3b1c935c7b9064230-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_layerscape
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: ls1088ardb
+Section: firmware
+Category: Firmware
+Title: PPA firmware 2018-01-18-cd295be24cadae51741154f3b1c935c7b9064230 for NXP ls1088ardb 64b/32b Dev Board
+Maintainer: 
+Source: ls-ppa-2018-01-18-cd295be24cadae51741154f3b1c935c7b9064230.tar.xz
+Type: ipkg
+Description: PPA firmware 2018-01-18-cd295be24cadae51741154f3b1c935c7b9064230 for NXP ls1088ardb 64b/32b Dev Board
+
+@@
+
+Package: layerscape-ppa-ls2088ardb
+Version: 2018-01-18-cd295be24cadae51741154f3b1c935c7b9064230-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_layerscape
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: ls2088ardb
+Section: firmware
+Category: Firmware
+Title: PPA firmware 2018-01-18-cd295be24cadae51741154f3b1c935c7b9064230 for NXP ls2088ardb 64b/32b Dev Board
+Maintainer: 
+Source: ls-ppa-2018-01-18-cd295be24cadae51741154f3b1c935c7b9064230.tar.xz
+Type: ipkg
+Description: PPA firmware 2018-01-18-cd295be24cadae51741154f3b1c935c7b9064230 for NXP ls2088ardb 64b/32b Dev Board
+
+@@
+
+Package: layerscape-ppa-ls1012afrdm
+Version: 2018-01-18-cd295be24cadae51741154f3b1c935c7b9064230-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @TARGET_layerscape
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: ls1012afrdm
+Section: firmware
+Category: Firmware
+Title: PPA firmware 2018-01-18-cd295be24cadae51741154f3b1c935c7b9064230 for NXP ls1012afrdm 64b/32b Dev Board
+Maintainer: 
+Source: ls-ppa-2018-01-18-cd295be24cadae51741154f3b1c935c7b9064230.tar.xz
+Type: ipkg
+Description: PPA firmware 2018-01-18-cd295be24cadae51741154f3b1c935c7b9064230 for NXP ls1012afrdm 64b/32b Dev Board
+
+@@
+
+

@@ -1,0 +1,29 @@
+Source-Makefile: package/utils/busybox/Makefile
+Build-Depends: BUSYBOX_USE_LIBRPC:librpc BUSYBOX_CONFIG_PAM:libpam
+
+Package: busybox
+Menu: 1
+Version: 1.28.3-4
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +BUSYBOX_USE_LIBRPC:librpc +BUSYBOX_CONFIG_PAM:libpam +BUSYBOX_CONFIG_NTPD:jsonfilter
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: base
+Category: Base system
+Repository: base
+Title: Core utilities for embedded Linux
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Source: busybox-1.28.3.tar.bz2
+License: GPL-2.0
+LicenseFiles: LICENSE archival/libarchive/bz/LICENSE
+Type: ipkg
+Description:  The Swiss Army Knife of embedded Linux.
+ It slices, it dices, it makes Julian Fries.
+http://busybox.net/
+Felix Fietkau <nbd@nbd.name>
+@@
+Config:
+	source "package/utils/busybox/Config.in"
+@@
+
+
