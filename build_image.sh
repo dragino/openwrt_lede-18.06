@@ -8,9 +8,10 @@ BFLAG=
 APP=LG02_LG08
 APP2=
 IMAGE_SUFFIX=
+BUILD_TIME=`date +%s`
 
 REPO_PATH=$(pwd)
-VERSION=5.0.0
+VERSION="5.0.$BUILD_TIME"
 OPENWRT_PATH="openwrt"
 
 while getopts 'a:b:p:v:sh' OPTION
@@ -76,6 +77,8 @@ echo "Remove custom files from last build"
 rm -rf $OPENWRT_PATH/files
 
 cp -r general_files $OPENWRT_PATH/files
+
+cp .config.LG02_LG08 $OPENWRT_PATH/.config
 
 cd $OPENWRT_PATH/feeds/dragino
 

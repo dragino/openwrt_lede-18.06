@@ -16,6 +16,7 @@ config uhttpd 'main'
         option http_keepalive '20'
         option tcp_keepalive '1'
         option ubus_prefix '/ubus'
+        list alias '/luci' '/cgi-bin/luci'
                   
 config cert 'px5g'        
         option days '3652'

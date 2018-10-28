@@ -14,10 +14,6 @@ config interface 'lan'
 	option ipaddr '10.130.1.1'
 	option gateway '255.255.255.255'
 
-config interface
-	option ifname 'bat0'
-
-
 config interface 'wan'
 	option ifname 'eth1'
 	option proto 'dhcp'

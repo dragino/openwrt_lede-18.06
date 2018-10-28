@@ -28,13 +28,14 @@ config oem 'vendor'
 	option web_model 'dragino'
 
 config oem 'vendor'
-	option name 'dragino'
-	option ssid_prefix 'dragino'
-	option hostname 'dragino'
-	option web_model 'dragino'
-	option company_name 'DRAGINO TECHNOLOGY CO., LIMITED'
-	option company_url 'http://www.dragino.com'
-	option mail_domain "dragino.com"
+	option name 'SQD'
+	option ssid_prefix 'SQD'
+	option hostname 'SQD'
+	option web_model_prefix 'SQD'
+	option web_model 'SQD'
+	option company_name 'SQD'
+	option company_url ''
+	option mail_domain "your_domain.com"
 
 config led 'led_lan'
         option name 'LAN'
