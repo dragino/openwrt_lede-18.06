@@ -48,9 +48,9 @@ sleep 2
 $OPENWRT_PATH/scripts/feeds install -a
 echo " "
 
-echo ""
-echo "Patch Dragino2 Platform"
-rsync -avC platform/target/ $OPENWRT_PATH/target/
+#echo ""
+#echo "Patch Dragino2 Platform"
+#rsync -avC platform/target/ $OPENWRT_PATH/target/
 
 
 #Remove tmp directory
