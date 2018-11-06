@@ -34,3 +34,7 @@ config dhcp 'wan'
 	option interface 'wan'
 	option ignore '1'
 
+config dhcp 'wwan'
+	option interface 'wwan'
+	option ignore '1'
+

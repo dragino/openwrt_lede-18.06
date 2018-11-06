@@ -11,7 +11,7 @@ IMAGE_SUFFIX=
 BUILD_TIME=`date +%s`
 
 REPO_PATH=$(pwd)
-VERSION="5.0.$BUILD_TIME"
+VERSION="5.1.$BUILD_TIME"
 OPENWRT_PATH="openwrt"
 
 while getopts 'a:b:p:v:sh' OPTION
@@ -119,6 +119,9 @@ echo ""
 echo "***Entering build directory***"
 
 cd $OPENWRT_PATH
+
+#make sure fresh the luci-app on each build
+rm -rf build_dir/target-mips_24kc_musl/luci-app-*
 
 echo ""
 

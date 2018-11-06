@@ -172,14 +172,13 @@ end
 --@return channel value table {channel1=value1,channel2=value2....} from sensor directory
 function get_channels_valuetable()
 	local valuetable = {}
-	local files = luci_fs.dir(SENSOR_DIR)
-	for k,v in pairs(files) do 
-		if luci_fs.isfile(SENSOR_DIR..v) then 
-			local value = util.trim(util.exec("tail -n 1 " .. SENSOR_DIR..v))
+	for file in luci_fs.dir(SENSOR_DIR) do 
+		--if luci_fs.isfile(file) then 
+			local value = util.trim(util.exec("tail -n 1 " .. SENSOR_DIR..file))
 			if value ~= nil and value ~= "" then
-				valuetable[v]=value
+				valuetable[file]=value
 			end
-		end
+		--end
 	end
   return valuetable
 end
