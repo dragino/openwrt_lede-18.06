@@ -19,5 +19,6 @@ config wifi-iface 'ap_0'
 	option maxassoc '30'
 	option disabled '0'
 	option encryption 'none'
-	option ssid 'SQD-1b8288'
+	option ssid 'dragino-1a8288'
+        option disabled '1'
 

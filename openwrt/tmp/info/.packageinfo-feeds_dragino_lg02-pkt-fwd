@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/dragino/lg02-pkt-fwd/Makefile
 
 Package: lg02_pkt_fwd
-Version: 1.1.0-1
+Version: 1.2.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libuci +libmosquitto-ssl +libpthread +librt
 Conflicts: 
 Menu-Depends: 
@@ -14,7 +14,7 @@ Maintainer: Dragino <support@dragino.com>
 Source: 
 Type: ipkg
 Description: 	LoRa dual channels packet forwarder
-	For Dragino LG02/OLG02
+	For Dragino LG01/LG02
 Dragino <support@dragino.com>
 @@
 

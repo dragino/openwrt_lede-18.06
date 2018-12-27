@@ -27,7 +27,6 @@ if [ $pressed_for -gt 3 ]
 then
 	logger "resetting network"
 	sleep 2
-	cp /rom/etc/config/secn /etc/config/
 	cp /rom/etc/config/network /etc/config/
 	cp /rom/etc/config/dhcp /etc/config/
 	cp /rom/etc/config/wireless /etc/config/
