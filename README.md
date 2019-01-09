@@ -66,21 +66,23 @@ The build process will auto overwrite the default files or pacakges with the cus
 
 ## How to develop a C software before build the image
 The fastest way is to use the SDK. 
-1: Download the [LEDE-SDK](http://www.dragino.com/downloads/downloads/LoRa_Gateway/LG02-OLG02/lede-sdk.tar.gz) 
+
+### Download the [LEDE-SDK](http://www.dragino.com/downloads/downloads/LoRa_Gateway/LG02-OLG02/lede-sdk.tar.gz) 
 ``` bash
    wget http://www.dragino.com/downloads/downloads/LoRa_Gateway/LG02-OLG02/lede-sdk.tar.gz
 ```
 
-2: Extra the SDK to Linux OS. 
+### Extra the SDK to Linux OS. 
 ``` bash
    tar -xzvf lede-sdk.tar.gz
 ```
-3: Download the demo [hello package](http://www.dragino.com/downloads/downloads/LoRa_Gateway/LG02-OLG02/hello.tgz) and put it in the lede-sdk/package/
-4: Enable hello package by running make menuconfig in lede-sdk. and enable hello package in the utility
+### Download the demo [hello package](http://www.dragino.com/downloads/downloads/LoRa_Gateway/LG02-OLG02/hello.tgz) and put it in the lede-sdk/package/
+
+### Enable hello package by running make menuconfig in lede-sdk. and enable hello package in the utility
 ``` bash
    make meunconfig
 ```
-5: make the package 
+### make the package 
 ``` bash
 [root@dragino lede-sdk]# make
   WARNING: Makefile 'package/linux/Makefile' has a dependency on 'r8169-firmware', which does not exist
@@ -111,19 +113,18 @@ The fastest way is to use the SDK.
    make[2] package/index
 ```
 
-6: get the execute file.
+### get the execute file and test
 The hello package (hello_1.0.0-1_mips_24kc.ipk) is under the bin/packages/mips_24kc/base/ , user can upload this package to the device and install / run it: 
 ``` bash
-  root@dragino-1b6fb0:~# opkg install hello_1.0.0-1_mips_24kc.ipk 
-  Installing hello (1.0.0-1) to root...
-  Configuring hello.
-  root@dragino-1b6fb0:~# hello 
-  Hello world
-  root@dragino-1b6fb0:~# 
+root@dragino-1b6fb0:~# opkg install hello_1.0.0-1_mips_24kc.ipk 
+Installing hello (1.0.0-1) to root...
+Configuring hello.
+root@dragino-1b6fb0:~# hello 
+Hello world
+root@dragino-1b6fb0:~# 
 ```
-to get 
 
-7: make it faster:
+### make it faster:
 An efficient way to transfer the package from compile server to device is use scp command. below is a script for example: 
 ``` bash
 upload_lora_bin.sh
@@ -139,18 +140,22 @@ upload_lora_bin.sh
 Run it 
 
 ``` bash
- root@dragino-1b6fb0:~# ./update_lora_bin.sh 
- Removing package hello from root...
+root@dragino-1b6fb0:~# ./update_lora_bin.sh 
+Removing package hello from root...
 
- Host '120.78.xxx.xxx' is not in the trusted hosts file.
- (ssh-rsa fingerprint sha1!! 00:8f:65:a5:1a:93:13:8f:c4:d2:81:4d:57:ea:14:49:47:54:0e:75)
- Do you want to continue connecting? (y/n) y
- root@120.78.xxx.xxx's password: 
- hello_1.0.0-1_mips_24kc.ipk                100% 1906     1.9KB/s   00:00    
- Installing hello (1.0.0-1) to root...
- Configuring hello.
- root@dragino-1b6fb0:~#
+Host '120.78.xxx.xxx' is not in the trusted hosts file.
+(ssh-rsa fingerprint sha1!! 00:8f:65:a5:1a:93:13:8f:c4:d2:81:4d:57:ea:14:49:47:54:0e:75)
+Do you want to continue connecting? (y/n) y
+root@120.78.xxx.xxx's password: 
+hello_1.0.0-1_mips_24kc.ipk                100% 1906     1.9KB/s   00:00    
+Installing hello (1.0.0-1) to root...
+Configuring hello.
+root@dragino-1b6fb0:~#
 ```
+
+### Useful Packages
+- [lg01n,lg02_lora_control](https://github.com/dragino/dragino-packages/tree/lg02/lg02-pkt-fwd)
+- [lg308 lora control](https://github.com/dragino/dragino-packages/tree/lg02/lora-gateway)
 
 A video instruction can be seen from [LEDE SDK Video](https://youtu.be/SVtAVF93cpw)
 
