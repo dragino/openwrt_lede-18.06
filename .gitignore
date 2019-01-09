@@ -5,6 +5,6 @@
 /openwrt/feeds
 /openwrt/staging_dir
 /openwrt/tmp
-/openwrt/files
-/openwrt/.config
-/openwrt/.config.old
+openwrt/files
+openwrt/.config
+openwrt/.config.old
