@@ -134,14 +134,14 @@ sed -i "s/TIME/$BUILD_TIME/g" files/etc/banner
 echo ""
 
 
-[ -f ./$target_path/$file_prefix-squashfs-sysupgrade.bin ] && rm -rf ./bin/$ARCH/??*
+[ -f ./$target_path/$file_prefix-squashfs-sysupgrade.bin ] && rm -rf ./$target_path/??*
 
 echo ""
 if [ ! -z $SFLAG ];then
 	echo "***Run make for dragion ms14, HE in single thread ***"
 	make V=s
 else
-	echo "***Run make for dragion ms14, HE***"
+	echo "***Run make for dragion ms14, HE, LG01N, LG02, LG308"
 	make -j8 V=99
 fi
 
