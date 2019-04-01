@@ -154,6 +154,7 @@ root@dragino-1b6fb0:~#
 ```
 
 ### Useful Packages
+Below is the LoRa Control packages used in LG01-N, LG02,LG308, LPS8
 - [lg01n,lg02_lora_control](https://github.com/dragino/dragino-packages/tree/lg02/lg02-pkt-fwd)
 - [lg308 lora control](https://github.com/dragino/dragino-packages/tree/lg02/lora-gateway)
 
