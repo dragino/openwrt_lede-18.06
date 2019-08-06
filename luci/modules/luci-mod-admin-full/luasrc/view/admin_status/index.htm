@@ -34,7 +34,7 @@
 	local has_dsl = fs.access("/etc/init.d/dsl_control")
 	
 	local utility = require "dragino.utility"
-	local firmwre_version,build_time = utility.getVersion() 
+	local firmwre_version,build_time,model = utility.getVersion() 
 	local ICCID,IMEI,IMSI,operator,tech_type,reg_status,band,sig_Q = utility.getCellularInfo()
 	
 	
@@ -115,7 +115,6 @@
 
 		return
 	end
-	local model = uci:get('system.vendor.web_model')
 -%>
 
 <%+header%>
@@ -375,7 +374,7 @@
 
 	<div class="table" width="100%">
 		<div class="tr"><div class="td left" width="33%"><%:Hostname%></div><div class="td left"><%=luci.sys.hostname() or "?"%></div></div>
-		<div class="tr"><div class="td left" width="33%"><%:Model%></div><div class="td left"><%=pcdata(model or "Dragino HE")%></div></div>
+		<div class="tr"><div class="td left" width="33%"><%:Model%></div><div class="td left"><%=model%></div></div>
 		<div class="tr"><div class="td left" width="33%"><%:Build Time%></div><div class="td left"><%=build_time%></div></div>
 		<div class="tr"><div class="td left" width="33%"><%:Firmware Version%></div><div class="td left"><%=firmwre_version%></div></div>
 		<div class="tr"><div class="td left" width="33%"><%:Kernel Version%></div><div class="td left"><%=unameinfo.release or "?"%></div></div>

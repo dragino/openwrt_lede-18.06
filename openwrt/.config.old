@@ -301,7 +301,7 @@ CONFIG_PER_FEED_REPO_ADD_COMMENTED=y
 # CONFIG_FEED_routing is not set
 # CONFIG_FEED_telephony is not set
 CONFIG_FEED_dragino=y
-CONFIG_FEED_luci=y
+CONFIG_FEED_luci2=y
 
 #
 # Base system
@@ -2167,13 +2167,13 @@ CONFIG_PACKAGE_firewall=y
 CONFIG_PACKAGE_fstools=y
 CONFIG_PACKAGE_fwtool=y
 CONFIG_PACKAGE_jsonfilter=y
-CONFIG_PACKAGE_libatomic=m
+# CONFIG_PACKAGE_libatomic is not set
 CONFIG_PACKAGE_libc=y
 CONFIG_PACKAGE_libgcc=y
 # CONFIG_PACKAGE_libgomp is not set
 CONFIG_PACKAGE_libpthread=y
 CONFIG_PACKAGE_librt=y
-CONFIG_PACKAGE_libstdcpp=m
+# CONFIG_PACKAGE_libstdcpp is not set
 CONFIG_PACKAGE_logd=y
 CONFIG_PACKAGE_mtd=y
 CONFIG_PACKAGE_netifd=y
@@ -2189,7 +2189,7 @@ CONFIG_PACKAGE_procd=y
 # CONFIG_PROCD_SHOW_BOOT is not set
 # CONFIG_PROCD_ZRAM_TMPFS is not set
 # CONFIG_PACKAGE_qos-scripts is not set
-CONFIG_PACKAGE_resolveip=m
+# CONFIG_PACKAGE_resolveip is not set
 CONFIG_PACKAGE_rpcd=y
 # CONFIG_PACKAGE_rpcd-mod-file is not set
 # CONFIG_PACKAGE_rpcd-mod-iwinfo is not set
@@ -2231,7 +2231,7 @@ CONFIG_PACKAGE_wireless-tools=y
 # CONFIG_PACKAGE_zabbix-server is not set
 # CONFIG_PACKAGE_htop is not set
 # CONFIG_PACKAGE_ipmitool is not set
-# CONFIG_PACKAGE_monit is not set
+CONFIG_PACKAGE_monit=m
 # CONFIG_PACKAGE_monit-nossl is not set
 # CONFIG_PACKAGE_muninlite is not set
 # CONFIG_PACKAGE_netdata is not set
@@ -2633,7 +2633,7 @@ CONFIG_PACKAGE_kmod-ipt-ipopt=y
 # CONFIG_PACKAGE_kmod-ipt-ipp2p is not set
 # CONFIG_PACKAGE_kmod-ipt-iprange is not set
 # CONFIG_PACKAGE_kmod-ipt-ipsec is not set
-# CONFIG_PACKAGE_kmod-ipt-ipset is not set
+CONFIG_PACKAGE_kmod-ipt-ipset=y
 # CONFIG_PACKAGE_kmod-ipt-ipv4options is not set
 # CONFIG_PACKAGE_kmod-ipt-led is not set
 # CONFIG_PACKAGE_kmod-ipt-length2 is not set
@@ -2669,7 +2669,7 @@ CONFIG_PACKAGE_kmod-nf-nathelper=y
 # CONFIG_PACKAGE_kmod-nf-nathelper-extra is not set
 CONFIG_PACKAGE_kmod-nf-reject=y
 CONFIG_PACKAGE_kmod-nf-reject6=y
-# CONFIG_PACKAGE_kmod-nfnetlink is not set
+CONFIG_PACKAGE_kmod-nfnetlink=y
 # CONFIG_PACKAGE_kmod-nfnetlink-log is not set
 # CONFIG_PACKAGE_kmod-nfnetlink-queue is not set
 # CONFIG_PACKAGE_kmod-nft-arp is not set
@@ -2938,7 +2938,7 @@ CONFIG_PACKAGE_kmod-usb-serial=y
 # CONFIG_PACKAGE_kmod-usb-serial-mos7720 is not set
 CONFIG_PACKAGE_kmod-usb-serial-option=y
 # CONFIG_PACKAGE_kmod-usb-serial-oti6858 is not set
-# CONFIG_PACKAGE_kmod-usb-serial-pl2303 is not set
+CONFIG_PACKAGE_kmod-usb-serial-pl2303=m
 CONFIG_PACKAGE_kmod-usb-serial-qualcomm=y
 # CONFIG_PACKAGE_kmod-usb-serial-sierrawireless is not set
 # CONFIG_PACKAGE_kmod-usb-serial-simple is not set
@@ -3705,7 +3705,7 @@ CONFIG_SQLITE_RTREE=y
 # CONFIG_PACKAGE_jansson is not set
 # CONFIG_PACKAGE_knot-libs is not set
 # CONFIG_PACKAGE_knot-libzscanner is not set
-CONFIG_PACKAGE_libaio=m
+# CONFIG_PACKAGE_libaio is not set
 # CONFIG_PACKAGE_libantlr3c is not set
 # CONFIG_PACKAGE_libao is not set
 # CONFIG_PACKAGE_libapr is not set
@@ -3867,7 +3867,7 @@ CONFIG_PACKAGE_liblucihttp-lua=y
 # CONFIG_PACKAGE_libmilter-sendmail is not set
 # CONFIG_PACKAGE_libminiupnpc is not set
 # CONFIG_PACKAGE_libmms is not set
-# CONFIG_PACKAGE_libmnl is not set
+CONFIG_PACKAGE_libmnl=y
 # CONFIG_PACKAGE_libmodbus is not set
 # CONFIG_PACKAGE_libmosquitto-nossl is not set
 CONFIG_PACKAGE_libmosquitto-ssl=y
@@ -4277,6 +4277,28 @@ CONFIG_PACKAGE_luci-lib-nixio=y
 # CONFIG_PACKAGE_luci-i18n-firewall-zh-tw is not set
 
 #
+# LuCI2
+#
+
+#
+# Applications
+#
+# CONFIG_PACKAGE_luci2-app-sqm is not set
+
+#
+# Themes
+#
+# CONFIG_PACKAGE_luci2-theme-default is not set
+# CONFIG_PACKAGE_luci2-theme-sidenav is not set
+# CONFIG_PACKAGE_luci2-base is not set
+# CONFIG_PACKAGE_luci2-io-helper is not set
+# CONFIG_PACKAGE_luci2-rpc-base is not set
+# CONFIG_PACKAGE_luci2-rpc-bwmon is not set
+# CONFIG_PACKAGE_luci2-rpc-rrdns is not set
+# CONFIG_PACKAGE_luci2-ui-base is not set
+# CONFIG_LUCI2_USE_HOST_NODE is not set
+
+#
 # Mail
 #
 # CONFIG_PACKAGE_alpine is not set
@@ -4435,7 +4457,7 @@ CONFIG_PACKAGE_iptables=y
 # CONFIG_PACKAGE_iptables-mod-cluster is not set
 # CONFIG_PACKAGE_iptables-mod-clusterip is not set
 # CONFIG_PACKAGE_iptables-mod-condition is not set
-# CONFIG_PACKAGE_iptables-mod-conntrack-extra is not set
+CONFIG_PACKAGE_iptables-mod-conntrack-extra=y
 # CONFIG_PACKAGE_iptables-mod-delude is not set
 # CONFIG_PACKAGE_iptables-mod-dhcpmac is not set
 # CONFIG_PACKAGE_iptables-mod-dnetmap is not set
@@ -4680,7 +4702,7 @@ CONFIG_PACKAGE_iptables-mod-ipopt=y
 # CONFIG_PACKAGE_igmpproxy is not set
 # CONFIG_PACKAGE_ip-bridge is not set
 # CONFIG_PACKAGE_ip-full is not set
-# CONFIG_PACKAGE_ip-tiny is not set
+CONFIG_PACKAGE_ip-tiny=y
 # CONFIG_PACKAGE_lldpd is not set
 # CONFIG_PACKAGE_mcproxy is not set
 # CONFIG_PACKAGE_mwan3 is not set
@@ -5062,10 +5084,10 @@ CONFIG_PACKAGE_hostapd-common=y
 # CONFIG_PACKAGE_iotivity-resource-container-sample is not set
 # CONFIG_PACKAGE_iotivity-resource-directory-lib is not set
 # CONFIG_PACKAGE_iperf is not set
-# CONFIG_PACKAGE_iperf3 is not set
+CONFIG_PACKAGE_iperf3=m
 # CONFIG_PACKAGE_iperf3-ssl is not set
 # CONFIG_PACKAGE_ipip is not set
-# CONFIG_PACKAGE_ipset is not set
+CONFIG_PACKAGE_ipset=y
 # CONFIG_PACKAGE_ipset-dns is not set
 # CONFIG_PACKAGE_iptraf-ng is not set
 # CONFIG_PACKAGE_iputils-arping is not set
@@ -5085,7 +5107,7 @@ CONFIG_PACKAGE_iw=y
 # CONFIG_PACKAGE_krb5-client is not set
 # CONFIG_PACKAGE_krb5-libs is not set
 # CONFIG_PACKAGE_krb5-server is not set
-# CONFIG_PACKAGE_libipset is not set
+CONFIG_PACKAGE_libipset=y
 # CONFIG_PACKAGE_linknx is not set
 # CONFIG_PACKAGE_lispd is not set
 # CONFIG_PACKAGE_mac-telnet-client is not set
@@ -5407,7 +5429,7 @@ CONFIG_PACKAGE_swap-utils=y
 #
 # CONFIG_PACKAGE_agetty is not set
 # CONFIG_PACKAGE_dvtm is not set
-# CONFIG_PACKAGE_minicom is not set
+CONFIG_PACKAGE_minicom=y
 # CONFIG_PACKAGE_picocom is not set
 # CONFIG_PACKAGE_rtty-mbedtls is not set
 # CONFIG_PACKAGE_rtty-nossl is not set
@@ -5446,48 +5468,7 @@ CONFIG_PACKAGE_swap-utils=y
 # database
 #
 # CONFIG_PACKAGE_mariadb-client is not set
-CONFIG_PACKAGE_mariadb-server=m
-# CONFIG_PACKAGE_mariadb-extra-charsets is not set
-# CONFIG_PACKAGE_mariadb-server-extra is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-adt-null is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-auth-0x0100 is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-auth-ed25519 is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-auth-socket is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-auth-test-plugin is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-client-ed25519 is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-debug-key-management is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-dialog-examples is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-disks is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-example-key-management is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-feedback is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-file-key-management is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-ha-archive is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-ha-blackhole is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-ha-connect is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-ha-example is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-ha-federated is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-ha-federatedx is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-ha-innodb is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-ha-sequence is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-ha-sphinx is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-ha-spider is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-ha-test-sql-discovery is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-handlersocket is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-libdaemon-example is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-locales is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-metadata-lock-info is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-mypluglib is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-qa-auth-client is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-qa-auth-interface is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-qa-auth-server is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-query-cache-info is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-query-response-time is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-semisync-master is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-semisync-slave is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-server-audit is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-simple-password-check is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-sql-errlog is not set
-# CONFIG_PACKAGE_mariadb-server-plugin-wsrep-info is not set
+# CONFIG_PACKAGE_mariadb-server is not set
 # CONFIG_PACKAGE_pgsql-cli is not set
 # CONFIG_PACKAGE_pgsql-cli-extra is not set
 # CONFIG_PACKAGE_pgsql-server is not set
@@ -5530,6 +5511,7 @@ CONFIG_PACKAGE_dbus=y
 # CONFIG_PACKAGE_dmesg is not set
 # CONFIG_PACKAGE_domoticz is not set
 # CONFIG_PACKAGE_dragino2 is not set
+CONFIG_PACKAGE_dragino_lorawan_server=y
 # CONFIG_PACKAGE_dropbearconvert is not set
 # CONFIG_PACKAGE_dtc is not set
 # CONFIG_PACKAGE_dump1090 is not set

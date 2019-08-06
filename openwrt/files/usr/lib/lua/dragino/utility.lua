@@ -105,6 +105,7 @@ end
 --Get Firmware Version
 --@return f_version firmware version
 --@return b_time build time
+--@return h_version hardware version
 function getVersion()
 	for line in io.lines('/etc/banner') do 
 		if string.match(line,'Version:[%s]+(.+)') then 
@@ -114,7 +115,22 @@ function getVersion()
 			b_time = string.match(line,'Build[%s]+(.+)')  
 		end
 	end
-	return f_version,b_time
+	h_version = util.trim(luci_fs.readfile("/var/iot/board"))
+	if h_version == "LG01" then 
+		h_version = "LG01N / OLG01N"
+	elseif h_version == "LG02" then
+		h_version = "LG02 / OLG02"
+	elseif h_version == "LG08" or h_version == "LG08P" then
+		local SN=util.exec('hexdump -v -e \'11/1 "%_p"\' -s $((0x908)) -n 11 /dev/mtd6') 
+		if string.match(SN,'lps8') then
+			h_version = "LPS8"
+		else 
+			h_version = "LG308"
+		end
+	else 
+		h_version = "Dragino HE"
+	end 
+	return f_version,b_time,h_version
 end
 
 --log data to device

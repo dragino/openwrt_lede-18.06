@@ -5,7 +5,7 @@ Build-Types: host
 Package: asterisk13
 Menu: 1
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +USE_UCLIBCXX:uclibcxx +USE_LIBSTDCXX:libstdcpp +jansson +libcap +libedit +libncurses +libopenssl +libsqlite3 +libuuid +libxml2 +zlib
 Conflicts: 
 Menu-Depends: 
@@ -32,7 +32,7 @@ Config:
 
 Package: asterisk13-sounds
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -53,7 +53,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-adsiprog
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-app-adsiprog:asterisk13-res-adsi
 Conflicts: 
 Menu-Depends: 
@@ -74,7 +74,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-agent-pool
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -95,7 +95,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-alarmreceiver
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -116,7 +116,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-amd
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -137,7 +137,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-authenticate
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -158,7 +158,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-bridgewait
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-app-bridgewait:asterisk13-bridge-holding
 Conflicts: 
 Menu-Depends: 
@@ -179,7 +179,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-celgenuserevent
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -200,7 +200,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-chanisavail
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -221,7 +221,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-channelredirect
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -242,7 +242,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-chanspy
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -263,7 +263,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-confbridge
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-app-confbridge:asterisk13-bridge-builtin-features +PACKAGE_asterisk13-app-confbridge:asterisk13-bridge-simple +PACKAGE_asterisk13-app-confbridge:asterisk13-bridge-softmix
 Conflicts: 
 Menu-Depends: 
@@ -284,7 +284,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-controlplayback
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -305,7 +305,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-dahdiras
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-app-dahdiras:asterisk13-chan-dahdi
 Conflicts: 
 Menu-Depends: 
@@ -326,7 +326,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-dictate
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -347,7 +347,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-directed-pickup
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -368,7 +368,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-directory
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -389,7 +389,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-disa
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -410,7 +410,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-dumpchan
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -431,7 +431,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-exec
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -452,7 +452,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-externalivr
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -473,7 +473,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-festival
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -494,7 +494,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-flash
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-app-flash:asterisk13-chan-dahdi
 Conflicts: 
 Menu-Depends: 
@@ -515,7 +515,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-followme
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -536,7 +536,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-getcpeid
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -557,7 +557,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-ices
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -578,7 +578,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-image
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -599,7 +599,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-ivrdemo
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -620,7 +620,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-milliwatt
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -641,7 +641,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-minivm
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -662,7 +662,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-mixmonitor
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -683,7 +683,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-morsecode
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -704,7 +704,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-mp3
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-app-mp3:mpg123
 Conflicts: 
 Menu-Depends: 
@@ -725,7 +725,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-originate
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -746,7 +746,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-page
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-app-page:asterisk13-app-confbridge
 Conflicts: 
 Menu-Depends: 
@@ -767,7 +767,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-playtones
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -788,7 +788,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-privacy
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -809,7 +809,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-queue
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -830,7 +830,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-read
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -851,7 +851,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-readexten
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -872,7 +872,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-record
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -893,7 +893,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-saycounted
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -914,7 +914,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-sayunixtime
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -935,7 +935,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-senddtmf
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -956,7 +956,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-sendtext
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -977,7 +977,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-skel
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -998,7 +998,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-sms
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1019,7 +1019,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-softhangup
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1040,7 +1040,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-speech
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-app-speech:asterisk13-res-speech
 Conflicts: 
 Menu-Depends: 
@@ -1061,7 +1061,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-stack
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-app-stack:asterisk13-res-agi
 Conflicts: 
 Menu-Depends: 
@@ -1082,7 +1082,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-stasis
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-app-stasis:asterisk13-res-stasis
 Conflicts: 
 Menu-Depends: 
@@ -1103,7 +1103,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-system
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1124,7 +1124,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-talkdetect
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1145,7 +1145,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-test
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1166,7 +1166,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-transfer
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1187,7 +1187,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-url
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1208,7 +1208,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-userevent
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1229,7 +1229,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-verbose
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1250,7 +1250,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-waitforring
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1271,7 +1271,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-waitforsilence
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1292,7 +1292,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-waituntil
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1313,7 +1313,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-while
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1334,7 +1334,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-app-zapateller
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1355,7 +1355,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-bridge-builtin-features
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1376,7 +1376,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-bridge-builtin-interval-features
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1397,7 +1397,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-bridge-holding
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1418,7 +1418,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-bridge-native-rtp
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1439,7 +1439,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-bridge-simple
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1460,7 +1460,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-bridge-softmix
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1481,7 +1481,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-cdr
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1502,7 +1502,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-cdr-csv
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1523,7 +1523,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-cdr-sqlite3
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 libsqlite3
 Conflicts: 
 Menu-Depends: 
@@ -1544,7 +1544,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-cel-custom
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1565,7 +1565,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-cel-manager
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1586,7 +1586,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-cel-sqlite3-custom
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1607,7 +1607,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-chan-alsa
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-chan-alsa:alsa-lib
 Conflicts: 
 Menu-Depends: 
@@ -1628,7 +1628,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-chan-bridge-media
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1649,7 +1649,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-chan-console
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-chan-console:portaudio
 Conflicts: 
 Menu-Depends: 
@@ -1670,7 +1670,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-chan-dahdi
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-chan-dahdi:dahdi-tools-libtonezone +PACKAGE_asterisk13-chan-dahdi:kmod-dahdi +PACKAGE_asterisk13-chan-dahdi:libpri @!aarch64
 Conflicts: 
 Menu-Depends: 
@@ -1691,7 +1691,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-chan-iax2
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-chan-iax2:asterisk13-res-timing-timerfd
 Conflicts: 
 Menu-Depends: 
@@ -1712,7 +1712,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-chan-mgcp
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1733,7 +1733,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-chan-mobile
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-chan-mobile:bluez-libs
 Conflicts: 
 Menu-Depends: 
@@ -1754,7 +1754,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-chan-motif
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-chan-motif:asterisk13-res-xmpp
 Conflicts: 
 Menu-Depends: 
@@ -1775,7 +1775,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-chan-ooh323
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1796,7 +1796,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-chan-oss
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1817,7 +1817,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-chan-phone
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1838,7 +1838,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-chan-rtp
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1859,7 +1859,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-chan-sip
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-chan-sip:asterisk13-app-confbridge
 Conflicts: 
 Menu-Depends: 
@@ -1880,7 +1880,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-chan-skinny
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1901,7 +1901,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-chan-unistim
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1922,7 +1922,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-codec-a-mu
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1943,7 +1943,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-codec-adpcm
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1964,7 +1964,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-codec-alaw
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -1985,7 +1985,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-codec-dahdi
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-codec-dahdi:asterisk13-chan-dahdi
 Conflicts: 
 Menu-Depends: 
@@ -2006,7 +2006,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-codec-g722
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2027,7 +2027,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-codec-g726
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2048,7 +2048,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-codec-gsm
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2069,7 +2069,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-codec-ilbc
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2090,7 +2090,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-codec-lpc10
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2111,7 +2111,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-codec-resample
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2132,7 +2132,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-codec-speex
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 @!SOFT_FLOAT +PACKAGE_asterisk13-codec-speex:libspeex +PACKAGE_asterisk13-codec-speex:libspeexdsp
 Conflicts: 
 Menu-Depends: 
@@ -2153,7 +2153,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-codec-ulaw
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2174,7 +2174,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-curl
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-curl:libcurl
 Conflicts: 
 Menu-Depends: 
@@ -2195,7 +2195,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-format-g719
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2216,7 +2216,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-format-g723
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2237,7 +2237,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-format-g726
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2258,7 +2258,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-format-g729
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2279,7 +2279,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-format-gsm
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2300,7 +2300,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-format-h263
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2321,7 +2321,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-format-h264
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2342,7 +2342,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-format-ilbc
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2363,7 +2363,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-format-jpeg
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2384,7 +2384,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-format-mp3
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 @BROKEN
 Conflicts: 
 Menu-Depends: 
@@ -2405,7 +2405,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-format-ogg-vorbis
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-format-ogg-vorbis:libvorbis
 Conflicts: 
 Menu-Depends: 
@@ -2426,7 +2426,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-format-pcm
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2447,7 +2447,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-format-siren14
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2468,7 +2468,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-format-siren7
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2489,7 +2489,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-format-sln
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2510,7 +2510,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-format-vox
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2531,7 +2531,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-format-wav
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2552,7 +2552,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-format-wav-gsm
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2573,7 +2573,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-aes
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2594,7 +2594,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-base64
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2615,7 +2615,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-blacklist
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2636,7 +2636,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-callcompletion
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2657,7 +2657,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-channel
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2678,7 +2678,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-config
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2699,7 +2699,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-cut
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2720,7 +2720,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-db
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2741,7 +2741,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-devstate
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2762,7 +2762,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-dialgroup
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2783,7 +2783,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-dialplan
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2804,7 +2804,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-enum
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2825,7 +2825,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-env
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2846,7 +2846,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-extstate
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2867,7 +2867,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-frame-trace
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2888,7 +2888,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-global
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2909,7 +2909,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-groupcount
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2930,7 +2930,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-hangupcause
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2951,7 +2951,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-holdintercept
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -2972,7 +2972,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-iconv
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 @!USE_UCLIBC
 Conflicts: 
 Menu-Depends: 
@@ -2993,7 +2993,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-jitterbuffer
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3014,7 +3014,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-lock
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3035,7 +3035,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-math
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3056,7 +3056,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-md5
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3077,7 +3077,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-module
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3098,7 +3098,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-periodic-hook
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-func-periodic-hook:asterisk13-app-chanspy +PACKAGE_asterisk13-func-periodic-hook:asterisk13-func-cut +PACKAGE_asterisk13-func-periodic-hook:asterisk13-func-groupcount +PACKAGE_asterisk13-func-periodic-hook:asterisk13-func-uri
 Conflicts: 
 Menu-Depends: 
@@ -3119,7 +3119,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-pitchshift
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3140,7 +3140,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-presencestate
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3161,7 +3161,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-rand
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3182,7 +3182,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-realtime
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3203,7 +3203,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-sha1
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3224,7 +3224,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-shell
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3245,7 +3245,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-sorcery
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3266,7 +3266,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-speex
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 @!SOFT_FLOAT +PACKAGE_asterisk13-func-speex:libspeex +PACKAGE_asterisk13-func-speex:libspeexdsp
 Conflicts: 
 Menu-Depends: 
@@ -3287,7 +3287,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-sprintf
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3308,7 +3308,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-srv
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3329,7 +3329,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-sysinfo
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3350,7 +3350,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-talkdetect
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3371,7 +3371,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-uri
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3392,7 +3392,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-version
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3413,7 +3413,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-vmcount
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3434,7 +3434,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-func-volume
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3455,7 +3455,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-odbc
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-odbc:libpthread +PACKAGE_asterisk13-odbc:libc +PACKAGE_asterisk13-odbc:unixodbc
 Conflicts: 
 Menu-Depends: 
@@ -3476,7 +3476,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-pbx-ael
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-pbx-ael:asterisk13-res-ael-share
 Conflicts: 
 Menu-Depends: 
@@ -3497,7 +3497,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-pbx-dundi
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3518,7 +3518,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-pbx-loopback
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3539,7 +3539,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-pbx-lua
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-pbx-lua:liblua
 Conflicts: 
 Menu-Depends: 
@@ -3560,7 +3560,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-pbx-realtime
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3581,7 +3581,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-pbx-spool
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3602,7 +3602,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-pgsql
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-pgsql:libpq
 Conflicts: 
 Menu-Depends: 
@@ -3623,7 +3623,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-pjsip
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-pjsip:asterisk13-res-sorcery +PACKAGE_asterisk13-pjsip:asterisk13-res-pjproject +PACKAGE_asterisk13-pjsip:libpjsip +PACKAGE_asterisk13-pjsip:libpjmedia +PACKAGE_asterisk13-pjsip:libpjnath +PACKAGE_asterisk13-pjsip:libpjsip-simple +PACKAGE_asterisk13-pjsip:libpjsip-ua +PACKAGE_asterisk13-pjsip:libpjsua +PACKAGE_asterisk13-pjsip:libpjsua2
 Conflicts: 
 Menu-Depends: 
@@ -3644,7 +3644,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-adsi
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3665,7 +3665,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-ael-share
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3686,7 +3686,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-agi
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-agi:asterisk13-res-speech
 Conflicts: 
 Menu-Depends: 
@@ -3707,7 +3707,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-ari
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-ari:asterisk13-res-http-websocket
 Conflicts: 
 Menu-Depends: 
@@ -3728,7 +3728,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-ari-applications
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-ari-applications:asterisk13-res-ari +PACKAGE_asterisk13-res-ari-applications:asterisk13-res-ari-model +PACKAGE_asterisk13-res-ari-applications:asterisk13-res-stasis
 Conflicts: 
 Menu-Depends: 
@@ -3749,7 +3749,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-ari-asterisk
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-ari-asterisk:asterisk13-res-ari +PACKAGE_asterisk13-res-ari-asterisk:asterisk13-res-ari-model +PACKAGE_asterisk13-res-ari-asterisk:asterisk13-res-stasis
 Conflicts: 
 Menu-Depends: 
@@ -3770,7 +3770,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-ari-bridges
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-ari-bridges:asterisk13-res-ari +PACKAGE_asterisk13-res-ari-bridges:asterisk13-res-ari-model +PACKAGE_asterisk13-res-ari-bridges:asterisk13-res-stasis-playback
 Conflicts: 
 Menu-Depends: 
@@ -3791,7 +3791,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-ari-channels
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-ari-channels:asterisk13-res-ari +PACKAGE_asterisk13-res-ari-channels:asterisk13-res-ari-model +PACKAGE_asterisk13-res-ari-channels:asterisk13-res-stasis-answer +PACKAGE_asterisk13-res-ari-channels:asterisk13-res-stasis-playback +PACKAGE_asterisk13-res-ari-channels:asterisk13-res-stasis-snoop
 Conflicts: 
 Menu-Depends: 
@@ -3812,7 +3812,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-ari-device-states
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-ari-device-states:asterisk13-res-ari +PACKAGE_asterisk13-res-ari-device-states:asterisk13-res-ari-model +PACKAGE_asterisk13-res-ari-device-states:asterisk13-res-stasis-device-state
 Conflicts: 
 Menu-Depends: 
@@ -3833,7 +3833,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-ari-endpoints
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-ari-endpoints:asterisk13-res-ari +PACKAGE_asterisk13-res-ari-endpoints:asterisk13-res-ari-model +PACKAGE_asterisk13-res-ari-endpoints:asterisk13-res-stasis
 Conflicts: 
 Menu-Depends: 
@@ -3854,7 +3854,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-ari-events
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-ari-events:asterisk13-res-ari +PACKAGE_asterisk13-res-ari-events:asterisk13-res-ari-model +PACKAGE_asterisk13-res-ari-events:asterisk13-res-stasis
 Conflicts: 
 Menu-Depends: 
@@ -3875,7 +3875,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-ari-mailboxes
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-ari-mailboxes:asterisk13-res-ari +PACKAGE_asterisk13-res-ari-mailboxes:asterisk13-res-ari-model +PACKAGE_asterisk13-res-ari-mailboxes:asterisk13-res-stasis-mailbox
 Conflicts: 
 Menu-Depends: 
@@ -3896,7 +3896,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-ari-model
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -3917,7 +3917,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-ari-playbacks
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-ari-playbacks:asterisk13-res-ari +PACKAGE_asterisk13-res-ari-playbacks:asterisk13-res-ari-model +PACKAGE_asterisk13-res-ari-playbacks:asterisk13-res-stasis-playback
 Conflicts: 
 Menu-Depends: 
@@ -3938,7 +3938,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-ari-recordings
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-ari-recordings:asterisk13-res-ari +PACKAGE_asterisk13-res-ari-recordings:asterisk13-res-ari-model +PACKAGE_asterisk13-res-ari-recordings:asterisk13-res-stasis-recording
 Conflicts: 
 Menu-Depends: 
@@ -3959,7 +3959,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-ari-sounds
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-ari-sounds:asterisk13-res-ari +PACKAGE_asterisk13-res-ari-sounds:asterisk13-res-ari-model +PACKAGE_asterisk13-res-ari-sounds:asterisk13-res-stasis
 Conflicts: 
 Menu-Depends: 
@@ -3980,7 +3980,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-calendar
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4001,7 +4001,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-calendar-caldav
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-calendar-caldav:asterisk13-res-calendar +PACKAGE_asterisk13-res-calendar-caldav:libical +PACKAGE_asterisk13-res-calendar-caldav:libneon +PACKAGE_asterisk13-res-calendar-caldav:libxml2
 Conflicts: 
 Menu-Depends: 
@@ -4022,7 +4022,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-calendar-ews
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-calendar-ews:asterisk13-res-calendar +PACKAGE_asterisk13-res-calendar-ews:libneon
 Conflicts: 
 Menu-Depends: 
@@ -4043,7 +4043,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-calendar-exchange
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-calendar-exchange:asterisk13-res-calendar +PACKAGE_asterisk13-res-calendar-exchange:libical +PACKAGE_asterisk13-res-calendar-exchange:libiksemel +PACKAGE_asterisk13-res-calendar-exchange:libneon
 Conflicts: 
 Menu-Depends: 
@@ -4064,7 +4064,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-calendar-icalendar
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-calendar-icalendar:asterisk13-res-calendar +PACKAGE_asterisk13-res-calendar-icalendar:libical +PACKAGE_asterisk13-res-calendar-icalendar:libneon
 Conflicts: 
 Menu-Depends: 
@@ -4085,7 +4085,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-chan-stats
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-chan-stats:asterisk13-res-statsd
 Conflicts: 
 Menu-Depends: 
@@ -4106,7 +4106,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-clialiases
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4127,7 +4127,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-clioriginate
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4148,7 +4148,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-config-ldap
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-config-ldap:libopenldap
 Conflicts: 
 Menu-Depends: 
@@ -4169,7 +4169,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-config-mysql
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-config-mysql:libmysqlclient
 Conflicts: 
 Menu-Depends: 
@@ -4190,7 +4190,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-config-sqlite3
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4211,7 +4211,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-convert
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4232,7 +4232,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-endpoint-stats
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-endpoint-stats:asterisk13-res-statsd
 Conflicts: 
 Menu-Depends: 
@@ -4253,7 +4253,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-hep
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4274,7 +4274,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-hep-pjsip
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-hep-pjsip:asterisk13-res-hep +PACKAGE_asterisk13-res-hep-pjsip:asterisk13-pjsip
 Conflicts: 
 Menu-Depends: 
@@ -4295,7 +4295,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-hep-rtcp
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-hep-rtcp:asterisk13-res-hep
 Conflicts: 
 Menu-Depends: 
@@ -4316,7 +4316,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-fax-spandsp
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-fax-spandsp:asterisk13-res-fax +PACKAGE_asterisk13-res-fax-spandsp:libspandsp +PACKAGE_asterisk13-res-fax-spandsp:libtiff
 Conflicts: 
 Menu-Depends: 
@@ -4337,7 +4337,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-fax
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-fax:asterisk13-res-timing-pthread
 Conflicts: 
 Menu-Depends: 
@@ -4358,7 +4358,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-format-attr-celt
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4379,7 +4379,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-format-attr-g729
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4400,7 +4400,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-format-attr-h263
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4421,7 +4421,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-format-attr-h264
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4442,7 +4442,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-format-attr-opus
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4463,7 +4463,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-format-attr-silk
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4484,7 +4484,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-format-attr-siren14
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4505,7 +4505,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-format-attr-siren7
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4526,7 +4526,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-format-attr-vp8
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4547,7 +4547,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-http-websocket
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4568,7 +4568,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-limit
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4589,7 +4589,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-manager-devicestate
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4610,7 +4610,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-manager-presencestate
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4631,7 +4631,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-monitor
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-monitor:asterisk13-func-periodic-hook
 Conflicts: 
 Menu-Depends: 
@@ -4652,7 +4652,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-musiconhold
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4673,7 +4673,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-mutestream
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4694,7 +4694,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-mwi-external
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4715,7 +4715,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-mwi-external-ami
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-mwi-external-ami:asterisk13-res-mwi-external
 Conflicts: 
 Menu-Depends: 
@@ -4736,7 +4736,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-parking
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-parking:asterisk13-bridge-holding
 Conflicts: 
 Menu-Depends: 
@@ -4757,7 +4757,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-phoneprov
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4778,7 +4778,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-pjsip-phoneprov
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-pjsip-phoneprov:asterisk13-pjsip +PACKAGE_asterisk13-res-pjsip-phoneprov:asterisk13-res-phoneprov
 Conflicts: 
 Menu-Depends: 
@@ -4799,7 +4799,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-pjproject
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-pjproject:libpj +PACKAGE_asterisk13-res-pjproject:libpjlib-util +PACKAGE_asterisk13-res-pjproject:libpjmedia +PACKAGE_asterisk13-res-pjproject:libpjmedia +PACKAGE_asterisk13-res-pjproject:libpjnath +PACKAGE_asterisk13-res-pjproject:libpjsip-simple +PACKAGE_asterisk13-res-pjproject:libpjsip-ua +PACKAGE_asterisk13-res-pjproject:libpjsip +PACKAGE_asterisk13-res-pjproject:libpjsua +PACKAGE_asterisk13-res-pjproject:libpjsua2 +PACKAGE_asterisk13-res-pjproject:libsrtp2
 Conflicts: 
 Menu-Depends: 
@@ -4820,7 +4820,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-pktccops
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4841,7 +4841,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-realtime
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4862,7 +4862,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-rtp-asterisk
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-rtp-asterisk:libpjsip +PACKAGE_asterisk13-res-rtp-asterisk:libpjmedia +PACKAGE_asterisk13-res-rtp-asterisk:libpjnath +PACKAGE_asterisk13-res-rtp-asterisk:libpjsip-simple +PACKAGE_asterisk13-res-rtp-asterisk:libpjsip-ua +PACKAGE_asterisk13-res-rtp-asterisk:libpjsua +PACKAGE_asterisk13-res-rtp-asterisk:libpjsua2
 Conflicts: 
 Menu-Depends: 
@@ -4883,7 +4883,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-rtp-multicast
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4904,7 +4904,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-security-log
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4925,7 +4925,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-smdi
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4946,7 +4946,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-snmp
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-snmp:libnetsnmp
 Conflicts: 
 Menu-Depends: 
@@ -4967,7 +4967,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-sorcery
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -4988,7 +4988,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-sorcery-memory-cache
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -5009,7 +5009,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-speech
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -5030,7 +5030,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-srtp
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-srtp:libsrtp2
 Conflicts: 
 Menu-Depends: 
@@ -5051,7 +5051,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-stasis
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -5072,7 +5072,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-stasis-answer
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-stasis-answer:asterisk13-res-stasis
 Conflicts: 
 Menu-Depends: 
@@ -5093,7 +5093,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-stasis-device-state
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-stasis-device-state:asterisk13-res-stasis
 Conflicts: 
 Menu-Depends: 
@@ -5114,7 +5114,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-stasis-mailbox
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-stasis-mailbox:asterisk13-res-stasis +PACKAGE_asterisk13-res-stasis-mailbox:asterisk13-res-mwi-external
 Conflicts: 
 Menu-Depends: 
@@ -5135,7 +5135,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-stasis-playback
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-stasis-playback:asterisk13-res-stasis-recording
 Conflicts: 
 Menu-Depends: 
@@ -5156,7 +5156,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-stasis-recording
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-stasis-recording:asterisk13-res-stasis
 Conflicts: 
 Menu-Depends: 
@@ -5177,7 +5177,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-stasis-snoop
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-stasis-snoop:asterisk13-res-stasis-recording
 Conflicts: 
 Menu-Depends: 
@@ -5198,7 +5198,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-statsd
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -5219,7 +5219,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-stun-monitor
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -5240,7 +5240,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-timing-dahdi
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-timing-dahdi:asterisk13-chan-dahdi
 Conflicts: 
 Menu-Depends: 
@@ -5261,7 +5261,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-timing-pthread
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -5282,7 +5282,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-timing-timerfd
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -5303,7 +5303,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-res-xmpp
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-res-xmpp:libiksemel +PACKAGE_asterisk13-res-xmpp:libopenssl
 Conflicts: 
 Menu-Depends: 
@@ -5324,7 +5324,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-voicemail
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-voicemail:asterisk13-res-adsi +PACKAGE_asterisk13-voicemail:asterisk13-res-smdi
 Conflicts: 
 Menu-Depends: 
@@ -5345,7 +5345,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-util-aelparse
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-util-aelparse:asterisk13-pbx-ael
 Conflicts: 
 Menu-Depends: 
@@ -5366,7 +5366,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-util-astcanary
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -5387,7 +5387,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-util-astdb2sqlite3
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -5408,7 +5408,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-util-astdb2bdb
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -5429,7 +5429,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-util-check-expr
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -5450,7 +5450,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-util-check-expr2
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -5471,7 +5471,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-util-conf2ael
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-util-conf2ael:asterisk13-pbx-ael
 Conflicts: 
 Menu-Depends: 
@@ -5492,7 +5492,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-util-muted
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -5513,7 +5513,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-util-smsq
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13 +PACKAGE_asterisk13-util-smsq:libpopt
 Conflicts: 
 Menu-Depends: 
@@ -5534,7 +5534,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-util-stereorize
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 
@@ -5555,7 +5555,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk13-util-streamplayer
 Submenu: Telephony
-Version: 13.20.0-2
+Version: 13.20.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk13
 Conflicts: 
 Menu-Depends: 

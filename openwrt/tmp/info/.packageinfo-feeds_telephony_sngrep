@@ -2,7 +2,7 @@ Source-Makefile: package/feeds/telephony/sngrep/Makefile
 
 Package: sngrep
 Submenu: Telephony
-Version: 1.4.5-1
+Version: 1.4.6-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libncursesw +libopenssl +libpcap +libpcre
 Conflicts: 
 Menu-Depends: 
@@ -12,7 +12,7 @@ Category: Utilities
 Repository: telephony
 Title: Ncurses SIP messages flow viewer
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: sngrep-1.4.5.tar.gz
+Source: sngrep-1.4.6.tar.gz
 License: GPL-3.0+
 LicenseFiles: COPYING
 Type: ipkg

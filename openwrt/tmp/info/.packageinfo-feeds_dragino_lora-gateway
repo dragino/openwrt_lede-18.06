@@ -2,7 +2,7 @@ Source-Makefile: package/feeds/dragino/lora-gateway/Makefile
 Build-Types: host
 
 Package: lora-gateway
-Version: 1.1.1-1
+Version: 1.2.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libuci +libftdi
 Conflicts: 
 Menu-Depends: 

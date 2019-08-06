@@ -1,4 +1,0 @@
-config 'wshaper' 'settings'
-    option 'network' 'eth1'
-    option 'downlink' '2000'
-    option 'uplink' '240'

@@ -2103,3 +2103,66 @@ export MAKEFLAGS= ;make -w -r checksum
 make[2]: Entering directory '/root/release/dragino-lede-build/openwrt'
 make[2]: Leaving directory '/root/release/dragino-lede-build/openwrt'
 make[1]: Leaving directory '/root/release/dragino-lede-build/openwrt'
+fatal: Invalid revision range ee53a240ac902dc83209008a2671e7fdcf55957a..HEAD
+fatal: Invalid revision range ee53a240ac902dc83209008a2671e7fdcf55957a..ed7a7cd50ca4bf82950e00acf7d0fadd195e350c
+fatal: Invalid revision range ee53a240ac902dc83209008a2671e7fdcf55957a..HEAD
+fatal: Invalid revision range ee53a240ac902dc83209008a2671e7fdcf55957a..ed7a7cd50ca4bf82950e00acf7d0fadd195e350c
+fatal: Invalid revision range ee53a240ac902dc83209008a2671e7fdcf55957a..HEAD
+fatal: Invalid revision range ee53a240ac902dc83209008a2671e7fdcf55957a..ed7a7cd50ca4bf82950e00acf7d0fadd195e350c
+ make[1] world
+ make[2] target/compile
+ make[3] -C target/linux compile
+ make[2] diffconfig
+ make[2] package/cleanup
+ make[2] package/compile
+ make[3] -C package/libs/libubox host-compile
+ make[3] -C package/system/opkg host-compile
+ make[3] -C package/libs/toolchain compile
+ make[3] -C package/libs/libnl-tiny compile
+ make[3] -C package/libs/libjson-c compile
+ make[3] -C package/utils/lua compile
+ make[3] -C package/libs/libubox compile
+ make[3] -C package/system/ubus compile
+ make[3] -C package/system/uci compile
+ make[3] -C package/network/config/netifd compile
+ make[3] -C package/firmware/linux-firmware compile
+ make[3] -C package/firmware/prism54-firmware compile
+ make[3] -C package/kernel/linux compile
+ make[3] -C package/system/ubox compile
+ make[3] -C package/libs/ncurses host-compile
+ make[3] -C package/libs/zlib compile
+ make[3] -C package/libs/ncurses compile
+ make[3] -C package/utils/util-linux compile
+ make[3] -C package/system/fstools compile
+ make[3] -C package/system/fwtool host-compile
+ make[3] -C package/system/fwtool compile
+ make[3] -C package/system/procd compile
+ make[3] -C package/system/usign host-compile
+ make[3] -C package/utils/jsonfilter compile
+ make[3] -C package/base-files compile
+ make[3] -C package/boot/uboot-envtools compile
+ make[3] -C feeds/packages/libs/c-ares compile
+ make[3] -C package/libs/openssl compile
+ make[3] -C feeds/packages/net/mosquitto compile
+ make[3] -C feeds/packages/net/mosquitto compile
+ make[3] -C feeds/dragino/lg02-pkt-fwd compile
+ make[3] -C package/libs/libusb compile
+ make[3] -C package/libs/libusb-compat compile
+ make[3] -C feeds/packages/libs/libftdi compile
+ make[3] -C feeds/dragino/lora-gateway compile
+ make[3] -C package/network/utils/iwinfo compile
+ make[3] -C package/system/rpcd compile
+ make[3] -C /root/release/dragino-lede-build/luci/libs/rpcd-mod-rrdns compile
+ make[3] -C /root/release/dragino-lede-build/luci-ng/luci2-io-helper compile
+ make[3] -C /root/release/dragino-lede-build/luci-ng/luci2-rpc-base compile
+ make[3] -C /root/release/dragino-lede-build/luci-ng/luci2-rpc-bwmon compile
+ make[3] -C package/libs/mbedtls compile
+ make[3] -C package/libs/ustream-ssl compile
+ make[3] -C package/network/services/uhttpd compile
+ make[3] -C feeds/packages/libs/expat host-compile
+ make[3] -C package/utils/bzip2 host-compile
+ make[3] -C feeds/packages/lang/python/python host-compile
+ make[3] -C feeds/packages/lang/node host-compile
+make -r world: build failed. Please re-run make with -j1 V=s to see what's going on
+/root/release/dragino-lede-build/openwrt/include/toplevel.mk:216: recipe for target 'world' failed
+make: *** [world] Error 1

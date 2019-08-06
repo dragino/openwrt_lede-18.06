@@ -11,7 +11,7 @@ IMAGE_SUFFIX=
 BUILD_TIME=`date +%s`
 
 REPO_PATH=$(pwd)
-VERSION="5.1.$BUILD_TIME"
+VERSION="5.2.$BUILD_TIME"
 OPENWRT_PATH="openwrt"
 
 while getopts 'a:b:p:v:sh' OPTION
@@ -82,7 +82,7 @@ cp .config.LG02_LG08 $OPENWRT_PATH/.config
 
 cd $OPENWRT_PATH/feeds/dragino
 
-git pull 
+#git pull 
 
 cd $REPO_PATH
 
@@ -141,7 +141,7 @@ if [ ! -z $SFLAG ];then
 	echo "***Run make for dragion ms14, HE in single thread ***"
 	make V=s
 else
-	echo "***Run make for dragion ms14, HE, LG01N, LG02, LG308"
+	echo "***Run make for dragion ms14, HE, LG01N, LG02, LG308, LPS8"
 	make -j8 V=99
 fi
 

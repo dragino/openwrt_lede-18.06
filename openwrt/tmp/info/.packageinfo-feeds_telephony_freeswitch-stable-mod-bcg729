@@ -2,7 +2,7 @@ Source-Makefile: package/feeds/telephony/freeswitch-stable-mod-bcg729/Makefile
 
 Package: freeswitch-stable-mod-bcg729
 Submenu: Telephony
-Version: 20170629-2
+Version: 20170629-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread freeswitch-stable +bcg729
 Conflicts: 
 Menu-Depends: 

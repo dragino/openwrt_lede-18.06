@@ -303,7 +303,7 @@ CONFIG_FEED_packages=y
 CONFIG_FEED_routing=y
 CONFIG_FEED_telephony=y
 CONFIG_FEED_dragino=y
-CONFIG_FEED_luci=y
+CONFIG_FEED_luci2=y
 
 #
 # Base system
@@ -4094,6 +4094,28 @@ CONFIG_PACKAGE_libuclient=y
 # CONFIG_PACKAGE_meshwizard is not set
 
 #
+# LuCI2
+#
+
+#
+# Applications
+#
+# CONFIG_PACKAGE_luci2-app-sqm is not set
+
+#
+# Themes
+#
+# CONFIG_PACKAGE_luci2-theme-default is not set
+# CONFIG_PACKAGE_luci2-theme-sidenav is not set
+# CONFIG_PACKAGE_luci2-base is not set
+# CONFIG_PACKAGE_luci2-io-helper is not set
+# CONFIG_PACKAGE_luci2-rpc-base is not set
+# CONFIG_PACKAGE_luci2-rpc-bwmon is not set
+# CONFIG_PACKAGE_luci2-rpc-rrdns is not set
+# CONFIG_PACKAGE_luci2-ui-base is not set
+# CONFIG_LUCI2_USE_HOST_NODE is not set
+
+#
 # Mail
 #
 # CONFIG_PACKAGE_alpine is not set
@@ -5306,6 +5328,7 @@ CONFIG_PACKAGE_uboot-envtools=y
 # CONFIG_PACKAGE_digitemp-usb is not set
 # CONFIG_PACKAGE_dmesg is not set
 # CONFIG_PACKAGE_dragino2 is not set
+# CONFIG_PACKAGE_dragino_lorawan_server is not set
 # CONFIG_PACKAGE_dropbearconvert is not set
 # CONFIG_PACKAGE_dtc is not set
 # CONFIG_PACKAGE_dump1090 is not set
