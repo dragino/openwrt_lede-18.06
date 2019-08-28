@@ -1,0 +1,37 @@
+#!/bin/sh
+#A test script to check the Internet connection.
+
+interval=120
+
+HAS_INTERNET=0
+
+while [ 1 ]
+do
+    checkalive="`uci get netalive.netalive.checkalive`"
+    host="`uci get netalive.netalive.pinghost`"
+    debug="`uci get netalive.netalive.debugmsg`"
+    [ -z $host ] && host="localhost"
+
+    if [ "$checkalive" = "0" ]; then
+	    sleep $interval
+        continue
+    fi
+	##Check Net Connection
+	if [ -z "`fping -e $host | grep alive`" ]; then
+		result="No Internet Connection to $host"
+		HAS_INTERNET=0
+	else
+		result="Internet Connection to $host is OK"
+		HAS_INTERNET=1
+	fi
+	now=$(date)
+
+    if [ "$debug" == "1" ]; then
+	    logger -t "NETALIVE CHECKING" "$result"
+    fi
+
+    if [ "$HAS_INTERNET" = "0" ]; then
+        /etc/init.d/network restart
+    fi
+	sleep $interval
+done
