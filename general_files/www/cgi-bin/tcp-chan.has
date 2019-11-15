@@ -1,0 +1,106 @@
+#!/usr/bin/haserl 
+
+<%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
+
+<%# --- Process the form submission --- %>
+<%
+	if [ $FORM_BUTTON = "Add" ] && [ $FORM_CHAN_NO -ge "1" ] && [ $FORM_CHAN_NO -le "99" ]; then
+    uci set tcp_client.chan$FORM_CHAN_NO=channels
+    uci commit tcp_client
+  elif [ $FORM_BUTTON = "Add" ]; then
+    add_chan_error="<b>Invalid channel number: $FORM_CHAN_NO. <sp><sp> Use 1 - 99</b>"
+	fi
+
+	if [ $FORM_BUTTON = "Delete" ] && [ $FORM_DEL_CHAN_NO -ge "1" ] && [ $FORM_DEL_CHAN_NO -le "99" ]; then
+    uci delete tcp_client.chan$FORM_DEL_CHAN_NO
+    uci commit tcp_client
+  elif [ $FORM_BUTTON = "Delete" ]; then
+    del_chan_error="<b>Invalid channel number: $FORM_DEL_CHAN_NO. <sp><sp> Use 1 - 99</b>"
+	fi
+%>
+
+
+<%# --- Present the HTML page --- %>
+<html lang="en">
+
+<head>
+  <title>Dragino LoRa Gateway</title>
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
+  <link rel="stylesheet" href="/static/resources/config.css">
+  <link rel="stylesheet" href="/static/resources/bootstrap.min.css">
+  <script src="/static/resources/jquery.min.js"></script>
+  <script src="/static/resources/bootstrap.min.js"></script>
+	<link rel="shortcut icon" href="/static/resources/favicon.ico">
+</head>
+
+<body>
+<br><br><br>
+<h1>TCP Channel Management</h1>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded"> </a>  
+      <a class="navbar-brand" href="#">TCP/IP Uplink Channel Management </a>  
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/cgi-bin/tcp-client.has">TCP/IP Configuration</a></li>
+      <li><a href="/cgi-bin/dragino.has">Return to Main Menu</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <form action="<% echo -n $SCRIPT_NAME %>" method=POST enctype="multipart/form-data" >
+
+    <h2> Add / Edit Channel </h2>
+    <br>
+	  <label for="CHAN_NO">Channel Number</label>
+	  <input type="text" size="4" name="CHAN_NO" >
+    Number 0 - 99
+    <br>
+	  <label for="LOCAL_ID">Local ID</label>
+	  <input type="text" name="LOCAL_ID">
+    <br>
+    <INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Add">
+    <br>
+    <% echo $add_chan_error %>
+    <br><br>
+
+    <h2> Delete Channel </h2>
+    <br>
+	  <label for="DEL_CHAN_NO">Channel Number</label>
+	  <input type="text" size="4" name="DEL_CHAN_NO" >
+    Number 0 - 99
+    <br>
+    <INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Delete">
+    <br>
+    <% echo $del_chan_error %>
+
+    <br>
+    <br>
+    <h2>Saved Channels:</h2>
+		<%
+			rm /tmp/tcp_chan.txt; touch /tmp/tcp_chan.txt
+			for n in `uci show tcp_client | grep "=channels" | cut -d . -f2 | cut -d = -f1`  ##  ????
+			do
+				loc=`uci -q get tcp_client.$n.local_id`
+				echo $n " Local ID: "$loc >> /tmp/tcp_chan.txt
+			done
+		%>
+
+		<iframe id="CHAN_LIST" src="/tmp/tcp_chan.txt"  width="100%" height="150" ></iframe>
+
+    <br>
+    <INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Refresh">
+  </form>
+</div>
+
+</body>
+</html>
+
+

@@ -1,0 +1,139 @@
+#!/usr/bin/haserl
+
+<%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
+
+<%# --- Process the form submission --- %>
+<%
+	if [ $FORM_BUTTON = "Save" ]; then
+
+    if [ $FORM_SSL_ENABLE == "checked" ]; then
+      ssl_enable="1"
+    fi
+    if [ $FORM_DOWN_ENABLE == "checked" ]; then
+    down_enable="1"
+    fi
+
+		uci set http_iot.general.SSL="$ssl_enable"
+		uci set http_iot.general.down_enable="$down_enable"
+
+		uci set http_iot.general.down_url="$FORM_URL"
+		uci set http_iot.general.down_type="$FORM_DATA_TYPE"
+		uci set http_iot.general.down_para="$FORM_PARAM"
+		uci set http_iot.general.down_interval="$FORM_POLL"
+
+    uci commit http_iot
+	fi
+%>
+
+
+<%# --- Get the variables for the HTML page --- %>
+<% 
+
+  ssl_enable="$(uci -q get http_iot.general.SSL)"
+  down_enable="$(uci -q get http_iot.general.down_enable)"
+
+  url="$(uci -q get http_iot.general.down_url)"
+  data_type="$(uci -q get http_iot.general.down_type)"
+  param="$(uci -q get http_iot.general.down_para)"
+  poll="$(uci -q get http_iot.general.down_interval)"
+
+  if [ $ssl_enable == "1" ]; then
+    ssl_enable="checked"
+  fi
+  if [ $down_enable == "1" ]; then
+    down_enable="checked"
+  fi
+%>
+
+
+<%# --- Set up field display --- %>
+<% 
+
+%>
+
+
+<%# --- Present the HTML page --- %>
+<html>
+<head>
+  <title>Dragino LoRa Gateway</title>
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
+  <link rel="stylesheet" href="/static/resources/config.css">
+  <link rel="stylesheet" href="/static/resources/bootstrap.min.css">
+  <script src="/static/resources/jquery.min.js"></script>
+  <script src="/static/resources/bootstrap.min.js"></script>
+	<link rel="shortcut icon" href="/static/resources/favicon.ico">
+
+<script>
+function displayFunction() {
+}
+
+function changeFunc() {
+}
+
+</script>
+</head>
+<body onload="displayFunction()">
+
+<br><br>
+<h1>HTTP/HTTPS Client Configuration</h1>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded"> </a>  
+      <a class="navbar-brand" href="#"> HTTP/HTTPS Client Configuration </a>  
+    </div>
+
+    <ul class="nav navbar-nav">
+      <li><a href="/cgi-bin/dragino.has">Return to Main Menu</a></li>
+    </ul>
+
+  </div>
+</nav>
+
+<div class="container">
+<form action="<% echo -n $SCRIPT_NAME %>" method="POST">
+
+	<h2>General Settings</h2>
+
+  <label for="SSL_ENABLE">Enable SSL Connection</label>
+  <input type="checkbox" name="SSL_ENABLE" value="checked" <% echo -n $ssl_enable %>>
+  <br></br>
+
+  <label for="DOWN_ENABLE">Enable HTTP Downlink</label>
+  <input type="checkbox" name="DOWN_ENABLE" value="checked" <% echo -n $down_enable %>>
+  <label>Forward downlink data via LoRa</label>
+  <br></br>
+
+	<label for="URL">Downlink URL</label>
+	<input type="text" name="URL" size="40" VALUE="<% echo -n $url %>">
+  <br></br>
+
+	<label for="data_type">Data Type</label>
+	<select id="data_type" name="DATA_TYPE" onChange="changeFunc();" >
+		<option selected="<% echo -n $data_type %>"><% echo -n $data_type %></option>
+	  <option value="JSON" >JSON - One Level</option>
+	</select> 
+  <br></br>
+
+	<label for="PARAM">Downlink Parameter</label>
+	<input type="text" name="PARAM" VALUE="<% echo -n $param %>">
+  <br></br>
+
+  <label for="POLL">Poll Period (secs)</label>                                       
+  <input type="text" name="POLL" VALUE=<% echo -n $poll %>>
+  <br></br>
+
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save">
+	<br></br>
+
+</form>
+</div>
+</body>
+</html>
+
+

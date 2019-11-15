@@ -11,7 +11,7 @@ IMAGE_SUFFIX=
 BUILD_TIME=`date +%s`
 
 REPO_PATH=$(pwd)
-VERSION="5.2.$BUILD_TIME"
+VERSION="5.3.$BUILD_TIME"
 OPENWRT_PATH="openwrt"
 
 while getopts 'a:b:p:v:sh' OPTION

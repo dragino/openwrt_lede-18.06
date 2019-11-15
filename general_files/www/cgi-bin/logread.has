@@ -1,0 +1,140 @@
+#!/usr/bin/haserl
+
+<%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
+
+<%# --- Process the form submission --- %>
+<%
+  server_type=$(uci -q get mqttdemo.common.server_type)
+
+	if [ $FORM_BUTTON = "Save" ]; then
+		uci set mqttdemo.$server_type.url="$FORM_URL"
+
+		uci commit mqttdemo 
+	fi
+%>
+
+
+<%# --- Get the variables for the HTML page --- %>
+<% 
+  server_type="$(uci -q get mqttdemo.common.server_type)"
+
+	url="$(uci -q get mqttdemo.$server_type.url)"
+%>
+
+
+<%# --- Set up field display --- %>
+<% 
+
+%>
+
+
+<%# --- Present the HTML page --- %>
+<html>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+<head>
+  <title>Dragino LoRaWAN Gateway</title>
+
+  <link rel="stylesheet" href="/static/resources/config.css">
+  <link rel="stylesheet" href="/static/resources/bootstrap.min.css">
+  <script src="/static/resources/jquery.min.js"></script>
+  <script src="/static/resources/bootstrap.min.js"></script>
+	<link rel="shortcut icon" href="/static/resources/favicon.ico">
+
+<script>
+function displayFunction() {
+  document.getElementById("div1").style.display = "<% echo -n $disp1 %>"; 
+  document.getElementById("div2").style.display = "<% echo -n $disp2 %>"; 
+  document.getElementById("div3").style.display = "<% echo -n $disp3 %>";                     
+  document.getElementById("div4").style.display = "<% echo -n $disp4 %>"; 
+  document.getElementById("div5").style.display = "<% echo -n $disp5 %>"; 
+  document.getElementById("div6").style.display = "<% echo -n $disp6 %>";                     
+}
+
+function changeFunc() {
+
+}
+
+</script>
+</head>
+
+<body onload="displayFunction()">
+
+<br><br>
+<h1>Log Read</h1>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded"> </a>  
+      <a class="navbar-brand" href="#"> Log Read </a>  
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/index.html">Main Menu</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<form action="<% echo -n $SCRIPT_NAME %>" method="POST">
+	<br></br>
+
+
+	<label for="URL">Broker Address [-h]</label>
+	<input type="text" name="URL" size="40" VALUE="<% echo -n $url %>">
+  <br></br>
+
+	<label for="PORT">Broker Port [-p]</label>
+	<input type="text" name="PORT" VALUE="<% echo -n $port %>">
+  <br></br>
+
+  <div id="div1">
+	  <label for="USER">User ID [-u]</label>
+	  <input type="text" name="USER" VALUE="<% echo -n $user %>">
+
+	  <label for="PWD" style="padding-left:60px">Password [-P]</label>
+	  <input type="text" name="PWD" VALUE="<% echo -n $pwd %>" size="30">
+    <br></br>
+  </div>
+
+  <div id="div2">
+	  <label for="CERT">Certificate [--cert]</label>
+	  <input type="text" name="CERT" VALUE=<% echo -n $cert %>>
+
+	  <label for="KEY" style="padding-left:60px">Key [--key]</label>
+	  <input type="text" name="KEY" VALUE=<% echo -n $key %>>
+    <br></br>
+  </div>
+
+  <div id="div3">
+    <label for="CAFILE">CA File [--cafile]</label>                                       
+    <input type="text" name="CAFILE" VALUE=<% echo -n $cafile %>>                    
+    <br></br>
+  </div>   
+
+  <label for="CID">Client ID [-i]</label>
+  <input type="text" name="CID" VALUE=<% echo -n $cid %>>
+  <br></br>
+
+  <label for="QOS">Quality of Service [-q]</label>
+  <input type="text" name="QOS" VALUE=<% echo -n $qos %>>
+  <br></br>
+
+  <label for="TOPIC">Topic Format [-t]</label>
+  <input type="text" name="TOPIC" VALUE=<% echo -n $topic %> size="40">
+  <br></br>
+
+  <label for="DATA">Data Format [-m]</label>
+  <input type="text" name="DATA" VALUE=<% echo -n $data %> size="40">
+  <br></br>
+
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save">
+	<br></br>
+
+</form>
+</body>
+</html>
+
+

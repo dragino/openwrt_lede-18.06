@@ -1,0 +1,253 @@
+#!/usr/bin/haserl
+
+<%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
+
+<%# --- Process form submission --- %>
+<%
+
+  # Update server_type for changeFunct()
+	if [ -e /tmp/changeFunct.flag ]; then
+    rm /tmp/changeFunct.flag
+    if [ $FORM_SERVER_TYPE != "" ]; then  # Make sure it is a real change
+   	  uci set mqtt.common.server_type=$FORM_SERVER_TYPE
+      uci commit mqtt
+    fi
+  fi
+
+	if [ "$FORM_BUTTON" = "Save" ]; then
+    server_type=$(uci -q get mqtt.common.server_type)
+  
+		uci set mqtt.$server_type.url="$FORM_URL"
+    uci set mqtt.$server_type.port="$FORM_PORT"
+		uci set mqtt.$server_type.user="$FORM_USER"
+    uci set mqtt.$server_type.pwd="$FORM_PWD"
+		uci set mqtt.$server_type.cert="$FORM_CERT"
+    uci set mqtt.$server_type.key="$FORM_KEY"
+		uci set mqtt.$server_type.cafile="$FORM_CAFILE"
+    uci set mqtt.$server_type.cid="$FORM_CID"
+
+    uci set mqtt.$server_type.pub_qos="$FORM_PUB_QOS"
+		uci set mqtt.$server_type.topic="$FORM_TOPIC"
+    uci set mqtt.$server_type.data="$FORM_DATA"
+
+		if [ "$FORM_PUB_ENABLE" == "checked" ]; then
+			uci set mqtt.common.pub_enable="$FORM_PUB_ENABLE"
+		else
+			uci set mqtt.common.pub_enable=0
+		fi
+   	
+    uci set mqtt.$server_type.sub_qos="$FORM_SUB_QOS"
+		uci set mqtt.$server_type.sub_topic="$FORM_SUB_TOPIC"
+
+		if [ "$FORM_SUB_ENABLE" == "checked" ]; then
+			uci set mqtt.common.sub_enable="$FORM_SUB_ENABLE"
+		else
+			killall -q "mosquitto_sub"
+			uci set mqtt.common.sub_enable=0
+		fi
+
+		uci commit mqtt 
+	fi
+
+  rm /tmp/changeFunct.flag   # Just to be sure
+
+%>
+
+
+<% 
+# --- Get the variables for the HTML page ---
+
+  server_type="$(uci -q get mqtt.common.server_type)"
+
+	url="$(uci -q get mqtt.$server_type.url)"
+	port="$(uci -q get mqtt.$server_type.port)"
+  user="$(uci -q get mqtt.$server_type.user)"                                                                          
+	pwd="$(uci -q get mqtt.$server_type.pwd)"
+	cert="$(uci -q get mqtt.$server_type.cert)"
+  key="$(uci -q get mqtt.$server_type.key)"
+	cafile="$(uci -q get mqtt.$server_type.cafile)"
+	cid="$(uci -q get mqtt.$server_type.cid)"
+
+	pub_enable="$(uci -q get mqtt.common.pub_enable)"
+  pub_qos="$(uci -q get mqtt.$server_type.pub_qos)"                                                                      
+	topic="$(uci -q get mqtt.$server_type.pub_topic)"
+  data="$(uci -q get mqtt.$server_type.data)"
+
+	sub_enable="$(uci -q get mqtt.common.sub_enable)"
+  sub_qos="$(uci -q get mqtt.$server_type.sub_qos)"
+	sub_topic="$(uci -q get mqtt.$server_type.sub_topic)"
+
+
+# --- Set up field display ---
+ 
+  # Set up display defaults
+  disp1="inline"; disp2="none";disp3="none"
+
+  # Set up display options
+	if [ $server_type == "AWS" ]; then
+		disp1="none"; disp2="inline "; disp3="inline "
+	elif [ $server_type == "Azure" ]; then
+		disp1="inline";disp2="none"; disp3="inline"
+	elif [ $server_type == "General" ]; then
+		disp1="inline";disp2="inline"; disp3="inline"
+  fi
+%>
+
+
+<%# --- Present the HTML page --- %>
+<html lang="en">
+<head>
+  <title>Dragino Lora Gateway</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
+  <link rel="stylesheet" href="/static/resources/config.css">
+
+  <link rel="stylesheet" href="/static/resources/bootstrap.min.css">
+  <script src="/static/resources/jquery.min.js"></script>
+  <script src="/static/resources/bootstrap.min.js"></script>
+
+	<link rel="shortcut icon" href="/static/resources/favicon.ico">
+
+  <script>
+    function displayFunction() {
+      document.getElementById("div1").style.display = "<% echo -n $disp1 %>"; 
+      document.getElementById("div2").style.display = "<% echo -n $disp2 %>"; 
+      document.getElementById("div3").style.display = "<% echo -n $disp3 %>";                     
+    }
+
+    function changeFunc(val) {
+      <% touch /tmp/changeFunct.flag %>
+      document.forms["mqtt"].submit();
+    }
+  </script>
+
+</head>
+
+<body onload="displayFunction()">
+<br><br>
+<h1>MQTT Configuration</h1>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded"> </a>  
+      <a class="navbar-brand" href="#"> MQTT Configuration </a>  
+    </div>
+
+    <ul class="nav navbar-nav">
+      <li><a href="/cgi-bin/mqtt-chan.has">MQTT Channels</a></li>
+      <li><a href="/cgi-bin/mqtt-cert.has">MQTT Certificates</a></li>
+      <li><a href="/cgi-bin/dragino.has">Return to Main Menu</a></li>
+    </ul>
+
+  </div>
+</nav>
+
+<div class="container">
+<form id="mqtt" action="<% echo -n $SCRIPT_NAME %>" method="POST">
+	<br></br>
+
+	<label for="server_type">Server Type</label>
+	<select id="server_type" style="padding-right:80px" name="SERVER_TYPE" onchange="changeFunc(this.value)" >
+		<option selected="<% echo -n $server_type %>"><% echo -n $server_type %></option>
+	  <option value="General" >General</option>
+	  <option value="Lewei50" >Lewei50</option>
+	  <option value="ThingSpeak" >ThingSpeak</option>
+	  <option value="myDevices" >myDevices</option>
+	  <option value="Azure" >Azure</option>
+	  <option value="AWS" >AWS</option>
+	</select> 
+  <br></br>
+
+	<label for="URL">Broker Address [-h]</label>
+	<input type="text" name="URL" size="40" Placeholder="Server URL" VALUE="<% echo -n $url %>">
+  <br></br>
+
+	<label for="PORT">Broker Port [-p]</label>
+	<input type="text" name="PORT" Placeholder="Server Port" VALUE="<% echo -n $port %>">
+  <br></br>
+
+  <div id="div1">
+	  <label for="USER">User ID [-u]</label>
+	  <input type="text" name="USER" Placeholder="User ID" VALUE="<% echo -n $user %>">
+
+	  <label for="PWD" style="padding-left:60px">Password [-P]</label>
+	  <input type="text" name="PWD" Placeholder="Password" VALUE="<% echo -n $pwd %>" size="30">
+    <br></br>
+  </div>
+
+  <div id="div2">
+	  <label for="CERT">Certificate [--cert]</label>
+	  <input type="text" name="CERT" Placeholder="Certificate File" VALUE=<% echo -n $cert %>>
+
+	  <label for="KEY" style="padding-left:60px">Key [--key]</label>
+	  <input type="text" name="KEY" Placeholder="Key File" VALUE=<% echo -n $key %>>
+    <br></br>
+  </div>
+
+  <div id="div3">
+    <label for="CAFILE">CA File [--cafile]</label>                                       
+    <input type="text" name="CAFILE" Placeholder="Certificate Authority File" VALUE=<% echo -n $cafile %>>                    
+    <br></br>
+  </div>   
+
+  <label for="CID">Client ID [-i]</label>
+  <input type="text" name="CID" Placeholder="Client ID" VALUE=<% echo -n $cid %>>
+  <br></br>
+
+  <h3>Publish</h3>
+
+  <label for="PUB_ENABLE">Enable Publish</label>
+  <input type="checkbox" name="PUB_ENABLE" value="checked" <% echo -n $pub_enable %>>
+  <br></br>
+
+  <label for="PUB_QOS">Quality of Service [-q]</label>
+	<select id="pub_qos" name="PUB_QOS" >
+		<option selected="<% echo -n $qos %>"><% echo -n $pub_qos %></option>
+	  <option value="0" >QoS 0</option>
+	  <option value="1" >QoS 1</option>
+	  <option value="2" >QoS 2</option>
+	</select> 
+  <br></br>
+
+  <label for="TOPIC">Topic Format [-t]</label>
+  <input type="text" name="TOPIC" VALUE=<% echo -n $topic %> size="40">
+  <br></br>
+
+  <label for="DATA">Data Format [-m]</label>
+  <input type="text" name="DATA" VALUE=<% echo -n $data %> size="40">
+  <br></br>
+
+  <h3>Subscribe</h3>
+
+  <label for="SUB_ENABLE">Enable Subscribe</label>
+  <input type="checkbox" name="SUB_ENABLE" value="checked" <% echo -n $sub_enable %>>
+  <br></br>
+
+  <label for="SUB_QOS">Quality of Service [-q]</label>
+	<select id="sub_qos" name="SUB_QOS" >
+		<option selected="<% echo -n $sub_qos %>"><% echo -n $sub_qos %></option>
+	  <option value="0" >QoS 0</option>
+	  <option value="1" >QoS 1</option>
+	  <option value="2" >QoS 2</option>
+	</select> 
+  <br></br>
+
+  <label for="SUB_TOPIC">Topic Format [-t]</label>
+  <input type="text" name="SUB_TOPIC" size="40" VALUE=<% echo -n $sub_topic %>>
+  <br></br>
+
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save">
+	<br></br>
+
+</form>
+</div>
+</body>
+</html>
+
+

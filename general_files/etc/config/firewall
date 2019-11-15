@@ -17,9 +17,9 @@ config zone
 	option name		wan
 	list   network		'wan'
 	list   network		'wan6'
-	option input		ACCEPT
+	option input		REJECT
 	option output		ACCEPT
-	option forward		REJECT
+	option forward		ACCEPT
 	option masq		1
 	option mtu_fix		1
 
@@ -123,21 +123,20 @@ config include
 #	option target	DROP
 
 # port redirect port coming in on wan to lan
-#config redirect
-#	option src			wan
-#	option src_dport	80
-#	option dest			lan
-#	option dest_ip		192.168.16.235
-#	option dest_port	80
-#	option proto		tcp
+config redirect
+	option src			wan
+	option src_dport	8000
+	option dest			lan
+	option dest_port	80
+	option proto		tcp
 
-# port redirect of remapped ssh port (22001) on wan
-#config redirect
-#	option src		wan
-#	option src_dport	22001
-#	option dest		lan
-#	option dest_port	22
-#	option proto		tcp
+# port redirect of remapped ssh port (2222) on wan
+config redirect
+	option src			wan
+	option src_dport	2222
+	option dest			lan
+	option dest_port	22
+	option proto		tcp
 
 # allow IPsec/ESP and ISAKMP passthrough
 #config rule

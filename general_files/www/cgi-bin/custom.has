@@ -1,0 +1,142 @@
+#!/usr/bin/haserl
+
+<%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
+
+<%# --- Process the form submission --- %>
+<%
+  server_type=$(uci -q get mqttdemo.common.server_type)
+
+	if [ $FORM_BUTTON = "Save" ]; then
+		uci set mqttdemo.$server_type.url="$FORM_URL"
+		uci commit mqtt 
+	fi
+
+	if [ $FORM_BUTTON = "Update" ]; then
+		uci set mqttdemo.common.server_type=$FORM_SERVER_TYPE
+		uci commit mqtt
+	fi
+%>
+
+
+<%# --- Get the variables for the HTML page --- %>
+<% 
+  server_type="$(uci -q get mqttdemo.common.server_type)"
+
+	url="$(uci -q get mqttdemo.$server_type.url)"
+
+%>
+
+
+<%# --- Set up field display --- %>
+<% 
+  # Set up display defaults
+  disp1="inline"; disp2="none";disp3="none"
+
+  # Set up display options
+
+%>
+
+
+<%# --- Present the HTML page --- %>
+<html>
+<head>
+  <title>Dragino LoRa Gateway</title>
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
+  <link rel="stylesheet" href="/static/resources/config.css">
+  <link rel="stylesheet" href="/static/resources/bootstrap.min.css">
+  <script src="/static/resources/jquery.min.js"></script>
+  <script src="/static/resources/bootstrap.min.js"></script>
+	<link rel="shortcut icon" href="/static/resources/favicon.ico">
+
+<script>
+function displayFunction() {
+  document.getElementById("div1").style.display = "<% echo -n $disp1 %>"; 
+  document.getElementById("div2").style.display = "<% echo -n $disp2 %>"; 
+}
+
+function changeFunc() {
+
+}
+
+</script>
+</head>
+<body onload="displayFunction()">
+
+<br></br>
+<h1>Custom Script</h1>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"> <img src="/demo-static/resources/favicon.ico" class="img-rounded"> </a>  
+      <a class="navbar-brand" href="#"> Custom Script </a>  
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/cgi-bin/dragino.has">Return to Main Menu</a></li>
+    </ul>
+  </div>
+</nav>
+
+<a>Run a Custom Script to process LoRa Data. Parameters are optional and defined in script</a>
+
+<div class="container">
+<form action="<% echo -n $SCRIPT_NAME %>" method="POST">
+
+	<h2>General Settings</h2>
+
+	<label for="script">Script Name</label>
+	<select id="script" name="SCRIPT" onChange="changeFunc();" >
+		<option selected="<% echo -n $script %>"><% echo -n $script %></option>
+	  <option value="store_data_to_file.sh" >store_data_to_file.sh</option>
+	  <option value="another_script.sh" >another_script.sh</option>
+	</select> 
+  <br></br>
+
+	<label for="PARAM1">Parameter 1</label>
+	<input type="text" name="PARAM1" VALUE="<% echo -n $param1 %>">
+
+	<label for="PARAM2">Parameter 2</label>
+	<input type="text" name="PARAM2" VALUE="<% echo -n $param2 %>">
+  <br></br>
+
+	<label for="PARAM3">Parameter 3</label>
+	<input type="text" name="PARAM3" VALUE="<% echo -n $param3 %>">
+
+	<label for="PARAM4">Parameter 4</label>
+	<input type="text" name="PARAM4" VALUE="<% echo -n $param4 %>">
+  <br></br>
+
+	<label for="PARAM5">Parameter 5</label>
+	<input type="text" name="PARAM5" VALUE="<% echo -n $param5 %>">
+
+	<label for="PARAM6">Parameter 6</label>
+	<input type="text" name="PARAM6" VALUE="<% echo -n $param6 %>">
+  <br></br>
+
+	<label for="PARAM7">Parameter 7</label>
+	<input type="text" name="PARAM7" VALUE="<% echo -n $param7 %>">
+
+	<label for="PARAM8">Parameter 8</label>
+	<input type="text" name="PARAM8" VALUE="<% echo -n $param8 %>">
+  <br></br>
+
+	<label for="PARAM9">Parameter 9</label>
+	<input type="text" name="PARAM9" VALUE="<% echo -n $param9 %>">
+
+	<label for="PARAM10">Parameter 10</label>
+	<input type="text" name="PARAM10" VALUE="<% echo -n $param10 %>">
+  <br></br>
+
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save">
+	<br></br>
+
+</form>
+</div>
+</body>
+</html>
+
+

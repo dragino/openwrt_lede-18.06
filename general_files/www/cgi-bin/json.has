@@ -1,0 +1,140 @@
+#!/usr/bin/haserl
+
+<%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
+
+<%# --- Process the form submission --- %>
+<%
+  server_type=$(uci -q get mqttdemo.common.server_type)
+
+	if [ $FORM_BUTTON = "Save" ]; then
+		uci set mqttdemo.$server_type.url="$FORM_URL"
+    uci set mqttdemo.$server_type.port="$FORM_PORT"
+		uci set mqttdemo.$server_type.user="$FORM_USER"
+    uci set mqttdemo.$server_type.pwd="$FORM_PWD"
+		uci set mqttdemo.$server_type.cert="$FORM_CERT"
+    uci set mqttdemo.$server_type.key="$FORM_KEY"
+		uci set mqttdemo.$server_type.cafile="$FORM_CAFILE"
+    uci set mqttdemo.$server_type.cid="$FORM_CID"
+    uci set mqttdemo.$server_type.qos="$FORM_QOS"
+		uci set mqttdemo.$server_type.topic="$FORM_TOPIC"
+    uci set mqttdemo.$server_type.data="$FORM_DATA"
+		uci commit mqttdemo 
+	fi
+
+	if [ $FORM_BUTTON = "Update" ]; then
+		uci set mqttdemo.common.server_type=$FORM_SERVER_TYPE
+		uci commit mqttdemo 
+	fi
+%>
+
+
+<%# --- Get the variables for the HTML page --- %>
+<% 
+  server_type="$(uci -q get mqttdemo.common.server_type)"
+
+	url="$(uci -q get mqttdemo.$server_type.url)"
+	port="$(uci -q get mqttdemo.$server_type.port)"
+  user="$(uci -q get mqttdemo.$server_type.user)"                                                                          
+	pwd="$(uci -q get mqttdemo.$server_type.pwd)"
+	cert="$(uci -q get mqttdemo.$server_type.cert)"
+  key="$(uci -q get mqttdemo.$server_type.key)"                                                                    
+	cafile="$(uci -q get mqttdemo.$server_type.cafile)"
+	cid="$(uci -q get mqttdemo.$server_type.cid)"
+  qos="$(uci -q get mqttdemo.$server_type.qos)"                                                                      
+	topic="$(uci -q get mqttdemo.$server_type.topic)"
+  data="$(uci -q get mqttdemo.$server_type.data)"                                                                      
+
+  echo "Server Type: " $server_type "<br>"
+  echo "Pwd: " $pwd "<br>"
+%>
+
+
+<%# --- Set up field display --- %>
+<% 
+  # Set up display defaults
+  disp1="inline"; disp2="none";disp3="none"
+
+  # Set up display options
+	if [ $server_type == "AWS" ]; then
+		disp1="none"; disp2="inline "; disp3="inline "
+	elif [ $server_type == "Azure" ]; then
+		disp1="inline";disp2="none"; disp3="inline"
+	elif [ $server_type == "General" ]; then
+		disp1="inline";disp2="inline"; disp3="inline"
+  fi
+
+%>
+
+
+<%# --- Present the HTML page --- %>
+<html>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+<head>
+  <title>Dragino LoRaWAN Gateway</title>
+
+  <link rel="stylesheet" href="/static/resources/config.css">
+  <link rel="stylesheet" href="/static/resources/bootstrap.min.css">
+  <script src="/static/resources/jquery.min.js"></script>
+  <script src="/static/resources/bootstrap.min.js"></script>
+	<link rel="shortcut icon" href="/static/resources/favicon.ico">
+
+<script>
+function displayFunction() {
+  document.getElementById("div1").style.display = "<% echo -n $disp1 %>"; 
+  document.getElementById("div2").style.display = "<% echo -n $disp2 %>"; 
+  document.getElementById("div3").style.display = "<% echo -n $disp3 %>";                     
+  document.getElementById("div4").style.display = "<% echo -n $disp4 %>"; 
+  document.getElementById("div5").style.display = "<% echo -n $disp5 %>"; 
+  document.getElementById("div6").style.display = "<% echo -n $disp6 %>";                     
+}
+
+function changeFunc() {
+
+}
+
+</script>
+</head>
+
+<body onload="displayFunction()">
+
+<br><br>
+<h1>TxRxJson</h1>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded"> </a>  
+      <a class="navbar-brand" href="#"> Certificate Management </a>  
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/index.html">Main Menu</a></li>
+    </ul>
+    <ul class="nav navbar-nav">
+      <li><a href="/cgi-bin/freq.has">Frequency Information</a></li>
+    </ul>
+    <ul class="nav navbar-nav">
+      <li><a href="/cgi-bin/report.has">Report</a></li>
+    </ul>
+    <ul class="nav navbar-nav">
+      <li><a href="/cgi-bin/error.has">Error</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<form action="<% echo -n $SCRIPT_NAME %>" method="POST">
+	<br></br>
+
+  <br></br>
+
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save">
+	<br></br>
+
+</form>
+</body>
+</html>
+
+

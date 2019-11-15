@@ -1,0 +1,374 @@
+#!/usr/bin/haserl
+
+<%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
+
+<%# --- Process the form submission --- %>
+<%
+  # Update server_type for changeFunct()
+	if [ -e /tmp/changeFunct.flag ]; then
+    rm /tmp/changeFunct.flag
+    if [ $FORM_SERVER_TYPE != "" ]; then  # Make sure it is a real change
+   	  uci set gateway.general.server_type=$FORM_SERVER_TYPE
+      uci commit mqtt
+    fi
+  fi
+
+	if [ $FORM_BUTTON == "Save" ] || [ $FORM_BUTTON == "Save&Apply" ]; then
+		uci set gateway.general.server_type="$FORM_SERVER_TYPE"
+		uci set gateway.general.DEB="$FORM_DEBUG"
+		uci set gateway.general.provider="$FORM_PROVIDER"
+		uci set gateway.general.server_address="$FORM_SERVER_ADDRESS"
+		uci set gateway.general.port="$FORM_PORT"
+		uci set gateway.general.dwport="$FORM_DWPORT"
+		uci set gateway.general.GWID="$FORM_GWID"
+		uci set gateway.general.email="$FORM_EMAIL"
+		uci set gateway.general.LAT="$FORM_LAT"
+		uci set gateway.general.LON="$FORM_LON"
+		uci set gateway.general.RFPOWER="$FORM_RFPOWER"
+
+		uci set gateway.radio1.RFFREQ="$FORM_RFFREQ"
+		uci set gateway.radio1.RFSF="$FORM_RFSF"
+		uci set gateway.radio1.RFCR="$FORM_RFCR"
+		uci set gateway.radio1.RFBW="$FORM_RFBW"
+		uci set gateway.radio1.RFPRLEN="$FORM_RFPRLEN"
+		uci set gateway.radio1.SYNCWD="$FORM_SYNCWD"
+
+		uci set gateway.radio1.RXFREQ="$FORM_RXFREQ"
+		uci set gateway.radio1.RXSF="$FORM_RXSF"
+		uci set gateway.radio1.RXCR="$FORM_RXCR"
+		uci set gateway.radio1.RXBW="$FORM_RXBW"
+		uci set gateway.radio1.RXPRLEN="$FORM_RXPRLEN"
+
+		uci set gateway.radio2.TXFREQ="$FORM_TXFREQ"
+		uci set gateway.radio2.TXSF="$FORM_TXSF"
+		uci set gateway.radio2.TXCR="$FORM_TXCR"
+		uci set gateway.radio2.TXBW="$FORM_TXBW"
+		uci set gateway.radio2.TXPRLEN="$FORM_TXPRLEN"
+		uci set gateway.radio2.SYNCWD="$FORM_TXSYNCWD"
+
+		uci commit gateway
+	fi
+
+  if [ $FORM_BUTTON == "Save&Apply" ]; then
+    /etc/init.d/lora_gw reload > /dev/null
+    sleep 5
+    /etc/init.d/iot reload > /dev/null
+  fi
+
+  rm /tmp/changeFunct.flag   # Just to be sure
+
+%>
+
+<%# --- Get the variables for the HTML page --- %>
+<% 
+	server_type="$(uci -q get gateway.general.server_type)"
+	debug="$(uci -q get gateway.general.DEB)"
+	provider="$(uci -q get gateway.general.provider)"
+	server_address="$(uci -q get gateway.general.server_address)"
+	port="$(uci -q get gateway.general.port)"
+	dwport="$(uci -q get gateway.general.dwport)"
+	gwid="$(uci -q get gateway.general.GWID)"
+	email="$(uci -q get gateway.general.email)"
+	lat="$(uci -q get gateway.general.LAT)"
+	lon="$(uci -q get gateway.general.LON)"
+	rfpower="$(uci -q get gateway.general.RFPOWER)"
+
+	rffreq="$(uci -q get gateway.radio1.RFFREQ)"
+	rfsf="$(uci -q get gateway.radio1.RFSF)"
+	rfcr="$(uci -q get gateway.radio1.RFCR)"
+	rfbw="$(uci -q get gateway.radio1.RFBW)"
+	rfprlen="$(uci -q get gateway.radio1.RFPRLEN)"
+	syncwd="$(uci -q get gateway.radio1.SYNCWD)"
+
+	rxfreq="$(uci -q get gateway.radio1.RXFREQ)"
+	rxsf="$(uci -q get gateway.radio1.RXSF)"
+	rxcr="$(uci -q get gateway.radio1.RXCR)"
+	rxbw="$(uci -q get gateway.radio1.RXBW)"
+	rxprlen="$(uci -q get gateway.radio1.RXPRLEN)"
+
+	txfreq="$(uci -q get gateway.radio2.TXFREQ)"
+	txsf="$(uci -q get gateway.radio2.TXSF)"
+	txcr="$(uci -q get gateway.radio2.TXCR)"
+	txbw="$(uci -q get gateway.radio2.TXBW)"
+	txprlen="$(uci -q get gateway.radio2.TXPRLEN)"
+	txsyncwd="$(uci -q get gateway.radio2.SYNCWD)"
+%>
+
+
+<%# --- Set up field display --- %>
+<% 
+  # Set up display defaults
+  disp1="inline"; disp2="none";disp3="none"
+
+  # Adjust display for board type
+  board=`cat /var/iot/board`
+  if [[ "$board" = "LG01" ]]; then
+    disp1="inline"; disp2="none";
+  elif [[ "$board" = "LG02" ]]; then
+    disp1="none"; disp2="inline";
+  elif [[ "$board" = "LG08P" ]]; then
+    disp1="inline"; disp2="none";
+  elif [[ "$board" = "LG08" ]]; then
+    disp1="inline"; disp2="none";
+  fi
+
+  # Adjust display for IoT Service Type
+  if [[ "$server_type" = "disabled" ]] || [[ "$server_type" = "mqtt" ]] || [[ "$server_type" = "tcpudp" ]]; then
+    disp3="none"
+  else
+    disp3="inline"
+  fi
+%>
+
+
+<%# --- Present the HTML page --- %>
+<html lang="en">
+<head>
+  <title>Dragino LoRa Gateway</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
+  <link rel="stylesheet" href="/static/resources/config.css">
+  <link rel="stylesheet" href="/static/resources/bootstrap.min.css">
+  <script src="/static/resources/jquery.min.js"></script>
+  <script src="/static/resources/bootstrap.min.js"></script>
+	<link rel="shortcut icon" href="/static/resources/favicon.ico">
+
+<script>
+  function displayFunction() {
+    document.getElementById("div1").style.display = "<% echo -n $disp1 %>"; 
+    document.getElementById("div2").style.display = "<% echo -n $disp2 %>"; 
+    document.getElementById("div3").style.display = "<% echo -n $disp3 %>";                     
+  }
+
+  function changeFunc(val) {
+    <% touch /tmp/changeFunct.flag %>
+    document.forms["lora"].submit();
+  }
+</script>
+
+</head>
+
+<body onload="displayFunction()">
+
+<br><br>
+<h1>LoRa General Settings</h1>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded"> </a>  
+      <a class="navbar-brand" href="#"> LoRa Configuration </a>  
+    </div>
+
+    <ul class="nav navbar-nav">
+      <li><a href="/cgi-bin/mqtt.has">MQTT Client</a></li>
+      <li><a href="/cgi-bin/tcp-client.has">TCP Client</a></li>
+      <li><a href="/cgi-bin/http-client.has">HTTP/HTTPS Client</a></li>
+      <li><a href="/cgi-bin/custom.has">Custom Script</a></li>
+      <li><a href="/cgi-bin/dragino.has">Return to Main Menu</a></li>
+    </ul>
+
+  </div>
+</nav>
+
+<div class="container">
+<form id="lora" action="<% echo -n $SCRIPT_NAME %>" method="POST">
+
+	<label for="server_type">IoT Service</label>
+	<select id="server_type" name="SERVER_TYPE" onChange="changeFunc(this.value);" >
+		<option selected="<% echo -n $server_type %>"><% echo -n $server_type %></option>
+	  <option value="disabled" >Disabled</option>
+	  <option value="lorawan" >LoRaWAN/Raw packets forwarder</option>
+	  <option value="mqtt" >LoRaRaw forward to MQTT server</option>
+	  <option value="tcpudp" >LoRaRaw forward to TCP/UDP server</option>
+	  <option value="customized" >Customized</option>
+	</select> 
+  <br></br>
+
+ <div id="div3">
+	<label for="PROVIDER">Service Provider</label>
+	<select id="service_provider" style="padding-right:40px" name="PROVIDER" onChange="changeFunc();">
+		<option selected="<% echo -n $provider %>"><% echo -n $provider %></option>
+	  <option value="ttn" >The Things Network</option>
+	  <option value="thingspeak" >ThingSpeak</option>
+	  <option value="custom" >--custom--</option>
+	</select> 
+
+	<label for="SERVER_ADDRESS">Server Address</label>
+	<input type="text" name="SERVER_ADDRESS" VALUE="<% echo -n $server_address %>">
+  <br></br>
+
+	<label for="PORT">Server Port Upstream</label>
+	<input type="text" name="PORT" VALUE="<% echo -n $port %>">
+
+	<label for="DWPORT">Server Port Downstream</label>
+	<input type="text" name="DWPORT" VALUE="<% echo -n $dwport %>">
+  <br></br>
+
+  <label for="LAT">Latitude</label>                                       
+  <input type="text" name="LAT" VALUE=<% echo -n $lat %>>
+
+  <label for="LON">Longitude</label>                                       
+  <input type="text" name="LON" VALUE=<% echo -n $lon %>>
+  <br></br>
+
+  <label for="EMAIL">Email</label>                                       
+  <input type="text" name="EMAIL" VALUE=<% echo -n $email %>>
+  <br></br>
+ </div>
+
+  <label for="RFPOWER">RF Power (dBm)</label>                                       
+  <input type="text" name="RFPOWER" VALUE=<% echo -n $rfpower %>>
+
+	<label for="debug">Debug Level</label>
+	<select id="debug" name="DEBUG" onChange="changeFunc();" >
+		<option selected="<% echo -n $debug %>"><% echo -n $debug %></option>
+	  <option value="0" >Disabled</option>
+	  <option value="1" >Low</option>
+	  <option value="2" >Medium</option>
+	  <option value="3" >High</option>
+	</select> 
+  <br></br>
+
+  <label for="GWID">Gateway ID</label>                                       
+  <input type="text" name="GWID" VALUE=<% echo -n $gwid %>>
+  <br></br>
+
+
+ <div id="div1">
+  <h3>Radio Settings</h3>
+
+  <label for="RFFREQ">Frequency (Hz)</label>                                       
+  <input type="text" name="RFFREQ" VALUE=<% echo -n $rffreq %>>
+
+  <label for="RFBW">RF Bandwidth (Hz)</label>                                       
+  <input type="text" name="RFBW" VALUE=<% echo -n $rfbw %>>
+  <br></br>
+
+  <label for="RFSF">Spreading Factor</label>                                       
+	<select id="rfsf" style="padding-right:130px" name="RFSF">
+		<option selected="<% echo -n $rfsf %>"><% echo -n $rfsf %></option>
+	  <option value="6" >SF6</option>
+	  <option value="7" >SF7</option>
+	  <option value="8" >SF8</option>
+	  <option value="9" >SF9</option>
+	  <option value="10" >SF10</option>
+	  <option value="11" >SF11</option>
+	  <option value="12" >SF12</option>
+	</select> 
+
+  <label for="RFCR">Coding Rate</label>                                       
+	<select id="rfcr" style="padding-right:130px" name="RFCR">
+		<option selected="<% echo -n $rfcr %>"><% echo -n $rfcr %></option>
+	  <option value="5" >4/5</option>
+	  <option value="6" >4/6</option>
+	  <option value="7" >4/7</option>
+	  <option value="8" >4/8</option>
+	</select> 
+  <br></br>
+
+  <label for="RFPRLEN">Preamble Length</label>                                       
+  <input type="text" name="RFPRLEN" VALUE=<% echo -n $rfprlen %>>
+
+  <label for="SYNCWD">LoRa Sync Word</label>                                       
+  <input type="text" name="SYNCWD" VALUE=<% echo -n $syncwd %>>
+ </div>
+
+
+ <div id="div2">
+  <h3>Radio 1 RX Settings</h3>
+
+  <label for="RXFREQ">Frequency (Hz)</label>                                       
+  <input type="text" name="RXFREQ" VALUE=<% echo -n $rxfreq %>>
+
+
+  <label for="RXBW">RF Bandwidth (Hz)</label>                                       
+  <input type="text" name="RXBW" VALUE=<% echo -n $rxbw %>>
+  <br></br>
+
+  <label for="RXSF">Spreading Factor</label>                                       
+	<select id="rxsf" style="padding-right:130px" name="RXSF">
+		<option selected="<% echo -n $rxsf %>"><% echo -n $rxsf %></option>
+	  <option value="6" >SF6</option>
+	  <option value="7" >SF7</option>
+	  <option value="8" >SF8</option>
+	  <option value="9" >SF9</option>
+	  <option value="10" >SF10</option>
+	  <option value="11" >SF11</option>
+	  <option value="12" >SF12</option>
+	</select> 
+
+  <label for="RXCR">Coding Rate</label>                                       
+	<select id="rxcr" style="padding-right:130px" name="RXCR">
+		<option selected="<% echo -n $rxcr %>"><% echo -n $rxcr %></option>
+	  <option value="5" >4/5</option>
+	  <option value="6" >4/6</option>
+	  <option value="7" >4/7</option>
+	  <option value="8" >4/8</option>
+	</select> 
+  <br></br>
+
+  <label for="RXPRLEN">Preamble Length</label>                                       
+  <input type="text" name="RXPRLEN" VALUE=<% echo -n $rxprlen %>>
+
+  <label for="SYNCWD">LoRa Sync Word</label>                                       
+  <input type="text" name="SYNCWD" VALUE=<% echo -n $syncwd %>>
+
+
+  <h3>Radio 2 TX Settings</h3>
+
+  <label for="TXFREQ">Frequency (Hz)</label>                                       
+  <input type="text" name="TXFREQ" VALUE=<% echo -n $txfreq %>>
+
+  <label for="TXBW">RF Bandwidth (Hz)</label>                                       
+  <input type="text" name="TXBW" VALUE=<% echo -n $txbw %>>
+  <br></br>
+
+  <label for="TXSF">Spreading Factor</label>                                       
+	<select id="txsf" style="padding-right:130px" name="TXSF">
+		<option selected="<% echo -n $txsf %>"><% echo -n $txsf %></option>
+	  <option value="6" >SF6</option>
+	  <option value="7" >SF7</option>
+	  <option value="8" >SF8</option>
+	  <option value="9" >SF9</option>
+	  <option value="10" >SF10</option>
+	  <option value="11" >SF11</option>
+	  <option value="12" >SF12</option>
+	</select> 
+
+  <label for="TXCR">Coding Rate</label>                                       
+	<select id="txcr" style="padding-right:130px" name="TXCR">
+		<option selected="<% echo -n $txcr %>"><% echo -n $txcr %></option>
+	  <option value="5" >4/5</option>
+	  <option value="6" >4/6</option>
+	  <option value="7" >4/7</option>
+	  <option value="8" >4/8</option>
+	</select> 
+  <br></br>
+
+  <label for="TXPRLEN">Preamble Length</label>                                       
+  <input type="text" name="TXPRLEN" VALUE=<% echo -n $txprlen %>>
+
+  <label for="TXSYNCWD">LoRa Sync Word</label>                                       
+  <input type="text" name="TXSYNCWD" VALUE=<% echo -n $txsyncwd %>>
+ </div>
+  <br></br>
+
+	<label for="BUTTON"> </label>
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save">
+
+	<label for="BUTTON" > </label>
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
+
+
+</form>
+</div>
+</body>
+</html>
+
+

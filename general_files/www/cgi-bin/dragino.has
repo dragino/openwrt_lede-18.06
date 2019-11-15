@@ -1,0 +1,107 @@
+#!/usr/bin/haserl
+
+<%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
+
+<%# --- Get the variables for the HTML page --- %>
+<%
+MEMFREE=`cat /proc/meminfo | grep MemFree |cut -d : -f2 | tr -d ' '|tr -d 'kB'`
+MEMTOT=`cat /proc/meminfo | grep MemTotal |cut -d : -f2 | tr -d ' '`
+MEMSTR="Free Memory: "$MEMFREE" / Total Memory: "$MEMTOT
+%>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Dragino LoRa Gateway</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="10">
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
+  <link rel="stylesheet" href="/static/resources/bootstrap.min.css">
+  <script src="/static/resources/jquery.min.js"></script>
+  <script src="/static/resources/bootstrap.min.js"></script>
+
+	<link rel="shortcut icon" href="/static/resources/favicon.ico">
+
+</head>
+
+<body>
+<br><br>
+<h1>System Status</h1>
+  
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded"> </a>  
+      <a class="navbar-brand" href="#"> Dragino LoRa Gateway </a>  
+    </div>
+
+    <ul class="nav navbar-nav">
+      <li><a href="/cgi-bin/lora.has">LoRa Configuration</a></li>
+      <li><a href="/cgi-bin/mqtt.has">MQTT Client</a></li>
+      <li><a href="/cgi-bin/tcp-client.has">TCP Client</a></li>
+      <li><a href="/cgi-bin/http-client.has">HTTP/HTTPS Client</a></li>
+      <li><a href="/cgi-bin/custom.has">Custom Script</a></li>
+      <li><a href="/luci.html">LuCI Configuration</a></li>
+
+<!--
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">LoRa Gateway<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/cgi-bin/lora.has">General Settings</a></li>
+          <li><a href="/cgi-bin/lora-radio.has">Radio Settings</a></li>
+          <li><a href="/cgi-bin/lora-chan.has">Channels</a></li>
+        </ul>
+      </li>
+
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">MQTT<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/cgi-bin/mqtt.has">MQTT</a></li>
+          <li><a href="/cgi-bin/mqtt-chan.has">Channels</a></li>
+          <li><a href="/cgi-bin/mqtt-cert.has">Certificates</a></li>
+        </ul>
+      </li>
+
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Logread<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/cgi-bin/freq.has">FreqINFO</a></li>
+          <li><a href="/cgi-bin/report.has">Report</a></li>
+          <li><a href="/cgi-bin/json.has">RxTxJson</a></li>
+          <li><a href="/cgi-bin/error.has">ErrorMsg</a></li>
+        </ul>
+      </li>
+
+      <li><a href="#">Logout</a></li>  
+-->
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+	<h4>
+	<br>
+	<% echo "System:  "; cat /etc/os-release | grep _RELEASE | cut -d = -f2 %>
+	<br><br>
+	<% echo "Firmware:  "; cat /etc/banner | grep Version | cut -d : -f 2 %>
+	<br><br>
+	<% echo "Hostname:  "; uci get system.@[0].hostname %>
+	<br><br>
+	<% echo "Board Type:  "; cat /tmp/iot/board %>
+	<br><br>
+	<% echo "System Time:  "; date %>
+	<br><br>
+	<% echo "Uptime:  "; uptime | cut -d " " -f4,5 | tr , " " %>
+	<br><br>
+	<% echo "Load Avg:  "; uptime | cut -d , -f2,3,4 | cut -d : -f2 %>
+	<br><br>
+	<% echo $MEMSTR %>
+	</h4>
+
+</div>
+
+</body>
+</html>
+
