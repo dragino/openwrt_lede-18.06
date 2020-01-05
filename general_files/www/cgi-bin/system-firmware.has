@@ -1,0 +1,93 @@
+#!/usr/bin/haserl --upload-limit=16400 --upload-dir=/tmp
+
+<%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
+
+<%# --- Process the form submission --- %>
+<%
+	if [ $FORM_BUTTON = "Upload" ]; then
+		if test -n "$HASERL_uploadfile_path"; then 
+		  filename=$FORM_uploadfile_name
+		  savedfile=$HASERL_uploadfile_path
+		  cp $savedfile /tmp/flash.bin
+			rm -f $HASERL_uploadfile_path
+		fi
+	fi
+%>
+
+
+<%# --- Present the HTML page --- %>
+<html lang="en">
+
+<head>
+  <title>Dragino LoRa Gateway</title>
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
+  <link rel="stylesheet" href="/static/resources/config.css">
+  <link rel="stylesheet" href="/static/resources/bootstrap.min.css">
+  <script src="/static/resources/jquery.min.js"></script>
+  <script src="/static/resources/bootstrap.min.js"></script>
+	<link rel="shortcut icon" href="/static/resources/favicon.ico">
+
+</head>
+
+<body>
+<br><br><br>
+<h1>Firmware Update</h1>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded"> </a>  
+      <a class="navbar-brand" href="#"><font size="5"><b>Firmware Update</b></font></a>  
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/cgi-bin/system-overview.has"><font size="4">System Overview</font></a></li>
+      <li><a href="/cgi-bin/dragino.has"><font size="4">Return to Main Menu</font></a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <form action="<% echo -n $SCRIPT_NAME %>" method=POST enctype="multipart/form-data" >
+
+    <h2> Upload Firmware File </h2>
+    <input type=file name=uploadfile>
+    <br>
+    <INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Upload">
+
+    <% if [ $FORM_BUTTON = "Upload" ]; then %>
+      <p>
+      You uploaded a file named <b><% echo -n $filename %></b>
+      <br>
+      The file is <% cat /tmp/flash.bin | wc -c %> bytes long.
+      <br>
+      The MD5 checksum is: <% md5sum /tmp/flash.bin | cut -d " " -f 1 %>
+      <br>
+      The SHA256 checksum is: <% sha256sum /tmp/flash.bin | cut -d " " -f 1 %>
+      </p>
+    <% else %>
+      Select file and Upload
+    <% fi %>
+
+    <br><br>
+    <h2> Proceed with Flash </h2>
+    <%
+    	if [ $FORM_BUTTON = "Proceed" ]; then
+				echo "<br><font size="4">*** Sysupgrade now... </font><br>"
+				echo "<br><font size="4">*** Please wait 3 minutes to complete flash operation. </font><br>"
+    		sysupgrade -n -v /tmp/flash.bin
+				echo "<br><font size="4" color="red">*** Sysupgrade terminated...</font><br>"
+			fi
+    %>
+    	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Proceed">
+    	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
+
+  </form>
+</div>
+</body>
+</html>
+
+

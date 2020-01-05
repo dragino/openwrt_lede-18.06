@@ -1,0 +1,211 @@
+#!/usr/bin/haserl
+
+<%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
+
+<%# --- Process the form submission --- %>
+<%
+
+	if [ $FORM_BUTTON = "Save" ] || [ $FORM_BUTTON = "Save&Apply" ]; then
+		uci set wireless.ap_0.ssid="$FORM_SSID"
+		uci set wireless.ap_0.encryption="$FORM_ENCRYPTION"
+		uci set wireless.ap_0.key="$FORM_KEY"
+
+		uci set wireless.radio0.txpower="$FORM_TXPOWER"
+		uci set wireless.radio0.channel="$FORM_CHANNEL"
+		uci set wireless.radio0.wifi_mode="$FORM_WIFI_MODE"
+		uci set wireless.radio0.wan_lan="$FORM_WAN_LAN"
+
+		uci set wireless.sta_0.ssid="$FORM_HOST_SSID"
+		uci set wireless.sta_0.encryption="$FORM_HOST_ENCRYPTION"
+		uci set wireless.sta_0.key="$FORM_HOST_KEY"
+
+		# Set up WiFi working mode and eth1 port
+		uci set network.lan.ifname="eth0" # Default
+    if [ $FORM_WIFI_MODE == "AccessPoint" ]; then
+      uci set wireless.ap_0.disabled="0"
+      uci set wireless.sta_0.disabled="1"
+      uci set network.wan.ifname="eth1"
+    else   # WAN Client mode
+      uci set wireless.sta_0.disabled="0"
+      uci set wireless.ap_0.disabled="1"
+      uci set network.wan.ifname="wlan0-2"
+    	if [ $FORM_WAN_LAN == "checked" ]; then
+				uci set network.lan.ifname="eth0 eth1"
+			fi
+    fi
+
+		uci commit network
+    uci commit wireless 
+	fi
+
+	if [ $FORM_BUTTON = "Save&Apply" ]; then
+    /etc/init.d/network restart
+  fi
+
+%>
+
+
+<%# --- Get the variables for the HTML page --- %>
+<% 
+  ssid="$(uci -q get wireless.ap_0.ssid)"
+  encryption="$(uci -q get wireless.ap_0.encryption)"
+  key="$(uci -q get wireless.ap_0.key)"
+
+  txpower="$(uci -q get wireless.radio0.txpower)"
+  channel="$(uci -q get wireless.radio0.channel)"
+  wifi_mode="$(uci -q get wireless.radio0.wifi_mode)"
+  wan_lan="$(uci -q get wireless.radio0.wan_lan)"
+
+  host_ssid="$(uci -q get wireless.sta_0.ssid)"
+  host_encryption="$(uci -q get wireless.sta_0.encryption)"
+  host_key="$(uci -q get wireless.sta_0.key)"
+
+  ap=" "; client=" "
+  if [ $wifi_mode == "Client" ]; then
+    client="checked"
+  else
+    ap="checked"
+  fi
+%>
+
+
+<%# --- Set up field display --- %>
+<% 
+  # Set up display defaults
+  # Set up display options
+%>
+
+
+<%# --- Present the HTML page --- %>
+<html>
+<head>
+  <title>Dragino LoRa Gateway</title>
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
+  <link rel="stylesheet" href="/static/resources/config.css">
+  <link rel="stylesheet" href="/static/resources/bootstrap.min.css">
+  <script src="/static/resources/jquery.min.js"></script>
+  <script src="/static/resources/bootstrap.min.js"></script>
+	<link rel="shortcut icon" href="/static/resources/favicon.ico">
+
+<script>
+function displayFunction() {
+}
+
+function changeFunc() {
+}
+
+function keyFunction() {
+  var x = document.getElementById("key");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+} 
+function host_keyFunction() {
+  var x = document.getElementById("host_key");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+} 
+</script>
+</head>
+<body onload="displayFunction()">
+
+<br></br>
+<h1>WiFi</h1>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded" width="25" height="25"> </a>  
+      <a class="navbar-brand" href="#"><font size="5"><b> System </b></font></a>  
+    </div>
+
+    <ul class="nav navbar-nav">
+      <li><a href="/cgi-bin/system-overview.has"><font size="4">System Overview</font></a></li>
+      <li><a href="/cgi-bin/system-network.has"><font size="4">Network</font></a></li>
+      <li><a href="/cgi-bin/system-status.has"><font size="4">Network Status</font></a></li>
+      <li><a href="/cgi-bin/dragino.has"><font size="4">Return to Main Menu</font></a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="container">
+<form name="SYSTEM-WIFI" id="SYSTEM-WIFI" action="<% echo -n $SCRIPT_NAME %>" method="POST">
+
+	<h2>WiFi Mode</h2>
+
+  <input type="radio" name="WIFI_MODE" value="AccessPoint" <% echo -n $ap %> > <font size="4"> WiFi Access Point &nbsp;</font>
+  <input type="radio" name="WIFI_MODE" value="Client" <% echo -n $client %> > <font size="4"> WiFi WAN Client </font>
+  <br><br>
+
+	<h2>WiFi Access Point Settings</h2>
+
+	<label for="SSID">WiFi Name SSID</label>
+	<input type="text" name="SSID" required maxlength="128" VALUE="<% echo -n $ssid %>" pattern="[a-zA-Z0-9_*.$%<>;:?@=!^|&+()#~\{\}\-]{1,128}" >
+  <br></br>
+
+	<label for="KEY"> Passphrase (8-32 char)</label>
+	<input type="password" name="KEY" id="key" required maxlength="32" VALUE="<% echo -n $key %>" pattern="[a-zA-Z0-9_*.$%<>;:?@=!^|&+()#~\{\}\-]{8,32}" > 
+
+  <input type="checkbox" onclick="keyFunction()"> 
+
+	<label for="ENCRYPTION"> Encryption</label>
+  <SELECT name="ENCRYPTION" id="encryption">
+	  <option selected="<% echo -n $encryption %>"><% echo -n $encryption %></option>
+		<option value="psk2">WPA2</option>
+		<option value="psk">WPA</option>
+		<option value="wep">WEP</option>
+		<option value="none">None</option>
+	</SELECT>
+  <br><br>
+
+	<label for="CHANNEL"> Channel (1-11) </label>
+	<input type="text" name="CHANNEL" maxlength="2" VALUE="<% echo -n $channel %>" required  pattern="(1[0-1]|[1-9])$">
+
+	<label for="TXPOWER"> Tx Power (0-18) dBm</label>
+	<input type="text" name="TXPOWER" maxlength="2" VALUE="<% echo -n $txpower %>" pattern="(1[0-8]|[0-9])$">
+  <br></br>
+
+	<h2>WiFi WAN Client Settings</h2>
+
+	<label for="HOST_SSID">WiFi Name SSID</label>
+	<input type="text" name="HOST_SSID" required maxlength="128" VALUE="<% echo -n $host_ssid %>" pattern="[a-zA-Z0-9_*.$%<>;:?@=!^|&+()#~\{\}\-\s]{1,128}" >
+
+	<label for="WAN_LAN"> Assign WAN port to LAN</label>
+  <input type="checkbox" name="WAN_LAN" value="checked" <% echo -n $wan_lan %> >
+  <br></br>
+
+	<label for="HOST_KEY"> Passphrase </label>
+	<input type="password" name="HOST_KEY" id="host_key" required maxlength="128" VALUE="<% echo -n $host_key %>" pattern="[a-zA-Z0-9_*.$%<>;:?@=!^|&+()#~\{\}\-\s\/]{8,128}" > 
+
+  <input type="checkbox" onclick="host_keyFunction()"> 
+
+	<label for="HOST_ENCRYPTION">Encryption</label>
+  <SELECT name="HOST_ENCRYPTION" id="host_encryption">
+	  <option selected="<% echo -n $encryption %>"><% echo -n $host_encryption %></option>
+		<option value="psk2">WPA2</option>
+		<option value="psk">WPA</option>
+		<option value="wep">WEP</option>
+		<option value="none">None</option>
+	</SELECT>
+  <br><br>
+
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save">
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
+
+</form>
+</div>
+</body>
+</html>
+
+

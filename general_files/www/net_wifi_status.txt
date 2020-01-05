@@ -1,0 +1,1 @@
+../tmp/net_wifi_status.txt
