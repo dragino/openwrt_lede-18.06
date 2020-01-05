@@ -2,8 +2,8 @@ Source-Makefile: package/feeds/packages/jamvm/Makefile
 
 Package: jamvm
 Submenu: Java
-Version: 2.0.0-1
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +zlib +libpthread +librt +classpath @!avr32
+Version: 2.0.0-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +zlib +libpthread +librt +classpath @(i386||i686||x86_64||arm||armeb||mips||mipsel||powerpc||powerpc64) +CONFIG_powerpc64:libffi
 Conflicts: 
 Menu-Depends: 
 Provides: 

@@ -3,7 +3,7 @@ Build-Depends: sudo/host
 Build-Types: host
 
 Package: sudo
-Version: 1.8.21p2-1
+Version: 1.8.28p1-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -12,8 +12,8 @@ Section: admin
 Category: Administration
 Repository: packages
 Title: Delegate authority to run commands
-Maintainer: Gergely Kiss <mail.gery@gmail.com>
-Source: sudo-1.8.21p2.tar.gz
+Maintainer: 
+Source: sudo-1.8.28p1.tar.gz
 License: ISC
 LicenseFiles: doc/LICENSE
 Type: ipkg
@@ -21,8 +21,8 @@ Description:  Sudo (su "do") allows a system administrator to delegate authority
  give certain users (or groups of users) the ability to run some (or
  all) commands as root or another user while providing an audit trail of
  the commands and their arguments.
-http://www.sudo.ws/
-Gergely Kiss <mail.gery@gmail.com>
+https://www.sudo.ws/
+
 @@
 
 

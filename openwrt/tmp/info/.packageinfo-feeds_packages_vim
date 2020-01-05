@@ -1,4 +1,5 @@
 Source-Makefile: package/feeds/packages/vim/Makefile
+Build-Types: host
 
 Package: vim
 Submenu: Editors

@@ -1,11 +1,12 @@
 Source-Makefile: package/feeds/packages/nfs-kernel-server/Makefile
 Build-Depends: nfs-kernel-server/host
+Build-Depends/host: libtirpc/host
 Build-Types: host
 
 Package: nfs-kernel-server
 Submenu: Filesystem
-Version: 2.3.1-1
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libwrap +libblkid +libuuid +librpc +kmod-fs-nfsd +kmod-fs-nfs +portmap
+Version: 2.3.3-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libwrap +libblkid +libuuid +libtirpc +kmod-fs-nfsd +kmod-fs-nfs +portmap
 Conflicts: 
 Menu-Depends: 
 Provides: 
@@ -14,7 +15,7 @@ Category: Network
 Repository: packages
 Title: Kernel NFS server support
 Maintainer: Peter Wagner <tripolar@gmx.at>
-Source: nfs-utils-2.3.1.tar.bz2
+Source: nfs-utils-2.3.3.tar.xz
 Type: ipkg
 Description:   Kernel NFS server support
 http://nfs.sourceforge.net/
@@ -23,7 +24,7 @@ Peter Wagner <tripolar@gmx.at>
 
 Package: nfs-kernel-server-utils
 Submenu: Filesystem
-Version: 2.3.1-1
+Version: 2.3.3-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread nfs-kernel-server
 Conflicts: 
 Menu-Depends: 
@@ -33,7 +34,7 @@ Category: Network
 Repository: packages
 Title: NFS server utils
 Maintainer: Peter Wagner <tripolar@gmx.at>
-Source: nfs-utils-2.3.1.tar.bz2
+Source: nfs-utils-2.3.3.tar.xz
 Type: ipkg
 Description:   NFS server utils
 http://nfs.sourceforge.net/
@@ -42,8 +43,8 @@ Peter Wagner <tripolar@gmx.at>
 
 Package: nfs-utils
 Submenu: Filesystem
-Version: 2.3.1-1
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libwrap +libblkid +libuuid +librpc +libevent2 +USE_UCLIBC:librpc
+Version: 2.3.3-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libwrap +libblkid +libuuid +libtirpc +libevent2
 Conflicts: 
 Menu-Depends: 
 Provides: 
@@ -52,7 +53,7 @@ Category: Utilities
 Repository: packages
 Title: updated mount utility (includes nfs4)
 Maintainer: Peter Wagner <tripolar@gmx.at>
-Source: nfs-utils-2.3.1.tar.bz2
+Source: nfs-utils-2.3.3.tar.xz
 Type: ipkg
 Description:   Updated mount.nfs command - allows mounting nfs4 volumes
 http://nfs.sourceforge.net/

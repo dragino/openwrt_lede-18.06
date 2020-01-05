@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/libdouble-conversion/Makefile
 
 Package: libdouble-conversion
-Version: 2.0-1
+Version: 3.1.4-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libstdcpp
 Conflicts: 
 Menu-Depends: 
@@ -11,11 +11,12 @@ Category: Libraries
 Repository: packages
 Title: Efficient binary-decimal and decimal-binary conversion routines for IEEE doubles
 Maintainer: 
-Source: libdouble-conversion-2.0.tar.xz
+Source: double-conversion-3.1.4.tar.gz
+License: BSD-3c
 LicenseFiles: COPYING LICENSE
 Type: ipkg
 Description:   double-conversion provides binary-decimal and decimal-binary routines for IEEE doubles.
-  
+
   The library consists of efficient conversion routines that have been extracted
   from the V8 JavaScript engine. The code has been refactored and improved so that
   it can be used more easily in other projects.

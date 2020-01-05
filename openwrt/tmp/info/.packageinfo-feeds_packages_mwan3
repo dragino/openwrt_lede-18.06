@@ -2,7 +2,7 @@ Source-Makefile: package/feeds/packages/mwan3/Makefile
 
 Package: mwan3
 Submenu: Routing and Redirection
-Version: 2.6.17-1
+Version: 2.6.18-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +ip +ipset +iptables +iptables-mod-conntrack-extra +iptables-mod-ipopt +jshn
 Conflicts: 
 Menu-Depends: 

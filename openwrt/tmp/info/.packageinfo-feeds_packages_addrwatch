@@ -2,7 +2,7 @@ Source-Makefile: package/feeds/packages/addrwatch/Makefile
 Build-Depends: USE_UCLIBC:argp-standalone USE_MUSL:argp-standalone
 
 Package: addrwatch
-Version: 0.8-2
+Version: 0.8-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpcap +libevent2
 Conflicts: 
 Menu-Depends: 

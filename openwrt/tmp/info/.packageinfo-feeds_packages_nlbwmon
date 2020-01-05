@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/nlbwmon/Makefile
 
 Package: nlbwmon
-Version: 2017-12-05-75accd647459a8a4167f9baa402d116cad41caa9-1
+Version: 2019-06-06-4574e6e80e3a5ab8de65886baa0d563dfee589ff-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libubox +libnl-tiny +zlib +kmod-nf-conntrack-netlink
 Conflicts: 
 Menu-Depends: 
@@ -11,7 +11,7 @@ Category: Network
 Repository: packages
 Title: LEDE Traffic Usage Monitor
 Maintainer: Jo-Philipp Wich <jo@mein.io>
-Source: nlbwmon-2017-12-05-75accd647459a8a4167f9baa402d116cad41caa9.tar.xz
+Source: nlbwmon-2019-06-06-4574e6e80e3a5ab8de65886baa0d563dfee589ff.tar.xz
 License: ISC
 LicenseFiles: COPYING
 Type: ipkg

@@ -1,4 +1,5 @@
 Source-Makefile: package/feeds/packages/ttyd/Makefile
+Build-Depends: vim/host
 
 Package: ttyd
 Submenu: Terminal

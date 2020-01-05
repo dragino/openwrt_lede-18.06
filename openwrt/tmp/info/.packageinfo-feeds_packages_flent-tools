@@ -1,4 +1,5 @@
 Source-Makefile: package/feeds/packages/flent-tools/Makefile
+Build-Depends: !BUILD_NLS:libiconv !BUILD_NLS:gettext
 
 Package: flent-tools
 Version: 1.0.1

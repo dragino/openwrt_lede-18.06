@@ -2,7 +2,7 @@ Source-Makefile: package/feeds/packages/domoticz/Makefile
 Build-Depends: python3
 
 Package: domoticz
-Version: 4.9700-1
+Version: 4.9700-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +boost +boost-date_time +boost-system +boost-thread +libcurl +libmosquittopp +libopenssl +libopenzwave +libsqlite3 +libstdcpp +zlib
 Conflicts: 
 Menu-Depends: 

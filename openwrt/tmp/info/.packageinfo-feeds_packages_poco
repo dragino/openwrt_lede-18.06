@@ -1,8 +1,8 @@
 Source-Makefile: package/feeds/packages/poco/Makefile
 
 Package: poco
-Version: 1.8.1-1
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libstdcpp +libpthread +librt
+Version: 1.8.1-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libstdcpp +libpthread +librt @!arc
 Conflicts: 
 Menu-Depends: 
 Provides: 

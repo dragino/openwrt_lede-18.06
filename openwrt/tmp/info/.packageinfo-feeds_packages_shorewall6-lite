@@ -2,7 +2,7 @@ Source-Makefile: package/feeds/packages/shorewall6-lite/Makefile
 
 Package: shorewall6-lite
 Submenu: Firewall
-Version: 5.2.0.4-1
+Version: 5.2.0.5-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +ip +ip6tables +shorewall-core
 Conflicts: 
 Menu-Depends: 
@@ -12,7 +12,7 @@ Category: Network
 Repository: packages
 Title: Shorewall6 Lite
 Maintainer: Willem van den Akker <wvdakker@wilsoft.nl>
-Source: shorewall6-lite-5.2.0.4.tar.bz2
+Source: shorewall6-lite-5.2.0.5.tar.bz2
 License: GPL-2.0+
 LicenseFiles: COPYING
 Type: ipkg

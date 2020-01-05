@@ -1,9 +1,10 @@
 Source-Makefile: package/feeds/packages/protobuf-c/Makefile
 Build-Depends: protobuf-c/host
+Build-Depends/host: protobuf/host
 Build-Types: host
 
 Package: libprotobuf-c
-Version: v1.2.1
+Version: v1.3.2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -13,7 +14,7 @@ Category: Libraries
 Repository: packages
 Title: Protocol Buffers library
 Maintainer: Jacob Siverskog <jacob@teenageengineering.com>
-Source: libprotobuf-c-v1.2.1.tar.bz2
+Source: libprotobuf-c-v1.3.2.tar.xz
 License: BSD-2c
 Type: ipkg
 Description:   Runtime library to use Google Protocol Buffers from C applications.

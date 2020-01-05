@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/espeak/Makefile
 
 Package: espeak
-Version: 1.48.04-1
+Version: 1.48.04-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +libstdcpp +portaudio
 Conflicts: 
 Menu-Depends: 

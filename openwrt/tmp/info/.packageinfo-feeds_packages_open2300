@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/open2300/Makefile
 
 Package: open2300
-Version: 1.12-5
+Version: 2014-03-04-1af8ae609da66f8e1b745533c19095c9758bfb0b-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -11,8 +11,8 @@ Category: Utilities
 Repository: packages
 Title: WS23XX weather station utilities
 Maintainer: Gabor SZOLLOSI <dev@localnet.hu>
-Source: open2300-1.12-r12.tar.gz
-License: GPL-2.0+
+Source: open2300-2014-03-04-1af8ae609da66f8e1b745533c19095c9758bfb0b.tar.xz
+License: GPL-2.0-or-later
 LicenseFiles: COPYING
 Type: ipkg
 Description:   This is an utility suite used to communicate with and collect data from a WS23XX wheather station.

@@ -16,7 +16,7 @@ License: BSD-2-Clause
 LicenseFiles: COPYRIGHT
 Type: ipkg
 Description: Very small Elliptic Curve Cryptography library
-http://git.universe-factory.net/libuecc/
+https://github.com/NeoRaider/libuecc/
 Matthias Schiffer <mschiffer@universe-factory.net>
 @@
 

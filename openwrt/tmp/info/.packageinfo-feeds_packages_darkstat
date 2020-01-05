@@ -1,8 +1,8 @@
 Source-Makefile: package/feeds/packages/darkstat/Makefile
 
 Package: darkstat
-Version: 3.0.719-1
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpcap +zlib +USE_GLIBC:libbsd
+Version: 3.0.719-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpcap +zlib
 Conflicts: 
 Menu-Depends: 
 Provides: 

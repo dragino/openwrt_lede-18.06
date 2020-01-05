@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/libglog/Makefile
 
 Package: glog
-Version: v0.3.5-1
+Version: v0.3.5-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libstdcpp +libpthread
 Conflicts: 
 Menu-Depends: 

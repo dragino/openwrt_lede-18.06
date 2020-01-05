@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/patch/Makefile
 
 Package: patch
-Version: 2.7.6-1
+Version: 2.7.6-5
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -17,7 +17,7 @@ LicenseFiles: COPYING
 Type: ipkg
 Description:   The Patch package contains a program for modifying or creating files
   by applying a "patch" file typically created by the diff program.
-http://www.gnu.org/
+https://savannah.gnu.org/projects/patch/
 Russell Senior <russell@personaltelco.net>
 @@
 

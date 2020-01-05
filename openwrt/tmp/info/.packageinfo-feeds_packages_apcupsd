@@ -2,7 +2,7 @@ Source-Makefile: package/feeds/packages/apcupsd/Makefile
 Build-Depends: libgd
 
 Package: apcupsd
-Version: 3.14.14-1
+Version: 3.14.14-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +libusb-compat
 Conflicts: 
 Menu-Depends: 
@@ -22,7 +22,7 @@ Othmar Truniger <github@truniger.ch>
 @@
 
 Package: apcupsd-cgi
-Version: 3.14.14-1
+Version: 3.14.14-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +libgd
 Conflicts: 
 Menu-Depends: 

@@ -2,7 +2,7 @@ Source-Makefile: package/feeds/packages/luasec/Makefile
 
 Package: luasec
 Submenu: Lua
-Version: 0.6-1
+Version: 0.6-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +lua +libopenssl +luasocket
 Conflicts: 
 Menu-Depends: 

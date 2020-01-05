@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/setserial/Makefile
 
 Package: setserial
-Version: 2.17
+Version: 2.17-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 

@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/bind/Makefile
 
 Package: bind-libs
-Version: 9.11.2-P1-1
+Version: 9.11.13-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libopenssl +zlib
 Conflicts: 
 Menu-Depends: 
@@ -11,8 +11,9 @@ Category: Libraries
 Repository: packages
 Title: bind shared libraries
 Maintainer: Noah Meyerhans <frodo@morgul.net>
-Source: bind-9.11.2-P1.tar.gz
-License: BSD-3-Clause
+Source: bind-9.11.13.tar.gz
+License: MPL-2.0
+LicenseFiles: LICENSE
 Type: ipkg
 Description: bind shared libraries
 https://www.isc.org/software/bind
@@ -21,7 +22,7 @@ Noah Meyerhans <frodo@morgul.net>
 
 Package: bind-server
 Submenu: IP Addresses and Names
-Version: 9.11.2-P1-1
+Version: 9.11.13-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +bind-libs +@OPENSSL_WITH_EC +@OPENSSL_WITH_DEPRECATED
 Conflicts: 
 Menu-Depends: 
@@ -31,8 +32,9 @@ Category: Network
 Repository: packages
 Title: bind DNS server
 Maintainer: Noah Meyerhans <frodo@morgul.net>
-Source: bind-9.11.2-P1.tar.gz
-License: BSD-3-Clause
+Source: bind-9.11.13.tar.gz
+License: MPL-2.0
+LicenseFiles: LICENSE
 Type: ipkg
 Description: bind DNS server
 https://www.isc.org/software/bind
@@ -44,7 +46,7 @@ Config:
 
 Package: bind-client
 Submenu: IP Addresses and Names
-Version: 9.11.2-P1-1
+Version: 9.11.13-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +bind-libs +@OPENSSL_WITH_EC
 Conflicts: 
 Menu-Depends: 
@@ -54,8 +56,9 @@ Category: Network
 Repository: packages
 Title: bind dynamic DNS client
 Maintainer: Noah Meyerhans <frodo@morgul.net>
-Source: bind-9.11.2-P1.tar.gz
-License: BSD-3-Clause
+Source: bind-9.11.13.tar.gz
+License: MPL-2.0
+LicenseFiles: LICENSE
 Type: ipkg
 Description: bind dynamic DNS client
 https://www.isc.org/software/bind
@@ -64,7 +67,7 @@ Noah Meyerhans <frodo@morgul.net>
 
 Package: bind-tools
 Submenu: IP Addresses and Names
-Version: 9.11.2-P1-1
+Version: 9.11.13-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +bind-libs +@OPENSSL_WITH_EC
 Conflicts: 
 Menu-Depends: 
@@ -74,8 +77,9 @@ Category: Network
 Repository: packages
 Title: bind administration tools (all)
 Maintainer: Noah Meyerhans <frodo@morgul.net>
-Source: bind-9.11.2-P1.tar.gz
-License: BSD-3-Clause
+Source: bind-9.11.13.tar.gz
+License: MPL-2.0
+LicenseFiles: LICENSE
 Type: ipkg
 Description: bind administration tools (all)
 https://www.isc.org/software/bind
@@ -84,7 +88,7 @@ Noah Meyerhans <frodo@morgul.net>
 
 Package: bind-rndc
 Submenu: IP Addresses and Names
-Version: 9.11.2-P1-1
+Version: 9.11.13-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +bind-libs +@OPENSSL_WITH_EC
 Conflicts: 
 Menu-Depends: 
@@ -94,8 +98,9 @@ Category: Network
 Repository: packages
 Title: bind administration tools (rndc and rndc-confgen only)
 Maintainer: Noah Meyerhans <frodo@morgul.net>
-Source: bind-9.11.2-P1.tar.gz
-License: BSD-3-Clause
+Source: bind-9.11.13.tar.gz
+License: MPL-2.0
+LicenseFiles: LICENSE
 Type: ipkg
 Description: bind administration tools (rndc and rndc-confgen only)
 https://www.isc.org/software/bind
@@ -104,7 +109,7 @@ Noah Meyerhans <frodo@morgul.net>
 
 Package: bind-check
 Submenu: IP Addresses and Names
-Version: 9.11.2-P1-1
+Version: 9.11.13-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +bind-libs +@OPENSSL_WITH_EC
 Conflicts: 
 Menu-Depends: 
@@ -114,8 +119,9 @@ Category: Network
 Repository: packages
 Title: bind administration tools (named-checkconf and named-checkzone only)
 Maintainer: Noah Meyerhans <frodo@morgul.net>
-Source: bind-9.11.2-P1.tar.gz
-License: BSD-3-Clause
+Source: bind-9.11.13.tar.gz
+License: MPL-2.0
+LicenseFiles: LICENSE
 Type: ipkg
 Description: bind administration tools (named-checkconf and named-checkzone only)
 https://www.isc.org/software/bind
@@ -124,7 +130,7 @@ Noah Meyerhans <frodo@morgul.net>
 
 Package: bind-dnssec
 Submenu: IP Addresses and Names
-Version: 9.11.2-P1-1
+Version: 9.11.13-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +bind-libs +@OPENSSL_WITH_EC
 Conflicts: 
 Menu-Depends: 
@@ -134,8 +140,9 @@ Category: Network
 Repository: packages
 Title: bind administration tools (dnssec-keygen, dnssec-settime and dnssec-signzone only)
 Maintainer: Noah Meyerhans <frodo@morgul.net>
-Source: bind-9.11.2-P1.tar.gz
-License: BSD-3-Clause
+Source: bind-9.11.13.tar.gz
+License: MPL-2.0
+LicenseFiles: LICENSE
 Type: ipkg
 Description: bind administration tools (dnssec-keygen, dnssec-settime and dnssec-signzone only)
 https://www.isc.org/software/bind
@@ -144,7 +151,7 @@ Noah Meyerhans <frodo@morgul.net>
 
 Package: bind-host
 Submenu: IP Addresses and Names
-Version: 9.11.2-P1-1
+Version: 9.11.13-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +bind-libs +@OPENSSL_WITH_EC
 Conflicts: 
 Menu-Depends: 
@@ -154,8 +161,9 @@ Category: Network
 Repository: packages
 Title: bind simple DNS client
 Maintainer: Noah Meyerhans <frodo@morgul.net>
-Source: bind-9.11.2-P1.tar.gz
-License: BSD-3-Clause
+Source: bind-9.11.13.tar.gz
+License: MPL-2.0
+LicenseFiles: LICENSE
 Type: ipkg
 Description: bind simple DNS client
 https://www.isc.org/software/bind
@@ -164,7 +172,7 @@ Noah Meyerhans <frodo@morgul.net>
 
 Package: bind-dig
 Submenu: IP Addresses and Names
-Version: 9.11.2-P1-1
+Version: 9.11.13-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +bind-libs +@OPENSSL_WITH_EC
 Conflicts: 
 Menu-Depends: 
@@ -174,8 +182,9 @@ Category: Network
 Repository: packages
 Title: bind DNS excavation tool
 Maintainer: Noah Meyerhans <frodo@morgul.net>
-Source: bind-9.11.2-P1.tar.gz
-License: BSD-3-Clause
+Source: bind-9.11.13.tar.gz
+License: MPL-2.0
+LicenseFiles: LICENSE
 Type: ipkg
 Description: bind DNS excavation tool
 https://www.isc.org/software/bind

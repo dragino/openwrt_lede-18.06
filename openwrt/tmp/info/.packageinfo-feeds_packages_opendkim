@@ -2,7 +2,7 @@ Source-Makefile: package/feeds/packages/opendkim/Makefile
 Build-Depends: openssl
 
 Package: opendkim
-Version: 2.10.3-1
+Version: 2.10.3-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libopendkim
 Conflicts: 
 Menu-Depends: 
@@ -23,7 +23,7 @@ Val Kulkov <val.kulkov@gmail.com>
 @@
 
 Package: libopendkim
-Version: 2.10.3-1
+Version: 2.10.3-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libopenssl +libmilter-sendmail
 Conflicts: 
 Menu-Depends: 
@@ -43,7 +43,7 @@ Val Kulkov <val.kulkov@gmail.com>
 @@
 
 Package: opendkim-tools
-Version: 2.10.3-1
+Version: 2.10.3-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libopendkim
 Conflicts: 
 Menu-Depends: 

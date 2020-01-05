@@ -2,7 +2,7 @@ Source-Makefile: package/feeds/dragino/lg02-pkt-fwd/Makefile
 
 Package: lg02_pkt_fwd
 Version: 1.2.0-1
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libuci +libmosquitto-ssl +libpthread +librt
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libuci +libpthread +librt
 Conflicts: 
 Menu-Depends: 
 Provides: 

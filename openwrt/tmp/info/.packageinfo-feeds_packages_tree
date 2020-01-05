@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/tree/Makefile
 
 Package: tree
-Version: 1.7.0-2
+Version: 1.8.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libgcc
 Conflicts: 
 Menu-Depends: 
@@ -11,7 +11,7 @@ Category: Utilities
 Repository: packages
 Title: List contents of directories in a tree-like format
 Maintainer: Banglang Huang <banglang.huang@foxmail.com>
-Source: tree-1.7.0.tgz
+Source: tree-1.8.0.tgz
 Type: ipkg
 Description: List contents of directories in a tree-like format
 Banglang Huang <banglang.huang@foxmail.com>

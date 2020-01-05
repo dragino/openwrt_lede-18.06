@@ -5,13 +5,21 @@
 <%# --- Process the form submission --- %>
 <%
 	if [ $FORM_BUTTON = "Save" ]; then
+
+    if [ $FORM_CHANGE == "checked" ]; then
+      change="1"
+    else 
+      change="0"
+    fi
+
+		uci set tcp_client.general.update_onchange="$change"
+
 		uci set tcp_client.general.update_interval="$FORM_UPDATE"
 		uci set tcp_client.general.server_address="$FORM_ADDR"
 		uci set tcp_client.general.server_port="$FORM_PORT"
-		uci set tcp_client.general.update_onchange="$FORM_CHANGE"
+
 		uci commit tcp_client 
 	fi
-
 %>
 
 
@@ -21,6 +29,12 @@
 	addr="$(uci -q get tcp_client.general.server_address)"
 	port="$(uci -q get tcp_client.general.server_port)"
 	change="$(uci -q get tcp_client.general.update_onchange)"
+
+  if [ $change == "1" ]; then
+    change="checked"
+  else
+    change="0"
+  fi
 %>
 
 
@@ -60,12 +74,12 @@ function changeFunc() {
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded"> </a>  
-      <a class="navbar-brand" href="#"> TCP Client Configuration </a>  
+      <a class="navbar-brand" href="#"><font size="5"><b> TCP Client Configuration </b></font></a>  
     </div>
 
     <ul class="nav navbar-nav">
-      <li><a href="/cgi-bin/tcp-chan.has">TCP/IP Channels</a></li>
-      <li><a href="/cgi-bin/dragino.has">Return to Main Menu</a></li>
+      <li><a href="/cgi-bin/tcp-chan.has"><font size="4">TCP/IP Channels</font></a></li>
+      <li><a href="/cgi-bin/dragino.has"><font size="4">Return to Main Menu</font></a></li>
     </ul>
 
   </div>
@@ -95,7 +109,7 @@ function changeFunc() {
   <br></br>
 
 	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save">
-	<br></br>
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
 
 </form>
 </div>

@@ -5,7 +5,7 @@ Build-Types: host
 
 Package: python3-unittest
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
 Conflicts: 
 Menu-Depends: 
@@ -15,7 +15,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 unittest module
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -26,7 +26,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-unittest-src
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -36,7 +36,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 unittest module (sources)
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -48,7 +48,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-lib2to3
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3
 Conflicts: 
 Menu-Depends: 
@@ -58,7 +58,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 lib2to3 module
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -69,7 +69,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-lib2to3-src
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -79,7 +79,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 lib2to3 module (sources)
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -91,7 +91,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-ncurses
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +libncurses
 Conflicts: 
 Menu-Depends: 
@@ -101,7 +101,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 ncurses module
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -112,7 +112,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-ncurses-src
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -122,7 +122,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 ncurses module (sources)
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -134,7 +134,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-ctypes
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
 Conflicts: 
 Menu-Depends: 
@@ -144,7 +144,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 ctypes module
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -155,7 +155,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-ctypes-src
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -165,7 +165,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 ctypes module (sources)
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -177,7 +177,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-pydoc
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
 Conflicts: 
 Menu-Depends: 
@@ -187,7 +187,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 pydoc module
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -198,7 +198,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-pydoc-src
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -208,7 +208,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 pydoc module (sources)
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -220,7 +220,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-logging
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
 Conflicts: 
 Menu-Depends: 
@@ -230,7 +230,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 logging module
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -241,7 +241,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-logging-src
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -251,7 +251,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 logging module (sources)
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -263,7 +263,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-multiprocessing
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
 Conflicts: 
 Menu-Depends: 
@@ -273,7 +273,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 multiprocessing
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -284,7 +284,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-multiprocessing-src
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -294,7 +294,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 multiprocessing (sources)
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -306,7 +306,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-codecs
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
 Conflicts: 
 Menu-Depends: 
@@ -316,7 +316,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 codecs + unicode support
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -327,7 +327,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-codecs-src
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -337,7 +337,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 codecs + unicode support (sources)
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -349,7 +349,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-pip
 Submenu: Python
-Version: 9.0.3-1
+Version: 18.1-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3 +python3-setuptools +python-pip-conf
 Conflicts: 
 Menu-Depends: 
@@ -359,7 +359,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 pip module
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -370,7 +370,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-pip-src
 Submenu: Python
-Version: 9.0.3-1
+Version: 18.1-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -380,7 +380,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 pip module (sources)
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -392,7 +392,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-dev
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3 +python3-lib2to3
 Conflicts: 
 Menu-Depends: 
@@ -402,7 +402,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 development files
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -413,7 +413,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-dev-src
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -423,7 +423,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 development files (sources)
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -435,7 +435,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-gdbm
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +libgdbm
 Conflicts: 
 Menu-Depends: 
@@ -445,7 +445,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 gdbm module
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -456,7 +456,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-gdbm-src
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -466,7 +466,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 gdbm module (sources)
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -478,7 +478,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-sqlite3
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +libsqlite3
 Conflicts: 
 Menu-Depends: 
@@ -488,7 +488,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 sqlite3 module
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -499,7 +499,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-sqlite3-src
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -509,7 +509,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 sqlite3 module (sources)
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -521,7 +521,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-xml
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
 Conflicts: 
 Menu-Depends: 
@@ -531,7 +531,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 xml libs
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -542,7 +542,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-xml-src
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -552,7 +552,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 xml libs (sources)
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -564,7 +564,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-distutils
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
 Conflicts: 
 Menu-Depends: 
@@ -574,7 +574,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 distutils module
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -585,7 +585,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-distutils-src
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -595,7 +595,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 distutils module (sources)
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -607,7 +607,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-email
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
 Conflicts: 
 Menu-Depends: 
@@ -617,7 +617,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 email module
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -628,7 +628,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-email-src
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -638,7 +638,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 email module (sources)
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -650,7 +650,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-openssl
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +libopenssl
 Conflicts: 
 Menu-Depends: 
@@ -660,7 +660,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 SSL module
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -671,7 +671,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-openssl-src
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -681,7 +681,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 SSL module (sources)
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -693,7 +693,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-setuptools
 Submenu: Python
-Version: 39.0.1-1
+Version: 40.6.2-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3
 Conflicts: 
 Menu-Depends: 
@@ -703,7 +703,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 setuptools module
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -714,7 +714,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-setuptools-src
 Submenu: Python
-Version: 39.0.1-1
+Version: 40.6.2-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -724,7 +724,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 setuptools module (sources)
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -736,7 +736,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-cgi
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +python3-email
 Conflicts: 
 Menu-Depends: 
@@ -746,7 +746,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 cgi module
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -757,7 +757,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-cgi-src
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -767,7 +767,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 cgi module (sources)
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -779,7 +779,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-cgitb
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +python3-cgi +python3-pydoc
 Conflicts: 
 Menu-Depends: 
@@ -789,7 +789,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 cgitb module
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -800,7 +800,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-cgitb-src
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -810,7 +810,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 cgitb module (sources)
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -822,7 +822,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-dbm
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +libdb47
 Conflicts: 
 Menu-Depends: 
@@ -832,7 +832,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 dbm module
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -843,7 +843,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-dbm-src
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -853,7 +853,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 dbm module (sources)
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -865,7 +865,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-asyncio
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
 Conflicts: 
 Menu-Depends: 
@@ -875,7 +875,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 asyncio module
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -886,7 +886,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-asyncio-src
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -896,7 +896,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 asyncio module (sources)
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -908,7 +908,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-lzma
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +liblzma
 Conflicts: 
 Menu-Depends: 
@@ -918,7 +918,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 lzma module
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -929,7 +929,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-lzma-src
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -939,7 +939,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 lzma module (sources)
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -951,7 +951,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-decimal
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
 Conflicts: 
 Menu-Depends: 
@@ -961,7 +961,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 decimal module
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -972,7 +972,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-decimal-src
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -982,7 +982,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 decimal module (sources)
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -994,7 +994,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-base
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +zlib
 Conflicts: 
 Menu-Depends: 
@@ -1004,7 +1004,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 interpreter
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -1016,7 +1016,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-light
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-base +libffi +libbz2 +PYTHON3_BLUETOOTH_SUPPORT:bluez-libs
 Conflicts: 
 Menu-Depends: 
@@ -1026,7 +1026,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 light installation
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -1042,7 +1042,7 @@ Config:
 
 Package: python3
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +python3-unittest +python3-ncurses +python3-ctypes +python3-pydoc +python3-logging +python3-multiprocessing +python3-codecs +python3-gdbm +python3-sqlite3 +python3-xml +python3-distutils +python3-email +python3-openssl +python3-cgi +python3-cgitb +python3-dbm +python3-asyncio +python3-lzma +python3-decimal
 Conflicts: 
 Menu-Depends: 
@@ -1052,7 +1052,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 programming language
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -1064,7 +1064,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-base-src
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -1074,7 +1074,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 interpreter (sources)
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg
@@ -1087,7 +1087,7 @@ Alexandru Ardelean <ardeleanalex@gmail.com>
 
 Package: python3-light-src
 Submenu: Python
-Version: 3.6.5-1
+Version: 3.6.9-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -1097,7 +1097,7 @@ Category: Languages
 Repository: packages
 Title: Python 3.6 light installation (sources)
 Maintainer: Alexandru Ardelean <ardeleanalex@gmail.com>
-Source: Python-3.6.5.tar.xz
+Source: Python-3.6.9.tar.xz
 License: PSF
 LicenseFiles: LICENSE Modules/_ctypes/libffi_msvc/LICENSE Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi/LICENSE Modules/_ctypes/libffi_osx/LICENSE Tools/pybench/LICENSE
 Type: ipkg

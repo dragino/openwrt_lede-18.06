@@ -3,7 +3,7 @@ Source-Makefile: package/feeds/packages/libiio/Makefile
 Package: libiio
 Menu: 1
 Version: 0.14-2
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +LIBIIO_USB_BACKEND:libusb-1.0 +LIBIIO_NETWORK_BACKEND:libavahi-client +LIBIIO_XML_BACKEND:libxml2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +zlib +LIBIIO_USB_BACKEND:libusb-1.0 +LIBIIO_NETWORK_BACKEND:libavahi-client +LIBIIO_XML_BACKEND:libxml2
 Conflicts: 
 Menu-Depends: 
 Provides: 

@@ -1,26 +1,50 @@
 Source-Makefile: package/feeds/packages/youtube-dl/Makefile
-Build-Depends: python/host zip/host
 
 Package: youtube-dl
-Version: 2018.03.10-1
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python-openssl +python-email +python-xml +python-codecs +python-ctypes +ca-certificates
+Version: 2019.9.28-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +ca-certificates +python +python-email +python-xml +python-codecs +python-ctypes +python-setuptools
 Conflicts: 
 Menu-Depends: 
 Provides: 
+Build-Variant: python
 Section: multimedia
 Category: Multimedia
 Repository: packages
-Title: utility to download videos from YouTube.com
-Maintainer: Adrian Panella <ianchi74@outlook.com>
-Source: youtube-dl-2018.03.10.tar.gz
+Title: Utility to download videos from YouTube.com
+Maintainer: Adrian Panella <ianchi74@outlook.com>, Josef Schlehofer <pepe.schlehofer@gmail.com>
+Source: youtube_dl-2019.9.28.tar.gz
 License: Unlicense
 LicenseFiles: LICENSE
 Type: ipkg
-Description:   youtube-dl is a small command-line program to download videos 
-  from YouTube.com and a few more sites. 
+Description:   youtube-dl is a small command-line program to download videos
+  from YouTube.com and other video sites.
   It requires the Python interpreter.
-https://youtube-dl.org
-Adrian Panella <ianchi74@outlook.com>
+https://yt-dl.org
+Adrian Panella <ianchi74@outlook.com>, Josef Schlehofer <pepe.schlehofer@gmail.com>
+@@
+
+Package: youtube-dl-src
+Version: 2019.9.28-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: python
+Section: multimedia
+Category: Multimedia
+Repository: packages
+Title: Utility to download videos from YouTube.com (sources)
+Maintainer: Adrian Panella <ianchi74@outlook.com>, Josef Schlehofer <pepe.schlehofer@gmail.com>
+Source: youtube_dl-2019.9.28.tar.gz
+License: Unlicense
+LicenseFiles: LICENSE
+Type: ipkg
+Description:       youtube-dl is a small command-line program to download videos
+  from YouTube.com and other video sites.
+  It requires the Python interpreter..
+    (Contains the Python sources for this package).
+https://yt-dl.org
+Adrian Panella <ianchi74@outlook.com>, Josef Schlehofer <pepe.schlehofer@gmail.com>
 @@
 
 

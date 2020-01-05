@@ -2,22 +2,47 @@ Source-Makefile: package/feeds/packages/python-urllib3/Makefile
 
 Package: python-urllib3
 Submenu: Python
-Version: 1.22-1
+Version: 1.24.3-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python
 Conflicts: 
 Menu-Depends: 
 Provides: 
+Build-Variant: python
 Section: lang
 Category: Languages
 Repository: packages
-Title: HTTP library with thread-safe connection pooling, file post, and more.
-Maintainer: Gergely Kiss <mail.gery@gmail.com>
-Source: urllib3-1.22.tar.gz
+Title: Sanity-friendly HTTP client
+Maintainer: 
+Source: urllib3-1.24.3.tar.gz
 License: MIT
+LicenseFiles: LICENSE.txt
 Type: ipkg
 Description:   HTTP library with thread-safe connection pooling, file post, and more.
 https://urllib3.readthedocs.io/
-Gergely Kiss <mail.gery@gmail.com>
+
+@@
+
+Package: python-urllib3-src
+Submenu: Python
+Version: 1.24.3-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Build-Variant: python
+Section: lang
+Category: Languages
+Repository: packages
+Title: Sanity-friendly HTTP client (sources)
+Maintainer: 
+Source: urllib3-1.24.3.tar.gz
+License: MIT
+LicenseFiles: LICENSE.txt
+Type: ipkg
+Description:       HTTP library with thread-safe connection pooling, file post, and more..
+    (Contains the Python sources for this package).
+https://urllib3.readthedocs.io/
+
 @@
 
 

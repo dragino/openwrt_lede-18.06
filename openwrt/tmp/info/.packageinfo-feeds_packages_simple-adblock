@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/simple-adblock/Makefile
 
 Package: simple-adblock
-Version: 1.6.3-5
+Version: 1.8.2-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -12,10 +12,10 @@ Repository: packages
 Title: Simple AdBlock Service
 Maintainer: Stan Grishin <stangri@melmac.net>
 Source: 
-License: GPL-3.0+
+License: GPL-3.0-or-later
 Type: ipkg
-Description: This service provides dnsmasq-based ad blocking.
-Please see the README for further information.
+Description: This service provides DNSMASQ or Unbound based ad blocking.
+Please see the project's README at github for further information.
 
 Stan Grishin <stangri@melmac.net>
 @@

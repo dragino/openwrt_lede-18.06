@@ -1,9 +1,11 @@
 Source-Makefile: package/feeds/packages/prosody/Makefile
+Build-Depends: lua/host
+Build-Depends/host: lua/host
 
 Package: prosody
 Submenu: Instant Messaging
-Version: 0.9.12-1
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +luafilesystem +libidn +luaexpat +luasec +libopenssl +libidn +liblua
+Version: 0.11.2-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +luafilesystem +libidn +luaexpat +luasec +libopenssl +libidn +liblua +luabitop
 Conflicts: 
 Menu-Depends: 
 Provides: 
@@ -13,13 +15,13 @@ Repository: packages
 Title: XMPP server
 Maintainer: Thomas Heil <heil@terminal-consulting.de>
 Require-User: prosody=54:prosody=54
-Source: prosody-0.9.12.tar.gz
+Source: prosody-0.11.2.tar.gz
 License: MIT/X11
 Type: ipkg
 Description:   Prosody is an exciting new server for Jabber/XMPP
   written in Lua. It aims to be easy to use, and light
   on resources
-http://prosody.im/
+https://prosody.im/
 Thomas Heil <heil@terminal-consulting.de>
 @@
 

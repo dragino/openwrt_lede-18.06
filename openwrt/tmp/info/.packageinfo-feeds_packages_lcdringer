@@ -2,7 +2,7 @@ Source-Makefile: package/feeds/packages/lcdringer/Makefile
 Build-Depends: vala !BUILD_NLS:libiconv !BUILD_NLS:gettext
 
 Package: lcdringer
-Version: 0.0.2-1
+Version: 0.0.2-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libgee +libgstreamer1 +loudmouth @TARGET_brcm2708
 Conflicts: 
 Menu-Depends: 

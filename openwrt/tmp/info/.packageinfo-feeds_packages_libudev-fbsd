@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/libudev-fbsd/Makefile
 
 Package: libudev-fbsd
-Version: 20160820-2
+Version: 20171216-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libevdev
 Conflicts: libudev eudev udev
 Menu-Depends: 
@@ -11,7 +11,7 @@ Category: Libraries
 Repository: packages
 Title: small udev shim for FreeBSD/devd (and other non-systemd)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libudev-fbsd-20160820-1f21323b817e70253d3c04bc8bedd61c477d0544.tar.xz
+Source: libudev-fbsd-20171216-fa190fdf0b22a41b5f42e3a722f754c08ad7b337.tar.xz
 License: MIT
 LicenseFiles: COPYING
 Type: ipkg

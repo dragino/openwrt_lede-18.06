@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/bandwidthd/Makefile
 
 Package: bandwidthd
-Version: 2.0.1-34-1
+Version: 2.0.1-34-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libgd +libpcap
 Conflicts: 
 Menu-Depends: 
@@ -21,7 +21,7 @@ Jean-Michel Lacroix <lacroix@lepine-lacroix.info>
 @@
 
 Package: bandwidthd-pgsql
-Version: 2.0.1-34-1
+Version: 2.0.1-34-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libgd +libpcap +libpq
 Conflicts: 
 Menu-Depends: 
@@ -42,7 +42,7 @@ Jean-Michel Lacroix <lacroix@lepine-lacroix.info>
 @@
 
 Package: bandwidthd-sqlite
-Version: 2.0.1-34-1
+Version: 2.0.1-34-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libgd +libpcap +libsqlite3 +php7 +php7-cgi +php7-mod-gd +php7-mod-pdo +php7-mod-pdo-sqlite
 Conflicts: 
 Menu-Depends: 
@@ -63,7 +63,7 @@ Jean-Michel Lacroix <lacroix@lepine-lacroix.info>
 @@
 
 Package: bandwidthd-php
-Version: 2.0.1-34-1
+Version: 2.0.1-34-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpcre +libxml2 +php7 +php7-cgi +php7-mod-pgsql +php7-mod-gd
 Conflicts: 
 Menu-Depends: 

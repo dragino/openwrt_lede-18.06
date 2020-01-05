@@ -3,7 +3,7 @@ Build-Depends: icu/host
 Build-Types: host
 
 Package: icu
-Version: 61.1-1
+Version: 61.2-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libstdcpp +libpthread
 Conflicts: 
 Menu-Depends: 
@@ -13,7 +13,7 @@ Category: Libraries
 Repository: packages
 Title: International Components for Unicode
 Maintainer: Hirokazu MORIKAWA <morikw2@gmail.com>
-Source: icu4c-61_1-src.tgz
+Source: icu4c-61_2-src.tgz
 License: ICU-1.8.1+
 LicenseFiles: LICENSE
 Type: ipkg

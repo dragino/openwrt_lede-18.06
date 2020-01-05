@@ -4,7 +4,7 @@ Build-Depends/host: libxml2/host
 Build-Types: host
 
 Package: libmariadbclient
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libatomic +libopenssl +libstdcpp +zlib
 Conflicts: 
 Menu-Depends: 
@@ -14,7 +14,7 @@ Category: Libraries
 Repository: packages
 Title: MariaDB database client library
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -31,7 +31,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-client
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libatomic +libopenssl +libstdcpp +zlib +libncursesw
 Conflicts: 
 Menu-Depends: 
@@ -41,7 +41,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database core client binaries
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -61,7 +61,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-client-extra
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-client
 Conflicts: 
 Menu-Depends: 
@@ -71,7 +71,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database extra client binaries
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -98,7 +98,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-extra-charsets
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -108,7 +108,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database extra character sets
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -128,8 +128,8 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 Package: mariadb-server
 Menu: 1
 Submenu: database
-Version: 10.1.34-1
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libatomic +libopenssl +libstdcpp +zlib +!arc:libaio +liblzma +libpcre +resolveip
+Version: 10.1.41-2
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libatomic +libopenssl +libstdcpp +zlib +libaio +liblzma +libpcre +resolveip
 Conflicts: 
 Menu-Depends: 
 Provides: mysql-server
@@ -139,7 +139,7 @@ Repository: packages
 Title: MariaDB database core server binaries
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
 Require-User: mariadb=376:mariadb=376
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -162,7 +162,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-extra
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -172,7 +172,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database extra server binaries
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -212,7 +212,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-adt-null
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -222,7 +222,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -239,7 +239,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-auth-0x0100
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -249,7 +249,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -266,7 +266,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-auth-ed25519
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -276,7 +276,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -293,7 +293,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-auth-socket
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -303,7 +303,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -320,7 +320,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-auth-test-plugin
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -330,7 +330,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -347,7 +347,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-client-ed25519
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -357,7 +357,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -374,7 +374,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-debug-key-management
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -384,7 +384,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -401,7 +401,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-dialog-examples
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -411,7 +411,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -428,7 +428,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-disks
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -438,7 +438,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -455,7 +455,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-example-key-management
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -465,7 +465,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -482,7 +482,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-feedback
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -492,7 +492,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -509,7 +509,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-file-key-management
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -519,7 +519,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -536,7 +536,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-ha-archive
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -546,7 +546,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -563,7 +563,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-ha-blackhole
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -573,7 +573,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -590,7 +590,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-ha-connect
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server +PACKAGE_mariadb-server-plugin-ha-connect:libxml2
 Conflicts: 
 Menu-Depends: 
@@ -600,7 +600,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -617,7 +617,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-ha-example
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -627,7 +627,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -644,7 +644,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-ha-federated
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -654,7 +654,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -671,7 +671,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-ha-federatedx
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -681,7 +681,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -698,7 +698,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-ha-innodb
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -708,7 +708,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -725,7 +725,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-ha-sequence
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -735,7 +735,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -752,7 +752,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-ha-sphinx
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -762,7 +762,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -779,7 +779,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-ha-spider
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -789,7 +789,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -806,7 +806,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-ha-test-sql-discovery
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -816,7 +816,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -833,7 +833,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-handlersocket
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -843,7 +843,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -860,7 +860,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-libdaemon-example
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -870,7 +870,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -887,7 +887,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-locales
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -897,7 +897,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -914,7 +914,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-metadata-lock-info
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -924,7 +924,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -941,7 +941,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-mypluglib
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -951,7 +951,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -968,7 +968,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-qa-auth-client
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -978,7 +978,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -995,7 +995,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-qa-auth-interface
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -1005,7 +1005,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -1022,7 +1022,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-qa-auth-server
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -1032,7 +1032,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -1049,7 +1049,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-query-cache-info
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -1059,7 +1059,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -1076,7 +1076,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-query-response-time
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -1086,7 +1086,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -1103,7 +1103,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-semisync-master
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -1113,7 +1113,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -1130,7 +1130,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-semisync-slave
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -1140,7 +1140,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -1157,7 +1157,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-server-audit
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -1167,7 +1167,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -1184,7 +1184,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-simple-password-check
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -1194,7 +1194,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -1211,7 +1211,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-sql-errlog
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -1221,7 +1221,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -1238,7 +1238,7 @@ Sebastian Kemper <sebastian_ml@gmx.net>
 
 Package: mariadb-server-plugin-wsrep-info
 Submenu: database
-Version: 10.1.34-1
+Version: 10.1.41-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread mariadb-server
 Conflicts: 
 Menu-Depends: 
@@ -1248,7 +1248,7 @@ Category: Utilities
 Repository: packages
 Title: MariaDB database plugin
 Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
-Source: mariadb-10.1.34.tar.gz
+Source: mariadb-10.1.41.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg

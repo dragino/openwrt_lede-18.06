@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/apinger/Makefile
 
 Package: apinger
-Version: 0.6.1-c7da72f7ec26eedd7fd8d224c0e10787b204f94e
+Version: 2015-04-09-78eb328721ba1a10571c19df95acd-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -11,8 +11,8 @@ Category: Network
 Repository: packages
 Title: Tool which monitors various IP devices by simple ICMP echo requests
 Maintainer: Alex Samorukov <samm@os2.kiev.ua>
-Source: apinger-0.6.1-c7da72f7ec26eedd7fd8d224c0e10787b204f94e.tar.gz
-License: GPL-2.0
+Source: apinger-2015-04-09-78eb328721ba1a10571c19df95acd.tar.xz
+License: GPL-2.0-only
 Type: ipkg
 Description: 	Alarm Pinger (apinger) is a little tool which monitors various IP devices by
 	simple ICMP echo requests. There are various other tools, that can do this,

@@ -2,7 +2,7 @@ Source-Makefile: package/feeds/packages/isc-dhcp/Makefile
 
 Package: isc-dhcp-relay-ipv4
 Submenu: IP Addresses and Names
-Version: 4.4.1-2
+Version: 4.4.1-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +zlib
 Conflicts: 
 Menu-Depends: 
@@ -28,7 +28,7 @@ Philip Prindeville <philipp@redfish-solutions.com>
 
 Package: isc-dhcp-server-ipv4
 Submenu: IP Addresses and Names
-Version: 4.4.1-2
+Version: 4.4.1-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +zlib
 Conflicts: 
 Menu-Depends: 
@@ -52,7 +52,7 @@ Philip Prindeville <philipp@redfish-solutions.com>
 
 Package: isc-dhcp-client-ipv4
 Submenu: IP Addresses and Names
-Version: 4.4.1-2
+Version: 4.4.1-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +zlib
 Conflicts: 
 Menu-Depends: 
@@ -77,7 +77,7 @@ Philip Prindeville <philipp@redfish-solutions.com>
 
 Package: isc-dhcp-omshell-ipv4
 Submenu: IP Addresses and Names
-Version: 4.4.1-2
+Version: 4.4.1-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +isc-dhcp-server-ipv4
 Conflicts: 
 Menu-Depends: 
@@ -101,7 +101,7 @@ Philip Prindeville <philipp@redfish-solutions.com>
 
 Package: isc-dhcp-relay-ipv6
 Submenu: IP Addresses and Names
-Version: 4.4.1-2
+Version: 4.4.1-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +zlib
 Conflicts: 
 Menu-Depends: 
@@ -126,7 +126,7 @@ Philip Prindeville <philipp@redfish-solutions.com>
 
 Package: isc-dhcp-server-ipv6
 Submenu: IP Addresses and Names
-Version: 4.4.1-2
+Version: 4.4.1-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +zlib
 Conflicts: 
 Menu-Depends: 
@@ -150,7 +150,7 @@ Philip Prindeville <philipp@redfish-solutions.com>
 
 Package: isc-dhcp-client-ipv6
 Submenu: IP Addresses and Names
-Version: 4.4.1-2
+Version: 4.4.1-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +zlib
 Conflicts: 
 Menu-Depends: 
@@ -175,7 +175,7 @@ Philip Prindeville <philipp@redfish-solutions.com>
 
 Package: isc-dhcp-omshell-ipv6
 Submenu: IP Addresses and Names
-Version: 4.4.1-2
+Version: 4.4.1-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +isc-dhcp-server-ipv6
 Conflicts: 
 Menu-Depends: 

@@ -3,7 +3,7 @@ Build-Depends: node/host
 
 Package: node-serialport
 Submenu: Node.js
-Version: 6.1.1-1
+Version: 6.1.1-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +node +node-npm
 Conflicts: 
 Menu-Depends: 

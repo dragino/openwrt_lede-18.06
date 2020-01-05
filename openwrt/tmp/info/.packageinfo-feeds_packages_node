@@ -5,7 +5,7 @@ Build-Types: host
 
 Package: node
 Submenu: Node.js
-Version: v8.10.0-1
+Version: v8.10.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @(HAS_FPU||KERNEL_MIPS_FPU_EMULATOR) +libstdcpp +libopenssl +zlib +USE_UCLIBC:libpthread +USE_UCLIBC:librt +NODEJS_ICU:icu
 Conflicts: 
 Menu-Depends: 
@@ -37,7 +37,7 @@ Config:
 
 Package: node-npm
 Submenu: Node.js
-Version: v8.10.0-1
+Version: v8.10.0-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +node
 Conflicts: 
 Menu-Depends: 

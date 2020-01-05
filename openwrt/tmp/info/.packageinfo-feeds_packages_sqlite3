@@ -2,7 +2,7 @@ Source-Makefile: package/feeds/packages/sqlite3/Makefile
 
 Package: libsqlite3
 Submenu: database
-Version: 3230100-1
+Version: 3260000-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +zlib
 Conflicts: 
 Menu-Depends: 
@@ -11,8 +11,8 @@ Section: libs
 Category: Libraries
 Repository: packages
 Title: SQLite (v3.x) database engine (library)
-Maintainer: Etienne CHAMPETIER <champetier.etienne@gmail.com>
-Source: sqlite-autoconf-3230100.tar.gz
+Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
+Source: sqlite-autoconf-3260000.tar.gz
 License: PUBLICDOMAIN
 Type: ipkg
 Description:  SQLite is a small C library that implements a self-contained, embeddable,
@@ -20,7 +20,7 @@ Description:  SQLite is a small C library that implements a self-contained, embe
  This package contains the SQLite (v3.x) shared library, used by other
  programs.
 http://www.sqlite.org/
-Etienne CHAMPETIER <champetier.etienne@gmail.com>
+Sebastian Kemper <sebastian_ml@gmx.net>
 @@
 Config:
   source "feeds/packages/libs/sqlite3/Config.in"
@@ -28,7 +28,7 @@ Config:
 
 Package: sqlite3-cli
 Submenu: database
-Version: 3230100-1
+Version: 3260000-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libsqlite3 +libncurses +libreadline
 Conflicts: 
 Menu-Depends: 
@@ -37,8 +37,8 @@ Section: utils
 Category: Utilities
 Repository: packages
 Title: SQLite (v3.x) database engine (cli)
-Maintainer: Etienne CHAMPETIER <champetier.etienne@gmail.com>
-Source: sqlite-autoconf-3230100.tar.gz
+Maintainer: Sebastian Kemper <sebastian_ml@gmx.net>
+Source: sqlite-autoconf-3260000.tar.gz
 License: PUBLICDOMAIN
 Type: ipkg
 Description:  SQLite is a small C library that implements a self-contained, embeddable,
@@ -47,7 +47,7 @@ Description:  SQLite is a small C library that implements a self-contained, embe
  that can evaluate queries interactively and display the results in multiple
  formats.
 http://www.sqlite.org/
-Etienne CHAMPETIER <champetier.etienne@gmail.com>
+Sebastian Kemper <sebastian_ml@gmx.net>
 @@
 
 

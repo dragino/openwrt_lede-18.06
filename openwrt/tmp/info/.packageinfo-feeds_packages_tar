@@ -3,7 +3,7 @@ Build-Depends: xz
 
 Package: tar
 Menu: 1
-Version: 1.30-1
+Version: 1.32-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +PACKAGE_TAR_POSIX_ACL:libacl +PACKAGE_TAR_XATTR:libattr +PACKAGE_TAR_BZIP2:bzip2
 Conflicts: 
 Menu-Depends: 
@@ -13,13 +13,13 @@ Category: Utilities
 Repository: packages
 Title: GNU tar
 Maintainer: Álvaro Fernández Rojas <noltari@gmail.com>
-Source: tar-1.30.tar.xz
+Source: tar-1.32.tar.xz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: 	Tar is a program for packaging a set of files as a
 	single archive in tar format.
-http://www.gnu.org/software/tar/
+https://www.gnu.org/software/tar/
 Álvaro Fernández Rojas <noltari@gmail.com>
 @@
 Config:

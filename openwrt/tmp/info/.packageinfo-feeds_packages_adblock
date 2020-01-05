@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/adblock/Makefile
 
 Package: adblock
-Version: 3.5.4-2
+Version: 3.5.5-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +jshn +jsonfilter
 Conflicts: 
 Menu-Depends: 

@@ -2,7 +2,7 @@ Source-Makefile: package/feeds/packages/vpnc/Makefile
 
 Package: vpnc
 Submenu: VPN
-Version: 0.5.3.r550-6
+Version: 0.5.3.r550-7
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libgpg-error +libgcrypt +kmod-tun +VPNC_OPENSSL:libopenssl +VPNC_GNUTLS:libgnutls +vpnc-scripts +resolveip
 Conflicts: 
 Menu-Depends: 

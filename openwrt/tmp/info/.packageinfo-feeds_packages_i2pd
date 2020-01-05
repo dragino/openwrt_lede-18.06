@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/i2pd/Makefile
 
 Package: i2pd
-Version: 2.18.0-1
+Version: 2.18.0-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libopenssl +boost +boost-system +boost-filesystem +boost-program_options +boost-date_time +libatomic +zlib
 Conflicts: 
 Menu-Depends: 

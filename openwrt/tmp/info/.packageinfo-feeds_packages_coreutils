@@ -2,7 +2,7 @@ Source-Makefile: package/feeds/packages/coreutils/Makefile
 
 Package: coreutils
 Menu: 1
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -22,7 +22,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-base64
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -40,7 +40,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-basename
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -58,7 +58,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-cat
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -76,7 +76,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-chcon
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -94,7 +94,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-chgrp
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -112,7 +112,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-chmod
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -130,7 +130,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-chown
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -148,7 +148,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-chroot
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -166,7 +166,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-cksum
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -184,7 +184,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-comm
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -202,7 +202,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-cp
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils +libacl
 Conflicts: 
 Menu-Depends: 
@@ -220,7 +220,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-csplit
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -238,7 +238,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-cut
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -256,7 +256,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-date
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -274,7 +274,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-dd
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -292,7 +292,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-dir
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils +libacl +libcap
 Conflicts: 
 Menu-Depends: 
@@ -310,7 +310,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-dircolors
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -328,7 +328,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-dirname
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -346,7 +346,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-du
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -364,7 +364,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-echo
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -382,7 +382,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-env
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -400,7 +400,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-expand
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -418,7 +418,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-expr
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils +libgmp
 Conflicts: 
 Menu-Depends: 
@@ -436,7 +436,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-factor
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils +libgmp
 Conflicts: 
 Menu-Depends: 
@@ -454,7 +454,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-false
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -472,7 +472,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-fmt
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -490,7 +490,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-fold
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -508,7 +508,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-groups
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -526,7 +526,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-head
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -544,7 +544,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-hostid
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -562,7 +562,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-id
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -580,7 +580,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-install
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils +libacl
 Conflicts: 
 Menu-Depends: 
@@ -598,7 +598,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-join
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -616,7 +616,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-kill
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -634,7 +634,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-link
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -652,7 +652,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-ln
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -670,7 +670,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-logname
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -688,7 +688,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-ls
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils +libacl +libcap
 Conflicts: 
 Menu-Depends: 
@@ -706,7 +706,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-md5sum
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -724,7 +724,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-mkdir
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -742,7 +742,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-mkfifo
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -760,7 +760,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-mknod
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -778,7 +778,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-mktemp
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -796,7 +796,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-mv
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils +libacl
 Conflicts: 
 Menu-Depends: 
@@ -814,7 +814,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-nice
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -832,7 +832,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-nl
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -850,7 +850,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-nohup
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -868,7 +868,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-nproc
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -886,7 +886,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-od
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -904,7 +904,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-paste
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -922,7 +922,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-pathchk
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -940,7 +940,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-pinky
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -958,7 +958,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-pr
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -976,7 +976,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-printenv
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -994,7 +994,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-printf
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1012,7 +1012,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-ptx
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1030,7 +1030,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-pwd
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1048,7 +1048,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-readlink
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1066,7 +1066,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-realpath
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1084,7 +1084,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-rm
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1102,7 +1102,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-rmdir
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1120,7 +1120,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-runcon
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1138,7 +1138,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-seq
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1156,7 +1156,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-sha1sum
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1174,7 +1174,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-sha224sum
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1192,7 +1192,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-sha256sum
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1210,7 +1210,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-sha384sum
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1228,7 +1228,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-sha512sum
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1246,7 +1246,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-shred
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1264,7 +1264,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-shuf
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1282,7 +1282,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-sleep
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1300,7 +1300,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-sort
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils +libpthread
 Conflicts: 
 Menu-Depends: 
@@ -1318,7 +1318,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-split
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1336,7 +1336,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-stat
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1354,7 +1354,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-stdbuf
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1372,7 +1372,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-stty
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1390,7 +1390,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-sum
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1408,7 +1408,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-sync
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1426,7 +1426,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-tac
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1444,7 +1444,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-tail
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1462,7 +1462,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-tee
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1480,7 +1480,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-test
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1498,7 +1498,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-timeout
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils +librt
 Conflicts: 
 Menu-Depends: 
@@ -1516,7 +1516,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-touch
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1534,7 +1534,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-tr
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1552,7 +1552,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-true
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1570,7 +1570,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-truncate
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1588,7 +1588,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-tsort
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1606,7 +1606,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-tty
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1624,7 +1624,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-uname
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1642,7 +1642,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-unexpand
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1660,7 +1660,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-uniq
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1678,7 +1678,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-unlink
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1696,7 +1696,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-uptime
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1714,7 +1714,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-users
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1732,7 +1732,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-vdir
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils +libacl +libcap
 Conflicts: 
 Menu-Depends: 
@@ -1750,7 +1750,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-wc
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1768,7 +1768,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-who
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1786,7 +1786,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-whoami
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 
@@ -1804,7 +1804,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: coreutils-yes
-Version: 8.23-3
+Version: 8.23-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread coreutils
 Conflicts: 
 Menu-Depends: 

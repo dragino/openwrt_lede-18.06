@@ -3,7 +3,7 @@ Build-Depends: !BUILD_NLS:libiconv !BUILD_NLS:gettext
 
 Package: libextractor
 Menu: 1
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libbz2 +libltdl +librt +zlib +BUILD_NLS:libiconv-full +BUILD_NLS:libintl-full
 Conflicts: 
 Menu-Depends: 
@@ -13,7 +13,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -27,7 +27,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: libextractor-plugin-archive
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libextractor +libarchive-noopenssl
 Conflicts: 
 Menu-Depends: 
@@ -37,7 +37,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor (archive plugin)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -47,7 +47,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: libextractor-plugin-deb
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libextractor
 Conflicts: 
 Menu-Depends: 
@@ -57,7 +57,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor (deb plugin)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -67,7 +67,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: libextractor-plugin-dvi
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libextractor
 Conflicts: 
 Menu-Depends: 
@@ -77,7 +77,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor (dvi plugin)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -87,7 +87,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: libextractor-plugin-flac
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libextractor +libflac
 Conflicts: 
 Menu-Depends: 
@@ -97,7 +97,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor (flac plugin)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -107,7 +107,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: libextractor-plugin-gif
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libextractor +giflib
 Conflicts: 
 Menu-Depends: 
@@ -117,7 +117,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor (gif plugin)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -127,7 +127,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: libextractor-plugin-gstreamer
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libextractor +libgstreamer1 +gstreamer1-plugins-base +libgst1app +libgst1pbutils +libgst1tag
 Conflicts: 
 Menu-Depends: 
@@ -137,7 +137,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor (gstreamer plugin)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -147,7 +147,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: libextractor-plugin-it
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libextractor
 Conflicts: 
 Menu-Depends: 
@@ -157,7 +157,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor (it plugin)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -167,7 +167,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: libextractor-plugin-jpeg
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libextractor +libjpeg
 Conflicts: 
 Menu-Depends: 
@@ -177,7 +177,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor (jpeg plugin)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -187,7 +187,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: libextractor-plugin-man
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libextractor
 Conflicts: 
 Menu-Depends: 
@@ -197,7 +197,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor (man plugin)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -207,7 +207,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: libextractor-plugin-mime
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libextractor +libmagic
 Conflicts: 
 Menu-Depends: 
@@ -217,7 +217,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor (mime plugin)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -227,7 +227,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: libextractor-plugin-mpeg
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libextractor +libmpeg2
 Conflicts: 
 Menu-Depends: 
@@ -237,7 +237,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor (mpeg plugin)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -247,7 +247,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: libextractor-plugin-nsf
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libextractor
 Conflicts: 
 Menu-Depends: 
@@ -257,7 +257,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor (nsf plugin)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -267,7 +267,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: libextractor-plugin-nsfe
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libextractor
 Conflicts: 
 Menu-Depends: 
@@ -277,7 +277,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor (nsfe plugin)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -287,7 +287,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: libextractor-plugin-odf
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libextractor
 Conflicts: 
 Menu-Depends: 
@@ -297,7 +297,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor (odf plugin)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -307,7 +307,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: libextractor-plugin-ogg
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libextractor +libvorbis
 Conflicts: 
 Menu-Depends: 
@@ -317,7 +317,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor (ogg plugin)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -327,7 +327,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: libextractor-plugin-png
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libextractor
 Conflicts: 
 Menu-Depends: 
@@ -337,7 +337,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor (png plugin)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -347,7 +347,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: libextractor-plugin-ps
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libextractor
 Conflicts: 
 Menu-Depends: 
@@ -357,7 +357,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor (ps plugin)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -367,7 +367,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: libextractor-plugin-riff
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libextractor
 Conflicts: 
 Menu-Depends: 
@@ -377,7 +377,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor (riff plugin)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -387,7 +387,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: libextractor-plugin-s3m
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libextractor
 Conflicts: 
 Menu-Depends: 
@@ -397,7 +397,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor (s3m plugin)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -407,7 +407,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: libextractor-plugin-sid
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libextractor
 Conflicts: 
 Menu-Depends: 
@@ -417,7 +417,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor (sid plugin)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -427,7 +427,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: libextractor-plugin-thumbnailffmpeg
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libextractor +libffmpeg-full +libmagic
 Conflicts: 
 Menu-Depends: 
@@ -437,7 +437,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor (thumbnailffmpeg plugin)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -447,7 +447,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: libextractor-plugin-tiff
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libextractor +libtiff
 Conflicts: 
 Menu-Depends: 
@@ -457,7 +457,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor (tiff plugin)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -467,7 +467,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: libextractor-plugin-wav
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libextractor
 Conflicts: 
 Menu-Depends: 
@@ -477,7 +477,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor (wav plugin)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -487,7 +487,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: libextractor-plugin-xm
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libextractor
 Conflicts: 
 Menu-Depends: 
@@ -497,7 +497,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor (xm plugin)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -507,7 +507,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: libextractor-plugin-zip
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread libextractor
 Conflicts: 
 Menu-Depends: 
@@ -517,7 +517,7 @@ Category: Libraries
 Repository: packages
 Title: GNU Libextractor (zip plugin)
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -527,7 +527,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: extract
-Version: 1.6-1
+Version: 1.9-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libextractor
 Conflicts: 
 Menu-Depends: 
@@ -537,7 +537,7 @@ Category: Utilities
 Repository: packages
 Title: extract util from GNU Libextractor
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: libextractor-1.6.tar.gz
+Source: libextractor-1.9.tar.gz
 License: GPL-3.0
 LicenseFiles: COPYING
 Type: ipkg

@@ -2,7 +2,7 @@ Source-Makefile: package/feeds/packages/shorewall/Makefile
 
 Package: shorewall
 Submenu: Firewall
-Version: 5.2.0.4-1
+Version: 5.2.0.5-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +ip +iptables +kmod-ipt-hashlimit +kmod-ipt-raw +iptables-mod-hashlimit +shorewall-core +perl +perlbase-autoloader +perlbase-autouse +perlbase-dynaloader +perlbase-digest +perlbase-findbin +perlbase-getopt +perlbase-hash
 Conflicts: 
 Menu-Depends: 
@@ -12,7 +12,7 @@ Category: Network
 Repository: packages
 Title: Shorewall Central Administration System
 Maintainer: Willem van den Akker <wvdakker@wilsoft.nl>
-Source: shorewall-5.2.0.4.tar.bz2
+Source: shorewall-5.2.0.5.tar.bz2
 License: GPL-2.0+
 LicenseFiles: COPYING
 Type: ipkg

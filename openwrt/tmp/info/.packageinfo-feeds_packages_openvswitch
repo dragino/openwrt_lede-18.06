@@ -3,7 +3,7 @@ Build-Depends: python/host python-six/host
 
 Package: openvswitch-ovsdb-client
 Submenu: Open vSwitch
-Version: 2.8.2-1
+Version: 2.8.5-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +openvswitch-base
 Conflicts: 
 Menu-Depends: 
@@ -13,7 +13,7 @@ Category: Network
 Repository: packages
 Title: Open vSwitch database JSON-RPC client
 Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
-Source: openvswitch-2.8.2.tar.gz
+Source: openvswitch-2.8.5.tar.gz
 License: Apache-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -24,7 +24,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: openvswitch-ovs-l3ping
 Submenu: Open vSwitch
-Version: 2.8.2-1
+Version: 2.8.5-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +openvswitch-base
 Conflicts: 
 Menu-Depends: 
@@ -34,7 +34,7 @@ Category: Network
 Repository: packages
 Title: Check network deployment for L3 tunneling problems
 Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
-Source: openvswitch-2.8.2.tar.gz
+Source: openvswitch-2.8.5.tar.gz
 License: Apache-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -45,7 +45,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: openvswitch-ovs-dpctl-top
 Submenu: Open vSwitch
-Version: 2.8.2-1
+Version: 2.8.5-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +openvswitch-base
 Conflicts: 
 Menu-Depends: 
@@ -55,7 +55,7 @@ Category: Network
 Repository: packages
 Title: Top like behavior for ovs-dpctl dump-flows
 Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
-Source: openvswitch-2.8.2.tar.gz
+Source: openvswitch-2.8.5.tar.gz
 License: Apache-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -66,7 +66,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: openvswitch-ovs-tcpdump
 Submenu: Open vSwitch
-Version: 2.8.2-1
+Version: 2.8.5-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +openvswitch-base
 Conflicts: 
 Menu-Depends: 
@@ -76,7 +76,7 @@ Category: Network
 Repository: packages
 Title: Dump traffic from an Open vSwitch port using tcpdump
 Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
-Source: openvswitch-2.8.2.tar.gz
+Source: openvswitch-2.8.5.tar.gz
 License: Apache-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -87,7 +87,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: openvswitch-ovs-tcpundump
 Submenu: Open vSwitch
-Version: 2.8.2-1
+Version: 2.8.5-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +openvswitch-base
 Conflicts: 
 Menu-Depends: 
@@ -97,7 +97,7 @@ Category: Network
 Repository: packages
 Title: Convert ``tcpdump -xx`` output to hex strings
 Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
-Source: openvswitch-2.8.2.tar.gz
+Source: openvswitch-2.8.5.tar.gz
 License: Apache-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -108,7 +108,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: openvswitch-ovs-pcap
 Submenu: Open vSwitch
-Version: 2.8.2-1
+Version: 2.8.5-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +openvswitch-base
 Conflicts: 
 Menu-Depends: 
@@ -118,7 +118,7 @@ Category: Network
 Repository: packages
 Title: Print packets from a pcap file as hex
 Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
-Source: openvswitch-2.8.2.tar.gz
+Source: openvswitch-2.8.5.tar.gz
 License: Apache-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -129,7 +129,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: openvswitch-ovs-parse-backtrace
 Submenu: Open vSwitch
-Version: 2.8.2-1
+Version: 2.8.5-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +openvswitch-base
 Conflicts: 
 Menu-Depends: 
@@ -139,7 +139,7 @@ Category: Network
 Repository: packages
 Title: parses ovs-appctl backtrace output
 Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
-Source: openvswitch-2.8.2.tar.gz
+Source: openvswitch-2.8.5.tar.gz
 License: Apache-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -150,7 +150,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: openvswitch-ovn-controller
 Submenu: Open vSwitch
-Version: 2.8.2-1
+Version: 2.8.5-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +openvswitch-ovn-base
 Conflicts: 
 Menu-Depends: 
@@ -160,7 +160,7 @@ Category: Network
 Repository: packages
 Title: Open Virtual Network local controller
 Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
-Source: openvswitch-2.8.2.tar.gz
+Source: openvswitch-2.8.5.tar.gz
 License: Apache-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -171,7 +171,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: openvswitch-ovn-controller-vtep
 Submenu: Open vSwitch
-Version: 2.8.2-1
+Version: 2.8.5-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +openvswitch-ovn-base +openvswitch-vtep
 Conflicts: 
 Menu-Depends: 
@@ -181,7 +181,7 @@ Category: Network
 Repository: packages
 Title: Open Virtual Network local controller for vtep enabled physical switches
 Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
-Source: openvswitch-2.8.2.tar.gz
+Source: openvswitch-2.8.5.tar.gz
 License: Apache-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -192,7 +192,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: openvswitch-ovn-detrace
 Submenu: Open vSwitch
-Version: 2.8.2-1
+Version: 2.8.5-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +openvswitch-ovn-base
 Conflicts: 
 Menu-Depends: 
@@ -202,7 +202,7 @@ Category: Network
 Repository: packages
 Title: Convert ``ovs-appctl ofproto/trace`` output to combine OVN logical flow information
 Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
-Source: openvswitch-2.8.2.tar.gz
+Source: openvswitch-2.8.5.tar.gz
 License: Apache-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -213,7 +213,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: openvswitch-ovn-docker-overlay-driver
 Submenu: Open vSwitch
-Version: 2.8.2-1
+Version: 2.8.5-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +openvswitch-ovn-base
 Conflicts: 
 Menu-Depends: 
@@ -223,7 +223,7 @@ Category: Network
 Repository: packages
 Title: OVN Docker overlay driver utility
 Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
-Source: openvswitch-2.8.2.tar.gz
+Source: openvswitch-2.8.5.tar.gz
 License: Apache-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -234,7 +234,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: openvswitch-ovn-docker-underlay-driver
 Submenu: Open vSwitch
-Version: 2.8.2-1
+Version: 2.8.5-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +openvswitch-ovn-base
 Conflicts: 
 Menu-Depends: 
@@ -244,7 +244,7 @@ Category: Network
 Repository: packages
 Title: OVN Docker underlay driver utility
 Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
-Source: openvswitch-2.8.2.tar.gz
+Source: openvswitch-2.8.5.tar.gz
 License: Apache-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -255,7 +255,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: openvswitch-ovn-nbctl
 Submenu: Open vSwitch
-Version: 2.8.2-1
+Version: 2.8.5-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +openvswitch-ovn-base
 Conflicts: 
 Menu-Depends: 
@@ -265,7 +265,7 @@ Category: Network
 Repository: packages
 Title: Open Virtual Network northbound db management utility
 Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
-Source: openvswitch-2.8.2.tar.gz
+Source: openvswitch-2.8.5.tar.gz
 License: Apache-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -276,7 +276,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: openvswitch-ovn-sbctl
 Submenu: Open vSwitch
-Version: 2.8.2-1
+Version: 2.8.5-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +openvswitch-ovn-base
 Conflicts: 
 Menu-Depends: 
@@ -286,7 +286,7 @@ Category: Network
 Repository: packages
 Title: Utility for querying and configuring OVN_Southbound data‐base
 Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
-Source: openvswitch-2.8.2.tar.gz
+Source: openvswitch-2.8.5.tar.gz
 License: Apache-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -297,7 +297,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: openvswitch-ovn-trace
 Submenu: Open vSwitch
-Version: 2.8.2-1
+Version: 2.8.5-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +openvswitch-ovn-base
 Conflicts: 
 Menu-Depends: 
@@ -307,7 +307,7 @@ Category: Network
 Repository: packages
 Title: Open Virtual Network logical network tracing utility
 Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
-Source: openvswitch-2.8.2.tar.gz
+Source: openvswitch-2.8.5.tar.gz
 License: Apache-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -318,7 +318,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: openvswitch-base
 Submenu: Open vSwitch
-Version: 2.8.2-1
+Version: 2.8.5-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpcap +libopenssl +librt +kmod-openvswitch
 Conflicts: 
 Menu-Depends: 
@@ -328,7 +328,7 @@ Category: Network
 Repository: packages
 Title: Open vSwitch Userspace Package (base)
 Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
-Source: openvswitch-2.8.2.tar.gz
+Source: openvswitch-2.8.5.tar.gz
 License: Apache-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -341,7 +341,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: openvswitch-ovn-base
 Submenu: Open vSwitch
-Version: 2.8.2-1
+Version: 2.8.5-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +openvswitch-base
 Conflicts: 
 Menu-Depends: 
@@ -351,7 +351,7 @@ Category: Network
 Repository: packages
 Title: Open Virtual Networking (base)
 Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
-Source: openvswitch-2.8.2.tar.gz
+Source: openvswitch-2.8.5.tar.gz
 License: Apache-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -363,7 +363,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: openvswitch-ovn
 Submenu: Open vSwitch
-Version: 2.8.2-1
+Version: 2.8.5-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +openvswitch-ovn-base +openvswitch-ovn-controller +openvswitch-ovn-controller-vtep +openvswitch-ovn-detrace +openvswitch-ovn-docker-overlay-driver +openvswitch-ovn-docker-underlay-driver +openvswitch-ovn-nbctl +openvswitch-ovn-sbctl +openvswitch-ovn-trace
 Conflicts: 
 Menu-Depends: 
@@ -373,7 +373,7 @@ Category: Network
 Repository: packages
 Title: Open Virtual Networking (base)
 Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
-Source: openvswitch-2.8.2.tar.gz
+Source: openvswitch-2.8.5.tar.gz
 License: Apache-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -385,7 +385,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: openvswitch-vtep
 Submenu: Open vSwitch
-Version: 2.8.2-1
+Version: 2.8.5-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +openvswitch-base
 Conflicts: 
 Menu-Depends: 
@@ -395,7 +395,7 @@ Category: Network
 Repository: packages
 Title: Open vSwitch VXLAN Tunnel End Point
 Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
-Source: openvswitch-2.8.2.tar.gz
+Source: openvswitch-2.8.5.tar.gz
 License: Apache-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -408,7 +408,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: openvswitch-python
 Submenu: Open vSwitch
-Version: 2.8.2-1
+Version: 2.8.5-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +PACKAGE_openvswitch-python:python +PACKAGE_openvswitch-python:python-six
 Conflicts: 
 Menu-Depends: 
@@ -418,7 +418,7 @@ Category: Network
 Repository: packages
 Title: Open vSwitch Python Support
 Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
-Source: openvswitch-2.8.2.tar.gz
+Source: openvswitch-2.8.5.tar.gz
 License: Apache-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -429,7 +429,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: openvswitch
 Submenu: Open vSwitch
-Version: 2.8.2-1
+Version: 2.8.5-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +openvswitch-base +openvswitch-ovsdb-client +openvswitch-ovs-l3ping +openvswitch-ovs-dpctl-top +openvswitch-ovs-tcpdump +openvswitch-ovs-tcpundump +openvswitch-ovs-pcap +openvswitch-ovs-parse-backtrace
 Conflicts: 
 Menu-Depends: 
@@ -439,7 +439,7 @@ Category: Network
 Repository: packages
 Title: Open vSwitch Userspace Package
 Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
-Source: openvswitch-2.8.2.tar.gz
+Source: openvswitch-2.8.5.tar.gz
 License: Apache-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -451,7 +451,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: kmod-openvswitch
 Submenu: Network Support
-Version: <LINUX_VERSION>+2.8.2-1
+Version: <LINUX_VERSION>+2.8.5-1
 Depends: +kmod-lib-crc32c +kmod-mpls +kmod-nf-nat +IPV6:kmod-nf-nat6
 Conflicts: 
 Menu-Depends: 
@@ -460,7 +460,7 @@ Section: kernel
 Category: Kernel modules
 Title: Open vSwitch kernel datapath
 Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
-Source: openvswitch-2.8.2.tar.gz
+Source: openvswitch-2.8.5.tar.gz
 License: Apache-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -471,7 +471,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: kmod-openvswitch-gre
 Submenu: Network Support
-Version: <LINUX_VERSION>+2.8.2-1
+Version: <LINUX_VERSION>+2.8.5-1
 Depends: +kmod-openvswitch +kmod-gre
 Conflicts: 
 Menu-Depends: 
@@ -480,7 +480,7 @@ Section: kernel
 Category: Kernel modules
 Title: Open vSwitch GRE tunneling support
 Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
-Source: openvswitch-2.8.2.tar.gz
+Source: openvswitch-2.8.5.tar.gz
 License: Apache-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -491,7 +491,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: kmod-openvswitch-vxlan
 Submenu: Network Support
-Version: <LINUX_VERSION>+2.8.2-1
+Version: <LINUX_VERSION>+2.8.5-1
 Depends: +kmod-openvswitch +kmod-vxlan
 Conflicts: 
 Menu-Depends: 
@@ -500,7 +500,7 @@ Section: kernel
 Category: Kernel modules
 Title: Open vSwitch VXLAN tunneling support
 Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
-Source: openvswitch-2.8.2.tar.gz
+Source: openvswitch-2.8.5.tar.gz
 License: Apache-2.0
 LicenseFiles: COPYING
 Type: ipkg
@@ -511,7 +511,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: kmod-openvswitch-geneve
 Submenu: Network Support
-Version: <LINUX_VERSION>+2.8.2-1
+Version: <LINUX_VERSION>+2.8.5-1
 Depends: +kmod-openvswitch +kmod-geneve
 Conflicts: 
 Menu-Depends: 
@@ -520,7 +520,7 @@ Section: kernel
 Category: Kernel modules
 Title: Open vSwitch Geneve tunneling support
 Maintainer: Yousong Zhou <yszhou4tech@gmail.com>
-Source: openvswitch-2.8.2.tar.gz
+Source: openvswitch-2.8.5.tar.gz
 License: Apache-2.0
 LicenseFiles: COPYING
 Type: ipkg

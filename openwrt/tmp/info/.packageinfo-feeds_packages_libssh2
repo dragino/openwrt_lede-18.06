@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/libssh2/Makefile
 
 Package: libssh2
-Version: 1.8.0-2
+Version: 1.8.1-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +LIBSSH2_MBEDTLS:libmbedtls +LIBSSH2_OPENSSL:libopenssl +zlib
 Conflicts: 
 Menu-Depends: 
@@ -11,7 +11,7 @@ Category: Libraries
 Repository: packages
 Title: SSH2 library
 Maintainer: Jiri Slachta <jiri@slachta.eu>
-Source: libssh2-1.8.0.tar.gz
+Source: libssh2-1.8.1.tar.gz
 License: BSD
 LicenseFiles: COPYING
 Type: ipkg

@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/jq/Makefile
 
 Package: jq
-Version: 1.5-2
+Version: 1.5-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 

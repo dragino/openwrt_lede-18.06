@@ -3,7 +3,7 @@ Build-Depends: boost
 
 Package: iotivity
 Menu: 1
-Version: 1.2.1-1
+Version: 1.2.1-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @!USE_UCLIBC +libpthread +librt +libuuid +libsqlite3 +PACKAGE_iotivity_SECURE:libmbedtls
 Conflicts: 
 Menu-Depends: 
@@ -44,7 +44,7 @@ Config:
 @@
 
 Package: iotivity-cpp
-Version: 1.2.1-1
+Version: 1.2.1-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +iotivity +libpthread +libstdcpp
 Conflicts: 
 Menu-Depends: 
@@ -65,7 +65,7 @@ Hauke Mehrtens <hauke.mehrtens@intel.com>
 @@
 
 Package: iotivity-resource-directory-lib
-Version: 1.2.1-1
+Version: 1.2.1-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +iotivity +iotivity-cpp
 Conflicts: 
 Menu-Depends: 
@@ -85,7 +85,7 @@ Hauke Mehrtens <hauke.mehrtens@intel.com>
 @@
 
 Package: iotivity-oic-middle
-Version: 1.2.1-1
+Version: 1.2.1-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +iotivity +iotivity-cpp +iotivity-resource-directory-lib
 Conflicts: 
 Menu-Depends: 
@@ -105,7 +105,7 @@ Hauke Mehrtens <hauke.mehrtens@intel.com>
 @@
 
 Package: iotivity-resource-container-lib
-Version: 1.2.1-1
+Version: 1.2.1-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +iotivity +iotivity-cpp +boost +boost-system +boost-thread +boost-date_time
 Conflicts: 
 Menu-Depends: 
@@ -125,7 +125,7 @@ Hauke Mehrtens <hauke.mehrtens@intel.com>
 @@
 
 Package: iotivity-resource-container-sample
-Version: 1.2.1-1
+Version: 1.2.1-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +iotivity +iotivity-resource-container-lib
 Conflicts: 
 Menu-Depends: 
@@ -145,7 +145,7 @@ Hauke Mehrtens <hauke.mehrtens@intel.com>
 @@
 
 Package: iotivity-resource-container-hue
-Version: 1.2.1-1
+Version: 1.2.1-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +iotivity +iotivity-resource-container-lib +libcurl
 Conflicts: 
 Menu-Depends: 
@@ -165,7 +165,7 @@ Hauke Mehrtens <hauke.mehrtens@intel.com>
 @@
 
 Package: iotivity-example-garage
-Version: 1.2.1-1
+Version: 1.2.1-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +iotivity +iotivity-cpp +iotivity-resource-directory-lib
 Conflicts: 
 Menu-Depends: 
@@ -185,7 +185,7 @@ Hauke Mehrtens <hauke.mehrtens@intel.com>
 @@
 
 Package: iotivity-example-simple
-Version: 1.2.1-1
+Version: 1.2.1-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +iotivity +iotivity-cpp +iotivity-resource-directory-lib
 Conflicts: 
 Menu-Depends: 

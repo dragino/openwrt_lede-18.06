@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/zmq/Makefile
 
 Package: libzmq-nc
-Version: 4.1.4-1
+Version: 4.1.4-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libuuid +libpthread +librt +USE_UCLIBCXX:uclibcxx +USE_LIBSTDCXX:libstdcpp
 Conflicts: 
 Menu-Depends: 
@@ -17,12 +17,12 @@ License: GPL-3.0+
 LicenseFiles: LICENCE.txt
 Type: ipkg
 Description:  This package contains the ZeroMQ messaging engine shared library.
-http://www.zeromq.org/
+https://www.zeromq.org/
 Dirk Chang <dirk@kooiot.com>
 @@
 
 Package: libzmq-curve
-Version: 4.1.4-1
+Version: 4.1.4-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libuuid +libpthread +librt +USE_UCLIBCXX:uclibcxx +USE_LIBSTDCXX:libstdcpp +libsodium
 Conflicts: 
 Menu-Depends: 
@@ -39,7 +39,7 @@ LicenseFiles: LICENCE.txt
 Type: ipkg
 Description:   This package contains the ZeroMQ messaging engine shared library.
  Includes CurveZMQ security by libsodium.
-http://www.zeromq.org/
+https://www.zeromq.org/
 Dirk Chang <dirk@kooiot.com>
 @@
 

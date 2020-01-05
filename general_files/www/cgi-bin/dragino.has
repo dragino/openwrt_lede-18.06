@@ -7,6 +7,38 @@
 MEMFREE=`cat /proc/meminfo | grep MemFree |cut -d : -f2 | tr -d ' '|tr -d 'kB'`
 MEMTOT=`cat /proc/meminfo | grep MemTotal |cut -d : -f2 | tr -d ' '`
 MEMSTR="Free Memory: "$MEMFREE" / Total Memory: "$MEMTOT
+
+# Check Internet connectivity
+HOST="1.1.1.1"
+ping -c1 $HOST 1>/dev/null 2>/dev/null
+SUCCESS=$?
+if [ $SUCCESS -eq 0 ]
+then
+  connection="<font size="4"> Internet Connection OK </font>"
+  connect_img="/static/img/connection.png"
+  internet="1"
+else
+  connection="<font size="4" color="red"> No Internet Connection </font>"
+  connect_img="/static/img/no-connection.png"
+  internet="0"
+fi
+
+# Check LoRaWAN connection
+status="offline"
+lorawan_str=""
+lorawan_disp="0"
+
+if [ -e /tmp/iot/status ] && [ $internet == "1" ]; then
+  status=$(cat /tmp/iot/status)
+  lorawan_disp="1"
+  if [ $status == "online" ]; then
+    lorawan_str="<font size="4"> LoRaWAN Connection OK </font>"
+    lorawan_img="/static/img/lorawan.png"
+  else
+    lorawan_str="<font size="4" color="red"> No LoRaWAN Connection </font>"
+  fi
+fi
+
 %>
 
 <!DOCTYPE html>
@@ -27,55 +59,67 @@ MEMSTR="Free Memory: "$MEMFREE" / Total Memory: "$MEMTOT
 
 	<link rel="shortcut icon" href="/static/resources/favicon.ico">
 
+
 </head>
 
 <body>
 <br><br>
-<h1>System Status</h1>
+<h1>System Overview</h1>
+
+<style type="text/css">
+  .navbar {
+    background-color:#00008B;
+    background-image: none;
+  }
+</style>
   
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded"> </a>  
-      <a class="navbar-brand" href="#"> Dragino LoRa Gateway </a>  
+      <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded" width="30" height="30"> </a>  
+      <a class="navbar-brand" href="#"><font size="5"><b> Dragino LoRa Gateway </b></font></a>  
     </div>
 
     <ul class="nav navbar-nav">
-      <li><a href="/cgi-bin/lora.has">LoRa Configuration</a></li>
-      <li><a href="/cgi-bin/mqtt.has">MQTT Client</a></li>
-      <li><a href="/cgi-bin/tcp-client.has">TCP Client</a></li>
-      <li><a href="/cgi-bin/http-client.has">HTTP/HTTPS Client</a></li>
-      <li><a href="/cgi-bin/custom.has">Custom Script</a></li>
-      <li><a href="/luci.html">LuCI Configuration</a></li>
+      <li><a href="/cgi-bin/lora.has"><font size="4">LoRa Configuration</font></a></li>
 
-<!--
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">LoRa Gateway<span class="caret"></span></a>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><font size="4">MQTT</font></a>
         <ul class="dropdown-menu">
-          <li><a href="/cgi-bin/lora.has">General Settings</a></li>
-          <li><a href="/cgi-bin/lora-radio.has">Radio Settings</a></li>
-          <li><a href="/cgi-bin/lora-chan.has">Channels</a></li>
+          <li><a href="/cgi-bin/mqtt.has"><font size="4">MQTT Client</font></a></li>
+          <li><a href="/cgi-bin/mqtt-chan.has"><font size="4">Channels</font></a></li>
+          <li><a href="/cgi-bin/mqtt-cert.has"><font size="4">Certificates</font></a></li>
         </ul>
       </li>
 
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">MQTT<span class="caret"></span></a>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><font size="4">TCP</font></a>
         <ul class="dropdown-menu">
-          <li><a href="/cgi-bin/mqtt.has">MQTT</a></li>
-          <li><a href="/cgi-bin/mqtt-chan.has">Channels</a></li>
-          <li><a href="/cgi-bin/mqtt-cert.has">Certificates</a></li>
+          <li><a href="/cgi-bin/tcp-client.has"><font size="4">TCP Client</font></a></li>
+          <li><a href="/cgi-bin/tcp-chan.has"><font size="4">Channels</font></a></li>
         </ul>
       </li>
 
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Logread<span class="caret"></span></a>
+      <li><a href="/cgi-bin/http-client.has"><font size="4">HTTP/HTTPS</font></a></li>
+
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><font size="4">Custom</font></a>
         <ul class="dropdown-menu">
-          <li><a href="/cgi-bin/freq.has">FreqINFO</a></li>
-          <li><a href="/cgi-bin/report.has">Report</a></li>
-          <li><a href="/cgi-bin/json.has">RxTxJson</a></li>
-          <li><a href="/cgi-bin/error.has">ErrorMsg</a></li>
+          <li><a href="/cgi-bin/custom.has"><font size="4">Custom Script</font></a></li>
+          <li><a href="/cgi-bin/custom-script.has"><font size="4">Script Management</font></a></li>
         </ul>
       </li>
 
-      <li><a href="#">Logout</a></li>  
--->
+      <li><a href="/cgi-bin/logread.has"><font size="4">LogRead</font></a></li>
+
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><font size="4">System</font></a>
+        <ul class="dropdown-menu">
+          <li><a href="/cgi-bin/system-overview.has"><font size="4">System Overview</font></a></li>
+          <li><a href="/cgi-bin/system-network.has"><font size="4">Network</font></a></li>
+          <li><a href="/cgi-bin/system-wifi.has"><font size="4">WiFi</font></a></li>
+          <li><a href="/cgi-bin/system-status.has"><font size="4">Network Status</font></a></li>
+          <li><a href="/cgi-bin/system-firmware.has"><font size="4">Firmware Upgrade</font></a></li>
+        </ul>
+      </li>
+
+      <li><a href="/luci.html"><font size="4">LuCI Configuration</font></a></li>
     </ul>
   </div>
 </nav>
@@ -98,7 +142,19 @@ MEMSTR="Free Memory: "$MEMFREE" / Total Memory: "$MEMTOT
 	<% echo "Load Avg:  "; uptime | cut -d , -f2,3,4 | cut -d : -f2 %>
 	<br><br>
 	<% echo $MEMSTR %>
+	<br><br>
 	</h4>
+  <% echo $connection %> <img src="<% echo -n $connect_img %>" width="100" height="100"> 
+  <% 
+     if [ $lorawan_disp == "1" ]; then
+       echo $lorawan_str
+       if [ $status == "online" ]; then 
+  %> 
+       <img src="<% echo -n $lorawan_img %>" width="200" height="100">
+  <%
+       fi
+     fi 
+  %> 
 
 </div>
 

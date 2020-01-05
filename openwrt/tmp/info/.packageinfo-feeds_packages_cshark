@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/cshark/Makefile
 
 Package: cshark
-Version: 2015-11-24-e575ab3d35d75a6f70488001fcba45690ebe9b3e-3
+Version: 2018-08-20-7a7cf7f35074b85c6fb0c52067e640d2433ef73b-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libjson-c +libpcap +libuci +libubox +libuclient +libustream-mbedtls
 Conflicts: 
 Menu-Depends: 
@@ -11,7 +11,7 @@ Category: Network
 Repository: packages
 Title: CloudShark capture tool
 Maintainer: Luka Perkov <luka@openwrt.org>
-Source: cshark-2015-11-24-e575ab3d35d75a6f70488001fcba45690ebe9b3e-e575ab3d35d75a6f70488001fcba45690ebe9b3e.tar.xz
+Source: cshark-2018-08-20-7a7cf7f35074b85c6fb0c52067e640d2433ef73b-7a7cf7f35074b85c6fb0c52067e640d2433ef73b.tar.xz
 Type: ipkg
 Description: CloudShark capture tool
 http://www.cloudshark.org/

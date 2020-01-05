@@ -2,7 +2,7 @@ Source-Makefile: package/feeds/packages/grilo/Makefile
 Build-Depends: glib2 libsoup libxml2 !BUILD_NLS:libiconv !BUILD_NLS:gettext
 
 Package: grilo
-Version: 0.3.4-1
+Version: 0.3.4-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +glib2 +libsoup +libxml2
 Conflicts: 
 Menu-Depends: 

@@ -2,7 +2,7 @@ Source-Makefile: package/feeds/packages/radicale/Makefile
 
 Package: radicale-py2
 Submenu: Web Servers/Proxies
-Version: 1.1.6-1
+Version: 1.1.6-2
 Depends:  +python-logging +python-openssl +python-xml +python-codecs
 Conflicts: 
 Menu-Depends: 
@@ -12,7 +12,7 @@ Section: net
 Category: Network
 Repository: packages
 Title: Radicale CalDAV/CardDAV server (Python 2)
-Maintainer: Christian Schoenebeck <christian.schoenebeck@gmail.com>
+Maintainer: 
 Require-User: radicale=5232:radicale=5232
 Source: radicale-1.1.6.tar.xz
 License: GPL-3.0
@@ -20,7 +20,7 @@ LicenseFiles: COPYING
 Type: ipkg
 Description: Radicale CalDAV/CardDAV server (Python 2) - Homepage: http://radicale.org/
 http://radicale.org/
-Christian Schoenebeck <christian.schoenebeck@gmail.com>
+
 @@
 Config:
     help
@@ -35,7 +35,7 @@ Config:
 
 Package: radicale-py3
 Submenu: Web Servers/Proxies
-Version: 1.1.6-1
+Version: 1.1.6-2
 Depends:  +python3-logging +python3-openssl +python3-xml +python3-codecs +python3-email
 Conflicts: 
 Menu-Depends: 
@@ -45,7 +45,7 @@ Section: net
 Category: Network
 Repository: packages
 Title: Radicale CalDAV/CardDAV server (Python 3)
-Maintainer: Christian Schoenebeck <christian.schoenebeck@gmail.com>
+Maintainer: 
 Require-User: radicale=5232:radicale=5232
 Source: radicale-1.1.6.tar.xz
 License: GPL-3.0
@@ -53,7 +53,7 @@ LicenseFiles: COPYING
 Type: ipkg
 Description: Radicale CalDAV/CardDAV server (Python 3) - Homepage: http://radicale.org/
 http://radicale.org/
-Christian Schoenebeck <christian.schoenebeck@gmail.com>
+
 @@
 Config:
     help

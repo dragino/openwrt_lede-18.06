@@ -3,7 +3,7 @@ Build-Types: host
 
 Package: luajit
 Submenu: Lua
-Version: 2017-01-17-71ff7ef-1
+Version: 2017-01-17-71ff7ef-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @(i386||x86_64||arm||armeb||powerpc||mips||mipsel)
 Conflicts: 
 Menu-Depends: 

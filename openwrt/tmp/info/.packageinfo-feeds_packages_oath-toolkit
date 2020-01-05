@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/oath-toolkit/Makefile
 
 Package: oath-toolkit
-Version: 2.6.2-1
+Version: 2.6.2-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 

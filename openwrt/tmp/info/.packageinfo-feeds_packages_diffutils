@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/diffutils/Makefile
 
 Package: diffutils
-Version: 3.6-1
+Version: 3.6-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 

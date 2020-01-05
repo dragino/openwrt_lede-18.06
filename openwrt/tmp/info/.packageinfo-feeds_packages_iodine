@@ -2,7 +2,7 @@ Source-Makefile: package/feeds/packages/iodine/Makefile
 
 Package: iodine
 Submenu: Firewall Tunnel
-Version: 0.7.0-3
+Version: 0.7.0-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +kmod-tun +zlib
 Conflicts: 
 Menu-Depends: 
@@ -23,7 +23,7 @@ Uwe Kleine-König <uwe+openwrt@kleine-koenig.org>
 
 Package: iodined
 Submenu: Firewall Tunnel
-Version: 0.7.0-3
+Version: 0.7.0-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +kmod-tun +zlib
 Conflicts: 
 Menu-Depends: 

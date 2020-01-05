@@ -3,7 +3,7 @@ Build-Depends: node/host libudev-fbsd
 
 Package: node-hid
 Submenu: Node.js
-Version: 0.7.2-1
+Version: 0.7.2-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +node +node-npm +libusb-1.0 +hidapi +libstdcpp
 Conflicts: 
 Menu-Depends: 

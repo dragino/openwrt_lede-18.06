@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/prometheus-node-exporter-lua/Makefile
 
 Package: prometheus-node-exporter-lua
-Version: 2018.07.23-1
+Version: 2019.08.14-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +luasocket +lua
 Conflicts: 
 Menu-Depends: 
@@ -21,7 +21,7 @@ Etienne CHAMPETIER <champetier.etienne@gmail.com>
 @@
 
 Package: prometheus-node-exporter-lua-nat_traffic
-Version: 2018.07.23-1
+Version: 2019.08.14-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread prometheus-node-exporter-lua
 Conflicts: 
 Menu-Depends: 
@@ -39,7 +39,7 @@ Etienne CHAMPETIER <champetier.etienne@gmail.com>
 @@
 
 Package: prometheus-node-exporter-lua-netstat
-Version: 2018.07.23-1
+Version: 2019.08.14-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread prometheus-node-exporter-lua
 Conflicts: 
 Menu-Depends: 
@@ -57,7 +57,7 @@ Etienne CHAMPETIER <champetier.etienne@gmail.com>
 @@
 
 Package: prometheus-node-exporter-lua-wifi
-Version: 2018.07.23-1
+Version: 2019.08.14-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread prometheus-node-exporter-lua +libiwinfo-lua +libubus-lua
 Conflicts: 
 Menu-Depends: 
@@ -75,7 +75,7 @@ Etienne CHAMPETIER <champetier.etienne@gmail.com>
 @@
 
 Package: prometheus-node-exporter-lua-wifi_stations
-Version: 2018.07.23-1
+Version: 2019.08.14-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread prometheus-node-exporter-lua +libiwinfo-lua +libubus-lua
 Conflicts: 
 Menu-Depends: 
@@ -93,7 +93,7 @@ Etienne CHAMPETIER <champetier.etienne@gmail.com>
 @@
 
 Package: prometheus-node-exporter-lua-bmx6
-Version: 2018.07.23-1
+Version: 2019.08.14-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread prometheus-node-exporter-lua bmx6 +lua-cjson +bmx6-json
 Conflicts: 
 Menu-Depends: 
@@ -111,7 +111,7 @@ Etienne CHAMPETIER <champetier.etienne@gmail.com>
 @@
 
 Package: prometheus-node-exporter-lua-bmx7
-Version: 2018.07.23-1
+Version: 2019.08.14-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread prometheus-node-exporter-lua bmx7 +lua-cjson +bmx7-json
 Conflicts: 
 Menu-Depends: 
@@ -129,7 +129,7 @@ Etienne CHAMPETIER <champetier.etienne@gmail.com>
 @@
 
 Package: prometheus-node-exporter-lua-textfile
-Version: 2018.07.23-1
+Version: 2019.08.14-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread prometheus-node-exporter-lua +luci-lib-nixio
 Conflicts: 
 Menu-Depends: 
@@ -147,8 +147,8 @@ Etienne CHAMPETIER <champetier.etienne@gmail.com>
 @@
 
 Package: prometheus-node-exporter-lua-openwrt
-Version: 2018.07.23-1
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread prometheus-node-exporter-lua
+Version: 2019.08.14-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread prometheus-node-exporter-lua +libubus-lua
 Conflicts: 
 Menu-Depends: 
 Provides: 
@@ -161,6 +161,24 @@ Source:
 License: Apache-2.0
 Type: ipkg
 Description: Prometheus node exporter (openwrt collector)
+Etienne CHAMPETIER <champetier.etienne@gmail.com>
+@@
+
+Package: prometheus-node-exporter-lua-ltq-dsl
+Version: 2019.08.14-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread prometheus-node-exporter-lua @(PACKAGE_ltq-adsl-app||PACKAGE_ltq-vdsl-app)
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: utils
+Category: Utilities
+Repository: packages
+Title: Prometheus node exporter (lantiq dsl collector)
+Maintainer: Etienne CHAMPETIER <champetier.etienne@gmail.com>
+Source: 
+License: Apache-2.0
+Type: ipkg
+Description: Prometheus node exporter (lantiq dsl collector)
 Etienne CHAMPETIER <champetier.etienne@gmail.com>
 @@
 

@@ -1,51 +1,76 @@
 Source-Makefile: package/feeds/packages/openldap/Makefile
 
 Package: libopenldap
-Version: 2.4.45-2
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libopenssl +libsasl2 +libpthread
+Menu: 1
+Submenu: OpenLDAP
+Version: 2.4.48-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libopenssl +libsasl2 +libpthread +OPENLDAP_DB47:libdb47 +OPENLDAP_ICU:icu
 Conflicts: 
 Menu-Depends: 
 Provides: 
-Section: libs
-Category: Libraries
+Section: net
+Category: Network
 Repository: packages
-Title: LDAP implementation (libraries)
+Title: LDAP directory suite (libraries)
 Maintainer: W. Michael Petullo <mike@flyn.org>
-Source: openldap-2.4.45.tgz
+Source: openldap-2.4.48.tgz
 License: OLDAP-2.8
 LicenseFiles: LICENSE
 Type: ipkg
-Description: 		OpenLDAP Software is an open source implementation of the
-	Lightweight Directory Access Protocol (LDAP).
-	This package contains the shared LDAP client libraries, needed by other programs.
+Description: OpenLDAP Software is an open source implementation of the Lightweight Directory Access Protocol (LDAP). This package contains the shared LDAP client libraries, needed by other programs.
 http://www.openldap.org/
 W. Michael Petullo <mike@flyn.org>
 @@
+Config:
+  config OPENLDAP_DEBUG
+	bool "Enable debugging information"
+	default y
+	help
+		Enable debugging information. This option must be enabled
+		for the loglevel directive to work.
+  config OPENLDAP_MONITOR
+	bool "Enable monitor backend"
+	default n
+	help
+		Enable monitor backend to obtain information about the running
+		status of the daemon. See OpenLDAP documentation for more
+		information.
+  config OPENLDAP_DB47
+	bool "Berkeley DB support"
+	default n
+	help
+		Enable Berkeley DB support (BDB).
+  config OPENLDAP_ICU
+	bool "ICU support"
+	default n
+	help
+		Enable ICU (International Components for Unicode) support.
+@@
 
 Package: openldap-utils
-Version: 2.4.45-2
+Submenu: OpenLDAP
+Version: 2.4.48-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libopenldap
 Conflicts: 
 Menu-Depends: 
 Provides: 
-Section: utils
-Category: Utilities
+Section: net
+Category: Network
 Repository: packages
-Title: LDAP implementation (utilities)
+Title: LDAP directory suite (utilities)
 Maintainer: W. Michael Petullo <mike@flyn.org>
-Source: openldap-2.4.45.tgz
+Source: openldap-2.4.48.tgz
 License: OLDAP-2.8
 LicenseFiles: LICENSE
 Type: ipkg
-Description: 		OpenLDAP Software is an open source implementation of the
-	Lightweight Directory Access Protocol (LDAP).
-	This package contains client programs required to access LDAP servers.
+Description: This package contains client programs required to access LDAP servers.
 http://www.openldap.org/
 W. Michael Petullo <mike@flyn.org>
 @@
 
 Package: openldap-server
-Version: 2.4.45-2
+Submenu: OpenLDAP
+Version: 2.4.48-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libopenldap +libuuid
 Conflicts: 
 Menu-Depends: 
@@ -53,15 +78,13 @@ Provides:
 Section: net
 Category: Network
 Repository: packages
-Title: LDAP implementation (server)
+Title: LDAP directory suite (server)
 Maintainer: W. Michael Petullo <mike@flyn.org>
-Source: openldap-2.4.45.tgz
+Source: openldap-2.4.48.tgz
 License: OLDAP-2.8
 LicenseFiles: LICENSE
 Type: ipkg
-Description: 		OpenLDAP Software is an open source implementation of the
-	Lightweight Directory Access Protocol (LDAP).
-	This package contains server programs required to provide LDAP services.
+Description: This package contains server programs required to provide LDAP services.
 http://www.openldap.org/
 W. Michael Petullo <mike@flyn.org>
 @@

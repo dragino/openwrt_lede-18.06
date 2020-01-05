@@ -2,11 +2,11 @@ Source-Makefile: package/feeds/packages/wget/Makefile
 
 Package: wget
 Submenu: File Transfer
-Version: 1.19.5-1
+Version: 1.19.5-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpcre +zlib +libopenssl +librt
 Conflicts: 
 Menu-Depends: 
-Provides: 
+Provides: wget gnu-wget
 Build-Variant: ssl
 Section: net
 Category: Network
@@ -30,11 +30,11 @@ Peter Wagner <tripolar@gmx.at>
 
 Package: wget-nossl
 Submenu: File Transfer
-Version: 1.19.5-1
+Version: 1.19.5-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpcre +zlib
 Conflicts: 
 Menu-Depends: 
-Provides: 
+Provides: wget gnu-wget
 Build-Variant: nossl
 Section: net
 Category: Network

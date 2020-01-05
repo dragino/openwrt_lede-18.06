@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/libgcrypt/Makefile
 
 Package: libgcrypt
-Version: 1.6.6-2
+Version: 1.6.6-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libgpg-error
 Conflicts: 
 Menu-Depends: 

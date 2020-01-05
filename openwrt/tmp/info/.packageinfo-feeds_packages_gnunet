@@ -3,8 +3,8 @@ Build-Depends: !BUILD_NLS:libiconv !BUILD_NLS:gettext
 
 Package: gnunet
 Menu: 1
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libgcrypt +libgpg-error +libidn +libltdl +libunistring +librt +zlib +BUILD_NLS:libiconv-full +BUILD_NLS:libintl-full
+Version: 0.11.0-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libatomic +libgcrypt +libgpg-error +libidn2 +libltdl +libunistring +librt +zlib +BUILD_NLS:libiconv-full +BUILD_NLS:libintl-full
 Conflicts: 
 Menu-Depends: 
 Provides: 
@@ -14,8 +14,8 @@ Repository: packages
 Title: GNUnet - a peer-to-peer framework focusing on security
 Maintainer: Daniel Golle <daniel@makrotopia.org>
 Require-User: gnunet=958:gnunet=958
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description:  GNUnet is a peer-to-peer framework focusing on security. The first and
@@ -34,7 +34,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: gnunet-conversation
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-gns +libgst1app +libgst1audio +libgstreamer1 +glib2 +pulseaudio-daemon +libopus +libogg
 Conflicts: 
 Menu-Depends: 
@@ -44,8 +44,8 @@ Category: Network
 Repository: packages
 Title: GNUnet conversation component
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet conversation component
@@ -53,8 +53,28 @@ https://www.gnunet.org/
 Daniel Golle <daniel@makrotopia.org>
 @@
 
+Package: gnunet-curl
+Version: 0.11.0-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +libgnurl +jansson
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: GNUnet cURL wrapper component
+Maintainer: Daniel Golle <daniel@makrotopia.org>
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
+LicenseFiles: COPYING
+Type: ipkg
+Description: GNUnet cURL wrapper component
+https://www.gnunet.org/
+Daniel Golle <daniel@makrotopia.org>
+@@
+
 Package: gnunet-datastore
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-gns
 Conflicts: 
 Menu-Depends: 
@@ -64,8 +84,8 @@ Category: Network
 Repository: packages
 Title: GNUnet data storage components
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet data storage components
@@ -74,7 +94,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: gnunet-dht-cli
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet
 Conflicts: 
 Menu-Depends: 
@@ -84,8 +104,8 @@ Category: Network
 Repository: packages
 Title: GNUnet DHT command line clients
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet DHT command line clients
@@ -94,7 +114,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: gnunet-experiments
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +libglpk
 Conflicts: 
 Menu-Depends: 
@@ -104,8 +124,8 @@ Category: Network
 Repository: packages
 Title: GNUnet experimental components
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet experimental components
@@ -114,7 +134,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: gnunet-fs
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-datastore +gnunet-peerstore +libextractor
 Conflicts: 
 Menu-Depends: 
@@ -124,8 +144,8 @@ Category: Network
 Repository: packages
 Title: GNUnet file-sharing components
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet file-sharing components
@@ -135,7 +155,7 @@ Daniel Golle <daniel@makrotopia.org>
 
 Package: gnunet-gns
 Default: y if PACKAGE_gnunet
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-vpn +iptables-mod-extra
 Conflicts: 
 Menu-Depends: 
@@ -146,8 +166,8 @@ Repository: packages
 Title: GNUnet name resolution components
 Maintainer: Daniel Golle <daniel@makrotopia.org>
 Require-User: gnunet=958:gnunetdns=452
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet name resolution components
@@ -156,8 +176,8 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: gnunet-gns-proxy
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-gns +libgnurl +libmicrohttpd
+Version: 0.11.0-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-gns +gnunet-curl +libmicrohttpd
 Conflicts: 
 Menu-Depends: 
 Provides: 
@@ -166,8 +186,8 @@ Category: Network
 Repository: packages
 Title: GNUnet gns-proxy component
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet gns-proxy component
@@ -177,8 +197,8 @@ Daniel Golle <daniel@makrotopia.org>
 
 Package: gnunet-hostlist
 Default: y if PACKAGE_gnunet
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +libmicrohttpd +libgnurl +ca-certificates
+Version: 0.11.0-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +libmicrohttpd +gnunet-curl +ca-certificates
 Conflicts: 
 Menu-Depends: 
 Provides: 
@@ -187,8 +207,8 @@ Category: Network
 Repository: packages
 Title: GNUnet HTTP bootstrap hostlist client and server
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet HTTP bootstrap hostlist client and server
@@ -197,7 +217,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: gnunet-peerstore
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet
 Conflicts: 
 Menu-Depends: 
@@ -207,8 +227,8 @@ Category: Network
 Repository: packages
 Title: GNUnet peerstore local persistency component
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet peerstore local persistency component
@@ -216,9 +236,29 @@ https://www.gnunet.org/
 Daniel Golle <daniel@makrotopia.org>
 @@
 
+Package: gnunet-reclaim
+Version: 0.11.0-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-gns +gnunet-sqlite +libpbc +libgabe
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: GNUnet reclaim identity-provider subsystem
+Maintainer: Daniel Golle <daniel@makrotopia.org>
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
+LicenseFiles: COPYING
+Type: ipkg
+Description: GNUnet reclaim identity-provider subsystem
+https://www.gnunet.org/
+Daniel Golle <daniel@makrotopia.org>
+@@
+
 Package: gnunet-rest
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-gns +gnunet-social +libmicrohttpd +jansson
+Version: 0.11.0-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-gns +gnunet-reclaim +libmicrohttpd +jansson
 Conflicts: 
 Menu-Depends: 
 Provides: 
@@ -227,8 +267,8 @@ Category: Network
 Repository: packages
 Title: GNUnet REST interface
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet REST interface
@@ -238,7 +278,7 @@ Daniel Golle <daniel@makrotopia.org>
 
 Package: gnunet-rps
 Default: y if PACKAGE_gnunet
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet
 Conflicts: 
 Menu-Depends: 
@@ -248,8 +288,8 @@ Category: Network
 Repository: packages
 Title: GNUnet RPS routing component
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet RPS routing component
@@ -257,28 +297,8 @@ https://www.gnunet.org/
 Daniel Golle <daniel@makrotopia.org>
 @@
 
-Package: gnunet-social
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-gns +libmicrohttpd +jansson
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: net
-Category: Network
-Repository: packages
-Title: GNUnet social components
-Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
-LicenseFiles: COPYING
-Type: ipkg
-Description: GNUnet social components
-https://www.gnunet.org/
-Daniel Golle <daniel@makrotopia.org>
-@@
-
 Package: gnunet-namestore-fcfsd
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-gns +libmicrohttpd
 Conflicts: 
 Menu-Depends: 
@@ -288,8 +308,8 @@ Category: Network
 Repository: packages
 Title: GNUnet first-come-first-serve registration server
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet first-come-first-serve registration server
@@ -299,7 +319,7 @@ Daniel Golle <daniel@makrotopia.org>
 
 Package: gnunet-dhtcache-heap
 Default: y if PACKAGE_gnunet
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet
 Conflicts: gnunet-dhtcache-pgsql gnunet-dhtcache-sqlite
 Menu-Depends: 
@@ -309,8 +329,8 @@ Category: Network
 Repository: packages
 Title: GNUnet heap-based dhtcache plugin
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet heap-based dhtcache plugin
@@ -319,7 +339,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: gnunet-fs-heap
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-datastore
 Conflicts: gnunet-fs-mysql gnunet-fs-pgsql gnunet-fs-sqlite
 Menu-Depends: 
@@ -329,8 +349,8 @@ Category: Network
 Repository: packages
 Title: GNUnet heap-based filesharing plugin
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet heap-based filesharing plugin
@@ -340,7 +360,7 @@ Daniel Golle <daniel@makrotopia.org>
 
 Package: gnunet-gns-flat
 Default: y if PACKAGE_gnunet
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-gns
 Conflicts: 
 Menu-Depends: 
@@ -350,8 +370,8 @@ Category: Network
 Repository: packages
 Title: GNUnet flat storage GNS plugins
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet flat storage GNS plugins
@@ -360,7 +380,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: gnunet-peerstore-flat
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-peerstore
 Conflicts: 
 Menu-Depends: 
@@ -370,8 +390,8 @@ Category: Network
 Repository: packages
 Title: GNUnet flat storage peerstore plugin
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet flat storage peerstore plugin
@@ -380,7 +400,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: gnunet-mysql
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +libmysqlclient
 Conflicts: 
 Menu-Depends: 
@@ -390,8 +410,8 @@ Category: Network
 Repository: packages
 Title: GNUnet mySQL backend
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet mySQL backend
@@ -400,7 +420,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: gnunet-fs-mysql
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-mysql +gnunet-datastore
 Conflicts: gnunet-fs-pgsql gnunet-fs-sqlite
 Menu-Depends: 
@@ -410,8 +430,8 @@ Category: Network
 Repository: packages
 Title: GNUnet mySQL filesharing plugins
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet mySQL filesharing plugins
@@ -419,28 +439,8 @@ https://www.gnunet.org/
 Daniel Golle <daniel@makrotopia.org>
 @@
 
-Package: gnunet-social-mysql
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-mysql +gnunet-social
-Conflicts: gnunet-social-sqlite
-Menu-Depends: 
-Provides: 
-Section: net
-Category: Network
-Repository: packages
-Title: GNUnet mySQL social plugins
-Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
-LicenseFiles: COPYING
-Type: ipkg
-Description: GNUnet mySQL social plugins
-https://www.gnunet.org/
-Daniel Golle <daniel@makrotopia.org>
-@@
-
 Package: gnunet-pgsql
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +libpq
 Conflicts: 
 Menu-Depends: 
@@ -450,8 +450,8 @@ Category: Network
 Repository: packages
 Title: GNUnet PostgreSQL backend
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet PostgreSQL backend
@@ -460,7 +460,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: gnunet-dhtcache-pgsql
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-pgsql
 Conflicts: gnunet-dhtcache-sqlite
 Menu-Depends: 
@@ -470,8 +470,8 @@ Category: Network
 Repository: packages
 Title: GNUnet PostgreSQL dhtcache plugin
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet PostgreSQL dhtcache plugin
@@ -480,7 +480,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: gnunet-fs-pgsql
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-pgsql +gnunet-datastore
 Conflicts: gnunet-fs-sqlite
 Menu-Depends: 
@@ -490,8 +490,8 @@ Category: Network
 Repository: packages
 Title: GNUnet PostgreSQL filesharing plugin
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet PostgreSQL filesharing plugin
@@ -500,7 +500,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: gnunet-gns-pgsql
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-pgsql +gnunet-gns
 Conflicts: gnunet-gns-sqlite gnunet-gns-flat
 Menu-Depends: 
@@ -510,8 +510,8 @@ Category: Network
 Repository: packages
 Title: GNUnet PostgreSQL GNS plugins
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet PostgreSQL GNS plugins
@@ -519,28 +519,8 @@ https://www.gnunet.org/
 Daniel Golle <daniel@makrotopia.org>
 @@
 
-Package: gnunet-social-pgsql
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-pgsql +gnunet-social
-Conflicts: gnunet-social-sqlite gnunet-social-mysql
-Menu-Depends: 
-Provides: 
-Section: net
-Category: Network
-Repository: packages
-Title: GNUnet PostgreSQL social plugin
-Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
-LicenseFiles: COPYING
-Type: ipkg
-Description: GNUnet PostgreSQL social plugin
-https://www.gnunet.org/
-Daniel Golle <daniel@makrotopia.org>
-@@
-
 Package: gnunet-sqlite
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +libsqlite3
 Conflicts: 
 Menu-Depends: 
@@ -550,8 +530,8 @@ Category: Network
 Repository: packages
 Title: GNUnet libsqlite3 backend
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet libsqlite3 backend
@@ -560,7 +540,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: gnunet-dhtcache-sqlite
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-sqlite
 Conflicts: 
 Menu-Depends: 
@@ -570,8 +550,8 @@ Category: Network
 Repository: packages
 Title: GNUnet libsqlite3 dhtcache plugin
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet libsqlite3 dhtcache plugin
@@ -580,7 +560,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: gnunet-fs-sqlite
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-datastore +gnunet-sqlite
 Conflicts: 
 Menu-Depends: 
@@ -590,8 +570,8 @@ Category: Network
 Repository: packages
 Title: GNUnet libsqlite3 filesharing plugin
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet libsqlite3 filesharing plugin
@@ -600,7 +580,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: gnunet-gns-sqlite
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-gns +gnunet-sqlite
 Conflicts: gnunet-gns-flat
 Menu-Depends: 
@@ -610,8 +590,8 @@ Category: Network
 Repository: packages
 Title: GNUnet libsqlite3 gns plugins
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet libsqlite3 gns plugins
@@ -620,7 +600,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: gnunet-peerstore-sqlite
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-peerstore +gnunet-sqlite
 Conflicts: gnunet-peerstore-flat
 Menu-Depends: 
@@ -630,8 +610,8 @@ Category: Network
 Repository: packages
 Title: GNUnet libsqlite3 peerstore plugin
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet libsqlite3 peerstore plugin
@@ -639,28 +619,8 @@ https://www.gnunet.org/
 Daniel Golle <daniel@makrotopia.org>
 @@
 
-Package: gnunet-social-sqlite
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-social +gnunet-sqlite
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: net
-Category: Network
-Repository: packages
-Title: GNUnet libsqlite3 social plugins
-Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
-LicenseFiles: COPYING
-Type: ipkg
-Description: GNUnet libsqlite3 social plugins
-https://www.gnunet.org/
-Daniel Golle <daniel@makrotopia.org>
-@@
-
 Package: gnunet-transport-bluetooth
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +bluez-libs
 Conflicts: 
 Menu-Depends: 
@@ -670,8 +630,8 @@ Category: Network
 Repository: packages
 Title: GNUnet bluetooth transport
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet bluetooth transport
@@ -681,8 +641,8 @@ Daniel Golle <daniel@makrotopia.org>
 
 Package: gnunet-transport-http_client
 Default: y if PACKAGE_gnunet
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +libgnurl +ca-certificates
+Version: 0.11.0-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +gnunet-curl +ca-certificates
 Conflicts: 
 Menu-Depends: 
 Provides: 
@@ -691,8 +651,8 @@ Category: Network
 Repository: packages
 Title: GNUnet HTTP/HTTPS client transport
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet HTTP/HTTPS client transport
@@ -701,7 +661,7 @@ Daniel Golle <daniel@makrotopia.org>
 @@
 
 Package: gnunet-transport-http_server
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +libmicrohttpd
 Conflicts: 
 Menu-Depends: 
@@ -711,8 +671,8 @@ Category: Network
 Repository: packages
 Title: GNUnet HTTP/HTTPS server transport
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet HTTP/HTTPS server transport
@@ -720,9 +680,51 @@ https://www.gnunet.org/
 Daniel Golle <daniel@makrotopia.org>
 @@
 
+Package: gnunet-transport-tcp
+Default: y if PACKAGE_gnunet
+Version: 0.11.0-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: GNUnet TCP transport
+Maintainer: Daniel Golle <daniel@makrotopia.org>
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
+LicenseFiles: COPYING
+Type: ipkg
+Description: GNUnet TCP transport
+https://www.gnunet.org/
+Daniel Golle <daniel@makrotopia.org>
+@@
+
+Package: gnunet-transport-udp
+Default: y if PACKAGE_gnunet
+Version: 0.11.0-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: GNUnet UDP transport
+Maintainer: Daniel Golle <daniel@makrotopia.org>
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
+LicenseFiles: COPYING
+Type: ipkg
+Description: GNUnet UDP transport
+https://www.gnunet.org/
+Daniel Golle <daniel@makrotopia.org>
+@@
+
 Package: gnunet-transport-wlan
 Default: y if PACKAGE_gnunet
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet
 Conflicts: 
 Menu-Depends: 
@@ -732,8 +734,8 @@ Category: Network
 Repository: packages
 Title: GNUnet WLAN transport
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet WLAN transport
@@ -741,8 +743,48 @@ https://www.gnunet.org/
 Daniel Golle <daniel@makrotopia.org>
 @@
 
+Package: gnunet-transport-xt
+Version: 0.11.0-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: GNUnet xt transport
+Maintainer: Daniel Golle <daniel@makrotopia.org>
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
+LicenseFiles: COPYING
+Type: ipkg
+Description: GNUnet xt transport
+https://www.gnunet.org/
+Daniel Golle <daniel@makrotopia.org>
+@@
+
+Package: gnunet-transport-xu
+Version: 0.11.0-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: net
+Category: Network
+Repository: packages
+Title: GNUnet xu transport
+Maintainer: Daniel Golle <daniel@makrotopia.org>
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
+LicenseFiles: COPYING
+Type: ipkg
+Description: GNUnet xu transport
+https://www.gnunet.org/
+Daniel Golle <daniel@makrotopia.org>
+@@
+
 Package: gnunet-utils
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +certtool +openssl-util
 Conflicts: 
 Menu-Depends: 
@@ -752,8 +794,8 @@ Category: Network
 Repository: packages
 Title: GNUnet administration utililties
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet administration utililties
@@ -763,7 +805,7 @@ Daniel Golle <daniel@makrotopia.org>
 
 Package: gnunet-vpn
 Default: y if PACKAGE_gnunet
-Version: 0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7-1
+Version: 0.11.0-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread gnunet +kmod-tun +iptables +firewall
 Conflicts: 
 Menu-Depends: 
@@ -773,8 +815,8 @@ Category: Network
 Repository: packages
 Title: GNUnet vpn components
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: gnunet-0.10.2-git-20180205-b673e9c3ed4a211b974bc602b893a427533566d7.tar.xz
-License: GPL-3.0
+Source: gnunet-0.11.0.tar.gz
+License: AGPL-3.0
 LicenseFiles: COPYING
 Type: ipkg
 Description: GNUnet vpn components

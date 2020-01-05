@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/pianod/Makefile
 
 Package: pianod
-Version: 174.07-1
+Version: 174.09-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libao +libfaad2 +libmpg123 +libmbedtls +libjson-c +libgcrypt +libpthread
 Conflicts: 
 Menu-Depends: 
@@ -12,7 +12,7 @@ Repository: packages
 Title: Pandora radio daemon
 Maintainer: Ted Hess <thess@kitschensync.net>
 Require-User: pianod=88:pianod=88
-Source: pianod-174.07.tar.xz
+Source: pianod-174.09.tar.xz
 License: MIT VARIOUS
 LicenseFiles: COPYING
 Type: ipkg
@@ -26,7 +26,7 @@ Ted Hess <thess@kitschensync.net>
 @@
 
 Package: pianod-client
-Version: 174.07-1
+Version: 174.09-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +pianod
 Conflicts: 
 Menu-Depends: 
@@ -36,7 +36,7 @@ Category: Sound
 Repository: packages
 Title: Pandora radio daemon WebUI
 Maintainer: Ted Hess <thess@kitschensync.net>
-Source: pianod-174.07.tar.xz
+Source: pianod-174.09.tar.xz
 License: MIT VARIOUS
 LicenseFiles: COPYING
 Type: ipkg

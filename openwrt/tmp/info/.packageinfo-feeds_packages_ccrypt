@@ -2,7 +2,7 @@ Source-Makefile: package/feeds/packages/ccrypt/Makefile
 
 Package: ccrypt
 Submenu: Encryption
-Version: 1.10-3
+Version: 1.11-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -12,7 +12,7 @@ Category: Utilities
 Repository: packages
 Title: utility for encrypting/decrypting files and streams
 Maintainer: Hannu Nyman <hannu.nyman@iki.fi>
-Source: ccrypt-1.10.tar.gz
+Source: ccrypt-1.11.tar.gz
 License: GPLv2+
 Type: ipkg
 Description: utility for encrypting/decrypting files and streams

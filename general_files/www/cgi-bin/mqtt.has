@@ -14,9 +14,11 @@
     fi
   fi
 
-	if [ "$FORM_BUTTON" = "Save" ]; then
+	if [ $FORM_BUTTON == "Save" ] || [ $FORM_BUTTON == "Save&Apply" ]; then
     server_type=$(uci -q get mqtt.common.server_type)
   
+		uci set gateway.general.server_type="$FORM_IOT_SERVICE"
+
 		uci set mqtt.$server_type.url="$FORM_URL"
     uci set mqtt.$server_type.port="$FORM_PORT"
 		uci set mqtt.$server_type.user="$FORM_USER"
@@ -27,7 +29,7 @@
     uci set mqtt.$server_type.cid="$FORM_CID"
 
     uci set mqtt.$server_type.pub_qos="$FORM_PUB_QOS"
-		uci set mqtt.$server_type.topic="$FORM_TOPIC"
+		uci set mqtt.$server_type.pub_topic="$FORM_TOPIC"
     uci set mqtt.$server_type.data="$FORM_DATA"
 
 		if [ "$FORM_PUB_ENABLE" == "checked" ]; then
@@ -49,6 +51,12 @@
 		uci commit mqtt 
 	fi
 
+  if [ $FORM_BUTTON == "Save&Apply" ]; then
+    /etc/init.d/lora_gw reload > /dev/null
+    sleep 2
+    /etc/init.d/iot reload > /dev/null
+  fi
+
   rm /tmp/changeFunct.flag   # Just to be sure
 
 %>
@@ -57,6 +65,7 @@
 <% 
 # --- Get the variables for the HTML page ---
 
+	iot_service="$(uci -q get gateway.general.server_type)"
   server_type="$(uci -q get mqtt.common.server_type)"
 
 	url="$(uci -q get mqtt.$server_type.url)"
@@ -77,6 +86,20 @@
   sub_qos="$(uci -q get mqtt.$server_type.sub_qos)"
 	sub_topic="$(uci -q get mqtt.$server_type.sub_topic)"
 
+# --- Set up server specific display fields ---
+
+	pub_topic_default=" "
+	sub_topic_default=" "
+	pub_topic_placeholder=" "
+	sub_topic_placeholder=" "
+	if [ $server_type == "Alibaba" ]; then
+		device_name=$(echo "$user"|cut -d "&" -f 1)
+		product_key=$(echo "$user"|cut -d "&" -f 2)
+		pub_topic_default="Default:  $product_key/$device_name/user/get"
+		sub_topic_default="Default:  $product_key/$device_name/user/get"
+		pub_topic_placeholder="Product_Key/Device_Name/user/get"
+		sub_topic_placeholder="Product_Key/Device_Name/user/get"
+	fi
 
 # --- Set up field display ---
  
@@ -136,13 +159,13 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded"> </a>  
-      <a class="navbar-brand" href="#"> MQTT Configuration </a>  
+      <a class="navbar-brand" href="#"><font size="5"><b> MQTT Configuration </b></font></a>  
     </div>
 
     <ul class="nav navbar-nav">
-      <li><a href="/cgi-bin/mqtt-chan.has">MQTT Channels</a></li>
-      <li><a href="/cgi-bin/mqtt-cert.has">MQTT Certificates</a></li>
-      <li><a href="/cgi-bin/dragino.has">Return to Main Menu</a></li>
+      <li><a href="/cgi-bin/mqtt-chan.has"><font size="4">MQTT Channels</font></a></li>
+      <li><a href="/cgi-bin/mqtt-cert.has"><font size="4">MQTT Certificates</font></a></li>
+      <li><a href="/cgi-bin/dragino.has"><font size="4">Return to Main Menu</font></a></li>
     </ul>
 
   </div>
@@ -152,7 +175,15 @@
 <form id="mqtt" action="<% echo -n $SCRIPT_NAME %>" method="POST">
 	<br></br>
 
-	<label for="server_type">Server Type</label>
+	<label for="iot_service">IoT Service</label>
+	<select id="iot_service" name="IOT_SERVICE" >
+		<option selected="<% echo -n $iot_service %>"><% echo -n $iot_service %></option>
+	  <option value="disabled" >Disabled</option>
+	  <option value="mqtt" >LoRaRaw forward to MQTT server</option>
+	</select> 
+  <br></br>
+
+	<label for="server_type">MQTT Server Profile</label>
 	<select id="server_type" style="padding-right:80px" name="SERVER_TYPE" onchange="changeFunc(this.value)" >
 		<option selected="<% echo -n $server_type %>"><% echo -n $server_type %></option>
 	  <option value="General" >General</option>
@@ -161,43 +192,44 @@
 	  <option value="myDevices" >myDevices</option>
 	  <option value="Azure" >Azure</option>
 	  <option value="AWS" >AWS</option>
+	  <option value="Alibaba" >Alibaba</option>
 	</select> 
   <br></br>
 
 	<label for="URL">Broker Address [-h]</label>
-	<input type="text" name="URL" size="40" Placeholder="Server URL" VALUE="<% echo -n $url %>">
+	<input type="text" name="URL" size="40" Placeholder="Server URL" maxlength="256" VALUE="<% echo -n $url %>" >
   <br></br>
 
 	<label for="PORT">Broker Port [-p]</label>
-	<input type="text" name="PORT" Placeholder="Server Port" VALUE="<% echo -n $port %>">
+	<input type="number" min="1" max="65535" name="PORT" Placeholder="Server Port" maxlength="5" VALUE="<% echo -n $port %>" >
   <br></br>
 
   <div id="div1">
 	  <label for="USER">User ID [-u]</label>
-	  <input type="text" name="USER" Placeholder="User ID" VALUE="<% echo -n $user %>">
+	  <input type="text" name="USER" Placeholder="User ID" maxlength="256" VALUE="<% echo -n $user %>" >
 
 	  <label for="PWD" style="padding-left:60px">Password [-P]</label>
-	  <input type="text" name="PWD" Placeholder="Password" VALUE="<% echo -n $pwd %>" size="30">
+	  <input type="text" size="30" name="PWD" Placeholder="Password" maxlength="256" VALUE="<% echo -n $pwd %>" >
     <br></br>
   </div>
 
   <div id="div2">
 	  <label for="CERT">Certificate [--cert]</label>
-	  <input type="text" name="CERT" Placeholder="Certificate File" VALUE=<% echo -n $cert %>>
+	  <input type="text" maxlength="128" name="CERT" Placeholder="Certificate File" VALUE="<% echo -n $cert %>" >
 
 	  <label for="KEY" style="padding-left:60px">Key [--key]</label>
-	  <input type="text" name="KEY" Placeholder="Key File" VALUE=<% echo -n $key %>>
+	  <input type="text" maxlength="128" name="KEY" Placeholder="Key File" VALUE="<% echo -n $key %>" >
     <br></br>
   </div>
 
   <div id="div3">
     <label for="CAFILE">CA File [--cafile]</label>                                       
-    <input type="text" name="CAFILE" Placeholder="Certificate Authority File" VALUE=<% echo -n $cafile %>>                    
+    <input type="text" maxlength="128" name="CAFILE" Placeholder="Certificate Authority File" VALUE="<% echo -n $cafile %>" > 
     <br></br>
   </div>   
 
   <label for="CID">Client ID [-i]</label>
-  <input type="text" name="CID" Placeholder="Client ID" VALUE=<% echo -n $cid %>>
+  <input type="text" maxlength="256" name="CID" Placeholder="Client ID" VALUE="<% echo -n $cid %>" >
   <br></br>
 
   <h3>Publish</h3>
@@ -216,11 +248,13 @@
   <br></br>
 
   <label for="TOPIC">Topic Format [-t]</label>
-  <input type="text" name="TOPIC" VALUE=<% echo -n $topic %> size="40">
+  <input type="text" maxlength="128" name="TOPIC" size="40"  VALUE="<% echo -n $topic %>" >
+
+	<% echo -n $pub_topic_default %>
   <br></br>
 
   <label for="DATA">Data Format [-m]</label>
-  <input type="text" name="DATA" VALUE=<% echo -n $data %> size="40">
+  <input type="text" size="40" maxlength="128" name="DATA" VALUE="<% echo -n $data %>" >
   <br></br>
 
   <h3>Subscribe</h3>
@@ -239,11 +273,14 @@
   <br></br>
 
   <label for="SUB_TOPIC">Topic Format [-t]</label>
-  <input type="text" name="SUB_TOPIC" size="40" VALUE=<% echo -n $sub_topic %>>
+  <input type="text" maxlength="128" name="SUB_TOPIC" size="40" VALUE="<% echo -n $sub_topic %>" >
+
+	<% echo -n $sub_topic_default %>
   <br></br>
 
 	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save">
-	<br></br>
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
 
 </form>
 </div>

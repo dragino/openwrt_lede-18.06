@@ -3,7 +3,7 @@ Build-Depends: pps-tools
 
 Package: chrony
 Submenu: Time Synchronization
-Version: 3.3-2
+Version: 3.3-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libcap +libpthread
 Conflicts: 
 Menu-Depends: 

@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/libsoc/Makefile
 
 Package: libsoc
-Version: 2016-12-22-5b788d4d558a78c52e6cfe97325e4564b307a3a0-1
+Version: 2016-12-22-5b788d4d558a78c52e6cfe97325e4564b307a3a0-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread
 Conflicts: 
 Menu-Depends: 

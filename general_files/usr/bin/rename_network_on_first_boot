@@ -2,12 +2,11 @@
 
 ssid_prefix=$(uci get system.vendor.ssid_prefix)
 SSID="$ssid_prefix-$(hexdump -v -e '1/1 "%.2x"' -s $((0x1005)) -n 3 /dev/mtd6)"
-uci set secn.accesspoint.ssid=$SSID
 uci set wireless.ap_0.ssid=$SSID
 
 hostname_prefix=$(uci get system.vendor.name)
 DHCP_DOMAIN="$hostname_prefix-net"
-uci set secn.dhcp.domain=$DHCP_DOMAIN
+
 uci set dhcp.setup.domain=$DHCP_DOMAIN
 uci set network.wan.hostname="$hostname_prefix-$(hexdump -v -e '1/1 "%.2x"' -s $((0x1005)) -n 3 /dev/mtd6)"
 set system.@system[0].hostname="$hostname_prefix-$(hexdump -v -e '1/1 "%.2x"' -s $((0x1005)) -n 3 /dev/mtd6)"

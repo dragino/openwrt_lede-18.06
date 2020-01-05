@@ -3298,6 +3298,7 @@ CONFIG_PACKAGE_luasocket=y
 # CONFIG_PACKAGE_python-unittest is not set
 # CONFIG_PACKAGE_python-unittest-src is not set
 # CONFIG_PACKAGE_python-urllib3 is not set
+# CONFIG_PACKAGE_python-urllib3-src is not set
 # CONFIG_PACKAGE_python-xml is not set
 # CONFIG_PACKAGE_python-xml-src is not set
 # CONFIG_PACKAGE_python-yaml is not set
@@ -3727,6 +3728,7 @@ CONFIG_PACKAGE_libblobmsg-json=y
 CONFIG_PACKAGE_libcares=y
 # CONFIG_PACKAGE_libcharset is not set
 # CONFIG_PACKAGE_libcoap is not set
+# CONFIG_PACKAGE_libcomerr is not set
 # CONFIG_PACKAGE_libconfig is not set
 CONFIG_PACKAGE_libcurl=y
 
@@ -3774,20 +3776,19 @@ CONFIG_LIBCURL_PROXY=y
 CONFIG_PACKAGE_libdaemon=y
 # CONFIG_PACKAGE_libdaq is not set
 CONFIG_PACKAGE_libdb47=y
+# CONFIG_PACKAGE_libdb47xx is not set
 # CONFIG_PACKAGE_libdbi is not set
+CONFIG_PACKAGE_libdbus=y
 # CONFIG_PACKAGE_libdevmapper is not set
 # CONFIG_PACKAGE_libdmapsharing is not set
 # CONFIG_PACKAGE_libdnet is not set
 # CONFIG_PACKAGE_libdouble-conversion is not set
 # CONFIG_PACKAGE_libdrm is not set
+# CONFIG_PACKAGE_libecdsautil is not set
 # CONFIG_PACKAGE_libedit is not set
 CONFIG_PACKAGE_libelf1=y
 # CONFIG_PACKAGE_libasm is not set
-# CONFIG_PACKAGE_libcomerr is not set
-# CONFIG_PACKAGE_libdb47xx is not set
-CONFIG_PACKAGE_libdbus=y
 # CONFIG_PACKAGE_libdw is not set
-# CONFIG_PACKAGE_libecdsautil is not set
 # CONFIG_PACKAGE_libesmtp is not set
 # CONFIG_PACKAGE_libestr is not set
 # CONFIG_PACKAGE_libev is not set
@@ -3819,6 +3820,7 @@ CONFIG_PACKAGE_libffi=y
 # CONFIG_PACKAGE_libfreetype is not set
 CONFIG_PACKAGE_libftdi=y
 CONFIG_PACKAGE_libftdi1=y
+# CONFIG_PACKAGE_libgabe is not set
 # CONFIG_PACKAGE_libgcrypt is not set
 # CONFIG_PACKAGE_libgd is not set
 CONFIG_PACKAGE_libgdbm=y
@@ -3876,13 +3878,13 @@ CONFIG_PACKAGE_libmosquitto-ssl=y
 # CONFIG_PACKAGE_libmpdclient is not set
 # CONFIG_PACKAGE_libmpeg2 is not set
 # CONFIG_PACKAGE_libmpg123 is not set
+# CONFIG_PACKAGE_libmpsse is not set
 # CONFIG_PACKAGE_libmraa is not set
 # CONFIG_PACKAGE_libnatpmp is not set
 CONFIG_PACKAGE_libncurses=y
 # CONFIG_PACKAGE_libndpi is not set
 # CONFIG_PACKAGE_libneon is not set
 # CONFIG_PACKAGE_libnet-1.2.x is not set
-# CONFIG_PACKAGE_libnetconf2 is not set
 # CONFIG_PACKAGE_libnetfilter-acct is not set
 # CONFIG_PACKAGE_libnetfilter-conntrack is not set
 # CONFIG_PACKAGE_libnetfilter-cthelper is not set
@@ -3905,7 +3907,6 @@ CONFIG_PACKAGE_libnl-tiny=y
 # CONFIG_PACKAGE_liboil is not set
 # CONFIG_PACKAGE_libopcodes is not set
 # CONFIG_PACKAGE_libopendkim is not set
-# CONFIG_PACKAGE_libopenldap is not set
 # CONFIG_PACKAGE_libopenobex is not set
 # CONFIG_PACKAGE_libopensc is not set
 # CONFIG_PACKAGE_libopenzwave is not set
@@ -3916,6 +3917,7 @@ CONFIG_PACKAGE_libnl-tiny=y
 # CONFIG_PACKAGE_libp11 is not set
 # CONFIG_PACKAGE_libpagekite is not set
 # CONFIG_PACKAGE_libpam is not set
+# CONFIG_PACKAGE_libpbc is not set
 # CONFIG_PACKAGE_libpcap is not set
 CONFIG_PACKAGE_libpcre=y
 # CONFIG_PACKAGE_libpcre16 is not set
@@ -3960,7 +3962,6 @@ CONFIG_PACKAGE_librpc=y
 # CONFIG_PACKAGE_libspeex is not set
 # CONFIG_PACKAGE_libspeexdsp is not set
 # CONFIG_PACKAGE_libss is not set
-# CONFIG_PACKAGE_libssh is not set
 # CONFIG_PACKAGE_libssh2 is not set
 # CONFIG_PACKAGE_libstoken is not set
 # CONFIG_PACKAGE_libstrophe is not set
@@ -4369,6 +4370,7 @@ CONFIG_POSTFIX_PCRE=y
 # CONFIG_PACKAGE_vips is not set
 # CONFIG_PACKAGE_xupnpd is not set
 # CONFIG_PACKAGE_youtube-dl is not set
+# CONFIG_PACKAGE_youtube-dl-src is not set
 
 #
 # Network
@@ -4672,6 +4674,17 @@ CONFIG_PACKAGE_iptables-mod-ipopt=y
 # CONFIG_PACKAGE_openvswitch-ovsdb-client is not set
 # CONFIG_PACKAGE_openvswitch-python is not set
 # CONFIG_PACKAGE_openvswitch-vtep is not set
+
+#
+# OpenLDAP
+#
+# CONFIG_PACKAGE_libopenldap is not set
+CONFIG_OPENLDAP_DEBUG=y
+# CONFIG_OPENLDAP_MONITOR is not set
+# CONFIG_OPENLDAP_DB47 is not set
+# CONFIG_OPENLDAP_ICU is not set
+# CONFIG_PACKAGE_openldap-server is not set
+# CONFIG_PACKAGE_openldap-utils is not set
 
 #
 # Printing
@@ -5053,6 +5066,7 @@ CONFIG_PACKAGE_chat=y
 # CONFIG_PACKAGE_etherwake is not set
 # CONFIG_PACKAGE_ethtool is not set
 # CONFIG_PACKAGE_fakeidentd is not set
+# CONFIG_PACKAGE_foolsm is not set
 CONFIG_PACKAGE_fping=y
 # CONFIG_PACKAGE_gnunet is not set
 # CONFIG_PACKAGE_gre is not set
@@ -5144,7 +5158,6 @@ CONFIG_PACKAGE_mosquitto-client-ssl=y
 # CONFIG_PACKAGE_odhcpd-ipv6only is not set
 # CONFIG_PACKAGE_ola is not set
 # CONFIG_PACKAGE_omcproxy is not set
-# CONFIG_PACKAGE_openldap-server is not set
 # CONFIG_PACKAGE_oping is not set
 # CONFIG_PACKAGE_pagekitec is not set
 # CONFIG_PACKAGE_pen is not set
@@ -5190,6 +5203,7 @@ CONFIG_PACKAGE_ppp-mod-pppoe=y
 # CONFIG_PACKAGE_socat is not set
 # CONFIG_PACKAGE_softflowd is not set
 # CONFIG_PACKAGE_soloscli is not set
+# CONFIG_PACKAGE_speedtest-netperf is not set
 # CONFIG_PACKAGE_stunnel is not set
 # CONFIG_PACKAGE_tayga is not set
 # CONFIG_PACKAGE_tcpdump is not set
@@ -5290,6 +5304,7 @@ CONFIG_PACKAGE_uboot-envtools=y
 # Compression
 #
 # CONFIG_PACKAGE_bsdtar is not set
+# CONFIG_PACKAGE_bsdtar-noopenssl is not set
 # CONFIG_PACKAGE_bzip2 is not set
 # CONFIG_PACKAGE_gzip is not set
 # CONFIG_PACKAGE_unrar is not set
@@ -5511,6 +5526,7 @@ CONFIG_PACKAGE_dbus=y
 # CONFIG_PACKAGE_dmesg is not set
 # CONFIG_PACKAGE_domoticz is not set
 # CONFIG_PACKAGE_dragino2 is not set
+# CONFIG_PACKAGE_dragino_gw is not set
 CONFIG_PACKAGE_dragino_lorawan_server=y
 # CONFIG_PACKAGE_dropbearconvert is not set
 # CONFIG_PACKAGE_dtc is not set
@@ -5577,8 +5593,10 @@ CONFIG_PACKAGE_jshn=y
 CONFIG_PACKAGE_lg02_pkt_fwd=y
 # CONFIG_PACKAGE_libimobiledevice-utils is not set
 CONFIG_PACKAGE_libjson-script=y
+# CONFIG_PACKAGE_libpaho-embed-mqtt3c is not set
 # CONFIG_PACKAGE_libplist-utils is not set
 # CONFIG_PACKAGE_libsysrepo is not set
+# CONFIG_PACKAGE_libttn-gateway-connector is not set
 # CONFIG_PACKAGE_libusbmuxd-utils is not set
 # CONFIG_PACKAGE_lm-sensors is not set
 # CONFIG_PACKAGE_lm-sensors-detect is not set
@@ -5605,15 +5623,12 @@ CONFIG_PACKAGE_lrzsz=y
 # CONFIG_PACKAGE_mpack is not set
 # CONFIG_PACKAGE_mt-st is not set
 # CONFIG_PACKAGE_namei is not set
-# CONFIG_PACKAGE_netopeer2-cli is not set
 # CONFIG_PACKAGE_netopeer2-keystored is not set
-# CONFIG_PACKAGE_netopeer2-server is not set
 # CONFIG_PACKAGE_netwhere is not set
 # CONFIG_PACKAGE_nsenter is not set
 # CONFIG_PACKAGE_oath-toolkit is not set
 # CONFIG_PACKAGE_open-plc-utils is not set
 # CONFIG_PACKAGE_open2300 is not set
-# CONFIG_PACKAGE_openldap-utils is not set
 # CONFIG_PACKAGE_openobex is not set
 # CONFIG_PACKAGE_openobex-apps is not set
 # CONFIG_PACKAGE_openocd is not set

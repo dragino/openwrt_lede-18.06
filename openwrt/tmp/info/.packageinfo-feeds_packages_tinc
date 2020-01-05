@@ -2,7 +2,7 @@ Source-Makefile: package/feeds/packages/tinc/Makefile
 
 Package: tinc
 Submenu: VPN
-Version: 1.0.34-1
+Version: 1.0.35-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +liblzo +libopenssl +kmod-tun +zlib
 Conflicts: 
 Menu-Depends: 
@@ -12,7 +12,7 @@ Category: Network
 Repository: packages
 Title: VPN tunneling daemon
 Maintainer: Saverio Proto <zioproto@gmail.com>
-Source: tinc-1.0.34.tar.gz
+Source: tinc-1.0.35.tar.gz
 Type: ipkg
 Description:   tinc is a Virtual Private Network (VPN) daemon that uses tunnelling and
   encryption to create a secure private network between hosts on the Internet.

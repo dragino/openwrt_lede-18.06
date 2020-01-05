@@ -3,8 +3,8 @@ Build-Depends: python3
 
 Package: python3-jinja2
 Submenu: Python
-Version: 2.9.6-1
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
+Version: 2.10-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +python3-markupsafe
 Conflicts: 
 Menu-Depends: 
 Provides: 
@@ -14,7 +14,7 @@ Category: Languages
 Repository: packages
 Title: python3-jinja2
 Maintainer: Daniel Golle <daniel@makrotopia.org>
-Source: Jinja2-2.9.6.tar.gz
+Source: Jinja2-2.10.tar.gz
 License: BSD-3-Clause
 LicenseFiles: LICENSE
 Type: ipkg

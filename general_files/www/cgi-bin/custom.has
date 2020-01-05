@@ -4,36 +4,46 @@
 
 <%# --- Process the form submission --- %>
 <%
-  server_type=$(uci -q get mqttdemo.common.server_type)
 
 	if [ $FORM_BUTTON = "Save" ]; then
-		uci set mqttdemo.$server_type.url="$FORM_URL"
-		uci commit mqtt 
+		uci set customized_script.general.script_name="$FORM_SCRIPT_NAME"
+		uci set customized_script.general.para1="$FORM_PARA1"
+		uci set customized_script.general.para2="$FORM_PARA2"
+		uci set customized_script.general.para3="$FORM_PARA3"
+		uci set customized_script.general.para4="$FORM_PARA4"
+		uci set customized_script.general.para5="$FORM_PARA5"
+		uci set customized_script.general.para6="$FORM_PARA6"
+		uci set customized_script.general.para7="$FORM_PARA7"
+		uci set customized_script.general.para8="$FORM_PARA8"
+		uci set customized_script.general.para9="$FORM_PARA9"
+		uci set customized_script.general.para10="$FORM_PARA10"
+
+		uci commit customized_script 
 	fi
 
-	if [ $FORM_BUTTON = "Update" ]; then
-		uci set mqttdemo.common.server_type=$FORM_SERVER_TYPE
-		uci commit mqtt
-	fi
 %>
 
 
 <%# --- Get the variables for the HTML page --- %>
 <% 
-  server_type="$(uci -q get mqttdemo.common.server_type)"
-
-	url="$(uci -q get mqttdemo.$server_type.url)"
-
+  script_name="$(uci -q get customized_script.general.script_name)"
+  para1="$(uci -q get customized_script.general.para1)"
+  para2="$(uci -q get customized_script.general.para2)"
+  para3="$(uci -q get customized_script.general.para3)"
+  para4="$(uci -q get customized_script.general.para4)"
+  para5="$(uci -q get customized_script.general.para5)"
+  para6="$(uci -q get customized_script.general.para6)"
+  para7="$(uci -q get customized_script.general.para7)"
+  para8="$(uci -q get customized_script.general.para8)"
+  para9="$(uci -q get customized_script.general.para9)"
+  para10="$(uci -q get customized_script.general.para10)"
 %>
 
 
 <%# --- Set up field display --- %>
 <% 
   # Set up display defaults
-  disp1="inline"; disp2="none";disp3="none"
-
   # Set up display options
-
 %>
 
 
@@ -54,12 +64,9 @@
 
 <script>
 function displayFunction() {
-  document.getElementById("div1").style.display = "<% echo -n $disp1 %>"; 
-  document.getElementById("div2").style.display = "<% echo -n $disp2 %>"; 
 }
 
 function changeFunc() {
-
 }
 
 </script>
@@ -72,11 +79,12 @@ function changeFunc() {
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#"> <img src="/demo-static/resources/favicon.ico" class="img-rounded"> </a>  
-      <a class="navbar-brand" href="#"> Custom Script </a>  
+      <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded"> </a>  
+      <a class="navbar-brand" href="#"> <font size="5"><b>Custom Script </b></font></a>  
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="/cgi-bin/dragino.has">Return to Main Menu</a></li>
+      <li><a href="/cgi-bin/custom-script.has"><font size="4">Custom Script Management</font></a></li>
+      <li><a href="/cgi-bin/dragino.has"><font size="4">Return to Main Menu</font></a></li>
     </ul>
   </div>
 </nav>
@@ -88,51 +96,47 @@ function changeFunc() {
 
 	<h2>General Settings</h2>
 
-	<label for="script">Script Name</label>
-	<select id="script" name="SCRIPT" onChange="changeFunc();" >
-		<option selected="<% echo -n $script %>"><% echo -n $script %></option>
-	  <option value="store_data_to_file.sh" >store_data_to_file.sh</option>
-	  <option value="another_script.sh" >another_script.sh</option>
-	</select> 
+	<label for="script_name">Script Name</label>
+	<input type="text" name="SCRIPT_NAME" VALUE="<% echo -n $script_name %>">
   <br></br>
 
-	<label for="PARAM1">Parameter 1</label>
-	<input type="text" name="PARAM1" VALUE="<% echo -n $param1 %>">
+	<label for="PARA1">Parameter 1</label>
+	<input type="text" name="PARA1" VALUE="<% echo -n $para1 %>">
 
-	<label for="PARAM2">Parameter 2</label>
-	<input type="text" name="PARAM2" VALUE="<% echo -n $param2 %>">
+	<label for="PARA2">Parameter 2</label>
+	<input type="text" name="PARA2" VALUE="<% echo -n $para2 %>">
   <br></br>
 
-	<label for="PARAM3">Parameter 3</label>
-	<input type="text" name="PARAM3" VALUE="<% echo -n $param3 %>">
+	<label for="PARA3">Parameter 3</label>
+	<input type="text" name="PARA3" VALUE="<% echo -n $para3 %>">
 
-	<label for="PARAM4">Parameter 4</label>
-	<input type="text" name="PARAM4" VALUE="<% echo -n $param4 %>">
+	<label for="PARA4">Parameter 4</label>
+	<input type="text" name="PARA4" VALUE="<% echo -n $para4 %>">
   <br></br>
 
-	<label for="PARAM5">Parameter 5</label>
-	<input type="text" name="PARAM5" VALUE="<% echo -n $param5 %>">
+	<label for="PARA5">Parameter 5</label>
+	<input type="text" name="PARA5" VALUE="<% echo -n $para5 %>">
 
-	<label for="PARAM6">Parameter 6</label>
-	<input type="text" name="PARAM6" VALUE="<% echo -n $param6 %>">
+	<label for="PARA6">Parameter 6</label>
+	<input type="text" name="PARA6" VALUE="<% echo -n $para6 %>">
   <br></br>
 
-	<label for="PARAM7">Parameter 7</label>
-	<input type="text" name="PARAM7" VALUE="<% echo -n $param7 %>">
+	<label for="PARA7">Parameter 7</label>
+	<input type="text" name="PARA7" VALUE="<% echo -n $para7 %>">
 
-	<label for="PARAM8">Parameter 8</label>
-	<input type="text" name="PARAM8" VALUE="<% echo -n $param8 %>">
+	<label for="PARA8">Parameter 8</label>
+	<input type="text" name="PARA8" VALUE="<% echo -n $para8 %>">
   <br></br>
 
-	<label for="PARAM9">Parameter 9</label>
-	<input type="text" name="PARAM9" VALUE="<% echo -n $param9 %>">
+	<label for="PARA9">Parameter 9</label>
+	<input type="text" name="PARA9" VALUE="<% echo -n $para9 %>">
 
-	<label for="PARAM10">Parameter 10</label>
-	<input type="text" name="PARAM10" VALUE="<% echo -n $param10 %>">
+	<label for="PARA10">Parameter 10</label>
+	<input type="text" name="PARA10" VALUE="<% echo -n $para10 %>">
   <br></br>
 
 	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save">
-	<br></br>
+  <INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
 
 </form>
 </div>

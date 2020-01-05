@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/lm-sensors/Makefile
 
 Package: lm-sensors
-Version: 3.3.5-4
+Version: 3.3.5-5
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +sysfsutils +libsensors
 Conflicts: 
 Menu-Depends: 
@@ -20,7 +20,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: lm-sensors-detect
-Version: 3.3.5-4
+Version: 3.3.5-5
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +sysfsutils +lm-sensors +perl +perlbase-essential +perlbase-fcntl +perlbase-file +perlbase-xsloader
 Conflicts: 
 Menu-Depends: 
@@ -39,7 +39,7 @@ Jo-Philipp Wich <jo@mein.io>
 @@
 
 Package: libsensors
-Version: 3.3.5-4
+Version: 3.3.5-5
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +sysfsutils
 Conflicts: 
 Menu-Depends: 

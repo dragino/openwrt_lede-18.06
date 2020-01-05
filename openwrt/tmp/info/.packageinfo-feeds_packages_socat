@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/socat/Makefile
 
 Package: socat
-Version: 1.7.3.2-2
+Version: 1.7.3.2-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +librt +SOCAT_SSL:libopenssl
 Conflicts: 
 Menu-Depends: 

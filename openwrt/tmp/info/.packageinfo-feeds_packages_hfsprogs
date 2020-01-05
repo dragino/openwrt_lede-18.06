@@ -3,7 +3,7 @@ Build-Depends: !BUILD_NLS:libiconv !BUILD_NLS:gettext
 
 Package: hfsfsck
 Submenu: Filesystem
-Version: 332.25-1
+Version: 332.25-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libopenssl +USE_GLIBC:libbsd
 Conflicts: 
 Menu-Depends: 
@@ -24,7 +24,7 @@ Florian Fainelli <florian@openwrt.org>
 
 Package: mkhfs
 Submenu: Filesystem
-Version: 332.25-1
+Version: 332.25-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libopenssl +USE_GLIBC:libbsd
 Conflicts: 
 Menu-Depends: 

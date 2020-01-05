@@ -3,7 +3,7 @@ Build-Depends: ppp  !BUILD_NLS:libiconv !BUILD_NLS:gettext
 
 Package: lcd4linux-custom
 Menu: 1
-Version: r1203-3
+Version: r1204-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +LCD4LINUX_CUSTOM_NEEDS_libdbus:libdbus +LCD4LINUX_CUSTOM_NEEDS_libgd:libgd +LCD4LINUX_CUSTOM_NEEDS_libjpeg:libjpeg +LCD4LINUX_CUSTOM_NEEDS_libmpdclient:libmpdclient +LCD4LINUX_CUSTOM_NEEDS_libmysqlclient:libmysqlclient +LCD4LINUX_CUSTOM_NEEDS_libncurses:libncurses +LCD4LINUX_CUSTOM_NEEDS_libsqlite3:libsqlite3 +LCD4LINUX_CUSTOM_NEEDS_libusb:libusb-compat
 Conflicts: 
 Menu-Depends: 
@@ -14,7 +14,7 @@ Category: Utilities
 Repository: packages
 Title: LCD display utility
 Maintainer: 
-Source: lcd4linux-r1203.tar.bz2
+Source: lcd4linux-r1204.tar.bz2
 Type: ipkg
 Description:  LCD4Linux is a small program that grabs information from the kernel and
  some subsystems and displays it on an external liquid crystal display.
@@ -28,7 +28,7 @@ Config:
 @@
 
 Package: lcd4linux-full
-Version: r1203-3
+Version: r1204-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @DEVEL +libdbus +libgd +libmpdclient +libmysqlclient +libncurses +libsqlite3 +libusb-compat
 Conflicts: 
 Menu-Depends: 
@@ -39,7 +39,7 @@ Category: Utilities
 Repository: packages
 Title: LCD display utility
 Maintainer: Jonathan McCrohan <jmccrohan@gmail.com>
-Source: lcd4linux-r1203.tar.bz2
+Source: lcd4linux-r1204.tar.bz2
 Type: ipkg
 Description:  LCD4Linux is a small program that grabs information from the kernel and
  some subsystems and displays it on an external liquid crystal display.

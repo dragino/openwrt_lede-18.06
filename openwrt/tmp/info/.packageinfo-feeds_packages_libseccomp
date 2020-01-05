@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/libseccomp/Makefile
 
 Package: libseccomp
-Version: 2.2.1-1
+Version: 2.3.3-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -11,11 +11,14 @@ Category: Libraries
 Repository: packages
 Title: seccomp (library)
 Maintainer: Nikos Mavrogiannopoulos <nmav@gnutls.org>
-Source: libseccomp-2.2.1.tar.gz
+Source: libseccomp-2.3.3.tar.gz
 Type: ipkg
 Description:  This package contains the seccomp library.
 https://github.com/seccomp/libseccomp/wiki
 Nikos Mavrogiannopoulos <nmav@gnutls.org>
+@@
+Config:
+  depends on !arc
 @@
 
 

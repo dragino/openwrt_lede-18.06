@@ -40,12 +40,12 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded"> </a>  
-      <a class="navbar-brand" href="#">MQTT Certificate Management </a>  
+      <a class="navbar-brand" href="#"><font size="5"><b> MQTT Certificate Management </b></font></a>  
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="/cgi-bin/mqtt.has">MQTT Config</a></li>
-      <li><a href="/cgi-bin/mqtt-chan.has">MQTT Channels</a></li>
-      <li><a href="/cgi-bin/dragino.has">Return to Main Menu</a></li>
+      <li><a href="/cgi-bin/mqtt.has"><font size="4">MQTT Config</font></a></li>
+      <li><a href="/cgi-bin/mqtt-chan.has"><font size="4">MQTT Channels</font></a></li>
+      <li><a href="/cgi-bin/dragino.has"><font size="4">Return to Main Menu</font></a></li>
     </ul>
   </div>
 </nav>

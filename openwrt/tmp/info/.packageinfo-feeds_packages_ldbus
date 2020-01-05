@@ -1,5 +1,5 @@
 Source-Makefile: package/feeds/packages/ldbus/Makefile
-Build-Depends: luarocks/host
+Build-Depends: luarocks/host zip/host
 
 Package: ldbus
 Submenu: Lua

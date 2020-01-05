@@ -3,7 +3,7 @@ Build-Depends: libtool gettext libiconv
 
 Package: gcc
 Version: 5.4.0-3
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +binutils +libstdcpp
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +binutils +libstdcpp @!arc
 Conflicts: 
 Menu-Depends: 
 Provides: 

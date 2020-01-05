@@ -2,7 +2,7 @@ Source-Makefile: package/feeds/packages/shadowsocks-libev/Makefile
 
 Package: shadowsocks-libev-config
 Submenu: Web Servers/Proxies
-Version: 3.1.3-2
+Version: 3.1.3-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -23,7 +23,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: shadowsocks-libev-ss-rules
 Submenu: Web Servers/Proxies
-Version: 3.1.3-2
+Version: 3.1.3-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +ip +ipset +iptables-mod-tproxy +resolveip +shadowsocks-libev-ss-redir +shadowsocks-libev-config
 Conflicts: 
 Menu-Depends: 
@@ -44,7 +44,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: shadowsocks-libev-ss-local
 Submenu: Web Servers/Proxies
-Version: 3.1.3-2
+Version: 3.1.3-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libcares +libev +libmbedtls +libpcre +libpthread +libsodium +shadowsocks-libev-config +zlib
 Conflicts: 
 Menu-Depends: 
@@ -65,7 +65,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: shadowsocks-libev-ss-redir
 Submenu: Web Servers/Proxies
-Version: 3.1.3-2
+Version: 3.1.3-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libcares +libev +libmbedtls +libpcre +libpthread +libsodium +shadowsocks-libev-config +zlib
 Conflicts: 
 Menu-Depends: 
@@ -86,7 +86,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: shadowsocks-libev-ss-tunnel
 Submenu: Web Servers/Proxies
-Version: 3.1.3-2
+Version: 3.1.3-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libcares +libev +libmbedtls +libpcre +libpthread +libsodium +shadowsocks-libev-config +zlib
 Conflicts: 
 Menu-Depends: 
@@ -107,7 +107,7 @@ Yousong Zhou <yszhou4tech@gmail.com>
 
 Package: shadowsocks-libev-ss-server
 Submenu: Web Servers/Proxies
-Version: 3.1.3-2
+Version: 3.1.3-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libcares +libev +libmbedtls +libpcre +libpthread +libsodium +shadowsocks-libev-config +zlib
 Conflicts: 
 Menu-Depends: 

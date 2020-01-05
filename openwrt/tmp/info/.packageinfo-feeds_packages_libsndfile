@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/libsndfile/Makefile
 
 Package: libsndfile
-Version: 1.0.28-1
+Version: 2019-01-01-42132c543358cee9f7c3e9e9b15bb6c1063a608e-1
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread @!avr32
 Conflicts: 
 Menu-Depends: 
@@ -11,7 +11,7 @@ Category: Libraries
 Repository: packages
 Title: Library for reading/writing audio files
 Maintainer: Peter Wagner <tripolar@gmx.at>
-Source: libsndfile-1.0.28.tar.gz
+Source: libsndfile-2019-01-01-42132c543358cee9f7c3e9e9b15bb6c1063a608e.tar.xz
 License: LGPLv2.1
 LicenseFiles: COPYING
 Type: ipkg

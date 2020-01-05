@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/haveged/Makefile
 
 Package: haveged
-Version: 1.9.2-2
+Version: 1.9.8-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libhavege
 Conflicts: 
 Menu-Depends: 
@@ -11,7 +11,7 @@ Category: Utilities
 Repository: packages
 Title: Feeds the kernel entropy pool by timing CPU loops.
 Maintainer: Hannu Nyman <hannu.nyman@iki.fi>
-Source: haveged-1.9.2.tar.gz
+Source: haveged-1.9.8.tar.gz
 License: GPLv3
 Type: ipkg
 Description: Feeds the kernel entropy pool by timing CPU loops.
@@ -20,7 +20,7 @@ Hannu Nyman <hannu.nyman@iki.fi>
 @@
 
 Package: libhavege
-Version: 1.9.2-2
+Version: 1.9.8-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -30,7 +30,7 @@ Category: Libraries
 Repository: packages
 Title: Library for haveged
 Maintainer: Hannu Nyman <hannu.nyman@iki.fi>
-Source: haveged-1.9.2.tar.gz
+Source: haveged-1.9.8.tar.gz
 License: GPLv3
 Type: ipkg
 Description: Library for haveged

@@ -6,6 +6,7 @@
 <%
 	if [ $FORM_BUTTON = "Add" ] && [ $FORM_CHAN_NO -ge "1" ] && [ $FORM_CHAN_NO -le "99" ]; then
     uci set tcp_client.chan$FORM_CHAN_NO=channels
+    uci set tcp_client.chan$FORM_CHAN_NO.local_id=$FORM_LOCAL_ID
     uci commit tcp_client
   elif [ $FORM_BUTTON = "Add" ]; then
     add_chan_error="<b>Invalid channel number: $FORM_CHAN_NO. <sp><sp> Use 1 - 99</b>"
@@ -45,11 +46,11 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded"> </a>  
-      <a class="navbar-brand" href="#">TCP/IP Uplink Channel Management </a>  
+      <a class="navbar-brand" href="#"><font size="5"><b>TCP/IP Uplink Channel Management </b></font></a>  
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="/cgi-bin/tcp-client.has">TCP/IP Configuration</a></li>
-      <li><a href="/cgi-bin/dragino.has">Return to Main Menu</a></li>
+      <li><a href="/cgi-bin/tcp-client.has"><font size="4">TCP/IP Configuration</font></a></li>
+      <li><a href="/cgi-bin/dragino.has"><font size="4">Return to Main Menu</font></a></li>
     </ul>
   </div>
 </nav>
@@ -85,7 +86,8 @@
     <br>
     <h2>Saved Channels:</h2>
 		<%
-			rm /tmp/tcp_chan.txt; touch /tmp/tcp_chan.txt
+			rm /tmp/tcp_chan.txt; 
+      touch /tmp/tcp_chan.txt
 			for n in `uci show tcp_client | grep "=channels" | cut -d . -f2 | cut -d = -f1`  ##  ????
 			do
 				loc=`uci -q get tcp_client.$n.local_id`
@@ -93,7 +95,7 @@
 			done
 		%>
 
-		<iframe id="CHAN_LIST" src="/tmp/tcp_chan.txt"  width="100%" height="150" ></iframe>
+		<iframe id="TCP_CHAN_LIST" src="/tcp_chan.txt"  width="100%" height="150" ></iframe>
 
     <br>
     <INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Refresh">

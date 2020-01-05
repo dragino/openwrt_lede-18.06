@@ -3,7 +3,7 @@ Build-Depends: ppp
 
 Package: rp-pppoe-common
 Submenu: dial-in/up
-Version: 3.12-4
+Version: 3.12-6
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread ppp
 Conflicts: 
 Menu-Depends: 
@@ -27,7 +27,7 @@ Daniel Dickinson <lede@cshore.thecshore.com>
 Package: rp-pppoe-relay
 Submenu: dial-in/up
 Default: n
-Version: 3.12-4
+Version: 3.12-6
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +rp-pppoe-common
 Conflicts: 
 Menu-Depends: 
@@ -50,7 +50,7 @@ Daniel Dickinson <lede@cshore.thecshore.com>
 
 Package: rp-pppoe-server
 Submenu: dial-in/up
-Version: 3.12-4
+Version: 3.12-6
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +rp-pppoe-common +ppp-mod-pppoe
 Conflicts: 
 Menu-Depends: 
@@ -73,7 +73,7 @@ Daniel Dickinson <lede@cshore.thecshore.com>
 
 Package: rp-pppoe-sniff
 Submenu: dial-in/up
-Version: 3.12-4
+Version: 3.12-6
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +ppp @BROKEN
 Conflicts: 
 Menu-Depends: 

@@ -1,10 +1,10 @@
 Source-Makefile: package/feeds/packages/elektra/Makefile
-Build-Depends: elektra/host swig/host
+Build-Depends: elektra/host swig/host !BUILD_NLS:libiconv !BUILD_NLS:gettext
 Build-Types: host
 
 Package: libelektra-core
 Submenu: libelektra
-Version: 0.8.21-1
+Version: 0.8.21-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread
 Conflicts: 
 Menu-Depends: 
@@ -29,7 +29,7 @@ Harald Geyer <harald@ccbib.org>
 @@
 
 Package: elektra-kdb
-Version: 0.8.21-1
+Version: 0.8.21-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libelektra-core +libstdcpp
 Conflicts: 
 Menu-Depends: 
@@ -54,7 +54,7 @@ Harald Geyer <harald@ccbib.org>
 
 Package: libelektra-resolvers
 Submenu: libelektra
-Version: 0.8.21-1
+Version: 0.8.21-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libelektra-core +libpthread
 Conflicts: 
 Menu-Depends: 
@@ -79,8 +79,8 @@ Harald Geyer <harald@ccbib.org>
 
 Package: libelektra-plugins
 Submenu: libelektra
-Version: 0.8.21-1
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libelektra-core
+Version: 0.8.21-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libelektra-core +BUILD_NLS:libiconv-full
 Conflicts: 
 Menu-Depends: 
 Provides: 
@@ -110,7 +110,7 @@ Harald Geyer <harald@ccbib.org>
 
 Package: libelektra-boost
 Submenu: libelektra
-Version: 0.8.21-1
+Version: 0.8.21-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libelektra-core +libstdcpp +boost
 Conflicts: 
 Menu-Depends: 
@@ -135,7 +135,7 @@ Harald Geyer <harald@ccbib.org>
 
 Package: libelektra-cpp
 Submenu: libelektra
-Version: 0.8.21-1
+Version: 0.8.21-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libelektra-core +libstdcpp
 Conflicts: 
 Menu-Depends: 
@@ -161,7 +161,7 @@ Harald Geyer <harald@ccbib.org>
 
 Package: libelektra-curlget
 Submenu: libelektra
-Version: 0.8.21-1
+Version: 0.8.21-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libelektra-core +libcurl +libopenssl
 Conflicts: 
 Menu-Depends: 
@@ -185,7 +185,7 @@ Harald Geyer <harald@ccbib.org>
 
 Package: libelektra-crypto
 Submenu: libelektra
-Version: 0.8.21-1
+Version: 0.8.21-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libelektra-core +libopenssl
 Conflicts: 
 Menu-Depends: 
@@ -209,7 +209,7 @@ Harald Geyer <harald@ccbib.org>
 
 Package: libelektra-dbus
 Submenu: libelektra
-Version: 0.8.21-1
+Version: 0.8.21-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libelektra-core +libdbus
 Conflicts: 
 Menu-Depends: 
@@ -234,7 +234,7 @@ Harald Geyer <harald@ccbib.org>
 
 Package: libelektra-xerces
 Submenu: libelektra
-Version: 0.8.21-1
+Version: 0.8.21-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libelektra-core +libstdcpp +libxerces-c
 Conflicts: 
 Menu-Depends: 
@@ -261,7 +261,7 @@ Harald Geyer <harald@ccbib.org>
 
 Package: libelektra-yamlcpp
 Submenu: libelektra
-Version: 0.8.21-1
+Version: 0.8.21-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libelektra-core +libyaml-cpp
 Conflicts: 
 Menu-Depends: 
@@ -285,7 +285,7 @@ Harald Geyer <harald@ccbib.org>
 
 Package: libelektra-xml
 Submenu: libelektra
-Version: 0.8.21-1
+Version: 0.8.21-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libelektra-core +libxml2
 Conflicts: 
 Menu-Depends: 
@@ -309,7 +309,7 @@ Harald Geyer <harald@ccbib.org>
 
 Package: libelektra-yajl
 Submenu: libelektra
-Version: 0.8.21-1
+Version: 0.8.21-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libelektra-core +yajl
 Conflicts: 
 Menu-Depends: 
@@ -333,7 +333,7 @@ Harald Geyer <harald@ccbib.org>
 
 Package: libelektra-python2
 Submenu: libelektra
-Version: 0.8.21-1
+Version: 0.8.21-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libelektra-core +python-light +libstdcpp
 Conflicts: 
 Menu-Depends: 
@@ -357,7 +357,7 @@ Harald Geyer <harald@ccbib.org>
 
 Package: libelektra-python3
 Submenu: libelektra
-Version: 0.8.21-1
+Version: 0.8.21-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libelektra-core +python3-light +libstdcpp
 Conflicts: 
 Menu-Depends: 
@@ -381,7 +381,7 @@ Harald Geyer <harald@ccbib.org>
 
 Package: libelektra-lua
 Submenu: libelektra
-Version: 0.8.21-1
+Version: 0.8.21-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libelektra-core +lua +libstdcpp
 Conflicts: 
 Menu-Depends: 
@@ -405,7 +405,7 @@ Harald Geyer <harald@ccbib.org>
 
 Package: libelektra-extra
 Submenu: libelektra
-Version: 0.8.21-1
+Version: 0.8.21-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libelektra-core +libstdcpp
 Conflicts: 
 Menu-Depends: 

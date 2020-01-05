@@ -1,7 +1,8 @@
 Source-Makefile: package/feeds/packages/loudmouth/Makefile
+Build-Depends: !BUILD_NLS:libiconv !BUILD_NLS:gettext
 
 Package: loudmouth
-Version: 1.5.3-1
+Version: 1.5.3-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +glib2 +libopenssl
 Conflicts: 
 Menu-Depends: 

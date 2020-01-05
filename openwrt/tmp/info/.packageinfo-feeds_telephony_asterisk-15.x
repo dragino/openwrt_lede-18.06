@@ -5,7 +5,7 @@ Build-Types: host
 Package: asterisk15
 Menu: 1
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +USE_UCLIBCXX:uclibcxx +USE_LIBSTDCXX:libstdcpp +jansson +libcap +libedit +libncurses +libopenssl +libsqlite3 +libuuid +libxml2 +zlib
 Conflicts: 
 Menu-Depends: 
@@ -32,7 +32,7 @@ Config:
 
 Package: asterisk15-sounds
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -53,7 +53,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-adsiprog
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-app-adsiprog:asterisk15-res-adsi
 Conflicts: 
 Menu-Depends: 
@@ -74,7 +74,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-agent-pool
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -95,7 +95,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-alarmreceiver
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -116,7 +116,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-amd
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -137,7 +137,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-authenticate
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -158,7 +158,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-bridgeaddchan
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -179,7 +179,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-bridgewait
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-app-bridgewait:asterisk15-bridge-holding
 Conflicts: 
 Menu-Depends: 
@@ -200,7 +200,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-celgenuserevent
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -221,7 +221,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-chanisavail
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -242,7 +242,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-channelredirect
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -263,7 +263,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-chanspy
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -284,7 +284,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-confbridge
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-app-confbridge:asterisk15-bridge-builtin-features +PACKAGE_asterisk15-app-confbridge:asterisk15-bridge-simple +PACKAGE_asterisk15-app-confbridge:asterisk15-bridge-softmix
 Conflicts: 
 Menu-Depends: 
@@ -305,7 +305,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-controlplayback
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -326,7 +326,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-dahdiras
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-app-dahdiras:asterisk15-chan-dahdi
 Conflicts: 
 Menu-Depends: 
@@ -347,7 +347,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-dictate
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -368,7 +368,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-directed-pickup
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -389,7 +389,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-directory
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -410,7 +410,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-disa
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -431,7 +431,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-dumpchan
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -452,7 +452,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-exec
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -473,7 +473,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-externalivr
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -494,7 +494,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-festival
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -515,7 +515,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-flash
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-app-flash:asterisk15-chan-dahdi
 Conflicts: 
 Menu-Depends: 
@@ -536,7 +536,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-followme
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -557,7 +557,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-getcpeid
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -578,7 +578,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-ices
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -599,7 +599,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-image
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -620,7 +620,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-ivrdemo
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -641,7 +641,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-milliwatt
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -662,7 +662,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-minivm
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -683,7 +683,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-mixmonitor
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -704,7 +704,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-morsecode
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -725,7 +725,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-mp3
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-app-mp3:mpg123
 Conflicts: 
 Menu-Depends: 
@@ -746,7 +746,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-originate
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -767,7 +767,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-page
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-app-page:asterisk15-app-confbridge
 Conflicts: 
 Menu-Depends: 
@@ -788,7 +788,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-playtones
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -809,7 +809,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-privacy
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -830,7 +830,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-queue
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -851,7 +851,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-read
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -872,7 +872,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-readexten
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -893,7 +893,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-record
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -914,7 +914,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-saycounted
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -935,7 +935,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-sayunixtime
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -956,7 +956,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-senddtmf
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -977,7 +977,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-sendtext
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -998,7 +998,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-skel
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1019,7 +1019,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-sms
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1040,7 +1040,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-softhangup
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1061,7 +1061,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-speech
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-app-speech:asterisk15-res-speech
 Conflicts: 
 Menu-Depends: 
@@ -1082,7 +1082,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-stack
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-app-stack:asterisk15-res-agi
 Conflicts: 
 Menu-Depends: 
@@ -1103,7 +1103,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-stasis
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-app-stasis:asterisk15-res-stasis
 Conflicts: 
 Menu-Depends: 
@@ -1124,7 +1124,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-statsd
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-app-statsd:asterisk15-res-statsd
 Conflicts: 
 Menu-Depends: 
@@ -1145,7 +1145,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-stream-echo
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1166,7 +1166,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-system
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1187,7 +1187,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-talkdetect
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1208,7 +1208,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-test
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1229,7 +1229,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-transfer
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1250,7 +1250,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-url
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1271,7 +1271,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-userevent
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1292,7 +1292,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-verbose
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1313,7 +1313,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-waitforring
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1334,7 +1334,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-waitforsilence
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1355,7 +1355,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-waituntil
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1376,7 +1376,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-while
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1397,7 +1397,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-app-zapateller
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1418,7 +1418,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-bridge-builtin-features
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1439,7 +1439,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-bridge-builtin-interval-features
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1460,7 +1460,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-bridge-holding
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1481,7 +1481,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-bridge-native-rtp
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1502,7 +1502,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-bridge-simple
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1523,7 +1523,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-bridge-softmix
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1544,7 +1544,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-cdr
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1565,7 +1565,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-cdr-csv
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1586,7 +1586,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-cdr-sqlite3
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 libsqlite3
 Conflicts: 
 Menu-Depends: 
@@ -1607,7 +1607,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-cel-custom
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1628,7 +1628,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-cel-manager
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1649,7 +1649,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-cel-sqlite3-custom
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1670,7 +1670,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-chan-alsa
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-chan-alsa:alsa-lib
 Conflicts: 
 Menu-Depends: 
@@ -1691,7 +1691,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-chan-bridge-media
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1712,7 +1712,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-chan-console
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-chan-console:portaudio
 Conflicts: 
 Menu-Depends: 
@@ -1733,7 +1733,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-chan-dahdi
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-chan-dahdi:dahdi-tools-libtonezone +PACKAGE_asterisk15-chan-dahdi:kmod-dahdi +PACKAGE_asterisk15-chan-dahdi:libpri @!aarch64
 Conflicts: 
 Menu-Depends: 
@@ -1754,7 +1754,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-chan-iax2
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-chan-iax2:asterisk15-res-timing-timerfd
 Conflicts: 
 Menu-Depends: 
@@ -1775,7 +1775,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-chan-mgcp
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1796,7 +1796,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-chan-mobile
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-chan-mobile:bluez-libs
 Conflicts: 
 Menu-Depends: 
@@ -1817,7 +1817,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-chan-motif
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-chan-motif:asterisk15-res-xmpp
 Conflicts: 
 Menu-Depends: 
@@ -1838,7 +1838,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-chan-ooh323
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1859,7 +1859,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-chan-oss
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1880,7 +1880,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-chan-phone
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1901,7 +1901,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-chan-rtp
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1922,7 +1922,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-chan-sip
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-chan-sip:asterisk15-app-confbridge
 Conflicts: 
 Menu-Depends: 
@@ -1943,7 +1943,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-chan-skinny
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1964,7 +1964,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-chan-unistim
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -1985,7 +1985,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-codec-a-mu
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2006,7 +2006,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-codec-adpcm
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2027,7 +2027,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-codec-alaw
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2048,7 +2048,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-codec-dahdi
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-codec-dahdi:asterisk15-chan-dahdi
 Conflicts: 
 Menu-Depends: 
@@ -2069,7 +2069,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-codec-g722
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2090,7 +2090,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-codec-g726
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2111,7 +2111,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-codec-gsm
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2132,7 +2132,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-codec-ilbc
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2153,7 +2153,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-codec-lpc10
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2174,7 +2174,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-codec-resample
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2195,7 +2195,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-codec-speex
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 @!SOFT_FLOAT +PACKAGE_asterisk15-codec-speex:libspeex +PACKAGE_asterisk15-codec-speex:libspeexdsp
 Conflicts: 
 Menu-Depends: 
@@ -2216,7 +2216,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-codec-ulaw
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2237,7 +2237,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-curl
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-curl:libcurl
 Conflicts: 
 Menu-Depends: 
@@ -2258,7 +2258,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-format-g719
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2279,7 +2279,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-format-g723
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2300,7 +2300,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-format-g726
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2321,7 +2321,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-format-g729
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2342,7 +2342,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-format-gsm
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2363,7 +2363,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-format-h263
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2384,7 +2384,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-format-h264
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2405,7 +2405,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-format-ilbc
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2426,7 +2426,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-format-jpeg
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2447,7 +2447,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-format-mp3
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 @BROKEN
 Conflicts: 
 Menu-Depends: 
@@ -2468,7 +2468,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-format-ogg-speex
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 @!SOFT_FLOAT +PACKAGE_asterisk15-format-ogg-speex:libogg +PACKAGE_asterisk15-format-ogg-speex:libspeex
 Conflicts: 
 Menu-Depends: 
@@ -2489,7 +2489,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-format-ogg-vorbis
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-format-ogg-vorbis:libvorbis
 Conflicts: 
 Menu-Depends: 
@@ -2510,7 +2510,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-format-pcm
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2531,7 +2531,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-format-siren14
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2552,7 +2552,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-format-siren7
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2573,7 +2573,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-format-sln
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2594,7 +2594,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-format-vox
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2615,7 +2615,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-format-wav
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2636,7 +2636,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-format-wav-gsm
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2657,7 +2657,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-aes
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2678,7 +2678,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-base64
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2699,7 +2699,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-blacklist
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2720,7 +2720,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-callcompletion
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2741,7 +2741,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-channel
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2762,7 +2762,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-config
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2783,7 +2783,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-cut
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2804,7 +2804,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-db
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2825,7 +2825,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-devstate
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2846,7 +2846,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-dialgroup
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2867,7 +2867,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-dialplan
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2888,7 +2888,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-enum
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2909,7 +2909,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-env
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2930,7 +2930,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-extstate
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2951,7 +2951,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-frame-trace
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2972,7 +2972,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-global
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -2993,7 +2993,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-groupcount
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3014,7 +3014,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-hangupcause
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3035,7 +3035,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-holdintercept
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3056,7 +3056,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-iconv
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 @!USE_UCLIBC
 Conflicts: 
 Menu-Depends: 
@@ -3077,7 +3077,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-jitterbuffer
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3098,7 +3098,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-lock
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3119,7 +3119,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-math
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3140,7 +3140,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-md5
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3161,7 +3161,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-module
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3182,7 +3182,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-periodic-hook
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-func-periodic-hook:asterisk15-app-chanspy +PACKAGE_asterisk15-func-periodic-hook:asterisk15-func-cut +PACKAGE_asterisk15-func-periodic-hook:asterisk15-func-groupcount +PACKAGE_asterisk15-func-periodic-hook:asterisk15-func-uri
 Conflicts: 
 Menu-Depends: 
@@ -3203,7 +3203,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-pitchshift
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3224,7 +3224,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-presencestate
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3245,7 +3245,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-rand
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3266,7 +3266,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-realtime
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3287,7 +3287,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-sha1
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3308,7 +3308,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-shell
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3329,7 +3329,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-sorcery
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3350,7 +3350,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-speex
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 @!SOFT_FLOAT +PACKAGE_asterisk15-func-speex:libspeex +PACKAGE_asterisk15-func-speex:libspeexdsp
 Conflicts: 
 Menu-Depends: 
@@ -3371,7 +3371,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-sprintf
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3392,7 +3392,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-srv
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3413,7 +3413,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-sysinfo
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3434,7 +3434,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-talkdetect
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3455,7 +3455,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-uri
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3476,7 +3476,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-version
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3497,7 +3497,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-vmcount
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3518,7 +3518,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-func-volume
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3539,7 +3539,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-odbc
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-odbc:libpthread +PACKAGE_asterisk15-odbc:libc +PACKAGE_asterisk15-odbc:unixodbc
 Conflicts: 
 Menu-Depends: 
@@ -3560,7 +3560,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-pbx-ael
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-pbx-ael:asterisk15-res-ael-share
 Conflicts: 
 Menu-Depends: 
@@ -3581,7 +3581,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-pbx-dundi
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3602,7 +3602,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-pbx-loopback
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3623,7 +3623,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-pbx-lua
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-pbx-lua:liblua
 Conflicts: 
 Menu-Depends: 
@@ -3644,7 +3644,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-pbx-realtime
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3665,7 +3665,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-pbx-spool
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3686,7 +3686,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-pgsql
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-pgsql:libpq
 Conflicts: 
 Menu-Depends: 
@@ -3707,7 +3707,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-pjsip
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-pjsip:asterisk15-res-sorcery +PACKAGE_asterisk15-pjsip:asterisk15-res-pjproject +PACKAGE_asterisk15-pjsip:libpjsip +PACKAGE_asterisk15-pjsip:libpjmedia +PACKAGE_asterisk15-pjsip:libpjnath +PACKAGE_asterisk15-pjsip:libpjsip-simple +PACKAGE_asterisk15-pjsip:libpjsip-ua +PACKAGE_asterisk15-pjsip:libpjsua +PACKAGE_asterisk15-pjsip:libpjsua2
 Conflicts: 
 Menu-Depends: 
@@ -3728,7 +3728,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-adsi
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3749,7 +3749,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-ael-share
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -3770,7 +3770,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-agi
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-agi:asterisk15-res-speech
 Conflicts: 
 Menu-Depends: 
@@ -3791,7 +3791,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-ari
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-ari:asterisk15-res-http-websocket
 Conflicts: 
 Menu-Depends: 
@@ -3812,7 +3812,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-ari-applications
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-ari-applications:asterisk15-res-ari +PACKAGE_asterisk15-res-ari-applications:asterisk15-res-ari-model +PACKAGE_asterisk15-res-ari-applications:asterisk15-res-stasis
 Conflicts: 
 Menu-Depends: 
@@ -3833,7 +3833,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-ari-asterisk
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-ari-asterisk:asterisk15-res-ari +PACKAGE_asterisk15-res-ari-asterisk:asterisk15-res-ari-model +PACKAGE_asterisk15-res-ari-asterisk:asterisk15-res-stasis
 Conflicts: 
 Menu-Depends: 
@@ -3854,7 +3854,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-ari-bridges
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-ari-bridges:asterisk15-res-ari +PACKAGE_asterisk15-res-ari-bridges:asterisk15-res-ari-model +PACKAGE_asterisk15-res-ari-bridges:asterisk15-res-stasis-playback
 Conflicts: 
 Menu-Depends: 
@@ -3875,7 +3875,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-ari-channels
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-ari-channels:asterisk15-res-ari +PACKAGE_asterisk15-res-ari-channels:asterisk15-res-ari-model +PACKAGE_asterisk15-res-ari-channels:asterisk15-res-stasis-answer +PACKAGE_asterisk15-res-ari-channels:asterisk15-res-stasis-playback +PACKAGE_asterisk15-res-ari-channels:asterisk15-res-stasis-snoop
 Conflicts: 
 Menu-Depends: 
@@ -3896,7 +3896,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-ari-device-states
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-ari-device-states:asterisk15-res-ari +PACKAGE_asterisk15-res-ari-device-states:asterisk15-res-ari-model +PACKAGE_asterisk15-res-ari-device-states:asterisk15-res-stasis-device-state
 Conflicts: 
 Menu-Depends: 
@@ -3917,7 +3917,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-ari-endpoints
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-ari-endpoints:asterisk15-res-ari +PACKAGE_asterisk15-res-ari-endpoints:asterisk15-res-ari-model +PACKAGE_asterisk15-res-ari-endpoints:asterisk15-res-stasis
 Conflicts: 
 Menu-Depends: 
@@ -3938,7 +3938,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-ari-events
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-ari-events:asterisk15-res-ari +PACKAGE_asterisk15-res-ari-events:asterisk15-res-ari-model +PACKAGE_asterisk15-res-ari-events:asterisk15-res-stasis
 Conflicts: 
 Menu-Depends: 
@@ -3959,7 +3959,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-ari-mailboxes
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-ari-mailboxes:asterisk15-res-ari +PACKAGE_asterisk15-res-ari-mailboxes:asterisk15-res-ari-model +PACKAGE_asterisk15-res-ari-mailboxes:asterisk15-res-stasis-mailbox
 Conflicts: 
 Menu-Depends: 
@@ -3980,7 +3980,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-ari-model
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4001,7 +4001,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-ari-playbacks
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-ari-playbacks:asterisk15-res-ari +PACKAGE_asterisk15-res-ari-playbacks:asterisk15-res-ari-model +PACKAGE_asterisk15-res-ari-playbacks:asterisk15-res-stasis-playback
 Conflicts: 
 Menu-Depends: 
@@ -4022,7 +4022,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-ari-recordings
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-ari-recordings:asterisk15-res-ari +PACKAGE_asterisk15-res-ari-recordings:asterisk15-res-ari-model +PACKAGE_asterisk15-res-ari-recordings:asterisk15-res-stasis-recording
 Conflicts: 
 Menu-Depends: 
@@ -4043,7 +4043,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-ari-sounds
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-ari-sounds:asterisk15-res-ari +PACKAGE_asterisk15-res-ari-sounds:asterisk15-res-ari-model +PACKAGE_asterisk15-res-ari-sounds:asterisk15-res-stasis
 Conflicts: 
 Menu-Depends: 
@@ -4064,7 +4064,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-calendar
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4085,7 +4085,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-calendar-caldav
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-calendar-caldav:asterisk15-res-calendar +PACKAGE_asterisk15-res-calendar-caldav:libical +PACKAGE_asterisk15-res-calendar-caldav:libneon +PACKAGE_asterisk15-res-calendar-caldav:libxml2
 Conflicts: 
 Menu-Depends: 
@@ -4106,7 +4106,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-calendar-ews
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-calendar-ews:asterisk15-res-calendar +PACKAGE_asterisk15-res-calendar-ews:libneon
 Conflicts: 
 Menu-Depends: 
@@ -4127,7 +4127,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-calendar-exchange
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-calendar-exchange:asterisk15-res-calendar +PACKAGE_asterisk15-res-calendar-exchange:libical +PACKAGE_asterisk15-res-calendar-exchange:libiksemel +PACKAGE_asterisk15-res-calendar-exchange:libneon
 Conflicts: 
 Menu-Depends: 
@@ -4148,7 +4148,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-calendar-icalendar
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-calendar-icalendar:asterisk15-res-calendar +PACKAGE_asterisk15-res-calendar-icalendar:libical +PACKAGE_asterisk15-res-calendar-icalendar:libneon
 Conflicts: 
 Menu-Depends: 
@@ -4169,7 +4169,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-chan-stats
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-chan-stats:asterisk15-res-statsd
 Conflicts: 
 Menu-Depends: 
@@ -4190,7 +4190,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-clialiases
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4211,7 +4211,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-clioriginate
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4232,7 +4232,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-config-ldap
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-config-ldap:libopenldap
 Conflicts: 
 Menu-Depends: 
@@ -4253,7 +4253,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-config-mysql
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-config-mysql:libmysqlclient
 Conflicts: 
 Menu-Depends: 
@@ -4274,7 +4274,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-config-sqlite3
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4295,7 +4295,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-convert
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4316,7 +4316,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-endpoint-stats
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-endpoint-stats:asterisk15-res-statsd
 Conflicts: 
 Menu-Depends: 
@@ -4337,7 +4337,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-hep
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4358,7 +4358,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-hep-pjsip
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-hep-pjsip:asterisk15-res-hep +PACKAGE_asterisk15-res-hep-pjsip:asterisk15-pjsip
 Conflicts: 
 Menu-Depends: 
@@ -4379,7 +4379,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-hep-rtcp
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-hep-rtcp:asterisk15-res-hep
 Conflicts: 
 Menu-Depends: 
@@ -4400,7 +4400,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-fax-spandsp
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-fax-spandsp:asterisk15-res-fax +PACKAGE_asterisk15-res-fax-spandsp:libspandsp +PACKAGE_asterisk15-res-fax-spandsp:libtiff
 Conflicts: 
 Menu-Depends: 
@@ -4421,7 +4421,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-fax
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-fax:asterisk15-res-timing-pthread
 Conflicts: 
 Menu-Depends: 
@@ -4442,7 +4442,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-format-attr-celt
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4463,7 +4463,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-format-attr-g729
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4484,7 +4484,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-format-attr-h263
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4505,7 +4505,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-format-attr-h264
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4526,7 +4526,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-format-attr-ilbc
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4547,7 +4547,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-format-attr-opus
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4568,7 +4568,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-format-attr-silk
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4589,7 +4589,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-format-attr-siren14
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4610,7 +4610,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-format-attr-siren7
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4631,7 +4631,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-format-attr-vp8
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4652,7 +4652,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-http-media-cache
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-http-media-cache:asterisk15-curl
 Conflicts: 
 Menu-Depends: 
@@ -4673,7 +4673,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-http-websocket
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4694,7 +4694,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-limit
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4715,7 +4715,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-manager-devicestate
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4736,7 +4736,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-manager-presencestate
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4757,7 +4757,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-monitor
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4778,7 +4778,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-musiconhold
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4799,7 +4799,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-mutestream
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4820,7 +4820,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-mwi-external
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4841,7 +4841,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-mwi-external-ami
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-mwi-external-ami:asterisk15-res-mwi-external
 Conflicts: 
 Menu-Depends: 
@@ -4862,7 +4862,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-parking
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-parking:asterisk15-bridge-holding
 Conflicts: 
 Menu-Depends: 
@@ -4883,7 +4883,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-phoneprov
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4904,7 +4904,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-pjsip-phoneprov
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-pjsip-phoneprov:asterisk15-pjsip +PACKAGE_asterisk15-res-pjsip-phoneprov:asterisk15-res-phoneprov
 Conflicts: 
 Menu-Depends: 
@@ -4925,7 +4925,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-pjproject
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-pjproject:libpj +PACKAGE_asterisk15-res-pjproject:libpjlib-util +PACKAGE_asterisk15-res-pjproject:libpjmedia +PACKAGE_asterisk15-res-pjproject:libpjmedia +PACKAGE_asterisk15-res-pjproject:libpjnath +PACKAGE_asterisk15-res-pjproject:libpjsip-simple +PACKAGE_asterisk15-res-pjproject:libpjsip-ua +PACKAGE_asterisk15-res-pjproject:libpjsip +PACKAGE_asterisk15-res-pjproject:libpjsua +PACKAGE_asterisk15-res-pjproject:libpjsua2 +PACKAGE_asterisk15-res-pjproject:libsrtp2
 Conflicts: 
 Menu-Depends: 
@@ -4946,7 +4946,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-pktccops
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4967,7 +4967,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-realtime
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -4988,7 +4988,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-resolver-unbound
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-resolver-unbound:libunbound
 Conflicts: 
 Menu-Depends: 
@@ -5009,7 +5009,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-rtp-asterisk
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-rtp-asterisk:libpjsip +PACKAGE_asterisk15-res-rtp-asterisk:libpjmedia +PACKAGE_asterisk15-res-rtp-asterisk:libpjnath +PACKAGE_asterisk15-res-rtp-asterisk:libpjsip-simple +PACKAGE_asterisk15-res-rtp-asterisk:libpjsip-ua +PACKAGE_asterisk15-res-rtp-asterisk:libpjsua +PACKAGE_asterisk15-res-rtp-asterisk:libpjsua2
 Conflicts: 
 Menu-Depends: 
@@ -5030,7 +5030,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-rtp-multicast
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -5051,7 +5051,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-security-log
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -5072,7 +5072,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-smdi
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -5093,7 +5093,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-snmp
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-snmp:libnetsnmp
 Conflicts: 
 Menu-Depends: 
@@ -5114,7 +5114,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-sorcery
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -5135,7 +5135,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-sorcery-memory-cache
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -5156,7 +5156,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-speech
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -5177,7 +5177,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-srtp
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-srtp:libsrtp2
 Conflicts: 
 Menu-Depends: 
@@ -5198,7 +5198,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-stasis
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -5219,7 +5219,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-stasis-answer
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-stasis-answer:asterisk15-res-stasis
 Conflicts: 
 Menu-Depends: 
@@ -5240,7 +5240,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-stasis-device-state
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-stasis-device-state:asterisk15-res-stasis
 Conflicts: 
 Menu-Depends: 
@@ -5261,7 +5261,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-stasis-mailbox
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-stasis-mailbox:asterisk15-res-stasis +PACKAGE_asterisk15-res-stasis-mailbox:asterisk15-res-mwi-external
 Conflicts: 
 Menu-Depends: 
@@ -5282,7 +5282,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-stasis-playback
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-stasis-playback:asterisk15-res-stasis-recording
 Conflicts: 
 Menu-Depends: 
@@ -5303,7 +5303,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-stasis-recording
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-stasis-recording:asterisk15-res-stasis
 Conflicts: 
 Menu-Depends: 
@@ -5324,7 +5324,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-stasis-snoop
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-stasis-snoop:asterisk15-res-stasis-recording
 Conflicts: 
 Menu-Depends: 
@@ -5345,7 +5345,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-statsd
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -5366,7 +5366,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-stun-monitor
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -5387,7 +5387,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-timing-dahdi
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-timing-dahdi:asterisk15-chan-dahdi
 Conflicts: 
 Menu-Depends: 
@@ -5408,7 +5408,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-timing-pthread
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -5429,7 +5429,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-timing-timerfd
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -5450,7 +5450,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-res-xmpp
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-res-xmpp:libiksemel +PACKAGE_asterisk15-res-xmpp:libopenssl
 Conflicts: 
 Menu-Depends: 
@@ -5471,7 +5471,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-voicemail
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-voicemail:asterisk15-res-adsi +PACKAGE_asterisk15-voicemail:asterisk15-res-smdi
 Conflicts: 
 Menu-Depends: 
@@ -5492,7 +5492,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-util-aelparse
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-util-aelparse:asterisk15-pbx-ael
 Conflicts: 
 Menu-Depends: 
@@ -5513,7 +5513,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-util-astcanary
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -5534,7 +5534,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-util-astdb2sqlite3
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -5555,7 +5555,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-util-astdb2bdb
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -5576,7 +5576,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-util-check-expr
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -5597,7 +5597,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-util-check-expr2
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -5618,7 +5618,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-util-conf2ael
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-util-conf2ael:asterisk15-pbx-ael
 Conflicts: 
 Menu-Depends: 
@@ -5639,7 +5639,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-util-muted
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -5660,7 +5660,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-util-smsq
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15 +PACKAGE_asterisk15-util-smsq:libpopt
 Conflicts: 
 Menu-Depends: 
@@ -5681,7 +5681,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-util-stereorize
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 
@@ -5702,7 +5702,7 @@ Jiri Slachta <jiri@slachta.eu>
 
 Package: asterisk15-util-streamplayer
 Submenu: Telephony
-Version: 15.3.0-4
+Version: 15.3.0-8
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread asterisk15
 Conflicts: 
 Menu-Depends: 

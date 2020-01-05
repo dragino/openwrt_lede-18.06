@@ -2,7 +2,7 @@ Source-Makefile: package/feeds/packages/wifidog/Makefile
 
 Package: wifidog
 Submenu: Captive Portals
-Version: 1.3.0-2
+Version: 1.3.0-4
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +iptables-mod-extra +iptables-mod-ipopt +iptables-mod-nat-extra +libpthread
 Conflicts: 
 Menu-Depends: 
@@ -13,8 +13,8 @@ Category: Network
 Repository: packages
 Title: A wireless captive portal solution
 Maintainer: Michael Haas <haas@computerlinguist.org>
-Source: wifidog-1.3.0-1.3.0.tar.xz
-License: GPL-2.0
+Source: wifidog-1.3.0.tar.xz
+License: GPL-2.0-or-later
 LicenseFiles: COPYING
 Type: ipkg
 Description: 	The Wifidog project is a complete and embeddable captive
@@ -27,8 +27,8 @@ Michael Haas <haas@computerlinguist.org>
 
 Package: wifidog-tls
 Submenu: Captive Portals
-Version: 1.3.0-2
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +iptables-mod-extra +iptables-mod-ipopt +iptables-mod-nat-extra +libpthread +libcyassl
+Version: 1.3.0-4
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +iptables-mod-extra +iptables-mod-ipopt +iptables-mod-nat-extra +libpthread +PACKAGE_wifidog-tls:libwolfssl
 Conflicts: 
 Menu-Depends: 
 Provides: 
@@ -38,8 +38,8 @@ Category: Network
 Repository: packages
 Title: A wireless captive portal solution
 Maintainer: Michael Haas <haas@computerlinguist.org>
-Source: wifidog-1.3.0-1.3.0.tar.xz
-License: GPL-2.0
+Source: wifidog-1.3.0.tar.xz
+License: GPL-2.0-or-later
 LicenseFiles: COPYING
 Type: ipkg
 Description: 	The Wifidog project is a complete and embeddable captive

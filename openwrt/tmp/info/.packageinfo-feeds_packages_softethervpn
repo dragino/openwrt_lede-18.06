@@ -1,10 +1,11 @@
 Source-Makefile: package/feeds/packages/softethervpn/Makefile
 Build-Depends: softethervpn/host !BUILD_NLS:libiconv !BUILD_NLS:gettext
+Build-Depends/host: readline/host libiconv/host openssl
 Build-Types: host
 
 Package: softethervpn
 Submenu: VPN
-Version: 4.25-9656-1
+Version: 4.29-9680-2
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +librt +libreadline +libopenssl +libncurses +kmod-tun +zlib +BUILD_NLS:libiconv-full
 Conflicts: 
 Menu-Depends: 
@@ -14,7 +15,7 @@ Category: Network
 Repository: packages
 Title: Free Cross-platform Multi-protocol VPN server and client
 Maintainer: Federico Di Marco <fededim@gmail.com>
-Source: softether-src-v4.25-9656-rtm.tar.gz
+Source: softether-src-v4.29-9680-rtm.tar.gz
 License: GPL-2.0
 LicenseFiles: COPYING
 Type: ipkg

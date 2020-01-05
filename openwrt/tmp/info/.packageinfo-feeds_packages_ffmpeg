@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/ffmpeg/Makefile
 
 Package: ffmpeg
-Version: 3.2.10-3
+Version: 3.2.12-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +libffmpeg-full
 Conflicts: 
 Menu-Depends: 
@@ -12,7 +12,7 @@ Category: Multimedia
 Repository: packages
 Title: FFmpeg program
 Maintainer: Ted Hess <thess@kitschensync.net>, Ian Leonard <antonlacon@gmail.com>
-Source: ffmpeg-3.2.10.tar.xz
+Source: ffmpeg-3.2.12.tar.xz
 License: LGPL-2.1+ GPL-2+ LGPL-3
 LicenseFiles: COPYING.GPLv2 COPYING.GPLv3 COPYING.LGPLv2.1 COPYING.LGPLv3
 Type: ipkg
@@ -29,7 +29,7 @@ Ted Hess <thess@kitschensync.net>, Ian Leonard <antonlacon@gmail.com>
 @@
 
 Package: ffprobe
-Version: 3.2.10-3
+Version: 3.2.12-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +libffmpeg-full
 Conflicts: 
 Menu-Depends: 
@@ -40,7 +40,7 @@ Category: Multimedia
 Repository: packages
 Title: FFmpeg CLI media identifier
 Maintainer: Ted Hess <thess@kitschensync.net>, Ian Leonard <antonlacon@gmail.com>
-Source: ffmpeg-3.2.10.tar.xz
+Source: ffmpeg-3.2.12.tar.xz
 License: LGPL-2.1+ GPL-2+ LGPL-3
 LicenseFiles: COPYING.GPLv2 COPYING.GPLv3 COPYING.LGPLv2.1 COPYING.LGPLv3
 Type: ipkg
@@ -57,8 +57,8 @@ Ted Hess <thess@kitschensync.net>, Ian Leonard <antonlacon@gmail.com>
 @@
 
 Package: ffserver
-Version: 3.2.10-3
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libffmpeg-full
+Version: 3.2.12-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +libffmpeg-full
 Conflicts: 
 Menu-Depends: 
 Provides: 
@@ -66,9 +66,9 @@ Build-Variant: full
 Section: multimedia
 Category: Multimedia
 Repository: packages
-Title:  streaming server
+Title: FFmpeg streaming server
 Maintainer: Ted Hess <thess@kitschensync.net>, Ian Leonard <antonlacon@gmail.com>
-Source: ffmpeg-3.2.10.tar.xz
+Source: ffmpeg-3.2.12.tar.xz
 License: LGPL-2.1+ GPL-2+ LGPL-3
 LicenseFiles: COPYING.GPLv2 COPYING.GPLv3 COPYING.LGPLv2.1 COPYING.LGPLv3
 Type: ipkg
@@ -80,11 +80,12 @@ Description:  FFmpeg is a a software package that can record, convert and stream
  https://ffmpeg.org/legal.html for further information.
  .
  This package contains the FFmpeg streaming server.
+https://ffmpeg.org/
 Ted Hess <thess@kitschensync.net>, Ian Leonard <antonlacon@gmail.com>
 @@
 
 Package: libffmpeg-audio-dec
-Version: 3.2.10-3
+Version: 3.2.12-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +libpthread +zlib +libbz2
 Conflicts: 
 Menu-Depends: 
@@ -95,7 +96,7 @@ Category: Libraries
 Repository: packages
 Title: FFmpeg libraries (audio)
 Maintainer: Ted Hess <thess@kitschensync.net>, Ian Leonard <antonlacon@gmail.com>
-Source: ffmpeg-3.2.10.tar.xz
+Source: ffmpeg-3.2.12.tar.xz
 License: LGPL-2.1+ GPL-2+ LGPL-3
 LicenseFiles: COPYING.GPLv2 COPYING.GPLv3 COPYING.LGPLv2.1 COPYING.LGPLv3
 Type: ipkg
@@ -112,8 +113,8 @@ Ted Hess <thess@kitschensync.net>, Ian Leonard <antonlacon@gmail.com>
 @@
 
 Package: libffmpeg-full
-Version: 3.2.10-3
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +libpthread +zlib +libbz2 +alsa-lib +PACKAGE_libopus:libopus +PACKAGE_lame-lib:lame-lib +PACKAGE_libx264:libx264 +PACKAGE_fdk-aac:fdk-aac
+Version: 3.2.12-3
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +libpthread +zlib +libbz2 +alsa-lib +PACKAGE_libopus:libopus +SOFT_FLOAT:shine +!SOFT_FLOAT:lame-lib +PACKAGE_libx264:libx264
 Conflicts: 
 Menu-Depends: 
 Provides: libffmpeg
@@ -123,7 +124,7 @@ Category: Libraries
 Repository: packages
 Title: FFmpeg libraries (full)
 Maintainer: Ted Hess <thess@kitschensync.net>, Ian Leonard <antonlacon@gmail.com>
-Source: ffmpeg-3.2.10.tar.xz
+Source: ffmpeg-3.2.12.tar.xz
 License: LGPL-2.1+ GPL-2+ LGPL-3
 LicenseFiles: COPYING.GPLv2 COPYING.GPLv3 COPYING.LGPLv2.1 COPYING.LGPLv3
 Type: ipkg
@@ -140,7 +141,7 @@ Ted Hess <thess@kitschensync.net>, Ian Leonard <antonlacon@gmail.com>
 @@
 
 Package: libffmpeg-mini
-Version: 3.2.10-3
+Version: 3.2.12-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +libpthread +zlib +libbz2
 Conflicts: 
 Menu-Depends: 
@@ -151,7 +152,7 @@ Category: Libraries
 Repository: packages
 Title: FFmpeg libraries (mini)
 Maintainer: Ted Hess <thess@kitschensync.net>, Ian Leonard <antonlacon@gmail.com>
-Source: ffmpeg-3.2.10.tar.xz
+Source: ffmpeg-3.2.12.tar.xz
 License: LGPL-2.1+ GPL-2+ LGPL-3
 LicenseFiles: COPYING.GPLv2 COPYING.GPLv3 COPYING.LGPLv2.1 COPYING.LGPLv3
 Type: ipkg
@@ -169,7 +170,7 @@ Ted Hess <thess@kitschensync.net>, Ian Leonard <antonlacon@gmail.com>
 
 Package: libffmpeg-custom
 Menu: 1
-Version: 3.2.10-3
+Version: 3.2.12-3
 Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +libpthread +zlib +libbz2 @!ALL +FFMPEG_CUSTOM_SELECT_libopus:libopus +PACKAGE_libx264:libx264 +PACKAGE_lame-lib:lame-lib +FFMPEG_CUSTOM_SELECT_libshine:shine +PACKAGE_fdk-aac:fdk-aac
 Conflicts: 
 Menu-Depends: 
@@ -180,7 +181,7 @@ Category: Libraries
 Repository: packages
 Title: FFmpeg libraries (custom)
 Maintainer: Ted Hess <thess@kitschensync.net>, Ian Leonard <antonlacon@gmail.com>
-Source: ffmpeg-3.2.10.tar.xz
+Source: ffmpeg-3.2.12.tar.xz
 License: LGPL-2.1+ GPL-2+ LGPL-3
 LicenseFiles: COPYING.GPLv2 COPYING.GPLv3 COPYING.LGPLv2.1 COPYING.LGPLv3
 Type: ipkg

@@ -2,139 +2,86 @@
 
 <%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
 
-<%# --- Process the form submission --- %>
-<%
-  server_type=$(uci -q get mqttdemo.common.server_type)
-
-	if [ $FORM_BUTTON = "Save" ]; then
-		uci set mqttdemo.$server_type.url="$FORM_URL"
-
-		uci commit mqttdemo 
-	fi
-%>
-
-
 <%# --- Get the variables for the HTML page --- %>
-<% 
-  server_type="$(uci -q get mqttdemo.common.server_type)"
-
-	url="$(uci -q get mqttdemo.$server_type.url)"
+<%
+MEMFREE=`cat /proc/meminfo | grep MemFree |cut -d : -f2 | tr -d ' '|tr -d 'kB'`
+MEMTOT=`cat /proc/meminfo | grep MemTotal |cut -d : -f2 | tr -d ' '`
+MEMSTR="Free Memory: "$MEMFREE" / Total Memory: "$MEMTOT
 %>
 
-
-<%# --- Set up field display --- %>
-<% 
-
-%>
-
-
-<%# --- Present the HTML page --- %>
-<html>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-<meta http-equiv="Pragma" content="no-cache" />
-<meta http-equiv="Expires" content="0" />
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Dragino LoRaWAN Gateway</title>
+  <title>Dragino LoRa Gateway</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--  <meta http-equiv="refresh" content="10"> -->
 
-  <link rel="stylesheet" href="/static/resources/config.css">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
   <link rel="stylesheet" href="/static/resources/bootstrap.min.css">
   <script src="/static/resources/jquery.min.js"></script>
   <script src="/static/resources/bootstrap.min.js"></script>
+
 	<link rel="shortcut icon" href="/static/resources/favicon.ico">
 
-<script>
-function displayFunction() {
-  document.getElementById("div1").style.display = "<% echo -n $disp1 %>"; 
-  document.getElementById("div2").style.display = "<% echo -n $disp2 %>"; 
-  document.getElementById("div3").style.display = "<% echo -n $disp3 %>";                     
-  document.getElementById("div4").style.display = "<% echo -n $disp4 %>"; 
-  document.getElementById("div5").style.display = "<% echo -n $disp5 %>"; 
-  document.getElementById("div6").style.display = "<% echo -n $disp6 %>";                     
-}
-
-function changeFunc() {
-
-}
-
-</script>
 </head>
 
-<body onload="displayFunction()">
-
+<body>
 <br><br>
-<h1>Log Read</h1>
-
+<h1>LogRead</h1>
+  
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded"> </a>  
-      <a class="navbar-brand" href="#"> Log Read </a>  
+      <a class="navbar-brand" href="#"><font size="5"><b> Dragino LoRa Gateway </b></font></a>  
     </div>
+
     <ul class="nav navbar-nav">
-      <li><a href="/index.html">Main Menu</a></li>
+      <li><a href="/cgi-bin/dragino.has"><font size="4">Return to Main Menu</font></a></li>
     </ul>
   </div>
 </nav>
 
+<div class="container">
+	<br>
 
-<form action="<% echo -n $SCRIPT_NAME %>" method="POST">
-	<br></br>
+	<h4>
+	<% echo "FreqINFO:  " %>
+	</h4>
+	<% cat /etc/lora/desc | sed  's/$/ <br>/' %>
+	<br><br>
 
+	<h4>
+	<% echo "Logread Error:  " %>
+	</h4>
+	<% logread -e "ERROR~" | sed  's/$/ <br>/' %>
 
-	<label for="URL">Broker Address [-h]</label>
-	<input type="text" name="URL" size="40" VALUE="<% echo -n $url %>">
-  <br></br>
+	<br><br>
 
-	<label for="PORT">Broker Port [-p]</label>
-	<input type="text" name="PORT" VALUE="<% echo -n $port %>">
-  <br></br>
+	<h4>
+	<% echo "Logread RxTxJson:  " %>
+	</h4>
+	<% logread -l 50 -e "RXTX~" | sed  's/$/ <br>/' %>
+	<br><br>
 
-  <div id="div1">
-	  <label for="USER">User ID [-u]</label>
-	  <input type="text" name="USER" VALUE="<% echo -n $user %>">
+	<h4>
+	<% echo "Logread REPORT:  " %>
+	</h4>
+	<% logread -e REPORT | sed  's/$/ <br>/' %>
+	<br><br>
 
-	  <label for="PWD" style="padding-left:60px">Password [-P]</label>
-	  <input type="text" name="PWD" VALUE="<% echo -n $pwd %>" size="30">
-    <br></br>
-  </div>
+	<h4>
+	<% echo "Logread INFO (json):  " %>
+	</h4>
+	<% logread -e "INFO~ (json):" | cut -d "~" -f 2 | sed  's/$/ <br>/' %>
+	<br><br>
 
-  <div id="div2">
-	  <label for="CERT">Certificate [--cert]</label>
-	  <input type="text" name="CERT" VALUE=<% echo -n $cert %>>
+</div>
 
-	  <label for="KEY" style="padding-left:60px">Key [--key]</label>
-	  <input type="text" name="KEY" VALUE=<% echo -n $key %>>
-    <br></br>
-  </div>
-
-  <div id="div3">
-    <label for="CAFILE">CA File [--cafile]</label>                                       
-    <input type="text" name="CAFILE" VALUE=<% echo -n $cafile %>>                    
-    <br></br>
-  </div>   
-
-  <label for="CID">Client ID [-i]</label>
-  <input type="text" name="CID" VALUE=<% echo -n $cid %>>
-  <br></br>
-
-  <label for="QOS">Quality of Service [-q]</label>
-  <input type="text" name="QOS" VALUE=<% echo -n $qos %>>
-  <br></br>
-
-  <label for="TOPIC">Topic Format [-t]</label>
-  <input type="text" name="TOPIC" VALUE=<% echo -n $topic %> size="40">
-  <br></br>
-
-  <label for="DATA">Data Format [-m]</label>
-  <input type="text" name="DATA" VALUE=<% echo -n $data %> size="40">
-  <br></br>
-
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save">
-	<br></br>
-
-</form>
 </body>
 </html>
-
 

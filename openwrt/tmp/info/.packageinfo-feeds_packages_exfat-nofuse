@@ -3,7 +3,7 @@ Source-Makefile: package/feeds/packages/exfat-nofuse/Makefile
 Package: kmod-fs-exfat
 Submenu: Filesystems
 Version: <LINUX_VERSION>+2017-06-20-de4c760bc9a05ead83bc3ec6eec6cf1fb106f523-1
-Depends: +kmod-nls-base @BUILD_PATENTED
+Depends: +kmod-nls-base
 Conflicts: 
 Menu-Depends: 
 Provides: 

@@ -1,8 +1,8 @@
 Source-Makefile: package/feeds/packages/bonnie++/Makefile
 
 Package: bonniexx
-Version: 1.97-1
-Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +libstdcpp +libpthread
+Version: 1.98-1
+Depends: +libc +GCC_LIBSSP:libssp +USE_GLIBC:librt +USE_GLIBC:libpthread +USE_UCLIBCXX:uclibcxx +USE_LIBSTDCXX:libstdcpp +libpthread
 Conflicts: 
 Menu-Depends: 
 Provides: 
@@ -11,13 +11,13 @@ Category: Utilities
 Repository: packages
 Title: Bonnie++ - hard drive bottleneck testing program.
 Maintainer: Florian Fainelli <florian@openwrt.org>
-Source: bonnie++-1.97.tgz
+Source: bonnie++-1.98.tgz
 License: GPL-2.0
 LicenseFiles: copyright.txt
 Type: ipkg
 Description:   Bonnie++ is a benchmark suite that is aimed at performing a number of simple
   tests of hard drive and file system performance.
-http://www.coker.com.au/bonnie++/
+https://www.coker.com.au/bonnie++/
 Florian Fainelli <florian@openwrt.org>
 @@
 
