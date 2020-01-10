@@ -1,0 +1,148 @@
+#!/usr/bin/haserl
+
+<%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
+
+<%# --- Process the form submission --- %>
+<%
+# Save parameters
+	if [ $FORM_BUTTON == "Save" ] || [ $FORM_BUTTON == "Save&Apply" ]; then
+		uci set rssh.rssh.host_id="$FORM_HOST_ID"
+		uci set rssh.rssh.host_addr="$FORM_HOST_ADDR"
+		uci set rssh.rssh.host_port="$FORM_HOST_PORT"
+
+		if [ "$FORM_RSSH_ENABLE" == "checked" ]; then
+			uci set rssh.rssh.rssh_enable="$FORM_RSSH_ENABLE"
+		else
+			uci set rssh.rssh.rssh_enable=0
+		fi
+
+		uci commit rssh
+	fi
+
+# Activate RSSH connection
+	if [ $FORM_BUTTON == "Save&Apply" ] && [ "$FORM_RSSH_ENABLE" == "checked" ]; then
+		killall ssh
+		ssh -i /etc/dropbear/id_dropbear -f -N -T -R $FORM_HOST_PORT:localhost:22  $FORM_HOST_ID@$FORM_HOST_ADDR
+		rssh_pid=$(ps|grep -m 1 -e "-i /etc/dropbear/id_dropbear -f -N -T -R"|cut -d " " -f 1)
+		echo $ssh_pid > /tmp/rssh_pid
+  fi
+
+# Generate new keys
+	if [ $FORM_BUTTON == "Generate" ]; then
+    rm /etc/dropbear/id_dropbear
+    rm /etc/dropbear/id_rsa.pub
+    dropbearkey -f /etc/dropbear/id_dropbear -t rsa > /dev/null
+    dropbearkey -y -f /etc/dropbear/id_dropbear | grep -v "Public key" | grep -v "Fingerprint" > /etc/dropbear/id_rsa.pub
+  fi
+
+%>
+
+
+<%# --- Get the variables for the HTML page --- %>
+<% 
+
+	host_id="$(uci -q get rssh.rssh.host_id)"
+	host_addr="$(uci -q get rssh.rssh.host_addr)"
+	host_port="$(uci -q get rssh.rssh.host_port)"
+	rssh_enable="$(uci -q get rssh.rssh.rssh_enable)"
+
+	if [ -e "/etc/dropbear/id_dropbear" ]; then
+		fingerprint=$(dropbearkey -y -f /etc/dropbear/id_dropbear | grep "Fingerprint")
+	else
+		fingerprint="No keyfile present"
+	fi
+
+%>
+
+
+<%# --- Set up field display --- %>
+<% 
+  # Set up display defaults
+  # Set up display options
+%>
+
+
+<%# --- Present the HTML page --- %>
+<html>
+<head>
+  <title>Dragino LoRa Gateway</title>
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
+  <link rel="stylesheet" href="/static/resources/config.css">
+  <link rel="stylesheet" href="/static/resources/bootstrap.min.css">
+  <script src="/static/resources/jquery.min.js"></script>
+  <script src="/static/resources/bootstrap.min.js"></script>
+	<link rel="shortcut icon" href="/static/resources/favicon.ico">
+
+<script>
+</script>
+
+</head>
+<body onload="displayFunction()">
+
+<br></br>
+<h1>Remote Management Access</h1>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded"> </a>  
+      <a class="navbar-brand" href="#"><font size="5"><b> System </b></font></a>  
+    </div>
+
+    <ul class="nav navbar-nav">
+      <li><a href="/cgi-bin/system-overview.has"><font size="4">System Overview</font></a></li>
+      <li><a href="/cgi-bin/system-wifi.has"><font size="4">WiFi</font></a></li>
+      <li><a href="/cgi-bin/system-network.has"><font size="4">Network</font></a></li>
+      <li><a href="/cgi-bin/system-status.has"><font size="4">Network Status</font></a></li>
+      <li><a href="/cgi-bin/dragino.has"><font size="4">Return to Main Menu</font></a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="container">
+<form name="REMOTE" id="REMOTE" action="<% echo -n $SCRIPT_NAME %>" method="POST">
+
+	<h2>R-SSH Host Settings</h2>
+
+	<label for="HOST_ID">Login ID</label>
+	<input type="text" name="HOST_ID" value="<% echo -n $host_id %>" >
+  <br><br>
+
+	<label for="HOST_ADDR">Host Address</label>
+	<input type="text" name="HOST_ADDR" value="<% echo -n $host_addr %>" >
+
+	<label for="HOST_PORT">Host Port</label>
+	<input type="text" name="HOST_PORT" VALUE="<% echo -n $host_port %>" >
+  <br><br>
+
+  <label for="RSSH_ENABLE">Enable Remote Access</label>
+  <input type="checkbox" name="RSSH_ENABLE" value="checked" <% echo -n $rssh_enable %>>
+  <br></br>
+
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save">
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
+
+  <br><br>
+
+	<h2>Generate New Keys</h2>
+
+	<label>Current Key: </label> <% echo -n $fingerprint %>
+
+  <br><br>
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Generate">
+
+  <br><br>
+  <a href="/id_rsa.pub"><font size="4">Download Public Key</font></a>
+
+</form>
+</div>
+</body>
+</html>
+
+

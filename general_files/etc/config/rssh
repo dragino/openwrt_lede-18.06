@@ -1,0 +1,8 @@
+
+config rssh rssh
+	option host_id ' '
+	option host_addr ' '
+	option host_port ' '
+	option rssh_enable '0'
+
+
