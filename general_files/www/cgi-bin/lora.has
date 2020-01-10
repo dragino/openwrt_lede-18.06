@@ -125,18 +125,18 @@
 
   # Adjust display for board type
   board=`cat /var/iot/board`
-  if [[ "$board" = "LG01" ]]; then
+  if [[ "$board" == "LG01" ]]; then
     disp1="inline"; disp2="none";
-  elif [[ "$board" = "LG02" ]]; then
+  elif [[ "$board" == "LG02" ]]; then
     disp1="none"; disp2="inline";
-  elif [[ "$board" = "LG08P" ]]; then
+  elif [[ "$board" == "LG08P" ]]; then
     disp1="inline"; disp2="none";
-  elif [[ "$board" = "LG08" ]]; then
+  elif [[ "$board" == "LG08" ]]; then
     disp1="inline"; disp2="none";
   fi
 
   # Adjust display for IoT Service Type
-  if [[ "$server_type" = "lorawan" ]]; then
+  if [[ "$server_type" == "lorawan" ]]; then
     disp3="inline"
   else
     disp3="none"
@@ -177,7 +177,6 @@
     <% touch /tmp/changeFunct.flag %>
     document.forms["lora"].submit();
   }
-}
 
 </script>
 

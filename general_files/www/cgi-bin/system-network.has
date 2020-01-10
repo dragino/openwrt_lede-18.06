@@ -5,7 +5,7 @@
 <%# --- Process the form submission --- %>
 <%
 
-	if [ $FORM_BUTTON = "Save" ] || [ $FORM_BUTTON = "Save&Apply" ]; then
+	if [ $FORM_BUTTON == "Save" ] || [ $FORM_BUTTON == "Save&Apply" ]; then
 		uci set network.lan.ipaddr="$FORM_IPADDR"
 		uci set network.lan.netmask="$FORM_NETMASK"
 		uci set network.lan.gateway="$FORM_GATEWAY"
@@ -14,7 +14,7 @@
 		uci commit network
 	fi
 
-	if [ $FORM_BUTTON = "Save&Apply" ]; then
+	if [ $FORM_BUTTON == "Save&Apply" ]; then
     /etc/init.d/network restart
   fi
 

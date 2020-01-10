@@ -4,7 +4,7 @@
 
 <%# --- Process the form submission --- %>
 <%
-	if [ $FORM_BUTTON = "Save" ]; then
+	if [ $FORM_BUTTON == "Save" ]; then
 
     if [ $FORM_SSL_ENABLE == "checked" ]; then
       ssl_enable="1"

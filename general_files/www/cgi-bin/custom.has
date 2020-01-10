@@ -5,7 +5,7 @@
 <%# --- Process the form submission --- %>
 <%
 
-	if [ $FORM_BUTTON = "Save" ]; then
+	if [ $FORM_BUTTON == "Save" ]; then
 		uci set customized_script.general.script_name="$FORM_SCRIPT_NAME"
 		uci set customized_script.general.para1="$FORM_PARA1"
 		uci set customized_script.general.para2="$FORM_PARA2"

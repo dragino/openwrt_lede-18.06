@@ -12,8 +12,7 @@ MEMSTR="Free Memory: "$MEMFREE" / Total Memory: "$MEMTOT
 HOST="1.1.1.1"
 ping -c1 $HOST 1>/dev/null 2>/dev/null
 SUCCESS=$?
-if [ $SUCCESS -eq 0 ]
-then
+if [ $SUCCESS -eq "0" ]; then
   connection="<font size="4"> Internet Connection OK </font>"
   connect_img="/static/img/connection.png"
   internet="1"
@@ -115,6 +114,7 @@ fi
           <li><a href="/cgi-bin/system-network.has"><font size="4">Network</font></a></li>
           <li><a href="/cgi-bin/system-wifi.has"><font size="4">WiFi</font></a></li>
           <li><a href="/cgi-bin/system-status.has"><font size="4">Network Status</font></a></li>
+          <li><a href="/cgi-bin/system-rssh.has"><font size="4">Remote Mgmt</font></a></li>
           <li><a href="/cgi-bin/system-firmware.has"><font size="4">Firmware Upgrade</font></a></li>
         </ul>
       </li>

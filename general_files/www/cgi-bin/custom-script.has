@@ -4,7 +4,7 @@
 
 <%# --- Process the form submission --- %>
 <%
-	if [ $FORM_BUTTON = "Upload" ]; then
+	if [ $FORM_BUTTON == "Upload" ]; then
 		if test -n "$HASERL_uploadfile_path"; then 
 		  filename=$FORM_uploadfile_name
 		  savedfile=$HASERL_uploadfile_path
@@ -57,7 +57,7 @@
     <br>
     <INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Upload">
 
-    <% if [ $FORM_BUTTON = "Upload" ]; then %>
+    <% if [ $FORM_BUTTON == "Upload" ]; then %>
       <p>
       You uploaded a file named <b><% echo -n $filename %></b>
       <br>
@@ -70,7 +70,7 @@
     <br><br>
     <h2> Delete file </h2>
     <%
-    	if [ $FORM_BUTTON = "Confirm" ]; then
+    	if [ $FORM_BUTTON == "Confirm" ]; then
     		delfile=`cat /tmp/delfile.txt`
     		rm "/etc/lora/customized_scripts/$delfile"
     		rm /tmp/delfile.txt
@@ -79,7 +79,7 @@
     <% fi %>
 
     <%
-    	if [ $FORM_BUTTON = "Delete" ]; then
+    	if [ $FORM_BUTTON == "Delete" ]; then
     		echo $FORM_DELFILE > /tmp/delfile.txt
     %>
     	<h4> You are deleting  file: <b><% echo -n $FORM_DELFILE %></b> </h4>

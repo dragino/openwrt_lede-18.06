@@ -4,18 +4,18 @@
 
 <%# --- Process the form submission --- %>
 <%
-	if [ $FORM_BUTTON = "Add" ] && [ $FORM_CHAN_NO -ge "1" ] && [ $FORM_CHAN_NO -le "99" ]; then
+	if [ $FORM_BUTTON == "Add" ] && [ $FORM_CHAN_NO -ge "1" ] && [ $FORM_CHAN_NO -le "99" ]; then
     uci set tcp_client.chan$FORM_CHAN_NO=channels
     uci set tcp_client.chan$FORM_CHAN_NO.local_id=$FORM_LOCAL_ID
     uci commit tcp_client
-  elif [ $FORM_BUTTON = "Add" ]; then
+  elif [ $FORM_BUTTON == "Add" ]; then
     add_chan_error="<b>Invalid channel number: $FORM_CHAN_NO. <sp><sp> Use 1 - 99</b>"
 	fi
 
-	if [ $FORM_BUTTON = "Delete" ] && [ $FORM_DEL_CHAN_NO -ge "1" ] && [ $FORM_DEL_CHAN_NO -le "99" ]; then
+	if [ $FORM_BUTTON == "Delete" ] && [ $FORM_DEL_CHAN_NO -ge "1" ] && [ $FORM_DEL_CHAN_NO -le "99" ]; then
     uci delete tcp_client.chan$FORM_DEL_CHAN_NO
     uci commit tcp_client
-  elif [ $FORM_BUTTON = "Delete" ]; then
+  elif [ $FORM_BUTTON == "Delete" ]; then
     del_chan_error="<b>Invalid channel number: $FORM_DEL_CHAN_NO. <sp><sp> Use 1 - 99</b>"
 	fi
 %>

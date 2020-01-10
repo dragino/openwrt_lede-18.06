@@ -4,7 +4,7 @@
 
 <%# --- Process the form submission --- %>
 <%
-	if [ $FORM_BUTTON = "Upload" ]; then
+	if [ $FORM_BUTTON == "Upload" ]; then
 		if test -n "$HASERL_uploadfile_path"; then 
 		  filename=$FORM_uploadfile_name
 		  savedfile=$HASERL_uploadfile_path
@@ -58,7 +58,7 @@
     <br>
     <INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Upload">
 
-    <% if [ $FORM_BUTTON = "Upload" ]; then %>
+    <% if [ $FORM_BUTTON == "Upload" ]; then %>
       <p>
       You uploaded a file named <b><% echo -n $filename %></b>
       <br>
@@ -75,7 +75,7 @@
     <br><br>
     <h2> Proceed with Flash </h2>
     <%
-    	if [ $FORM_BUTTON = "Proceed" ]; then
+    	if [ $FORM_BUTTON == "Proceed" ]; then
 				echo "<br><font size="4">*** Sysupgrade now... </font><br>"
 				echo "<br><font size="4">*** Please wait 3 minutes to complete flash operation. </font><br>"
     		sysupgrade -n -v /tmp/flash.bin

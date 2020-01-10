@@ -5,7 +5,7 @@
 <%# --- Process the form submission --- %>
 <%
 
-	if [ $FORM_BUTTON = "Save" ] || [ $FORM_BUTTON = "Save&Apply" ]; then
+	if [ $FORM_BUTTON == "Save" ] || [ $FORM_BUTTON == "Save&Apply" ]; then
 		uci set wireless.ap_0.ssid="$FORM_SSID"
 		uci set wireless.ap_0.encryption="$FORM_ENCRYPTION"
 		uci set wireless.ap_0.key="$FORM_KEY"
@@ -38,7 +38,7 @@
     uci commit wireless 
 	fi
 
-	if [ $FORM_BUTTON = "Save&Apply" ]; then
+	if [ $FORM_BUTTON == "Save&Apply" ]; then
     /etc/init.d/network restart
   fi
 

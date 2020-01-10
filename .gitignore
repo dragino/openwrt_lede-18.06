@@ -1,10 +1,10 @@
-/image
-/openwrt/dl
-/openwrt/build_dir
-/openwrt/bin
-/openwrt/feeds
-/openwrt/staging_dir
-/openwrt/tmp
+image
+openwrt/dl
+openwrt/build_dir
+openwrt/bin
+openwrt/feeds
+openwrt/staging_dir
+openwrt/tmp
 openwrt/files
 openwrt/.config
 openwrt/.config.old
