@@ -26,12 +26,6 @@ config oem 'vendor'
 	option ssid_prefix 'dragino'
 	option hostname 'dragino'
 	option web_model 'dragino'
-
-config oem 'vendor'
-	option name 'dragino'
-	option ssid_prefix 'dragino'
-	option hostname 'dragino'
-	option web_model 'dragino'
 	option company_name 'DRAGINO TECHNOLOGY CO., LIMITED'
 	option company_url 'http://www.dragino.com'
 	option mail_domain "dragino.com"

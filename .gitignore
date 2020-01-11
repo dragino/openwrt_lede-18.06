@@ -8,3 +8,4 @@ openwrt/tmp
 openwrt/files
 openwrt/.config
 openwrt/.config.old
+openwrt/package
