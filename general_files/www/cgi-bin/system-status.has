@@ -55,6 +55,9 @@
       <li><a href="/cgi-bin/system-overview.has"><font size="4">System Overview</font></a></li>
       <li><a href="/cgi-bin/system-network.has"><font size="4">Network</font></a></li>
       <li><a href="/cgi-bin/system-wifi.has"><font size="4">WiFi</font></a></li>
+      <li><a href="/cgi-bin/system-cellular.has"><font size="4">Cellular</font></a></li>
+      <li><a href="/cgi-bin/system-status.has"><font size="4">Network Status</font></a></li>
+      <li><a href="/cgi-bin/system-rssh.has"><font size="4">Remote Mgmt</font></a></li>
       <li><a href="/cgi-bin/dragino.has"><font size="4">Return to Main Menu</font></a></li>
     </ul>
   </div>
@@ -75,6 +78,8 @@
 		echo "WAN IP Address:"                    >> /tmp/net_wifi_status.txt
 		ifconfig eth1|grep "inet addr:"           >> /tmp/net_wifi_status.txt
 		ifconfig wlan0-2|grep "inet addr:"        >> /tmp/net_wifi_status.txt
+		echo "Cellular:"                    			>> /tmp/net_wifi_status.txt
+		ifconfig 3g-cellular|grep "inet addr:"    >> /tmp/net_wifi_status.txt
 		echo ""                                   >> /tmp/net_wifi_status.txt
 		echo "Bridge:"                            >> /tmp/net_wifi_status.txt
 		brctl show                                >> /tmp/net_wifi_status.txt
@@ -83,7 +88,7 @@
 		echo "----"                               >> /tmp/net_wifi_status.txt
 		iwinfo | grep -A 7 SSID                   >> /tmp/net_wifi_status.txt
 	%>
-	<iframe id="NET_WIFI_STATUS" src="/net_wifi_status.txt"  width="75%" height="400" ></iframe>
+	<iframe id="NET_WIFI_STATUS" src="/net_wifi_status.txt"  width="75%" height="550" ></iframe>
 	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Refresh">
 
 </form>

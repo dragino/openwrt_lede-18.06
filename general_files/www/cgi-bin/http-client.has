@@ -97,6 +97,7 @@ function changeFunc() {
     </div>
 
     <ul class="nav navbar-nav">
+      <li><a href="/cgi-bin/lora.has"><font size="4">LoRa Configuration</font></a></li>
       <li><a href="/cgi-bin/dragino.has"><font size="4">Return to Main Menu</font></a></li>
     </ul>
 

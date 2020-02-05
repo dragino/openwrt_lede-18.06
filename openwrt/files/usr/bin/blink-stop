@@ -1,4 +1,0 @@
-#!/bin/sh
-
-echo "none" > /sys/class/leds/dragino2:red:system/trigger
-

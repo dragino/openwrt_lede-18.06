@@ -4,7 +4,6 @@
 
 <%# --- Process form submission --- %>
 <%
-
   # Update server_type for changeFunct()
 	if [ -e /tmp/changeFunct.flag ]; then
     rm /tmp/changeFunct.flag
@@ -17,8 +16,6 @@
 	if [ $FORM_BUTTON == "Save" ] || [ $FORM_BUTTON == "Save&Apply" ]; then
     server_type=$(uci -q get mqtt.common.server_type)
   
-		uci set gateway.general.server_type="$FORM_IOT_SERVICE"
-
 		uci set mqtt.$server_type.url="$FORM_URL"
     uci set mqtt.$server_type.port="$FORM_PORT"
 		uci set mqtt.$server_type.user="$FORM_USER"
@@ -56,7 +53,7 @@
     sleep 2
     /etc/init.d/iot reload > /dev/null
   fi
-
+  
   rm /tmp/changeFunct.flag   # Just to be sure
 
 %>
@@ -163,6 +160,7 @@
     </div>
 
     <ul class="nav navbar-nav">
+      <li><a href="/cgi-bin/lora.has"><font size="4">LoRa Configuration</font></a></li>
       <li><a href="/cgi-bin/mqtt-chan.has"><font size="4">MQTT Channels</font></a></li>
       <li><a href="/cgi-bin/mqtt-cert.has"><font size="4">MQTT Certificates</font></a></li>
       <li><a href="/cgi-bin/dragino.has"><font size="4">Return to Main Menu</font></a></li>
@@ -173,15 +171,7 @@
 
 <div class="container">
 <form id="mqtt" action="<% echo -n $SCRIPT_NAME %>" method="POST">
-	<br></br>
-
-	<label for="iot_service">IoT Service</label>
-	<select id="iot_service" name="IOT_SERVICE" >
-		<option selected="<% echo -n $iot_service %>"><% echo -n $iot_service %></option>
-	  <option value="disabled" >Disabled</option>
-	  <option value="mqtt" >LoRaRaw forward to MQTT server</option>
-	</select> 
-  <br></br>
+	<br><br>
 
 	<label for="server_type">MQTT Server Profile</label>
 	<select id="server_type" style="padding-right:80px" name="SERVER_TYPE" onchange="changeFunc(this.value)" >
@@ -194,15 +184,15 @@
 	  <option value="AWS" >AWS</option>
 	  <option value="Alibaba" >Alibaba</option>
 	</select> 
-  <br></br>
+  <br><br>
 
 	<label for="URL">Broker Address [-h]</label>
 	<input type="text" name="URL" size="40" Placeholder="Server URL" maxlength="256" VALUE="<% echo -n $url %>" >
-  <br></br>
+  <br><br>
 
 	<label for="PORT">Broker Port [-p]</label>
 	<input type="number" min="1" max="65535" name="PORT" Placeholder="Server Port" maxlength="5" VALUE="<% echo -n $port %>" >
-  <br></br>
+  <br><br>
 
   <div id="div1">
 	  <label for="USER">User ID [-u]</label>
@@ -210,7 +200,7 @@
 
 	  <label for="PWD" style="padding-left:60px">Password [-P]</label>
 	  <input type="text" size="30" name="PWD" Placeholder="Password" maxlength="256" VALUE="<% echo -n $pwd %>" >
-    <br></br>
+    <br><br>
   </div>
 
   <div id="div2">
@@ -219,24 +209,24 @@
 
 	  <label for="KEY" style="padding-left:60px">Key [--key]</label>
 	  <input type="text" maxlength="128" name="KEY" Placeholder="Key File" VALUE="<% echo -n $key %>" >
-    <br></br>
+    <br><br>
   </div>
 
   <div id="div3">
     <label for="CAFILE">CA File [--cafile]</label>                                       
     <input type="text" maxlength="128" name="CAFILE" Placeholder="Certificate Authority File" VALUE="<% echo -n $cafile %>" > 
-    <br></br>
+    <br><br>
   </div>   
 
   <label for="CID">Client ID [-i]</label>
   <input type="text" maxlength="256" name="CID" Placeholder="Client ID" VALUE="<% echo -n $cid %>" >
-  <br></br>
+  <br><br>
 
   <h3>Publish</h3>
 
   <label for="PUB_ENABLE">Enable Publish</label>
   <input type="checkbox" name="PUB_ENABLE" value="checked" <% echo -n $pub_enable %>>
-  <br></br>
+  <br><br>
 
   <label for="PUB_QOS">Quality of Service [-q]</label>
 	<select id="pub_qos" name="PUB_QOS" >
@@ -245,23 +235,23 @@
 	  <option value="1" >QoS 1</option>
 	  <option value="2" >QoS 2</option>
 	</select> 
-  <br></br>
+  <br><br>
 
   <label for="TOPIC">Topic Format [-t]</label>
   <input type="text" maxlength="128" name="TOPIC" size="40"  VALUE="<% echo -n $topic %>" >
 
 	<% echo -n $pub_topic_default %>
-  <br></br>
+  <br><br>
 
   <label for="DATA">Data Format [-m]</label>
   <input type="text" size="40" maxlength="128" name="DATA" VALUE="<% echo -n $data %>" >
-  <br></br>
+  <br><br>
 
   <h3>Subscribe</h3>
 
   <label for="SUB_ENABLE">Enable Subscribe</label>
   <input type="checkbox" name="SUB_ENABLE" value="checked" <% echo -n $sub_enable %>>
-  <br></br>
+  <br><br>
 
   <label for="SUB_QOS">Quality of Service [-q]</label>
 	<select id="sub_qos" name="SUB_QOS" >
@@ -270,13 +260,13 @@
 	  <option value="1" >QoS 1</option>
 	  <option value="2" >QoS 2</option>
 	</select> 
-  <br></br>
+  <br><br>
 
   <label for="SUB_TOPIC">Topic Format [-t]</label>
   <input type="text" maxlength="128" name="SUB_TOPIC" size="40" VALUE="<% echo -n $sub_topic %>" >
 
 	<% echo -n $sub_topic_default %>
-  <br></br>
+  <br><br>
 
 	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save">
 	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">

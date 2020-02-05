@@ -19,27 +19,34 @@
 		uci set wireless.sta_0.encryption="$FORM_HOST_ENCRYPTION"
 		uci set wireless.sta_0.key="$FORM_HOST_KEY"
 
-		# Set up WiFi working mode and eth1 port
-		uci set network.lan.ifname="eth0" # Default
-    if [ $FORM_WIFI_MODE == "AccessPoint" ]; then
-      uci set wireless.ap_0.disabled="0"
-      uci set wireless.sta_0.disabled="1"
-      uci set network.wan.ifname="eth1"
-    else   # WAN Client mode
-      uci set wireless.sta_0.disabled="0"
-      uci set wireless.ap_0.disabled="1"
-      uci set network.wan.ifname="wlan0-2"
-    	if [ $FORM_WAN_LAN == "checked" ]; then
-				uci set network.lan.ifname="eth0 eth1"
-			fi
-    fi
-
 		uci commit network
     uci commit wireless 
 	fi
 
 	if [ $FORM_BUTTON == "Save&Apply" ]; then
+		# Set up WiFi AP 
+		if [ "$FORM_AP_ENABLE" == "checked" ]; then
+			uci set wireless.ap_0.disabled="0"
+		else
+			uci set wireless.ap_0.disabled="1"
+		fi
+		
+		# Set up WiFi WAN Client
+		if [ "$FORM_WIFI_WAN_ENABLE" == "checked" ]; then
+			uci set wireless.sta_0.disabled="0"
+      uci set network.wan.ifname="wlan0-2"
+		else
+			uci set wireless.sta_0.disabled="1"
+      uci set network.wan.ifname="eth1"
+		fi
+		
+		uci commit network
+    uci commit wireless 
+
     /etc/init.d/network restart
+    /etc/init.d/DR_wifi_wan start    # Check that WiFi WAN is operating correctly, else disable after 30 seconds.
+    sleep 10
+    /etc/init.d/fallbackip start
   fi
 
 %>
@@ -53,19 +60,25 @@
 
   txpower="$(uci -q get wireless.radio0.txpower)"
   channel="$(uci -q get wireless.radio0.channel)"
-  wifi_mode="$(uci -q get wireless.radio0.wifi_mode)"
-  wan_lan="$(uci -q get wireless.radio0.wan_lan)"
 
   host_ssid="$(uci -q get wireless.sta_0.ssid)"
   host_encryption="$(uci -q get wireless.sta_0.encryption)"
   host_key="$(uci -q get wireless.sta_0.key)"
 
-  ap=" "; client=" "
-  if [ $wifi_mode == "Client" ]; then
-    client="checked"
-  else
-    ap="checked"
+  ap_enable="0"
+  ap_disabled="$(uci -q get wireless.ap_0.disabled)"
+  if [ $ap_disabled == "0" ]; then
+  	ap_enable="checked"
   fi
+
+  wifi_wan_enable="0"
+  sta_disabled="$(uci -q get wireless.sta_0.disabled)"
+  if [ $sta_disabled == "0" ]; then
+  	wifi_wan_enable="checked"
+  	wan_str="&nbsp; &nbsp; Note: Ethernet WAN port will be disabled "
+  	channel=$(iw dev |grep -A 1 managed | grep channel | cut -d " " -f2)
+  fi
+  
 %>
 
 
@@ -131,7 +144,9 @@ function host_keyFunction() {
     <ul class="nav navbar-nav">
       <li><a href="/cgi-bin/system-overview.has"><font size="4">System Overview</font></a></li>
       <li><a href="/cgi-bin/system-network.has"><font size="4">Network</font></a></li>
+      <li><a href="/cgi-bin/system-cellular.has"><font size="4">Cellular</font></a></li>
       <li><a href="/cgi-bin/system-status.has"><font size="4">Network Status</font></a></li>
+      <li><a href="/cgi-bin/system-rssh.has"><font size="4">Remote Mgmt</font></a></li>
       <li><a href="/cgi-bin/dragino.has"><font size="4">Return to Main Menu</font></a></li>
     </ul>
   </div>
@@ -141,13 +156,19 @@ function host_keyFunction() {
 <div class="container">
 <form name="SYSTEM-WIFI" id="SYSTEM-WIFI" action="<% echo -n $SCRIPT_NAME %>" method="POST">
 
-	<h2>WiFi Mode</h2>
+	<h2>Radio Settings</h2>
 
-  <input type="radio" name="WIFI_MODE" value="AccessPoint" <% echo -n $ap %> > <font size="4"> WiFi Access Point &nbsp;</font>
-  <input type="radio" name="WIFI_MODE" value="Client" <% echo -n $client %> > <font size="4"> WiFi WAN Client </font>
-  <br><br>
+	<label for="CHANNEL"> Channel (1-11) </label>
+	<input type="text" name="CHANNEL" maxlength="2" VALUE="<% echo -n $channel %>" required  pattern="(1[0-1]|[1-9])$">
+
+	<label for="TXPOWER"> Tx Power (0-18) dBm</label>
+	<input type="text" name="TXPOWER" maxlength="2" VALUE="<% echo -n $txpower %>" pattern="(1[0-8]|[0-9])$">
+  <br></br>
 
 	<h2>WiFi Access Point Settings</h2>
+
+  <input type="checkbox" name="AP_ENABLE" value="checked" <% echo -n $ap_enable %> > <font size="4"> Enable WiFi Access Point </font>
+  <br><br>
 
 	<label for="SSID">WiFi Name SSID</label>
 	<input type="text" name="SSID" required maxlength="128" VALUE="<% echo -n $ssid %>" pattern="[a-zA-Z0-9_*.$%<>;:?@=!^|&+()#~\{\}\-]{1,128}" >
@@ -160,28 +181,24 @@ function host_keyFunction() {
 
 	<label for="ENCRYPTION"> Encryption</label>
   <SELECT name="ENCRYPTION" id="encryption">
-	  <option selected="<% echo -n $encryption %>"><% echo -n $encryption %></option>
+		<option value="mixed-psk">WPA/WPA2</option>
 		<option value="psk2">WPA2</option>
 		<option value="psk">WPA</option>
 		<option value="wep">WEP</option>
 		<option value="none">None</option>
 	</SELECT>
+	<script>document.getElementById("encryption").value="<% echo -n $encryption %>";</script>
   <br><br>
 
-	<label for="CHANNEL"> Channel (1-11) </label>
-	<input type="text" name="CHANNEL" maxlength="2" VALUE="<% echo -n $channel %>" required  pattern="(1[0-1]|[1-9])$">
-
-	<label for="TXPOWER"> Tx Power (0-18) dBm</label>
-	<input type="text" name="TXPOWER" maxlength="2" VALUE="<% echo -n $txpower %>" pattern="(1[0-8]|[0-9])$">
-  <br></br>
 
 	<h2>WiFi WAN Client Settings</h2>
 
-	<label for="HOST_SSID">WiFi Name SSID</label>
-	<input type="text" name="HOST_SSID" required maxlength="128" VALUE="<% echo -n $host_ssid %>" pattern="[a-zA-Z0-9_*.$%<>;:?@=!^|&+()#~\{\}\-\s]{1,128}" >
+  <input type="checkbox" name="WIFI_WAN_ENABLE" value="checked" <% echo -n $wifi_wan_enable %> > <font size="4"> Enable WiFi WAN Client </font>
+	<font size="4"> <% echo -n $wan_str %> </font>
+  <br><br>
 
-	<label for="WAN_LAN"> Assign WAN port to LAN</label>
-  <input type="checkbox" name="WAN_LAN" value="checked" <% echo -n $wan_lan %> >
+	<label for="HOST_SSID">Host WiFi Name SSID</label>
+	<input type="text" name="HOST_SSID" required maxlength="128" VALUE="<% echo -n $host_ssid %>" pattern="[a-zA-Z0-9_*.$%<>;:?@=!^|&+()#~\{\}\-\s]{1,128}" >
   <br></br>
 
 	<label for="HOST_KEY"> Passphrase </label>
@@ -191,12 +208,13 @@ function host_keyFunction() {
 
 	<label for="HOST_ENCRYPTION">Encryption</label>
   <SELECT name="HOST_ENCRYPTION" id="host_encryption">
-	  <option selected="<% echo -n $encryption %>"><% echo -n $host_encryption %></option>
+		<option value="mixed-psk">WPA/WPA2</option>
 		<option value="psk2">WPA2</option>
 		<option value="psk">WPA</option>
 		<option value="wep">WEP</option>
 		<option value="none">None</option>
 	</SELECT>
+	<script>document.getElementById("host_encryption").value="<% echo -n $host_encryption %>";</script>
   <br><br>
 
 	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save">

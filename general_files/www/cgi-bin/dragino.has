@@ -26,8 +26,9 @@ fi
 status="offline"
 lorawan_str=""
 lorawan_disp="0"
+server_type=$(uci -q get gateway.general.server_type)
 
-if [ -e /tmp/iot/status ] && [ $internet == "1" ]; then
+if [ -e /tmp/iot/status ] && [ $internet == "1" ] && [ $server_type == "lorawan" ]; then
   status=$(cat /tmp/iot/status)
   lorawan_disp="1"
   if [ $status == "online" ]; then
@@ -82,6 +83,8 @@ fi
     <ul class="nav navbar-nav">
       <li><a href="/cgi-bin/lora.has"><font size="4">LoRa Configuration</font></a></li>
 
+      <li><a href="/cgi-bin/lorawan.has"><font size="4">LoRaWAN Client</font></a></li>
+
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><font size="4">MQTT</font></a>
         <ul class="dropdown-menu">
           <li><a href="/cgi-bin/mqtt.has"><font size="4">MQTT Client</font></a></li>
@@ -113,6 +116,7 @@ fi
           <li><a href="/cgi-bin/system-overview.has"><font size="4">System Overview</font></a></li>
           <li><a href="/cgi-bin/system-network.has"><font size="4">Network</font></a></li>
           <li><a href="/cgi-bin/system-wifi.has"><font size="4">WiFi</font></a></li>
+          <li><a href="/cgi-bin/system-cellular.has"><font size="4">Cellular</font></a></li>
           <li><a href="/cgi-bin/system-status.has"><font size="4">Network Status</font></a></li>
           <li><a href="/cgi-bin/system-rssh.has"><font size="4">Remote Mgmt</font></a></li>
           <li><a href="/cgi-bin/system-firmware.has"><font size="4">Firmware Upgrade</font></a></li>
@@ -142,6 +146,8 @@ fi
 	<% echo "Load Avg:  "; uptime | cut -d , -f2,3,4 | cut -d : -f2 %>
 	<br><br>
 	<% echo $MEMSTR %>
+	<br><br>
+	<% echo "IoT Service:  $server_type" %>
 	<br><br>
 	</h4>
   <% echo $connection %> <img src="<% echo -n $connect_img %>" width="100" height="100"> 

@@ -16,6 +16,8 @@
 
 	if [ $FORM_BUTTON == "Save&Apply" ]; then
     /etc/init.d/network restart
+    sleep 10
+    /etc/init.d/fallbackip start
   fi
 
 %>
@@ -93,6 +95,7 @@ function host_keyFunction() {
     <ul class="nav navbar-nav">
       <li><a href="/cgi-bin/system-overview.has"><font size="4">System Overview</font></a></li>
       <li><a href="/cgi-bin/system-wifi.has"><font size="4">WiFi</font></a></li>
+          <li><a href="/cgi-bin/system-cellular.has"><font size="4">Cellular</font></a></li>
       <li><a href="/cgi-bin/system-status.has"><font size="4">Network Status</font></a></li>
       <li><a href="/cgi-bin/dragino.has"><font size="4">Return to Main Menu</font></a></li>
     </ul>

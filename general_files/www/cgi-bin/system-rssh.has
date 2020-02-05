@@ -5,26 +5,35 @@
 <%# --- Process the form submission --- %>
 <%
 # Save parameters
-	if [ $FORM_BUTTON == "Save" ] || [ $FORM_BUTTON == "Save&Apply" ]; then
+	if [ $FORM_BUTTON == "Save" ]; then
 		uci set rssh.rssh.host_id="$FORM_HOST_ID"
 		uci set rssh.rssh.host_addr="$FORM_HOST_ADDR"
 		uci set rssh.rssh.host_port="$FORM_HOST_PORT"
 
 		if [ "$FORM_RSSH_ENABLE" == "checked" ]; then
 			uci set rssh.rssh.rssh_enable="$FORM_RSSH_ENABLE"
+			/etc/init.d/DR_enable_rssh.sh enable
 		else
 			uci set rssh.rssh.rssh_enable=0
+			/etc/init.d/DR_enable_rssh.sh disable
 		fi
 
 		uci commit rssh
 	fi
+	
+# Activate RSSH connection now
+	if [ $FORM_BUTTON == "Connect" ]; then
+		uci set rssh.rssh.host_id="$FORM_HOST_ID"
+		uci set rssh.rssh.host_addr="$FORM_HOST_ADDR"
+		uci set rssh.rssh.host_port="$FORM_HOST_PORT"
+		uci commit rssh
+	
+		/etc/init.d/DR_enable_rssh.sh start
+  fi
 
-# Activate RSSH connection
-	if [ $FORM_BUTTON == "Save&Apply" ] && [ "$FORM_RSSH_ENABLE" == "checked" ]; then
-		killall ssh
-		ssh -i /etc/dropbear/id_dropbear -f -N -T -R $FORM_HOST_PORT:localhost:22  $FORM_HOST_ID@$FORM_HOST_ADDR
-		rssh_pid=$(ps|grep -m 1 -e "-i /etc/dropbear/id_dropbear -f -N -T -R"|cut -d " " -f 1)
-		echo $ssh_pid > /tmp/rssh_pid
+# De-Activate RSSH connection now
+	if [ $FORM_BUTTON == "Disconnect" ]; then
+		/etc/init.d/DR_enable_rssh.sh stop
   fi
 
 # Generate new keys
@@ -40,7 +49,6 @@
 
 <%# --- Get the variables for the HTML page --- %>
 <% 
-
 	host_id="$(uci -q get rssh.rssh.host_id)"
 	host_addr="$(uci -q get rssh.rssh.host_addr)"
 	host_port="$(uci -q get rssh.rssh.host_port)"
@@ -52,6 +60,16 @@
 		fingerprint="No keyfile present"
 	fi
 
+	# Check connectivity to host
+	ping -c1 $host_addr 1>/dev/null 2>/dev/null; 	ping_ok=$?
+	# Check ssh process running - should be "2" processes
+	ssh_ok=$(ps|grep -c -e "-i /etc/dropbear/id_dropbear -f -N -T -R" )
+	
+	if [ $ping_ok -eq "0" ] && [ $ssh_ok -eq "2" ]; then
+		connection_status="<font size="4" color="blue">RSSH Host connection OK</font>"
+	else
+		connection_status="<font size="4" color="red">Not connected to RSSH Host</font>"
+	fi
 %>
 
 
@@ -95,8 +113,9 @@
 
     <ul class="nav navbar-nav">
       <li><a href="/cgi-bin/system-overview.has"><font size="4">System Overview</font></a></li>
-      <li><a href="/cgi-bin/system-wifi.has"><font size="4">WiFi</font></a></li>
       <li><a href="/cgi-bin/system-network.has"><font size="4">Network</font></a></li>
+      <li><a href="/cgi-bin/system-wifi.has"><font size="4">WiFi</font></a></li>
+      <li><a href="/cgi-bin/system-cellular.has"><font size="4">Cellular</font></a></li>
       <li><a href="/cgi-bin/system-status.has"><font size="4">Network Status</font></a></li>
       <li><a href="/cgi-bin/dragino.has"><font size="4">Return to Main Menu</font></a></li>
     </ul>
@@ -110,35 +129,40 @@
 	<h2>R-SSH Host Settings</h2>
 
 	<label for="HOST_ID">Login ID</label>
-	<input type="text" name="HOST_ID" value="<% echo -n $host_id %>" >
+	<input type="text" name="HOST_ID" placeholder="sshuser" value="<% echo -n $host_id %>" >
   <br><br>
 
 	<label for="HOST_ADDR">Host Address</label>
-	<input type="text" name="HOST_ADDR" value="<% echo -n $host_addr %>" >
+	<input type="text" name="HOST_ADDR" placeholder="support.dragino.com" value="<% echo -n $host_addr %>" >
 
 	<label for="HOST_PORT">Host Port</label>
 	<input type="text" name="HOST_PORT" VALUE="<% echo -n $host_port %>" >
   <br><br>
 
-  <label for="RSSH_ENABLE">Enable Remote Access</label>
+  <label for="RSSH_ENABLE">Connect at Startup</label>
   <input type="checkbox" name="RSSH_ENABLE" value="checked" <% echo -n $rssh_enable %>>
+  <br></br>
+  
+ 	<label>Connection Status: </label> <% echo -n $connection_status %>
   <br></br>
 
 	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save">
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Connect">
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Disconnect">
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel/Refresh">
 
-  <br><br>
+  <br><br><br><br>
 
 	<h2>Generate New Keys</h2>
 
-	<label>Current Key: </label> <% echo -n $fingerprint %>
+	<label>Current Key ID: </label> <font size="4"><% echo -n $fingerprint %></font>
 
   <br><br>
 	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Generate">
+	<font size="4"> &nbsp;&nbsp;&nbsp; Caution: Generating new keys will break any existing server connections!! </font>
 
   <br><br>
-  <a href="/id_rsa.pub"><font size="4">Download Public Key</font></a>
+  <a href="/id_rsa_pub"><font size="4">Download Public Key</font></a>
 
 </form>
 </div>

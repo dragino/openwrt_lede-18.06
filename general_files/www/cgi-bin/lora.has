@@ -4,29 +4,9 @@
 
 <%# --- Process the form submission --- %>
 <%
-  # Update server_type for changeFunct()
-	if [ -e /tmp/changeFunct.flag ]; then
-    rm /tmp/changeFunct.flag
-    if [ $FORM_SERVER_TYPE != "" ]; then  # Make sure it is a real change
-   	  uci set gateway.general.server_type=$FORM_SERVER_TYPE
-      uci commit gateway
-    fi
-    if [ $FORM_PROVIDER != "" ]; then  # Make sure it is a real change
-   	  uci set gateway.general.provider=$FORM_PROVIDER
-      uci commit gateway
-    fi
-  fi
-
 	if [ $FORM_BUTTON == "Save" ] || [ $FORM_BUTTON == "Save&Apply" ]; then
-		uci set gateway.general.server_type="$FORM_SERVER_TYPE"
 		uci set gateway.general.DEB="$FORM_DEBUG"
-
-		uci set gateway.general.port="$FORM_PORT"
-		uci set gateway.general.dwport="$FORM_DWPORT"
 		uci set gateway.general.GWID="$FORM_GWID"
-		uci set gateway.general.email="$FORM_EMAIL"
-		uci set gateway.general.LAT="$FORM_LAT"
-		uci set gateway.general.LON="$FORM_LON"
 		uci set gateway.general.RFPOWER="$FORM_RFPOWER"
 
 		uci set gateway.radio1.RFFREQ="$FORM_RFFREQ"
@@ -49,51 +29,25 @@
 		uci set gateway.radio2.TXPRLEN="$FORM_TXPRLEN"
 		uci set gateway.radio2.SYNCWD="$FORM_TXSYNCWD"
 
-		# Set up the platform provider fields
-		platform="$FORM_PLATFORM"
-		uci set gateway.general.platform="$platform"
-		provider=$(echo $platform | cut -d , -f 1)
-		uci set gateway.general.provider="$provider"
-
-		if [ $provider == "custom" ];then
-			server_address="$FORM_SERVER_ADDRESS"
-			uci set gateway.general.custom_server="$FORM_SERVER_ADDRESS"
-		else
-			server_address=$(echo $platform | cut -d "," -f 2)
-			uci set gateway.general.$provider"_server"="$server_address"
-		fi
-
 		uci commit gateway
 	fi
 
   if [ $FORM_BUTTON == "Save&Apply" ]; then
+		uci set gateway.general.server_type="$FORM_SERVER_TYPE"
+		uci commit gateway
+
     /etc/init.d/lora_gw reload > /dev/null
     sleep 2
     /etc/init.d/iot reload > /dev/null
   fi
-
-  rm /tmp/changeFunct.flag   # Just to be sure
-
 %>
 
 <%# --- Get the variables for the HTML page --- %>
 <% 
 	server_type="$(uci -q get gateway.general.server_type)"
+	
 	debug="$(uci -q get gateway.general.DEB)"
-
-	provider="$(uci -q get gateway.general.provider)"
-	if [ $provider == "custom" ];then
-		server_address="$(uci -q get gateway.general.custom_server)"
-	fi
-
-	platform="$(uci -q get gateway.general.platform)"
-
-	port="$(uci -q get gateway.general.port)"
-	dwport="$(uci -q get gateway.general.dwport)"
 	gwid="$(uci -q get gateway.general.GWID)"
-	email="$(uci -q get gateway.general.email)"
-	lat="$(uci -q get gateway.general.LAT)"
-	lon="$(uci -q get gateway.general.LON)"
 	rfpower="$(uci -q get gateway.general.RFPOWER)"
 
 	rffreq="$(uci -q get gateway.radio1.RFFREQ)"
@@ -115,6 +69,7 @@
 	txbw="$(uci -q get gateway.radio2.TXBW)"
 	txprlen="$(uci -q get gateway.radio2.TXPRLEN)"
 	txsyncwd="$(uci -q get gateway.radio2.SYNCWD)"
+	
 %>
 
 
@@ -133,13 +88,6 @@
     disp1="inline"; disp2="none";
   elif [[ "$board" == "LG08" ]]; then
     disp1="inline"; disp2="none";
-  fi
-
-  # Adjust display for IoT Service Type
-  if [[ "$server_type" == "lorawan" ]]; then
-    disp3="inline"
-  else
-    disp3="none"
   fi
 
 %>
@@ -167,15 +115,6 @@
   function displayFunction() {
     document.getElementById("div1").style.display = "<% echo -n $disp1 %>"; 
     document.getElementById("div2").style.display = "<% echo -n $disp2 %>"; 
-    document.getElementById("div3").style.display = "<% echo -n $disp3 %>";                     
-    document.getElementById("div4").style.display = "<% echo -n $disp4 %>";                     
-    document.getElementById("div5").style.display = "<% echo -n $disp5 %>";                     
-    document.getElementById("div6").style.display = "<% echo -n $disp6 %>";                     
-  }
-
-  function changeFunc(val) {
-    <% touch /tmp/changeFunct.flag %>
-    document.forms["lora"].submit();
   }
 
 </script>
@@ -195,6 +134,7 @@
     </div>
 
     <ul class="nav navbar-nav">
+      <li><a href="/cgi-bin/lorawan.has"><font size="4">LoRaWAN Client</font></a></li>
       <li><a href="/cgi-bin/mqtt.has"><font size="4">MQTT Client</font></a></li>
       <li><a href="/cgi-bin/tcp-client.has"><font size="4">TCP Client</font></a></li>
       <li><a href="/cgi-bin/http-client.has"><font size="4">HTTP/HTTPS Client</font></a></li>
@@ -209,72 +149,36 @@
 <form id="lora" action="<% echo -n $SCRIPT_NAME %>" method="POST">
 
 	<label for="server_type">IoT Service</label>
-	<select id="server_type" name="SERVER_TYPE" onChange="changeFunc(this.value);" >
-		<option selected="<% echo -n $server_type %>"><% echo -n $server_type %></option>
+	<select id="server_type" name="SERVER_TYPE" >
 	  <option value="disabled" >Disabled</option>
 	  <option value="lorawan" >LoRaWAN/Raw packets forwarder</option>
 	  <option value="mqtt" >LoRaRaw forward to MQTT server</option>
 	  <option value="tcpudp" >LoRaRaw forward to TCP/UDP server</option>
 	  <option value="customized" >Customized Script</option>
 	</select> 
-  <br></br>
+	<script>document.getElementById("server_type").value="<% echo -n $server_type %>";</script>
+  <br><br>
+  <br><br>
 
- <div id="div3">
-  <br></br>
 
-	<label for="PLATFORM">LoRaWAN Service Provider</label>
-	<select id='platform' name='PLATFORM' style="width: 205px;">
-		<option selected="<% echo -n $platform %>"><% echo -n $platform %></option>
-		<%inc /www/cgi-bin/inc/providers.txt %>
-	  <option value="local,127.0.0.1" >Built-in</option>
-	  <option value="custom" >Custom</option>
-	</select>
-
-  <%# Display the field for Custom provider %>
-  <% if [ $provider == "custom" ]; then %>
-			<label for="SERVER_ADDRESS">Server Address</label>
-	    <input type="text" name="SERVER_ADDRESS" VALUE="<% echo -n $server_address %>"  >
-  <% fi %>
-  <br></br>
-
-	<label for="PORT">Server Port Upstream</label>
-	<input type="text" name="PORT" maxlength="8" VALUE="<% echo -n $port %>" pattern="[0-9]{1,8}" >
-
-	<label for="DWPORT">Server Port Downstream</label>
-	<input type="text" name="DWPORT" maxlength="8" VALUE="<% echo -n $dwport %>" pattern="[0-9]{1,8}" >
-  <br></br>
-
-  <label for="LAT">Latitude</label>                                       
-  <input type="text" name="LAT" maxlength="32" VALUE=<% echo -n $lat %> pattern="^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)$" >
-
-  <label for="LON">Longitude</label>                                       
-  <input type="text" name="LON" maxlength="32" VALUE=<% echo -n $lon %> pattern="^[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$" >
-  <br></br>
-
-  <label for="EMAIL">Email</label>                                       
-  <input type="text" name="EMAIL" maxlength="128" VALUE=<% echo -n $email %> pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" >
-  <br></br>
- </div>
-
+  <label for="GWID">Gateway ID</label>                                       
+  <input type="text" name="GWID" maxlength="32" VALUE=<% echo -n $gwid %> >
+  <br><br>
 
   <label for="RFPOWER">RF Power (0-20) dBm</label>                                       
   <input type="text" name="RFPOWER" maxlength="2" VALUE=<% echo -n $rfpower %> pattern="(20|1[0-9]|[0-9])$" >
+  <br><br>
 
 	<label for="debug">Debug Level</label>
 	<select id="debug" name="DEBUG" >
-		<option selected="<% echo -n $debug %>"><% echo -n $debug %></option>
 	  <option value="0" >Disabled</option>
 	  <option value="1" >Low</option>
 	  <option value="2" >Medium</option>
 	  <option value="3" >High</option>
 	  <option value="10" >Test</option>
 	</select> 
-  <br></br>
-
-  <label for="GWID">Gateway ID</label>                                       
-  <input type="text" name="GWID" maxlength="32" VALUE=<% echo -n $gwid %> >
-  <br></br>
-
+	<script>document.getElementById("debug").value="<% echo -n $debug %>";</script>
+  <br><br>
 
  <div id="div1">
   <h3>Radio Settings</h3>
@@ -284,7 +188,6 @@
 
   <label for="RFBW">RF Bandwidth (Hz)</label>                                       
 	<select id="rfbw" style="padding-right:130px" name="RFBW">
-		<option selected="<% echo -n $rfbw %>"><% echo -n $rfbw %></option>
 	  <option value="7800" >7.8kHz</option>
 	  <option value="10400" >10.4kHz</option>
 	  <option value="15600" >15.6kHz</option>
@@ -295,11 +198,11 @@
 	  <option value="250000" >250kHz</option>
 	  <option value="500000" >500kHz</option>
 	</select> 
-  <br></br>
+	<script>document.getElementById("rfbw").value="<% echo -n $rfbw %>";</script>
+  <br><br>
 
   <label for="RFSF">Spreading Factor</label>                                       
 	<select id="rfsf" style="padding-right:130px" name="RFSF">
-		<option selected="<% echo -n $rfsf %>"><% echo -n $rfsf %></option>
 	  <option value="6" >SF6</option>
 	  <option value="7" >SF7</option>
 	  <option value="8" >SF8</option>
@@ -308,16 +211,18 @@
 	  <option value="11" >SF11</option>
 	  <option value="12" >SF12</option>
 	</select> 
+	<script>document.getElementById("rfsf").value="<% echo -n $rfsf %>";</script>
+
 
   <label for="RFCR">Coding Rate</label>                                       
 	<select id="rfcr" style="padding-right:130px" name="RFCR">
-		<option selected="<% echo -n $rfcr %>"><% echo -n $rfcr %></option>
 	  <option value="5" >4/5</option>
 	  <option value="6" >4/6</option>
 	  <option value="7" >4/7</option>
 	  <option value="8" >4/8</option>
 	</select> 
-  <br></br>
+	<script>document.getElementById("rfcr").value="<% echo -n $rfcr %>";</script>
+  <br><br>
 
   <label for="RFPRLEN">Preamble Length</label>                                       
   <input type="text" name="RFPRLEN" maxlength="2" VALUE=<% echo -n $rfprlen %> pattern="[0-9]{1,2}" >
@@ -336,7 +241,6 @@
 
   <label for="RXBW">RF Bandwidth (Hz)</label>                                       
 	<select id="rxbw" style="padding-right:130px" name="RXBW">
-		<option selected="<% echo -n $rxbw %>"><% echo -n $rxbw %></option>
 	  <option value="7800" >7.8kHz</option>
 	  <option value="10400" >10.4kHz</option>
 	  <option value="15600" >15.6kHz</option>
@@ -347,11 +251,11 @@
 	  <option value="250000" >250kHz</option>
 	  <option value="500000" >500kHz</option>
 	</select> 
-  <br></br>
+	<script>document.getElementById("rxbw").value="<% echo -n $rxbw %>";</script>
+  <br><br>
 
   <label for="RXSF">Spreading Factor</label>                                       
 	<select id="rxsf" style="padding-right:130px" name="RXSF">
-		<option selected="<% echo -n $rxsf %>"><% echo -n $rxsf %></option>
 	  <option value="6" >SF6</option>
 	  <option value="7" >SF7</option>
 	  <option value="8" >SF8</option>
@@ -360,16 +264,17 @@
 	  <option value="11" >SF11</option>
 	  <option value="12" >SF12</option>
 	</select> 
+	<script>document.getElementById("rxsf").value="<% echo -n $rxsf %>";</script>
 
   <label for="RXCR">Coding Rate</label>                                       
 	<select id="rxcr" style="padding-right:130px" name="RXCR">
-		<option selected="<% echo -n $rxcr %>"><% echo -n $rxcr %></option>
 	  <option value="5" >4/5</option>
 	  <option value="6" >4/6</option>
 	  <option value="7" >4/7</option>
 	  <option value="8" >4/8</option>
 	</select> 
-  <br></br>
+	<script>document.getElementById("rxcr").value="<% echo -n $rxcr %>";</script>
+  <br><br>
 
   <label for="RXPRLEN">Preamble Length</label>                                       
   <input type="text" name="RXPRLEN" maxlength="2" VALUE=<% echo -n $rxprlen %> pattern="[0-9]{1,2}" >
@@ -385,7 +290,6 @@
 
   <label for="TXBW">RF Bandwidth (Hz)</label>                                       
 	<select id="txbw" style="padding-right:130px" name="TXBW">
-		<option selected="<% echo -n $txbw %>"><% echo -n $txbw %></option>
 	  <option value="7800" >7.8kHz</option>
 	  <option value="10400" >10.4kHz</option>
 	  <option value="15600" >15.6kHz</option>
@@ -396,11 +300,11 @@
 	  <option value="250000" >250kHz</option>
 	  <option value="500000" >500kHz</option>
 	</select> 
-  <br></br>
+	<script>document.getElementById("txbw").value="<% echo -n $txbw %>";</script>
+  <br><br>
 
   <label for="TXSF">Spreading Factor</label>                                       
 	<select id="txsf" style="padding-right:130px" name="TXSF">
-		<option selected="<% echo -n $txsf %>"><% echo -n $txsf %></option>
 	  <option value="6" >SF6</option>
 	  <option value="7" >SF7</option>
 	  <option value="8" >SF8</option>
@@ -409,16 +313,17 @@
 	  <option value="11" >SF11</option>
 	  <option value="12" >SF12</option>
 	</select> 
+	<script>document.getElementById("txsf").value="<% echo -n $txsf %>";</script>
 
   <label for="TXCR">Coding Rate</label>                                       
 	<select id="txcr" style="padding-right:130px" name="TXCR">
-		<option selected="<% echo -n $txcr %>"><% echo -n $txcr %></option>
 	  <option value="5" >4/5</option>
 	  <option value="6" >4/6</option>
 	  <option value="7" >4/7</option>
 	  <option value="8" >4/8</option>
 	</select> 
-  <br></br>
+	<script>document.getElementById("txcr").value="<% echo -n $txcr %>";</script>
+  <br><br>
 
   <label for="TXPRLEN">Preamble Length</label>                                       
   <input type="text" name="TXPRLEN" maxlength="2" VALUE=<% echo -n $txprlen %> pattern="[0-9]{1,2}" >
@@ -426,13 +331,12 @@
   <label for="TXSYNCWD">LoRa Sync Word</label>                                       
   <input type="text" name="TXSYNCWD" maxlength="2" VALUE=<% echo -n $txsyncwd %> pattern="[0-9]{1,2}" >
  </div>
-  <br></br>
+  <br><br>
 
 	&nbsp;&nbsp;&nbsp;&nbsp;
 	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save">&nbsp;&nbsp;
 	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">&nbsp;&nbsp;
 	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
-
 
 </form>
 </div>

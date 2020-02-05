@@ -5,7 +5,9 @@ openwrt/bin
 openwrt/feeds
 openwrt/staging_dir
 openwrt/tmp
-openwrt/files
 openwrt/.config
 openwrt/.config.old
-openwrt/package
+openwrt/logs
+openwrt/files
+openwrt/package/feeds/dragino
+openwrt/build.log

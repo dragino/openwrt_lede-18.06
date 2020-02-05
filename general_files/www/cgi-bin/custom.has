@@ -83,6 +83,7 @@ function changeFunc() {
       <a class="navbar-brand" href="#"> <font size="5"><b>Custom Script </b></font></a>  
     </div>
     <ul class="nav navbar-nav">
+      <li><a href="/cgi-bin/lora.has"><font size="4">LoRa Configuration</font></a></li>
       <li><a href="/cgi-bin/custom-script.has"><font size="4">Custom Script Management</font></a></li>
       <li><a href="/cgi-bin/dragino.has"><font size="4">Return to Main Menu</font></a></li>
     </ul>
