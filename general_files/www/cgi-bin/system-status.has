@@ -4,70 +4,10 @@
 
 <%# --- Process the form submission --- %>
 <%
-
+	# Nothing to do
 %>
 
 <%# --- Get the variables for the HTML page --- %>
-<% 
-
-%>
-
-<%# --- Set up field display --- %>
-<% 
-  # Set up display defaults
-  # Set up display options
-%>
-
-
-<%# --- Present the HTML page --- %>
-<html>
-<head>
-  <title>Dragino LoRa Gateway</title>
-
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-
-  <link rel="stylesheet" href="/static/resources/config.css">
-  <link rel="stylesheet" href="/static/resources/bootstrap.min.css">
-  <script src="/static/resources/jquery.min.js"></script>
-  <script src="/static/resources/bootstrap.min.js"></script>
-	<link rel="shortcut icon" href="/static/resources/favicon.ico">
-
-<script>
-
-</script>
-</head>
-
-<body onload="displayFunction()">
-
-<br></br>
-<h1>System Status</h1>
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded"> </a>  
-      <a class="navbar-brand" href="#"><font size="5"><b> System </b></font></a>  
-    </div>
-
-    <ul class="nav navbar-nav">
-      <li><a href="/cgi-bin/system-overview.has"><font size="4">System Overview</font></a></li>
-      <li><a href="/cgi-bin/system-network.has"><font size="4">Network</font></a></li>
-      <li><a href="/cgi-bin/system-wifi.has"><font size="4">WiFi</font></a></li>
-      <li><a href="/cgi-bin/system-cellular.has"><font size="4">Cellular</font></a></li>
-      <li><a href="/cgi-bin/system-status.has"><font size="4">Network Status</font></a></li>
-      <li><a href="/cgi-bin/system-rssh.has"><font size="4">Remote Mgmt</font></a></li>
-      <li><a href="/cgi-bin/dragino.has"><font size="4">Return to Main Menu</font></a></li>
-    </ul>
-  </div>
-</nav>
-
-
-<div class="container">
-<form name="SYSTEM_STATUS" id="SYSTEM_STATUS" action="<% echo -n $SCRIPT_NAME %>" method="POST">
-
-	<h2>Network / WiFi Status</h2>
 	<%
 		rm /tmp/net_wifi_status.txt; touch /tmp/net_wifi_status.txt
 		echo "Network"                             > /tmp/net_wifi_status.txt
@@ -88,7 +28,24 @@
 		echo "----"                               >> /tmp/net_wifi_status.txt
 		iwinfo | grep -A 7 SSID                   >> /tmp/net_wifi_status.txt
 	%>
+
+<%# --- Present the HTML page --- %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%inc /www/cgi-bin/inc/head.inc %>
+</head>
+
+<body>
+<%inc /www/cgi-bin/inc/menu.inc %>
+<h2>System Status</h2>
+
+<div class="container" style="margin: 50px">
+<form name="SYSTEM_STATUS" id="SYSTEM_STATUS" action="<% echo -n $SCRIPT_NAME %>" method="POST">
+
+	<h3>Network / WiFi Status</h3>
 	<iframe id="NET_WIFI_STATUS" src="/net_wifi_status.txt"  width="75%" height="550" ></iframe>
+
 	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Refresh">
 
 </form>

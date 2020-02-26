@@ -4,9 +4,17 @@
 
 <%# --- Process the form submission --- %>
 <%
+  # Update Freq Plan for changeFunct()
+	if [ -e /tmp/changeFunct.flag ]; then
+    rm /tmp/changeFunct.flag
+    if [ $FORM_GWCFG != "" ]; then  # Make sure it is a real change
+   	  uci set gateway.general.gwcfg=$FORM_GWCFG
+      uci commit gateway
+    fi
+  fi
+
 	if [ $FORM_BUTTON == "Save" ] || [ $FORM_BUTTON == "Save&Apply" ]; then
 		uci set gateway.general.DEB="$FORM_DEBUG"
-		uci set gateway.general.GWID="$FORM_GWID"
 		uci set gateway.general.RFPOWER="$FORM_RFPOWER"
 
 		uci set gateway.radio1.RFFREQ="$FORM_RFFREQ"
@@ -28,18 +36,75 @@
 		uci set gateway.radio2.TXBW="$FORM_TXBW"
 		uci set gateway.radio2.TXPRLEN="$FORM_TXPRLEN"
 		uci set gateway.radio2.SYNCWD="$FORM_TXSYNCWD"
-
+		
+		uci set gateway.general.gwcfg="$FORM_GWCFG"
+		[ -n "$FORM_SUBBAND" ] && uci set gateway.general.subband="$FORM_SUBBAND"
+		
+		#Use the FORM_RADIO0_FREQ to check if the customized form is provided
+		if [ -n "$FORM_RADIO0_FREQ" ]; then
+			if [ "$FORM_RADIO0_ENABLE" == "checked" ]; then
+				uci set gateway.general.radio0_enable=1
+			else
+				uci set gateway.general.radio0_enable=0
+			fi
+		
+			uci set gateway.general.radio0_freq="$FORM_RADIO0_FREQ"
+			if [ "$FORM_RADIO0_TX" == "checked" ]; then
+				uci set gateway.general.radio0_tx=1
+			else
+				uci set gateway.general.radio0_tx=0
+			fi
+			uci set gateway.general.radio0_txfreq_min="$FORM_RADIO0_TXFREQ_MIN"
+			uci set gateway.general.radio0_txfreq_max="$FORM_RADIO0_TXFREQ_MAX"
+		
+			if [ "$FORM_RADIO1_ENABLE" == "checked" ]; then
+				uci set gateway.general.radio1_enable=1
+			else
+				uci set gateway.general.radio1_enable=0
+			fi
+			uci set gateway.general.radio1_freq="$FORM_RADIO1_FREQ"
+			if [ "$FORM_RADIO1_TX" == "checked" ]; then
+				uci set gateway.general.radio1_tx=1
+			else
+				uci set gateway.general.radio1_tx=0
+			fi
+			uci set gateway.general.radio1_txfreq_min="$FORM_RADIO1_TXFREQ_MIN"
+			uci set gateway.general.radio1_txfreq_max="$FORM_RADIO1_TXFREQ_MAX"
+			
+			for num in $(seq 0 7); do
+				if [ "`eval echo -n '$'{FORM_CHAN${num}_ENABLE}`" == "checked" ]; then
+					uci set gateway.general.chan${num}_enable=1
+				else
+					uci set gateway.general.chan${num}_enable=0
+				fi
+				uci set gateway.general.chan${num}_radio="`eval echo -n '$'{FORM_CHAN${num}_RADIO}`"
+				uci set gateway.general.chan$num="`eval echo -n '$'{FORM_CHAN$num}`"	
+			done
+			
+			if [ "$FORM_LORACHAN_ENABLE" == "checked" ]; then
+				uci set gateway.general.lorachan_enable=1
+			else
+				uci set gateway.general.lorachan_enable=0
+			fi
+			uci set gateway.general.lorachan_radio="$FORM_LORACHAN_RADIO"
+			uci set gateway.general.lorachan="$FORM_LORACHAN"				
+			uci set gateway.general.lorachan_sf="$FORM_LORACHAN_SF"
+			uci set gateway.general.lorachan_bw="$FORM_LORACHAN_BW"
+		fi
+		
 		uci commit gateway
 	fi
 
   if [ $FORM_BUTTON == "Save&Apply" ]; then
-		uci set gateway.general.server_type="$FORM_SERVER_TYPE"
-		uci commit gateway
-
+#		uci set gateway.general.server_type="$FORM_SERVER_TYPE"
+#		uci commit gateway
     /etc/init.d/lora_gw reload > /dev/null
     sleep 2
     /etc/init.d/iot reload > /dev/null
   fi
+  
+    rm /tmp/changeFunct.flag   # Just to be sure
+
 %>
 
 <%# --- Get the variables for the HTML page --- %>
@@ -47,7 +112,6 @@
 	server_type="$(uci -q get gateway.general.server_type)"
 	
 	debug="$(uci -q get gateway.general.DEB)"
-	gwid="$(uci -q get gateway.general.GWID)"
 	rfpower="$(uci -q get gateway.general.RFPOWER)"
 
 	rffreq="$(uci -q get gateway.radio1.RFFREQ)"
@@ -70,84 +134,112 @@
 	txprlen="$(uci -q get gateway.radio2.TXPRLEN)"
 	txsyncwd="$(uci -q get gateway.radio2.SYNCWD)"
 	
+	gwcfg="$(uci -q get gateway.general.gwcfg)"
+	subband="$(uci -q get gateway.general.subband)"
+	
+	radio0_enable="$(uci -q get gateway.general.radio0_enable)"
+	if [ $radio0_enable == "1" ]; then
+		radio0_enable="checked"
+	else
+		radio0_enable="0"
+	fi
+	radio0_freq="$(uci -q get gateway.general.radio0_freq)"
+	radio0_tx="$(uci -q get gateway.general.radio0_tx)"	
+	if [ $radio0_tx == "1" ]; then
+		radio0_tx="checked"
+	else
+		radio0_tx="0"
+	fi
+	radio0_txfreq_min="$(uci -q get gateway.general.radio0_txfreq_min)"
+	radio0_txfreq_max="$(uci -q get gateway.general.radio0_txfreq_max)"
+	
+	radio1_enable="$(uci -q get gateway.general.radio1_enable)"	
+	if [ $radio1_enable == "1" ]; then
+		radio1_enable="checked"
+	else
+		radio1_enable="0"
+	fi	
+	radio1_freq="$(uci -q get gateway.general.radio1_freq)"
+	radio1_tx="$(uci -q get gateway.general.radio1_tx)"	
+	if [ $radio1_tx == "1" ]; then
+		radio1_tx="checked"
+	else
+		radio1_tx="0"
+	fi
+	radio1_txfreq_min="$(uci -q get gateway.general.radio1_txfreq_min)"
+	radio1_txfreq_max="$(uci -q get gateway.general.radio1_txfreq_max)"	
+
+	for num in $(seq 0 7); do
+		export chan${num}_enable="`uci -q get gateway.general.chan${num}_enable`"			
+		if [ "`eval echo -n '$'{chan${num}_enable}`" == "1" ]; then
+			export chan${num}_enable="checked"
+		else
+			export chan${num}_enable="0"
+		fi
+		export chan${num}_radio="$(uci -q get gateway.general.chan${num}_radio)"
+		export chan${num}="`uci -q get gateway.general.chan$num`"	
+	done
+
+	lorachan_enable="$(uci -q get gateway.general.lorachan_enable)"	
+	if [ $lorachan_enable == "1" ]; then
+		lorachan_enable="checked"
+	else
+		lorachan_enable="0"
+	fi	
+	lorachan_radio="$(uci -q get gateway.general.lorachan_radio)"
+	lorachan="$(uci -q get gateway.general.lorachan)"
+	lorachan_sf="$(uci -q get gateway.general.lorachan_sf)"
+	lorachan_bw="$(uci -q get gateway.general.lorachan_bw)"	
+	
 %>
 
 
 <%# --- Set up field display --- %>
 <% 
   # Set up display defaults
-  disp1="inline"; disp2="none";disp3="none"
+  disp1="inline"; disp2="none";disp3="none";disp4="none"
 
   # Adjust display for board type
   board=`cat /var/iot/board`
   if [[ "$board" == "LG01" ]]; then
-    disp1="inline"; disp2="none";
+    disp1="inline"; disp2="none"; disp3="none";
   elif [[ "$board" == "LG02" ]]; then
-    disp1="none"; disp2="inline";
-  elif [[ "$board" == "LG08P" ]]; then
-    disp1="inline"; disp2="none";
-  elif [[ "$board" == "LG08" ]]; then
-    disp1="inline"; disp2="none";
+    disp1="none"; disp2="inline"; disp3="none";
+  elif [[ "$board" == "LG08P" || "$board" == "LG08" || "$board" == "LPS8" ]]; then
+    disp1="none"; disp2="none"; disp3="inline";
   fi
-
 %>
 
 
 <%# --- Present the HTML page --- %>
 <html lang="en">
+
 <head>
-  <title>Dragino LoRa Gateway</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<%inc /www/cgi-bin/inc/head.inc %>
+	<script>
+	  function displayFunction() {
+ 	   document.getElementById("div1").style.display = "<% echo -n $disp1 %>"; 
+ 	   document.getElementById("div2").style.display = "<% echo -n $disp2 %>"; 
+	   document.getElementById("div3").style.display = "<% echo -n $disp3 %>"; 
+    }
+    
+    function changeFunc(val) {
+     <% touch /tmp/changeFunct.flag %>
+     document.forms["lora"].submit();
+    }
 
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-
-  <link rel="stylesheet" href="/static/resources/config.css">
-  <link rel="stylesheet" href="/static/resources/bootstrap.min.css">
-  <script src="/static/resources/jquery.min.js"></script>
-  <script src="/static/resources/bootstrap.min.js"></script>
-	<link rel="shortcut icon" href="/static/resources/favicon.ico">
-
-<script>
-
-  function displayFunction() {
-    document.getElementById("div1").style.display = "<% echo -n $disp1 %>"; 
-    document.getElementById("div2").style.display = "<% echo -n $disp2 %>"; 
-  }
-
-</script>
-
+	</script>
 </head>
 
 <body onload="displayFunction()">
 
-<br><br>
-<h1>LoRa General Settings</h1>
+<%inc /www/cgi-bin/inc/menu.inc %>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded"> </a>  
-      <a class="navbar-brand" href="#"><font size="5"><b> LoRa Configuration </b></font></a>  
-    </div>
-
-    <ul class="nav navbar-nav">
-      <li><a href="/cgi-bin/lorawan.has"><font size="4">LoRaWAN Client</font></a></li>
-      <li><a href="/cgi-bin/mqtt.has"><font size="4">MQTT Client</font></a></li>
-      <li><a href="/cgi-bin/tcp-client.has"><font size="4">TCP Client</font></a></li>
-      <li><a href="/cgi-bin/http-client.has"><font size="4">HTTP/HTTPS Client</font></a></li>
-      <li><a href="/cgi-bin/custom.has"><font size="4">Custom Script</font></a></li>
-      <li><a href="/cgi-bin/dragino.has"><font size="4">Return to Main Menu</font></a></li>
-    </ul>
-
-  </div>
-</nav>
-
-<div class="container">
+<h2>LoRa Configuration</h2>
+<div class="container" style="margin: 50px">
 <form id="lora" action="<% echo -n $SCRIPT_NAME %>" method="POST">
 
+<!--
 	<label for="server_type">IoT Service</label>
 	<select id="server_type" name="SERVER_TYPE" >
 	  <option value="disabled" >Disabled</option>
@@ -158,16 +250,7 @@
 	</select> 
 	<script>document.getElementById("server_type").value="<% echo -n $server_type %>";</script>
   <br><br>
-  <br><br>
-
-
-  <label for="GWID">Gateway ID</label>                                       
-  <input type="text" name="GWID" maxlength="32" VALUE=<% echo -n $gwid %> >
-  <br><br>
-
-  <label for="RFPOWER">RF Power (0-20) dBm</label>                                       
-  <input type="text" name="RFPOWER" maxlength="2" VALUE=<% echo -n $rfpower %> pattern="(20|1[0-9]|[0-9])$" >
-  <br><br>
+-->
 
 	<label for="debug">Debug Level</label>
 	<select id="debug" name="DEBUG" >
@@ -214,7 +297,7 @@
 	<script>document.getElementById("rfsf").value="<% echo -n $rfsf %>";</script>
 
 
-  <label for="RFCR">Coding Rate</label>                                       
+  <label for="RFCR" style="padding-left:70px" style="padding-right:80px">Coding Rate</label>                                       
 	<select id="rfcr" style="padding-right:130px" name="RFCR">
 	  <option value="5" >4/5</option>
 	  <option value="6" >4/6</option>
@@ -229,6 +312,12 @@
 
   <label for="SYNCWD">LoRa Sync Word</label>                                       
   <input type="text" name="SYNCWD" maxlength="2" VALUE=<% echo -n $syncwd %> pattern="[0-9]{1,2}" >
+  <br><br> 
+  
+  <label for="RFPOWER">RF Power (0-20) dBm</label>                                       
+  <input type="text" name="RFPOWER" maxlength="2" VALUE=<% echo -n $rfpower %> pattern="(20|1[0-9]|[0-9])$" >
+  <br><br>
+  
  </div>
 
 
@@ -266,7 +355,7 @@
 	</select> 
 	<script>document.getElementById("rxsf").value="<% echo -n $rxsf %>";</script>
 
-  <label for="RXCR">Coding Rate</label>                                       
+  <label for="RXCR" style="padding-left:70px" style="padding-right:80px">Coding Rate</label>                                       
 	<select id="rxcr" style="padding-right:130px" name="RXCR">
 	  <option value="5" >4/5</option>
 	  <option value="6" >4/6</option>
@@ -315,7 +404,7 @@
 	</select> 
 	<script>document.getElementById("txsf").value="<% echo -n $txsf %>";</script>
 
-  <label for="TXCR">Coding Rate</label>                                       
+  <label for="TXCR"style="padding-left:70px" style="padding-right:80px">Coding Rate</label>                                       
 	<select id="txcr" style="padding-right:130px" name="TXCR">
 	  <option value="5" >4/5</option>
 	  <option value="6" >4/6</option>
@@ -330,14 +419,141 @@
 
   <label for="TXSYNCWD">LoRa Sync Word</label>                                       
   <input type="text" name="TXSYNCWD" maxlength="2" VALUE=<% echo -n $txsyncwd %> pattern="[0-9]{1,2}" >
- </div>
-  <br><br>
 
+  <br><br>  
+  <label for="RFPOWER">RF Power (0-20) dBm</label>                                       
+  <input type="text" name="RFPOWER" maxlength="2" VALUE=<% echo -n $rfpower %> pattern="(20|1[0-9]|[0-9])$" >
+  <br><br>
+  
+ </div>
+ 
+ <div id="div3">
+  <h3>Radio Settings</h3>
+ 
+  <label for="GWCFG">Frequency Plan</label>                                       
+	<select id="gwcfg" name="GWCFG" onchange="changeFunc(this.value)" >
+	  <option value="EU" >Europe 868Mhz(863~870)-- EU868</option>
+	  <option value="CN" >China 470~510MHz -- CN470</option>
+	  <option value="US" >United States 915Mhz(902~928) -- US915</option>
+	  <option value="AU" >Australia 915Mhz(915~928) -- AU915</option>
+	  <option value="IN" >India 865~867MHz -- IN865</option>
+	  <option value="KR" >Korea 920~923MHz -- KR920</option>
+	  <option value="AS1" >Asia 920~923MHz -- AS923-1</option>
+	  <option value="AS2" >Asia 923~925MHz -- AS923-2</option>
+	  <option value="RU" >Russia 864~870MHz -- RU864</option>
+	  <option value="CUS" >Customized Bands</option>	 
+	 </select> 
+	<script>document.getElementById("gwcfg").value="<% echo -n $gwcfg %>";</script>
+  <br><br>
+  
+	<% if [[ "$gwcfg" == "US" || "$gwcfg" == "AU" ]]; then %>
+	<label for="SUBBAND">Frequency Sub Band</label>                                       
+	<select id="subband" name="SUBBAND">
+	  <option value="1" >1: US915(902.3~903.7) / AU915(915.2~916.6)</option>
+	  <option value="2" >2: US915(903.9~905.3) / AU915(916.8~918.2)</option> 
+	  <option value="3" >3: US915(905.5~906.9) / AU915(918.4~919.8)</option>
+	  <option value="4" >4: US915(907.1~908.5) / AU915(920.0~921.4)</option>
+	  <option value="5" >5: US915(908.7~910.1) / AU915(921.6~923.0)</option>
+	  <option value="6" >6: US915(910.3~911.7) / AU915(923.2~924.6)</option>
+	  <option value="7" >7: US915(911.9~913.3) / AU915(924.8~926.2)</option>
+	  <option value="8" >8: US915(913.5~914.9) / AU915(926.4~927.8)</option>	 
+	 </select> 
+	<script>document.getElementById("subband").value="<% echo -n $subband %>";</script>
+	<br><br>
+	<% fi %>
+   
+
+  <% if [ $gwcfg == "CUS" ]; then %>
+    <h3>Customized Radio Settings</h3> 
+	<label for="RADIO0_ENABLE">Enable Radio 0</label>
+	<input type="checkbox" name="RADIO0_ENABLE" value="checked" <% echo -n $radio0_enable %>>
+	<label for="RADIO0_FREQ">Radio_0 Frequency(Hz)</label>                                       
+	<input type="text" name="RADIO0_FREQ" maxlength="9" VALUE=<% echo -n $radio0_freq %> pattern="([0-9]{9})$" >
+	<br><br>	
+	<label for="RADIO0_TX">Enable Radio 0 TX</label>
+	<input type="checkbox" name="RADIO0_TX" value="checked" <% echo -n $radio0_tx %>>	
+	<label for="RADIO0_TXFREQ_MIN">Radio_0 tx min Freq(Hz)</label>                                       
+	<input type="text" name="RADIO0_TXFREQ_MIN" maxlength="9" VALUE=<% echo -n $radio0_txfreq_min %> pattern="([0-9]{9})$" >
+	<label for="RADIO0_TXFREQ_MAX">Radio_0 tx max Freq(Hz)</label>                                       
+	<input type="text" name="RADIO0_TXFREQ_MAX" maxlength="9" VALUE=<% echo -n $radio0_txfreq_max %> pattern="([0-9]{9})$" >	
+	<br><br>
+	
+	<br><br>	
+	<label for="RADIO1_ENABLE">Enable Radio 1</label>
+	<input type="checkbox" name="RADIO1_ENABLE" value="checked" <% echo -n $radio1_enable %>>
+	<label for="RADIO1_FREQ">Radio_1 Frequency(Hz)</label>                                       
+	<input type="text" name="RADIO1_FREQ" maxlength="9" VALUE=<% echo -n $radio1_freq %> pattern="([0-9]{9})$" >
+	<br><br>	
+	<label for="RADIO1_TX">Enable Radio 1 TX</label>
+	<input type="checkbox" name="RADIO1_TX" value="checked" <% echo -n $radio1_tx %>>	
+	<label for="RADIO1_TXFREQ_MIN">Radio_1 tx min Freq(Hz)</label>                                       
+	<input type="text" name="RADIO1_TXFREQ_MIN" maxlength="9" VALUE=<% echo -n $radio1_txfreq_min %> pattern="([0-9]{9})$" >
+	<label for="RADIO1_TXFREQ_MAX">Radio_1 tx max Freq(Hz)</label>                                       
+	<input type="text" name="RADIO1_TXFREQ_MAX" maxlength="9" VALUE=<% echo -n $radio1_txfreq_max %> pattern="([0-9]{9})$" >
+	<br><br>
+	
+	<h3>Customized Channel Settings</h3> 	
+	<% for num in 0 1 2 3 4 5 6 7; do %>   
+	<label for="CHAN<% echo -n "$num" %>_ENABLE">MultiSF Channel <% echo -n "$num" %> Enable</label>
+	<input type="checkbox" name="CHAN<% echo -n "$num" %>_ENABLE" value="checked" <% eval echo -n '$'{chan${num}_enable} %>>
+	<label for="CHAN<% echo -n "$num" %>_RADIO">Radio For Channel <% echo -n "$num" %></label>                                       
+	<select id="chan<% echo -n "$num" %>_radio" style="padding-right:50px" name="CHAN<% echo -n "$num" %>_RADIO">
+	  <option value="0" >Radio0</option>
+	  <option value="1" >Radio1</option>	 
+	 </select> 
+	<script>document.getElementById("chan<% echo -n "$num" %>_radio").value="<% eval echo -n '$'{chan${num}_radio} %>";</script>	
+	<label for="CHAN<% echo -n "$num" %>">IF(Offset in Hz)</label>                                       
+	<input type="text" name="CHAN<% echo -n "$num" %>" maxlength="7" VALUE=<% eval echo -n '$'{chan$num} %>>
+	<br><br>                                   
+    <% done %>
+	
+	<br><br> 	
+	<label for="LORACHAN_ENABLE">LoRa STD Channel Enable</label>
+	<input type="checkbox" name="LORACHAN_ENABLE" value="checked" <% echo -n $lorachan_enable %>>
+	<label for="LORACHAN_RADIO">Radio</label>                                       
+	<select id="lorachan_radio" style="padding-right:50px" name="LORACHAN_RADIO">
+	  <option value="0" >Radio0</option>
+	  <option value="1" >Radio1</option>	 
+	 </select> 
+	<script>document.getElementById("lorachan_radio").value="<% echo -n $lorachan_radio %>";</script>	
+	<label for="LORACHAN">IF(Offset in Hz)</label>                                       
+	<input type="text" name="LORACHAN" maxlength="7" VALUE=<% echo -n $lorachan %>>
+	<br><br> 
+	<label for="LORACHAN_SF">Spreading Factor</label>                                       
+	<select id="lorachan_sf" style="padding-right:130px" name="LORACHAN_SF">
+	  <option value="6" >SF6</option>
+	  <option value="7" >SF7</option>
+	  <option value="8" >SF8</option>
+	  <option value="9" >SF9</option>
+	  <option value="10" >SF10</option>
+	  <option value="11" >SF11</option>
+	  <option value="12" >SF12</option>
+	</select> 
+	<script>document.getElementById("lorachan_sf").value="<% echo -n $lorachan_sf %>";</script>
+	<label for="LORACHAN_BW">RF Bandwidth (Hz)</label>                                       
+	<select id="lorachan_bw" style="padding-right:130px" name="LORACHAN_BW">
+	  <option value="7800" >7.8kHz</option>
+	  <option value="10400" >10.4kHz</option>
+	  <option value="15600" >15.6kHz</option>
+	  <option value="20800" >20.8kHz</option>
+	  <option value="31250" >31.25kHz</option>
+	  <option value="62500" >62.5kHz</option>
+	  <option value="125000" >125kHz</option>
+	  <option value="250000" >250kHz</option>
+	  <option value="500000" >500kHz</option>
+	</select> 
+	<script>document.getElementById("lorachan_bw").value="<% echo -n $lorachan_bw %>";</script>
+	<br><br>
+	
+  <% fi %>
+  
+ </div>
+ 
+  <br><br>
+  <br><br>
 	&nbsp;&nbsp;&nbsp;&nbsp;
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save">&nbsp;&nbsp;
 	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">&nbsp;&nbsp;
 	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
-
 </form>
 </div>
 </body>

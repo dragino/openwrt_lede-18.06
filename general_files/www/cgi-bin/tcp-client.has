@@ -4,7 +4,7 @@
 
 <%# --- Process the form submission --- %>
 <%
-	if [ $FORM_BUTTON == "Save" ]; then
+	if [ $FORM_BUTTON == "Save" ] || [ $FORM_BUTTON == "Save&Apply" ]; then
 
     if [ $FORM_CHANGE == "checked" ]; then
       change="1"
@@ -20,6 +20,15 @@
 
 		uci commit tcp_client 
 	fi
+	
+  if [ $FORM_BUTTON == "Save&Apply" ]; then
+		uci set gateway.general.server_type="tcpudp"
+		uci commit gateway
+    /etc/init.d/lora_gw reload > /dev/null
+    sleep 2
+    /etc/init.d/iot reload > /dev/null
+  fi
+
 %>
 
 
@@ -45,51 +54,18 @@
 
 
 <%# --- Present the HTML page --- %>
-<html>
+<html lang="en">
 <head>
-  <title>Dragino LoRa Gateway</title>
-
-  <link rel="stylesheet" href="/static/resources/config.css">
-  <link rel="stylesheet" href="/static/resources/bootstrap.min.css">
-  <script src="/static/resources/jquery.min.js"></script>
-  <script src="/static/resources/bootstrap.min.js"></script>
-	<link rel="shortcut icon" href="/static/resources/favicon.ico">
-
-<script>
-function displayFunction() {
-}
-
-function changeFunc() {
-}
-
-</script>
+	<%inc /www/cgi-bin/inc/head.inc %>
 </head>
 
-<body onload="displayFunction()">
+<body>
+<%inc /www/cgi-bin/inc/menu.inc %>
+</div>
+<h2>TCP Client Configuration</h2>
 
-<br><br>
-<h1>TCP Client Configuration</h1>
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded"> </a>  
-      <a class="navbar-brand" href="#"><font size="5"><b> TCP Client Configuration </b></font></a>  
-    </div>
-
-    <ul class="nav navbar-nav">
-      <li><a href="/cgi-bin/lora.has"><font size="4">LoRa Configuration</font></a></li>
-      <li><a href="/cgi-bin/tcp-chan.has"><font size="4">TCP/IP Channels</font></a></li>
-      <li><a href="/cgi-bin/dragino.has"><font size="4">Return to Main Menu</font></a></li>
-    </ul>
-
-  </div>
-</nav>
-
-<div class="container">
+<div class="container" style="margin: 50px">
 <form action="<% echo -n $SCRIPT_NAME %>" method="POST">
-
-	<h2>General Settings</h2>
 
 	<label for="ADDR">Server Address</label>
 	<input type="text" name="ADDR" size="40" VALUE="<% echo -n $addr %>">
@@ -109,7 +85,8 @@ function changeFunc() {
   <label>Send to server when a new value arrives</label>
   <br></br>
 
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save">
+<!--	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save"> -->
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
 	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
 
 </form>

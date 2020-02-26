@@ -49,6 +49,8 @@
 	fi
 
   if [ $FORM_BUTTON == "Save&Apply" ]; then
+		uci set gateway.general.server_type="mqtt"
+		uci commit gateway
     /etc/init.d/lora_gw reload > /dev/null
     sleep 2
     /etc/init.d/iot reload > /dev/null
@@ -61,7 +63,7 @@
 
 <% 
 # --- Get the variables for the HTML page ---
-
+	board=`cat /var/iot/board`
 	iot_service="$(uci -q get gateway.general.server_type)"
   server_type="$(uci -q get mqtt.common.server_type)"
 
@@ -117,23 +119,8 @@
 <%# --- Present the HTML page --- %>
 <html lang="en">
 <head>
-  <title>Dragino Lora Gateway</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-
-  <link rel="stylesheet" href="/static/resources/config.css">
-
-  <link rel="stylesheet" href="/static/resources/bootstrap.min.css">
-  <script src="/static/resources/jquery.min.js"></script>
-  <script src="/static/resources/bootstrap.min.js"></script>
-
-	<link rel="shortcut icon" href="/static/resources/favicon.ico">
-
-  <script>
+	<%inc /www/cgi-bin/inc/head.inc %>
+	<script>
     function displayFunction() {
       document.getElementById("div1").style.display = "<% echo -n $disp1 %>"; 
       document.getElementById("div2").style.display = "<% echo -n $disp2 %>"; 
@@ -145,33 +132,19 @@
       document.forms["mqtt"].submit();
     }
   </script>
-
 </head>
 
 <body onload="displayFunction()">
-<br><br>
-<h1>MQTT Configuration</h1>
+<%inc /www/cgi-bin/inc/menu.inc %>
+<h2>MQTT Client Configuration</h2>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded"> </a>  
-      <a class="navbar-brand" href="#"><font size="5"><b> MQTT Configuration </b></font></a>  
-    </div>
-
-    <ul class="nav navbar-nav">
-      <li><a href="/cgi-bin/lora.has"><font size="4">LoRa Configuration</font></a></li>
-      <li><a href="/cgi-bin/mqtt-chan.has"><font size="4">MQTT Channels</font></a></li>
-      <li><a href="/cgi-bin/mqtt-cert.has"><font size="4">MQTT Certificates</font></a></li>
-      <li><a href="/cgi-bin/dragino.has"><font size="4">Return to Main Menu</font></a></li>
-    </ul>
-
-  </div>
-</nav>
-
-<div class="container">
+<div class="container" style="margin: 50px">
 <form id="mqtt" action="<% echo -n $SCRIPT_NAME %>" method="POST">
+	
+<% if [[ "$board" == "LG08P" || "$board" == "LG08" || "$board" == "LPS8" ]]; then %>
+	<strong><font size="4" color="red">Note: MQTT protocol is not supported on this device</font></strong>
 	<br><br>
+<% fi %>	
 
 	<label for="server_type">MQTT Server Profile</label>
 	<select id="server_type" style="padding-right:80px" name="SERVER_TYPE" onchange="changeFunc(this.value)" >
@@ -268,7 +241,7 @@
 	<% echo -n $sub_topic_default %>
   <br><br>
 
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save">
+<!--	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save"> -->
 	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
 	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
 

@@ -1,0 +1,46 @@
+#!/usr/bin/haserl
+
+<%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
+
+<%# --- Get the variables for the HTML page --- %>
+<%
+MEMFREE=`cat /proc/meminfo | grep MemFree |cut -d : -f2 | tr -d ' '|tr -d 'kB'`
+MEMTOT=`cat /proc/meminfo | grep MemTotal |cut -d : -f2 | tr -d ' '`
+MEMSTR="Free Memory: "$MEMFREE" / Total Memory: "$MEMTOT
+%>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<%inc /www/cgi-bin/inc/head.inc %>
+</head>
+
+<body>
+<%inc /www/cgi-bin/inc/menu.inc %>
+  
+<h2>System Log</h2>
+
+<div class="container" style="margin: 50px">
+	<br>
+
+	<h4>	<% echo "USB Devices:  " %> 	</h4>
+	<textarea cols="155" rows="8" ><% lsusb %></textarea>
+	<br><br>	
+	
+	<h4>	<% echo "Boot Info:  " %> 	</h4>
+	<textarea cols="155" rows="10" ><% dmesg %></textarea>
+	<br><br>
+
+	<h4>	<% echo "Previous Log:  " %> 	</h4>
+	<textarea cols="155" rows="20" ><% logread %></textarea>
+	<br><br>
+
+	<h4>	<% echo "Realtime Log: " %> 	</h4>
+	<textarea cols="155" rows="20" ><% logread -f %></textarea>
+	<br><br>
+
+</div>
+
+</body>
+</html>
+

@@ -38,6 +38,8 @@ else
   # Still not connected; disable sta interface and restart networking
   uci set wireless.sta_0.disabled=1
   uci commit wireless
+  uci set network.wan.ifname="eth1"
+  uci commit network
   logger "[WiFi.WAN]: WiFi WAN did not connect; disabled"
   /etc/init.d/network restart
   sleep 10

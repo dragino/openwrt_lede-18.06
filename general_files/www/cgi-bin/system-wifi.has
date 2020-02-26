@@ -43,34 +43,36 @@
 		uci commit network
     uci commit wireless 
 
-    /etc/init.d/network restart
-    /etc/init.d/DR_wifi_wan start    # Check that WiFi WAN is operating correctly, else disable after 30 seconds.
-    sleep 10
-    /etc/init.d/fallbackip start
+    # Run in background    
+		(sleep 1; /etc/init.d/network restart) &
+		(sleep 20; /etc/init.d/fallbackip start) &
+    #/etc/init.d/DR_wifi_wan start &  # Check that WiFi WAN is operating correctly, else disable after 30 seconds.
   fi
 
 %>
-
 
 <%# --- Get the variables for the HTML page --- %>
 <% 
   ssid="$(uci -q get wireless.ap_0.ssid)"
   encryption="$(uci -q get wireless.ap_0.encryption)"
   key="$(uci -q get wireless.ap_0.key)"
-
+  
   txpower="$(uci -q get wireless.radio0.txpower)"
-  channel="$(uci -q get wireless.radio0.channel)"
+	channel=$(uci -q get wireless.radio0.channel)
 
   host_ssid="$(uci -q get wireless.sta_0.ssid)"
   host_encryption="$(uci -q get wireless.sta_0.encryption)"
   host_key="$(uci -q get wireless.sta_0.key)"
 
-  ap_enable="0"
   ap_disabled="$(uci -q get wireless.ap_0.disabled)"
   if [ $ap_disabled == "0" ]; then
   	ap_enable="checked"
+  	#channel=$(iw dev |grep -A 1 AP | grep channel | cut -d " " -f2)
+  else
+    ap_enable="0"
+  	#channel=$(uci -q get wireless.radio0.channel)
   fi
-
+  
   wifi_wan_enable="0"
   sta_disabled="$(uci -q get wireless.sta_0.disabled)"
   if [ $sta_disabled == "0" ]; then
@@ -78,39 +80,16 @@
   	wan_str="&nbsp; &nbsp; Note: Ethernet WAN port will be disabled "
   	channel=$(iw dev |grep -A 1 managed | grep channel | cut -d " " -f2)
   fi
-  
-%>
-
-
-<%# --- Set up field display --- %>
-<% 
-  # Set up display defaults
-  # Set up display options
 %>
 
 
 <%# --- Present the HTML page --- %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <title>Dragino LoRa Gateway</title>
-
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-
-  <link rel="stylesheet" href="/static/resources/config.css">
-  <link rel="stylesheet" href="/static/resources/bootstrap.min.css">
-  <script src="/static/resources/jquery.min.js"></script>
-  <script src="/static/resources/bootstrap.min.js"></script>
-	<link rel="shortcut icon" href="/static/resources/favicon.ico">
-
-<script>
-function displayFunction() {
-}
-
-function changeFunc() {
-}
-
+<%inc /www/cgi-bin/inc/head.inc %>
+	<script>
 function keyFunction() {
   var x = document.getElementById("key");
   if (x.type === "password") {
@@ -129,43 +108,24 @@ function host_keyFunction() {
 } 
 </script>
 </head>
-<body onload="displayFunction()">
 
-<br></br>
-<h1>WiFi</h1>
+<body>
+<%inc /www/cgi-bin/inc/menu.inc %>
+<h2>WiFi</h2>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded" width="25" height="25"> </a>  
-      <a class="navbar-brand" href="#"><font size="5"><b> System </b></font></a>  
-    </div>
-
-    <ul class="nav navbar-nav">
-      <li><a href="/cgi-bin/system-overview.has"><font size="4">System Overview</font></a></li>
-      <li><a href="/cgi-bin/system-network.has"><font size="4">Network</font></a></li>
-      <li><a href="/cgi-bin/system-cellular.has"><font size="4">Cellular</font></a></li>
-      <li><a href="/cgi-bin/system-status.has"><font size="4">Network Status</font></a></li>
-      <li><a href="/cgi-bin/system-rssh.has"><font size="4">Remote Mgmt</font></a></li>
-      <li><a href="/cgi-bin/dragino.has"><font size="4">Return to Main Menu</font></a></li>
-    </ul>
-  </div>
-</nav>
-
-
-<div class="container">
+<div class="container" style="margin: 50px">
 <form name="SYSTEM-WIFI" id="SYSTEM-WIFI" action="<% echo -n $SCRIPT_NAME %>" method="POST">
 
-	<h2>Radio Settings</h2>
+	<h3>Radio Settings</h3>
 
 	<label for="CHANNEL"> Channel (1-11) </label>
-	<input type="text" name="CHANNEL" maxlength="2" VALUE="<% echo -n $channel %>" required  pattern="(1[0-1]|[1-9])$">
+	<input type="text" name="CHANNEL" maxlength="2" VALUE="<% echo -n $channel %>"   pattern="(1[0-1]|[1-9])$">
 
 	<label for="TXPOWER"> Tx Power (0-18) dBm</label>
 	<input type="text" name="TXPOWER" maxlength="2" VALUE="<% echo -n $txpower %>" pattern="(1[0-8]|[0-9])$">
   <br></br>
 
-	<h2>WiFi Access Point Settings</h2>
+	<h3>WiFi Access Point Settings</h3>
 
   <input type="checkbox" name="AP_ENABLE" value="checked" <% echo -n $ap_enable %> > <font size="4"> Enable WiFi Access Point </font>
   <br><br>
@@ -191,10 +151,10 @@ function host_keyFunction() {
   <br><br>
 
 
-	<h2>WiFi WAN Client Settings</h2>
+	<h3>WiFi WAN Client Settings</h3>
 
   <input type="checkbox" name="WIFI_WAN_ENABLE" value="checked" <% echo -n $wifi_wan_enable %> > <font size="4"> Enable WiFi WAN Client </font>
-	<font size="4"> <% echo -n $wan_str %> </font>
+	<font size="4" color="red"> <% echo -n $wan_str %> </font>
   <br><br>
 
 	<label for="HOST_SSID">Host WiFi Name SSID</label>
@@ -217,7 +177,7 @@ function host_keyFunction() {
 	<script>document.getElementById("host_encryption").value="<% echo -n $host_encryption %>";</script>
   <br><br>
 
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save">
+<!--	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save"> -->
 	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
 	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
 

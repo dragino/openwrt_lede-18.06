@@ -22,7 +22,6 @@ config wifi-iface 'ap_0'
 	option disabled '0'
 	option encryption 'psk2'
 	option key 'dragino+dragino'
-	option encryption 'none'
 	
 config wifi-iface 'sta_0'
 	option device 'radio0'

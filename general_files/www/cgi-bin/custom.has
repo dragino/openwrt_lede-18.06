@@ -5,7 +5,7 @@
 <%# --- Process the form submission --- %>
 <%
 
-	if [ $FORM_BUTTON == "Save" ]; then
+	if [ $FORM_BUTTON == "Save" ] || [ $FORM_BUTTON == "Save&Apply" ]; then
 		uci set customized_script.general.script_name="$FORM_SCRIPT_NAME"
 		uci set customized_script.general.para1="$FORM_PARA1"
 		uci set customized_script.general.para2="$FORM_PARA2"
@@ -21,8 +21,14 @@
 		uci commit customized_script 
 	fi
 
+  if [ $FORM_BUTTON == "Save&Apply" ]; then
+		uci set gateway.general.server_type="customized"
+		uci commit gateway
+    /etc/init.d/lora_gw reload > /dev/null
+    sleep 2
+    /etc/init.d/iot reload > /dev/null
+  fi
 %>
-
 
 <%# --- Get the variables for the HTML page --- %>
 <% 
@@ -39,104 +45,62 @@
   para10="$(uci -q get customized_script.general.para10)"
 %>
 
-
-<%# --- Set up field display --- %>
-<% 
-  # Set up display defaults
-  # Set up display options
-%>
-
-
 <%# --- Present the HTML page --- %>
-<html>
+<html lang="en">
 <head>
-  <title>Dragino LoRa Gateway</title>
-
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-
-  <link rel="stylesheet" href="/static/resources/config.css">
-  <link rel="stylesheet" href="/static/resources/bootstrap.min.css">
-  <script src="/static/resources/jquery.min.js"></script>
-  <script src="/static/resources/bootstrap.min.js"></script>
-	<link rel="shortcut icon" href="/static/resources/favicon.ico">
-
-<script>
-function displayFunction() {
-}
-
-function changeFunc() {
-}
-
-</script>
+<%inc /www/cgi-bin/inc/head.inc %>
 </head>
-<body onload="displayFunction()">
 
-<br></br>
-<h1>Custom Script</h1>
+<body>
+<%inc /www/cgi-bin/inc/menu.inc %>
+<h2>Custom Script</h2>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded"> </a>  
-      <a class="navbar-brand" href="#"> <font size="5"><b>Custom Script </b></font></a>  
-    </div>
-    <ul class="nav navbar-nav">
-      <li><a href="/cgi-bin/lora.has"><font size="4">LoRa Configuration</font></a></li>
-      <li><a href="/cgi-bin/custom-script.has"><font size="4">Custom Script Management</font></a></li>
-      <li><a href="/cgi-bin/dragino.has"><font size="4">Return to Main Menu</font></a></li>
-    </ul>
-  </div>
-</nav>
-
-<a>Run a Custom Script to process LoRa Data. Parameters are optional and defined in script</a>
-
-<div class="container">
+<div class="container" style="margin: 50px">
 <form action="<% echo -n $SCRIPT_NAME %>" method="POST">
 
-	<h2>General Settings</h2>
-
+	<a>Run a Custom Script to process LoRa Data. Parameters are optional and defined in the script.</a>
+	<br><br>
 	<label for="script_name">Script Name</label>
 	<input type="text" name="SCRIPT_NAME" VALUE="<% echo -n $script_name %>">
-  <br></br>
+  <br><br>
 
 	<label for="PARA1">Parameter 1</label>
 	<input type="text" name="PARA1" VALUE="<% echo -n $para1 %>">
 
 	<label for="PARA2">Parameter 2</label>
 	<input type="text" name="PARA2" VALUE="<% echo -n $para2 %>">
-  <br></br>
+  <br><br>
 
 	<label for="PARA3">Parameter 3</label>
 	<input type="text" name="PARA3" VALUE="<% echo -n $para3 %>">
 
 	<label for="PARA4">Parameter 4</label>
 	<input type="text" name="PARA4" VALUE="<% echo -n $para4 %>">
-  <br></br>
+  <br><br>
 
 	<label for="PARA5">Parameter 5</label>
 	<input type="text" name="PARA5" VALUE="<% echo -n $para5 %>">
 
 	<label for="PARA6">Parameter 6</label>
 	<input type="text" name="PARA6" VALUE="<% echo -n $para6 %>">
-  <br></br>
+  <br><br>
 
 	<label for="PARA7">Parameter 7</label>
 	<input type="text" name="PARA7" VALUE="<% echo -n $para7 %>">
 
 	<label for="PARA8">Parameter 8</label>
 	<input type="text" name="PARA8" VALUE="<% echo -n $para8 %>">
-  <br></br>
+  <br><br>
 
 	<label for="PARA9">Parameter 9</label>
 	<input type="text" name="PARA9" VALUE="<% echo -n $para9 %>">
 
 	<label for="PARA10">Parameter 10</label>
 	<input type="text" name="PARA10" VALUE="<% echo -n $para10 %>">
-  <br></br>
+  <br><br>
 
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save">
+<!--	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save"> -->
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
   <INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
 
 </form>

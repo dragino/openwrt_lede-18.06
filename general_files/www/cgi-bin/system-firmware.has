@@ -16,46 +16,22 @@
 
 
 <%# --- Present the HTML page --- %>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <title>Dragino LoRa Gateway</title>
-
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-
-  <link rel="stylesheet" href="/static/resources/config.css">
-  <link rel="stylesheet" href="/static/resources/bootstrap.min.css">
-  <script src="/static/resources/jquery.min.js"></script>
-  <script src="/static/resources/bootstrap.min.js"></script>
-	<link rel="shortcut icon" href="/static/resources/favicon.ico">
-
+<%inc /www/cgi-bin/inc/head.inc %>
 </head>
 
 <body>
-<br><br><br>
-<h1>Firmware Update</h1>
+<%inc /www/cgi-bin/inc/menu.inc %>
+<h2>Firmware Update</h2>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded"> </a>  
-      <a class="navbar-brand" href="#"><font size="5"><b>Firmware Update</b></font></a>  
-    </div>
-    <ul class="nav navbar-nav">
-      <li><a href="/cgi-bin/system-overview.has"><font size="4">System Overview</font></a></li>
-      <li><a href="/cgi-bin/dragino.has"><font size="4">Return to Main Menu</font></a></li>
-    </ul>
-  </div>
-</nav>
-
-<div class="container">
+<div class="container" style="margin: 50px">
   <form action="<% echo -n $SCRIPT_NAME %>" method=POST enctype="multipart/form-data" >
 
-    <h2> Upload Firmware File </h2>
+    <h3> Upload Firmware File </h3>
     <input type=file name=uploadfile>
-    <br>
+    <br><br>
     <INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Upload">
 
     <% if [ $FORM_BUTTON == "Upload" ]; then %>
@@ -69,11 +45,11 @@
       The SHA256 checksum is: <% sha256sum /tmp/flash.bin | cut -d " " -f 1 %>
       </p>
     <% else %>
-      Select file and Upload
+      Upload selected file.
     <% fi %>
 
     <br><br>
-    <h2> Proceed with Flash </h2>
+    <h3> Proceed with Flash </h3>
     <%
     	if [ $FORM_BUTTON == "Proceed" ]; then
 				echo "<br><font size="4">*** Sysupgrade now... </font><br>"

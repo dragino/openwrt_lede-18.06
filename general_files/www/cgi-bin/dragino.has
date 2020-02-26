@@ -3,167 +3,268 @@
 <%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
 
 <%# --- Get the variables for the HTML page --- %>
-<%
-MEMFREE=`cat /proc/meminfo | grep MemFree |cut -d : -f2 | tr -d ' '|tr -d 'kB'`
-MEMTOT=`cat /proc/meminfo | grep MemTotal |cut -d : -f2 | tr -d ' '`
-MEMSTR="Free Memory: "$MEMFREE" / Total Memory: "$MEMTOT
+<%inc /www/cgi-bin/inc/dragino.inc %>
 
-# Check Internet connectivity
-HOST="1.1.1.1"
-ping -c1 $HOST 1>/dev/null 2>/dev/null
-SUCCESS=$?
-if [ $SUCCESS -eq "0" ]; then
-  connection="<font size="4"> Internet Connection OK </font>"
-  connect_img="/static/img/connection.png"
-  internet="1"
-else
-  connection="<font size="4" color="red"> No Internet Connection </font>"
-  connect_img="/static/img/no-connection.png"
-  internet="0"
-fi
-
-# Check LoRaWAN connection
-status="offline"
-lorawan_str=""
-lorawan_disp="0"
-server_type=$(uci -q get gateway.general.server_type)
-
-if [ -e /tmp/iot/status ] && [ $internet == "1" ] && [ $server_type == "lorawan" ]; then
-  status=$(cat /tmp/iot/status)
-  lorawan_disp="1"
-  if [ $status == "online" ]; then
-    lorawan_str="<font size="4"> LoRaWAN Connection OK </font>"
-    lorawan_img="/static/img/lorawan.png"
-  else
-    lorawan_str="<font size="4" color="red"> No LoRaWAN Connection </font>"
-  fi
-fi
-
-%>
+<%# --- Present the HTML page --- %>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Dragino LoRa Gateway</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="10">
-
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-
-  <link rel="stylesheet" href="/static/resources/bootstrap.min.css">
-  <script src="/static/resources/jquery.min.js"></script>
-  <script src="/static/resources/bootstrap.min.js"></script>
-
-	<link rel="shortcut icon" href="/static/resources/favicon.ico">
-
-
+<%inc /www/cgi-bin/inc/head.inc %>
+<meta http-equiv="refresh" content="10">
 </head>
 
 <body>
-<br><br>
-<h1>System Overview</h1>
+<%inc /www/cgi-bin/inc/menu.inc %>
+<h2 style="text-align: left; margin-left: 15px;" >System Overview</h2>
+<div class="grid-container">
 
-<style type="text/css">
-  .navbar {
-    background-color:#00008B;
-    background-image: none;
-  }
-</style>
-  
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#"> <img src="/static/resources/favicon.ico" class="img-rounded" width="30" height="30"> </a>  
-      <a class="navbar-brand" href="#"><font size="5"><b> Dragino LoRa Gateway </b></font></a>  
-    </div>
+<!-- Column 0 -->
+<div>  <!-- container for pop-up info -->
 
-    <ul class="nav navbar-nav">
-      <li><a href="/cgi-bin/lora.has"><font size="4">LoRa Configuration</font></a></li>
+<div class="info" id="info-1">
+	<table>
+	<tr>	  <th colspan="2"><% echo -n $info_title1 %></th>	</tr>
+	<tr>	  <td>IP Addr:</td><td><% echo -n $ip1 %></td>	</tr>
+	<tr>	  <td>TX Bytes:</td><td><% echo -n $txb1 %></td>	</tr>
+	<tr>	  <td>RX Bytes:</td><td><% echo -n $rxb1 %></td>	</tr>
+	<tr>	  <td>SIM:</td><td><% echo -n $sim1 %></td>	</tr>
+	<tr>	  <td>Network:</td><td><% echo -n $net1 %></td>	</tr>
+	<tr>	  <td>Signal:</td><td><% echo -n $sig1 %></td>	</tr>
+	<tr>	  <td>Time:</td><td><% echo -n $time1 %></td>	</tr>
+	</table>
+</div>	
 
-      <li><a href="/cgi-bin/lorawan.has"><font size="4">LoRaWAN Client</font></a></li>
+<div class="info" id="info-2">
+	<table>
+	<tr>	  <th colspan="2"><% echo -n $info_title2 %></th>	</tr>
+	<tr>	  <td>IP Addr:</td><td><% echo -n $ip2 %></td>	</tr>
+	<tr>	  <td>TX Bytes:</td><td><% echo -n $txb2 %></td>	</tr>
+	<tr>	  <td>RX Bytes:</td><td><% echo -n $rxb2 %></td>	</tr>
+	<!-- Following only for WiFiWAN -->
+	<% if [ $wifi == "1" ]; then %>
+	<tr>	  <td>Signal:</td><td><% echo -n $signal2 %></td>	</tr>
+	<tr>	  <td>Noise:</td><td><% echo -n $noise2 %></td>	</tr>
+	<tr>	  <td>Bit Rate:</td><td><% echo -n $rate2 %></td>	</tr>
+	<% fi %>
+	</table>
+</div>	
 
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><font size="4">MQTT</font></a>
-        <ul class="dropdown-menu">
-          <li><a href="/cgi-bin/mqtt.has"><font size="4">MQTT Client</font></a></li>
-          <li><a href="/cgi-bin/mqtt-chan.has"><font size="4">Channels</font></a></li>
-          <li><a href="/cgi-bin/mqtt-cert.has"><font size="4">Certificates</font></a></li>
-        </ul>
-      </li>
+<div class="info" id="info-3">
+	<table>
+	<tr>	  <th colspan="2"><% echo -n $info_title3 %></th>	</tr>
+	<tr>	  <td>Server:</td><td><% echo -n $url3 %></td>	</tr>
+	</table>
+</div>	
 
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><font size="4">TCP</font></a>
-        <ul class="dropdown-menu">
-          <li><a href="/cgi-bin/tcp-client.has"><font size="4">TCP Client</font></a></li>
-          <li><a href="/cgi-bin/tcp-chan.has"><font size="4">Channels</font></a></li>
-        </ul>
-      </li>
+<div class="info" id="info-10">
+	<table>
+	<tr>	  <th colspan="2"><% echo -n $info_title10 %></th>	</tr>
+	<tr>	  <td>Rx Freq:</td><td><% echo -n $rxfreq10 %></td>	</tr>
+	<tr>	  <td>Tx Freq:</td><td><% echo -n $txfreq10 %></td>	</tr>
+	</table>
+</div>	
 
-      <li><a href="/cgi-bin/http-client.has"><font size="4">HTTP/HTTPS</font></a></li>
-
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><font size="4">Custom</font></a>
-        <ul class="dropdown-menu">
-          <li><a href="/cgi-bin/custom.has"><font size="4">Custom Script</font></a></li>
-          <li><a href="/cgi-bin/custom-script.has"><font size="4">Script Management</font></a></li>
-        </ul>
-      </li>
-
-      <li><a href="/cgi-bin/logread.has"><font size="4">LogRead</font></a></li>
-
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><font size="4">System</font></a>
-        <ul class="dropdown-menu">
-          <li><a href="/cgi-bin/system-overview.has"><font size="4">System Overview</font></a></li>
-          <li><a href="/cgi-bin/system-network.has"><font size="4">Network</font></a></li>
-          <li><a href="/cgi-bin/system-wifi.has"><font size="4">WiFi</font></a></li>
-          <li><a href="/cgi-bin/system-cellular.has"><font size="4">Cellular</font></a></li>
-          <li><a href="/cgi-bin/system-status.has"><font size="4">Network Status</font></a></li>
-          <li><a href="/cgi-bin/system-rssh.has"><font size="4">Remote Mgmt</font></a></li>
-          <li><a href="/cgi-bin/system-firmware.has"><font size="4">Firmware Upgrade</font></a></li>
-        </ul>
-      </li>
-
-      <li><a href="/luci.html"><font size="4">LuCI Configuration</font></a></li>
-    </ul>
-  </div>
-</nav>
-
-<div class="container">
-	<h4>
-	<br>
-	<% echo "System:  "; cat /etc/os-release | grep _RELEASE | cut -d = -f2 %>
-	<br><br>
-	<% echo "Firmware:  "; cat /etc/banner | grep Version | cut -d : -f 2 %>
-	<br><br>
-	<% echo "Hostname:  "; uci get system.@[0].hostname %>
-	<br><br>
-	<% echo "Board Type:  "; cat /tmp/iot/board %>
-	<br><br>
-	<% echo "System Time:  "; date %>
-	<br><br>
-	<% echo "Uptime:  "; uptime | cut -d " " -f4,5 | tr , " " %>
-	<br><br>
-	<% echo "Load Avg:  "; uptime | cut -d , -f2,3,4 | cut -d : -f2 %>
-	<br><br>
-	<% echo $MEMSTR %>
-	<br><br>
-	<% echo "IoT Service:  $server_type" %>
-	<br><br>
-	</h4>
-  <% echo $connection %> <img src="<% echo -n $connect_img %>" width="100" height="100"> 
-  <% 
-     if [ $lorawan_disp == "1" ]; then
-       echo $lorawan_str
-       if [ $status == "online" ]; then 
-  %> 
-       <img src="<% echo -n $lorawan_img %>" width="200" height="100">
-  <%
-       fi
-     fi 
-  %> 
+<div class="info" id="info-11">
+	<table>
+	<tr>	  <th colspan="2"><% echo -n $info_title11 %></th>	</tr>
+	<tr>	  <td>SSID:</td><td><% echo -n $ssid11 %></td>	</tr>
+	<tr>	  <td>Channel:</td><td><% echo -n $chan11 %></td>	</tr>
+	<tr>	  <td>Mode:</td><td><% echo -n $mode11 %></td>	</tr>
+	<tr>	  <td>TX Bytes:</td><td><% echo -n $txb11 %></td>	</tr>
+	<tr>	  <td>RX Bytes:</td><td><% echo -n $rxb11 %></td>	</tr>
+	</table>
+</div>	
 
 </div>
 
+<!-- Column 1 (far left icons, i.e. 1, 5, 9) -->
+<div>
+  <span class="sat" id="sat1">
+    <a href=""><img src="/static/img/SAT-Space-Blank.png"></a>
+  </span>
+
+  <span class="sat" id="sat5">
+    <a href=""><img src="/static/img/SAT-Space-Blank.png"></a>
+  </span>
+
+  <span class="sat" id="sat9">
+    <a href=""><img src="/static/img/SAT-Space-Blank.png"></a>
+  </span>
+</div>
+
+<!-- Column 2 (inner left icons, i.e. 2, 6, 10) -->
+<div>
+  <span class="sat" id="sat2">
+    <a href=""><img src="/static/img/SAT-Space-Blank.png"></a>
+  </span>
+
+  <span class="sat" id="sat6">
+    <a href=""><img src="/static/img/SAT-Space-Blank.png"></a>
+  </span>
+
+  <span class="sat" id="sat10">
+    <a href=""><img src="/static/img/SAT-Space-Blank.png"></a>
+  </span>
+</div>
+
+
+<!-- Column 3 (centre icon) -->
+<div>
+  <a href="/cgi-bin/system-overview.has">
+  <img src="/static/img/Centre-Disk.png" class="sun">
+  <img src="/static/img/<% echo -n $pic %>" class="sun-picture">
+  </a>
+</div>
+
+<!-- Column 4 (inner right icons, i.e. 3, 7, 11) -->
+<div>
+  <span class="sat" id="sat3">
+    <a href=""><img src="/static/img/SAT-Space-Blank.png"></a>
+  </span>
+
+  <span class="sat" id="sat7">
+    <a href=""><img src="/static/img/SAT-Space-Blank.png"></a>
+  </span>
+
+  <span class="sat" id="sat11">
+    <a href=""><img src="/static/img/SAT-Space-Blank.png"></a>
+  </span>
+</div>
+
+<!-- Column 5 (far right icons, i.e. 4, 8, 12) -->
+<div>
+  <span class="sat" id="sat4">
+    <a href=""><img src="/static/img/SAT-Space-Blank.png"></a>
+  </span>
+
+  <span class="sat" id="sat8">
+    <a href=""><img src="/static/img/SAT-Space-Blank.png"></a>
+  </span>
+
+  <span class="sat" id="sat12">
+    <a href=""><img src="/static/img/SAT-Space-Blank.png"></a>
+  </span>
+</div>
+</div>
+
+<div class="footer" id="infoBar">
+  <span>Firmware: <% echo -n $fw_str %></span>
+  <span>Hostname: <% echo -n $host_str %> </span>
+  <span style="float: right;">Uptime: <% echo -n $up_str %> </span>
+  <span style="float: right;">System Time: <% echo -n $date_str %> </span>
+</div>
+
 </body>
+
+<script>
+function toggleNavbar() {
+  var x = document.getElementById("docTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+
+function showInfo(x) {
+document.getElementById(x).style.display = "block";
+document.getElementById(x).style.visibility = "visible";
+}
+
+function hideInfo(x) {
+document.getElementById(x).style.display = "none";
+document.getElementById(x).style.visibility = "hidden";
+}
+
+function stopRefresh() {
+document.getElementsByTagName("meta")[0].content = "100"; 
+/* alert("Ref = 30"); */
+}
+
+function resRefresh() {
+document.getElementsByTagName("meta")[0].content = "10"; 
+/* alert("Ref = 5"); */
+}
+
+</script>
+
+
+<script>
+document.getElementById("sat1").getElementsByTagName("img")[0].src = "<% echo -n $sat1 %>";
+document.getElementById("sat1").getElementsByTagName("img")[0].onmouseover = function() {<% echo -n $mouseover1 %>};
+document.getElementById("sat1").getElementsByTagName("img")[0].onmouseout = function() {hideInfo('info-1')};
+document.getElementById("sat1").getElementsByTagName("a")[0].href = "<% echo -n $satlink1 %>";
+document.getElementById("sat1").getElementsByTagName("a")[0].style.visibility = "<% echo -n $satvis1 %>";
+
+document.getElementById("sat2").getElementsByTagName("img")[0].src = "<% echo -n $sat2 %>";
+document.getElementById("sat2").getElementsByTagName("img")[0].onmouseover = function() {<% echo -n $mouseover2 %>};
+document.getElementById("sat2").getElementsByTagName("img")[0].onmouseout = function() {hideInfo('info-2')};
+document.getElementById("sat2").getElementsByTagName("a")[0].href = "<% echo -n $satlink2 %>";
+document.getElementById("sat2").getElementsByTagName("a")[0].style.visibility = "<% echo -n $satvis2 %>";
+
+document.getElementById("sat3").getElementsByTagName("img")[0].src = "<% echo -n $sat3 %>";
+document.getElementById("sat3").getElementsByTagName("img")[0].onmouseover = function() {<% echo -n $mouseover3 %>};
+document.getElementById("sat3").getElementsByTagName("img")[0].onmouseout = function() {hideInfo('info-3')};
+document.getElementById("sat3").getElementsByTagName("a")[0].href = "<% echo -n $satlink3 %>";
+document.getElementById("sat3").getElementsByTagName("a")[0].style.visibility = "<% echo -n $satvis3 %>";
+
+document.getElementById("sat4").getElementsByTagName("img")[0].src = "/static/img/SAT-Space-Blank.png";
+document.getElementById("sat4").getElementsByTagName("img")[0].onmouseover = function() {<% echo -n $mouseover4 %>};
+document.getElementById("sat4").getElementsByTagName("img")[0].onmouseout = function() {hideInfo('info-4')};
+document.getElementById("sat4").getElementsByTagName("a")[0].href = "#";
+document.getElementById("sat4").getElementsByTagName("a")[0].style.visibility = "<% echo -n $satvis4 %>";
+
+document.getElementById("sat5").getElementsByTagName("img")[0].src = "/static/img/SAT-Space-Blank.png";
+document.getElementById("sat5").getElementsByTagName("img")[0].onmouseover = function() {<% echo -n $mouseover5 %>};
+document.getElementById("sat5").getElementsByTagName("img")[0].onmouseout = function() {hideInfo('info-5')};
+document.getElementById("sat5").getElementsByTagName("a")[0].href = "#";
+document.getElementById("sat5").getElementsByTagName("a")[0].style.visibility = "<% echo -n $satvis5 %>";
+
+document.getElementById("sat6").getElementsByTagName("img")[0].src = "/static/img/SAT-Space-Blank.png";
+document.getElementById("sat6").getElementsByTagName("img")[0].onmouseover = function() {<% echo -n $mouseover6 %>};
+document.getElementById("sat6").getElementsByTagName("img")[0].onmouseout = function() {hideInfo('info-6')};
+document.getElementById("sat6").getElementsByTagName("a")[0].href = "#";
+document.getElementById("sat6").getElementsByTagName("a")[0].style.visibility = "<% echo -n $satvis6 %>";
+
+document.getElementById("sat7").getElementsByTagName("img")[0].src = "/static/img/SAT-Space-Blank.png";
+document.getElementById("sat7").getElementsByTagName("img")[0].onmouseover = function() {<% echo -n $mouseover7 %>};
+document.getElementById("sat7").getElementsByTagName("img")[0].onmouseout = function() {hideInfo('info-7')};
+document.getElementById("sat7").getElementsByTagName("a")[0].href = "#";
+document.getElementById("sat7").getElementsByTagName("a")[0].style.visibility = "<% echo -n $satvis7 %>";
+
+document.getElementById("sat8").getElementsByTagName("img")[0].src = "/static/img/SAT-Space-Blank.png";
+document.getElementById("sat8").getElementsByTagName("img")[0].onmouseover = function() {<% echo -n $mouseover8 %>};
+document.getElementById("sat8").getElementsByTagName("img")[0].onmouseout = function() {hideInfo('info-8')};
+document.getElementById("sat8").getElementsByTagName("a")[0].href = "#";
+document.getElementById("sat8").getElementsByTagName("a")[0].style.visibility = "<% echo -n $satvis8 %>";
+
+document.getElementById("sat9").getElementsByTagName("img")[0].src = "/static/img/SAT-Space-Blank.png";
+document.getElementById("sat9").getElementsByTagName("img")[0].onmouseover = function() {<% echo -n $mouseover9 %>};
+document.getElementById("sat9").getElementsByTagName("img")[0].onmouseout = function() {hideInfo('info-9')};
+document.getElementById("sat9").getElementsByTagName("a")[0].href = "#";
+document.getElementById("sat9").getElementsByTagName("a")[0].style.visibility = "<% echo -n $satvis9 %>";
+
+document.getElementById("sat10").getElementsByTagName("img")[0].src = "<% echo -n $sat10 %>";
+document.getElementById("sat10").getElementsByTagName("img")[0].onmouseover = function() {<% echo -n $mouseover10 %>};
+document.getElementById("sat10").getElementsByTagName("img")[0].onmouseout = function() {hideInfo('info-10')};
+document.getElementById("sat10").getElementsByTagName("a")[0].href = "<% echo -n $satlink10 %>";
+document.getElementById("sat10").getElementsByTagName("a")[0].style.visibility = "<% echo -n $satvis10 %>";
+
+document.getElementById("sat11").getElementsByTagName("img")[0].src = "<% echo -n $sat11 %>";
+document.getElementById("sat11").getElementsByTagName("img")[0].onmouseover = function() {<% echo -n $mouseover11 %>};
+document.getElementById("sat11").getElementsByTagName("img")[0].onmouseout = function() {hideInfo('info-11')};
+document.getElementById("sat11").getElementsByTagName("a")[0].href = "<% echo -n $satlink11 %>";
+document.getElementById("sat11").getElementsByTagName("a")[0].style.visibility = "<% echo -n $satvis11 %>";
+
+document.getElementById("sat12").getElementsByTagName("img")[0].src = "/static/img/SAT-Space-Blank.png";
+document.getElementById("sat12").getElementsByTagName("img")[0].onmouseover = function() {<% echo -n $mouseover12 %>};
+document.getElementById("sat12").getElementsByTagName("img")[0].onmouseout = function() {hideInfo('info-12')};
+document.getElementById("sat12").getElementsByTagName("a")[0].href = "#";
+document.getElementById("sat12").getElementsByTagName("a")[0].style.visibility = "<% echo -n $satvis12 %>";
+
+</script>
+
 </html>
 

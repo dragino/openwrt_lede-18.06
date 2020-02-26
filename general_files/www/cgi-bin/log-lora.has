@@ -1,0 +1,50 @@
+#!/usr/bin/haserl
+
+<%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
+
+<%# --- Get the variables for the HTML page --- %>
+<%
+MEMFREE=`cat /proc/meminfo | grep MemFree |cut -d : -f2 | tr -d ' '|tr -d 'kB'`
+MEMTOT=`cat /proc/meminfo | grep MemTotal |cut -d : -f2 | tr -d ' '`
+MEMSTR="Free Memory: "$MEMFREE" / Total Memory: "$MEMTOT
+%>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<%inc /www/cgi-bin/inc/head.inc %>
+</head>
+
+<body>
+<%inc /www/cgi-bin/inc/menu.inc %>
+  
+<h2>LogRead</h2>
+
+<div class="container" style="margin: 50px">
+	<br>
+
+	<h4>	<% echo "FreqINFO:  " %> 	</h4>
+	<% cat /etc/lora/desc | sed  's/$/ <br>/' %>
+	<br><br>
+
+	<h4>	<% echo "Logread Error:  " %> 	</h4>
+	<% logread -e "ERROR~" | sed  's/$/ <br>/' %>
+	<br><br>
+
+	<h4>	<% echo "Logread RxTxJson:  " %> 	</h4>
+	<% logread -l 50 -e "RXTX~" | sed  's/$/ <br>/' %>
+	<br><br>
+
+	<h4>	<% echo "Logread REPORT:  " %> 	</h4>
+	<% logread -e REPORT | sed  's/$/ <br>/' %>
+	<br><br>
+
+	<h4>	<% echo "Logread INFO (json):  " %> 	</h4>
+	<% logread -e "INFO~ (json):" | cut -d "~" -f 2 | sed  's/$/ <br>/' %>
+	<br><br>
+
+</div>
+
+</body>
+</html>
+

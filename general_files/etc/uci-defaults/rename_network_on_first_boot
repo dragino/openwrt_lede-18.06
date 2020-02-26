@@ -6,15 +6,18 @@ SSID="$ssid_prefix-$(hexdump -v -e '1/1 "%.2x"' -s $((0x1005)) -n 3 /dev/mtd6)"
 hostname_prefix=$(uci get system.vendor.name)
 company_domain=$(uci get system.vendor.mail_domain)
 DHCP_DOMAIN="$hostname_prefix-net"
+hostname="$hostname_prefix-$(hexdump -v -e '1/1 "%.2x"' -s $((0x1005)) -n 3 /dev/mtd6)"
 
 uci -q batch <<-EOF
     set wireless.ap_0.ssid=$SSID
     set dhcp.setup.domain=$DHCP_DOMAIN
-    set network.wan.hostname="$hostname_prefix-$(hexdump -v -e '1/1 "%.2x"' -s $((0x1005)) -n 3 /dev/mtd6)"
-    set system.@system[0].hostname="$hostname_prefix-$(hexdump -v -e '1/1 "%.2x"' -s $((0x1005)) -n 3 /dev/mtd6)"
-    set gateway.general.email="$hostname_prefix-$(hexdump -v -e '1/1 "%.2x"' -s $((0x1005)) -n 3 /dev/mtd6)@$company_domain"
+    set network.wan.hostname="$hostname"
+    set system.@system[0].hostname="$hostname"
+    set gateway.general.email="$hostname@$company_domain"
     set gateway.general.GWID=$(xxd -ps -l 8 -s 0x1002 /dev/mtd6)
     commit
 EOF
+
+sed "s/cid ' '/cid '$hostname'/g" /etc/config/mqtt -i
 
 exit 0

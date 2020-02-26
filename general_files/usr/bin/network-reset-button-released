@@ -32,9 +32,14 @@ then
 	cp /rom/etc/config/wireless /etc/config/
 	cp /rom/etc/config/firewall /etc/config/
 	
-	rename_network_on_first_boot
+	ssid_prefix=$(uci get system.vendor.ssid_prefix)
+	SSID="$ssid_prefix-$(hexdump -v -e '1/1 "%.2x"' -s $((0x1005)) -n 3 /dev/mtd6)"
+	uci set wireless.ap_0.ssid=$SSID
+	uci commit wireless
 	
-	/sbin/reboot
+	(sleep 1; /etc/init.d/network restart) &
+	(sleep 10; /etc/init.d/fallbackip start) &
+	
 	exit 0
 fi
 
