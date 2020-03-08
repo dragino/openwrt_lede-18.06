@@ -51,7 +51,7 @@
   if [ $FORM_BUTTON == "Save&Apply" ]; then
 		uci set gateway.general.server_type="mqtt"
 		uci commit gateway
-    /etc/init.d/lora_gw reload > /dev/null
+    /usr/bin/reset_lgw.sh restart > /dev/null
     sleep 2
     /etc/init.d/iot reload > /dev/null
   fi
@@ -65,25 +65,26 @@
 # --- Get the variables for the HTML page ---
 	board=`cat /var/iot/board`
 	iot_service="$(uci -q get gateway.general.server_type)"
-  server_type="$(uci -q get mqtt.common.server_type)"
+	server_type="$(uci -q get mqtt.common.server_type)"
 
 	url="$(uci -q get mqtt.$server_type.url)"
 	port="$(uci -q get mqtt.$server_type.port)"
-  user="$(uci -q get mqtt.$server_type.user)"                                                                          
+	user="$(uci -q get mqtt.$server_type.user)"                                                                          
 	pwd="$(uci -q get mqtt.$server_type.pwd)"
 	cert="$(uci -q get mqtt.$server_type.cert)"
-  key="$(uci -q get mqtt.$server_type.key)"
+	key="$(uci -q get mqtt.$server_type.key)"
 	cafile="$(uci -q get mqtt.$server_type.cafile)"
 	cid="$(uci -q get mqtt.$server_type.cid)"
 
 	pub_enable="$(uci -q get mqtt.common.pub_enable)"
-  pub_qos="$(uci -q get mqtt.$server_type.pub_qos)"                                                                      
+	pub_qos="$(uci -q get mqtt.$server_type.pub_qos)"                                                                      
 	topic="$(uci -q get mqtt.$server_type.pub_topic)"
-  data="$(uci -q get mqtt.$server_type.data)"
+	data="$(uci -q get mqtt.$server_type.data)"
 
 	sub_enable="$(uci -q get mqtt.common.sub_enable)"
-  sub_qos="$(uci -q get mqtt.$server_type.sub_qos)"
+	sub_qos="$(uci -q get mqtt.$server_type.sub_qos)"
 	sub_topic="$(uci -q get mqtt.$server_type.sub_topic)"
+
 
 # --- Set up server specific display fields ---
 
@@ -141,11 +142,6 @@
 <div class="container" style="margin: 50px">
 <form id="mqtt" action="<% echo -n $SCRIPT_NAME %>" method="POST">
 	
-<% if [[ "$board" == "LG08P" || "$board" == "LG08" || "$board" == "LPS8" ]]; then %>
-	<strong><font size="4" color="red">Note: MQTT protocol is not supported on this device</font></strong>
-	<br><br>
-<% fi %>	
-
 	<label for="server_type">MQTT Server Profile</label>
 	<select id="server_type" style="padding-right:80px" name="SERVER_TYPE" onchange="changeFunc(this.value)" >
 		<option selected="<% echo -n $server_type %>"><% echo -n $server_type %></option>
@@ -242,12 +238,11 @@
   <br><br>
 
 <!--	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save"> -->
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
+
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">	
 	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
 
 </form>
 </div>
 </body>
 </html>
-
-

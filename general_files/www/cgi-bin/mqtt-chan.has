@@ -4,21 +4,22 @@
 
 <%# --- Process the form submission --- %>
 <%
-	if [ $FORM_BUTTON == "Add" ] && [ $FORM_CHAN_NO -ge "1" ] && [ $FORM_CHAN_NO -le "99" ]; then
-    uci set mqtt.chan$FORM_CHAN_NO=channels
-    uci set mqtt.chan$FORM_CHAN_NO.local_id=$FORM_LOCAL_ID
-    uci set mqtt.chan$FORM_CHAN_NO.remote_id=$FORM_REMOTE_ID
-    uci set mqtt.chan$FORM_CHAN_NO.write_api_key=$FORM_WRITE_API_KEY
-    uci commit mqtt
-  elif [ $FORM_BUTTON == "Add" ]; then
-    add_chan_error="<b>Invalid channel number: $FORM_CHAN_NO. <sp><sp> Use 1 - 99</b>"
-	fi
+	sql_file="/etc/iot/channels"
 
-	if [ $FORM_BUTTON == "Delete" ] && [ $FORM_DEL_CHAN_NO -ge "1" ] && [ $FORM_DEL_CHAN_NO -le "99" ]; then
-    uci delete mqtt.chan$FORM_DEL_CHAN_NO
-    uci commit mqtt
-  elif [ $FORM_BUTTON == "Delete" ]; then
-    del_chan_error="<b>Invalid channel number: $FORM_DEL_CHAN_NO. <sp><sp> Use 1 - 99</b>"
+	if [ $FORM_BUTTON == "ADD_CHAN" ];then
+		if [ -n "$FORM_LOCAL_ID" ] && [ -n "$FORM_REMOTE_ID" ];then
+			local_id=$(echo $FORM_LOCAL_ID)
+			remote_id=$(echo $FORM_REMOTE_ID)
+			api=$(echo $FORM_API)
+			sqlite3 $sql_file "INSERT INTO mapping (local, remote, APIKey) VALUES  ('$local_id', '$remote_id', '$api');"
+		else
+			add_chan_error="<b>Local ID and remote ID must not be blank</b>"
+		fi 
+	fi
+	
+
+	if [ $FORM_BUTTON == "DELETE" ];then
+		sqlite3 $sql_file "DELETE FROM mapping where local = '$FORM_DEL_CHAN';"
 	fi
 %>
 
@@ -36,54 +37,42 @@
 
 <div class="container" style="margin: 50px">
   <form action="<% echo -n $SCRIPT_NAME %>" method=POST enctype="multipart/form-data" >
-
-    <h3> Add / Edit Channel </h3>
-
-	  <label for="CHAN_NO">Channel Number</label>
-	  <input type="text" size="4" name="CHAN_NO" >
-    Number 0 - 99
-    <br>
-	  <label for="LOCAL_ID">Local ID</label>
-	  <input type="text" name="LOCAL_ID">
-    <br>
-	  <label for="REMOTE_ID">Remote ID</label>
-	  <input type="text" name="REMOTE_ID" >
-    <br>
-	  <label for="WRITE_API_KEY">Write API Key</label>
-	  <input type="text" name="WRITE_API_KEY" >
-    <br>
-    <INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Add">
-    <br>
-    <% echo $add_chan_error %>
-    <br>
+    <h3> Add Channel </h3>
+		<label for="LOCAL_ID">Local ID:</label> <input type="text" size="16" name="LOCAL_ID">
+		<br>
+		
+		<label for="REMOTE_ID">Remote ID:</label> <input type="text" size="50" name="REMOTE_ID">
+		<br>
+		
+		<label for="API">API Key:</label> <input type="text" size="50" name="API">
+		<br>
+		
+		<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="ADD_CHAN">
+		<br>
+		<% echo $add_chan_error %>
+	<br></br>
 
     <h3> Delete Channel </h3>
-
-	  <label for="DEL_CHAN_NO">Channel Number</label>
-	  <input type="text" size="4" name="DEL_CHAN_NO" >
-    Number 0 - 99
+		<label for="DEL_CHAN">Local ID</label>
+		<select id="local" style="padding-right:130px" name="DEL_CHAN">
+		<% for local_id in `sqlite3 $sql_file  "SELECT *from mapping" | awk -F '\\|' '{print $1}'`; do %>   
+			<option value="<% echo -n "$local_id" %>" ><% echo -n "$local_id" %></option>                                  
+		<% done %>				
+		<script>document.getElementById("local").value="<% echo -n $local_id %>";</script>
+		
+		<br>
+		<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="DELETE">
+		<br>
+		<% echo $del_chan_error %>
+	
+	<br></br>
+	
+	<h3> Channels Mapping:</h3>
+	<text>Local ID&nbsp&nbsp|&nbsp&nbspRemote ID&nbsp&nbsp|&nbsp&nbspAPI Keys </text>
+	<br>
+	<textarea cols="155" rows="20" ><% sqlite3 $sql_file "SELECT *from mapping" | awk -F '\\|' '{print $1"  |  "$2"  |  "$3}' %></textarea>
     <br>
-    <INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Delete">
-    <br>
-    <% echo $del_chan_error %>
-    <br>
-
-    <h3>Saved Channels:</h3>
-		<%
-			rm /tmp/chan.txt; touch /tmp/chan.txt
-			for n in `uci show mqtt | grep "=channels" | cut -d . -f2 | cut -d = -f1`
-			do
-				loc=`uci -q get mqtt.$n.local_id`
-				rem=`uci -q get mqtt.$n.remote_id`
-				api=`uci -q get mqtt.$n.write_api_key`
-				echo $n " Local ID: "$loc " Remote ID: "$rem "Write API Key: "$api >> /tmp/chan.txt
-			done
-		%>
-
-		<iframe id="CHAN_LIST" src="/chan.txt"  width="100%" height="150" ></iframe>
-
-    <br>
-    <INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Refresh">
+	
   </form>
 </div>
 

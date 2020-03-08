@@ -48,6 +48,8 @@
   else
   	cell_enable="checked"
   fi
+  cat /sys/kernel/debug/usb/devices | grep "Vendor=2c7c ProdID=0125" -c > /tmp/cell_detect.txt
+  cell_detect=$(cat /tmp/cell_detect.txt)
 %>
 
 <%# --- Present the HTML page --- %>
@@ -74,8 +76,12 @@
 <div class="container" style="margin: 50px">
 <form name="SYSTEM-CELL" id="SYSTEM-CELL" action="<% echo -n $SCRIPT_NAME %>" method="POST">
 
-  <input type="checkbox" name="CELL_ENABLE" value="checked" <% echo -n $cell_enable %> > <font size="4"> Enable Cellular WAN </font>
-  <br><br>
+  <% if [ "$cell_detect" == "1" ]; then %>
+       <input type="checkbox" name="CELL_ENABLE" value="checked" <% echo -n $cell_enable %> > <font size="4"> Enable Cellular WAN </font>
+  <% else %>
+       <font size="4" color="red"> Cellular device not detected </font>
+  <% fi %>
+    <br><br>
 
 	<label for="APN"> APN </label>
 	<input type="text" name="APN" placeholder="Service Provider APN" maxlength="32" VALUE="<% echo -n $apn %>" >

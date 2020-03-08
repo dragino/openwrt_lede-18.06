@@ -1,0 +1,116 @@
+#!/usr/bin/haserl
+
+<%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
+
+<%# --- Process the form submission --- %>
+<%
+  if [ $FORM_BUTTON == "ADD_KEY" ];then
+	if [ -n "$FORM_DEV_ADDR" ] && [ -n "$FORM_APPSKEY" ] && [ -n "$FORM_NWKSKEY" ];then
+		dev_addr=$(echo $FORM_DEV_ADDR | tr '[a-z]' '[A-Z]')
+		appskey=$(echo $FORM_APPSKEY | tr '[a-z]' '[A-Z]')
+		nwkskey=$(echo $FORM_NWKSKEY | tr '[a-z]' '[A-Z]')
+		sqlite3 /etc/lora/devskey "INSERT INTO abpdevs (devaddr, appskey, nwkskey) VALUES  ('$dev_addr', '$appskey', '$nwkskey');"
+	else
+		add_key_error="<b>Invalid Keys.</b>"
+	fi 
+  fi
+  
+  if [ $FORM_BUTTON == "DELETE" ];then
+		sqlite3 /etc/lora/devskey "DELETE FROM abpdevs where devaddr = '$FORM_DEVADDR';"
+  fi
+
+  if [ $FORM_BUTTON == "SAVE" ]; then
+	if [ "$FORM_ENABLE" == "checked" ]; then
+		uci set gateway.general.maccrypto=1
+	else
+		uci set gateway.general.maccrypto=0
+	fi
+	uci commit gateway
+	/etc/init.d/lora_gw restart > /dev/null
+    sleep 2
+    /etc/init.d/iot reload > /dev/null
+  fi
+
+%>
+
+
+<%# --- Get the variables for the HTML page --- %>
+<% 
+	abp_decrypt="$(uci -q get gateway.general.maccrypto)"
+
+	if [ $abp_decrypt == "1" ]; then
+		abp_decrypt="checked"
+	else
+		abp_decrypt="0"
+	fi
+%>
+
+
+<%# --- Set up field display --- %>
+<% 
+
+%>
+
+
+<%# --- Present the HTML page --- %>
+<html lang="en">
+<head>
+	<%inc /www/cgi-bin/inc/head.inc %>
+</head>
+
+<body>
+<%inc /www/cgi-bin/inc/menu.inc %>
+</div>
+<h2>Decrypt ABP End Node Packets</h2>
+
+<div class="container" style="margin: 50px">
+<form action="<% echo -n $SCRIPT_NAME %>" method="POST">
+	<label for="ENABLE">Enable ABP Decryption</label>
+	<input type="checkbox" name="ENABLE" value="checked" <% echo -n $abp_decrypt %>>
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="SAVE">
+	<br></br>
+	<br></br>
+	
+    <h3> Add Key </h3>
+		<label for="DEV_ADDR">Dev ADDR:</label> <input type="text" size="16" name="DEV_ADDR" pattern="([a-fA-F0-9]{8})$" placeholder="MSB,4 Bytes">
+		<br>
+		
+		<label for="APPSKEY">APP Session Key:</label> <input type="text" size="50" name="APPSKEY" pattern="([a-fA-F0-9]{32})$" placeholder="MSB,16 Bytes">
+		<br>
+		
+		<label for="NWKSKEY">Network Session Key:</label> <input type="text" size="50" name="NWKSKEY" pattern="([a-fA-F0-9]{32})$" placeholder="MSB,16 Bytes">
+		<br>
+		
+		<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="ADD_KEY">
+		<br>
+		<% echo $add_key_error %>
+    <br>
+	<br></br>
+	
+    <h3> Delete Key </h3>
+		<label for="DEL_DEV_ADDR">Dev ADDR</label>
+		<select id="devaddr" style="padding-right:130px" name="DEVADDR">
+		<% for dev_addr in `sqlite3 /etc/lora/devskey "SELECT *from abpdevs" | awk -F '\\|' '{print $1}'`; do %>   
+			<option value="<% echo -n "$dev_addr" %>" ><% echo -n "$dev_addr" %></option>                                  
+		<% done %>				
+		<script>document.getElementById("devaddr").value="<% echo -n $devaddr %>";</script>
+		
+		<br>
+		<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="DELETE">
+		<br>
+		<% echo $del_key_error %>
+    <br>
+	
+	<br></br>
+	
+	<h3> ABP Keys:</h3>
+	<text>DEV ADDR&nbsp&nbsp|&nbsp&nbspAPP Session Key&nbsp&nbsp|&nbsp&nbspNetwork Session Key </text>
+	<textarea cols="155" rows="20" ><% sqlite3 /etc/lora/devskey "SELECT *from abpdevs" | awk -F '\\|' '{print $1"  |  "$2"  |  "$3}' %></textarea>
+    <br>
+	
+</form>
+</div>
+</body>
+</html>
+
+

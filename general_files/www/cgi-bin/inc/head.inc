@@ -9,16 +9,10 @@
 
   <link rel="stylesheet" type="text/css" href="/static/resources/LoRaGateway.css">  
   <link rel="stylesheet" href="/static/resources/config.css">
-  <!--  <link rel="stylesheet" href="/static/resources/bootstrap.min.css"> -->
-	<link rel="stylesheet" href="/static/resources/font-awesome.min.css">
-  
- <!--  
-	<script src="/static/resources/jquery.min.js"></script>
- 	<script src="/static/resources/bootstrap.min.js"></script>
-	<script src="/static/resources/popper.min.js"></script>
- -->
-
+  <link rel="stylesheet" href="/static/resources/font-awesome/css/all.css">
 	<link rel="shortcut icon" href="/static/resources/favicon.ico">
+  
+  <script src="/static/resources/jquery.min.js"></script>
 
 	<script>
   	function toggleNavbar() {

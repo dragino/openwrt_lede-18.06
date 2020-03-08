@@ -1,0 +1,51 @@
+#!/usr/bin/haserl --upload-limit=16400 --upload-dir=/tmp
+
+<%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
+
+<%# --- Present the HTML page --- %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%inc /www/cgi-bin/inc/head.inc %>
+<meta http-equiv="refresh" content="150">
+</head>
+
+<body>
+<%inc /www/cgi-bin/inc/menu.inc %>
+<h2>Reboot / Reset</h2>
+
+<div class="container" style="margin: 50px">
+  <form action="<% echo -n $SCRIPT_NAME %>" method=POST enctype="multipart/form-data" >
+
+    <h3> Reboot </h3>
+    <%
+    	if [ $FORM_BUTTON == "REBOOT" ]; then
+			echo "<br><font size="4">*** Rebooting... </font><br>"
+			echo "<br><font size="4">*** Please wait 2 minutes and connect again. </font><br>"
+    		reboot
+			echo "<br><font size="4" color="red">*** Rebooting...</font><br>"
+		fi
+    %>
+    <INPUT TYPE="SUBMIT" name="BUTTON" VALUE="REBOOT">
+    <br><br>
+
+
+    <br><br>
+    <h3> Reset to Factory Default </h3>
+    <%
+    	if [ $FORM_BUTTON == "RESET" ]; then
+			echo "<br><font size="4">*** RESET to Factory Default... </font><br>"
+			echo "<br><font size="4">*** Please wait 2 minutes and connect again. </font><br>"
+    		mtd -r erase rootfs_data
+			echo "<br><font size="4" color="red">*** Reseting...</font><br>"
+		fi
+    %>
+    <INPUT TYPE="SUBMIT" name="BUTTON" VALUE="RESET">
+
+
+  </form>
+</div>
+</body>
+</html>
+
+

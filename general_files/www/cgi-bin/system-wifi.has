@@ -2,9 +2,10 @@
 
 <%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
 
+<%#  ssid_str=$(iw dev wlan0 scan | grep SSID |grep -v \x00 |cut -d : -f 2 | sed 's/.*/<option>&<\/option>/') %>
+
 <%# --- Process the form submission --- %>
 <%
-
 	if [ $FORM_BUTTON == "Save" ] || [ $FORM_BUTTON == "Save&Apply" ]; then
 		uci set wireless.ap_0.ssid="$FORM_SSID"
 		uci set wireless.ap_0.encryption="$FORM_ENCRYPTION"
@@ -48,7 +49,6 @@
 		(sleep 20; /etc/init.d/fallbackip start) &
     #/etc/init.d/DR_wifi_wan start &  # Check that WiFi WAN is operating correctly, else disable after 30 seconds.
   fi
-
 %>
 
 <%# --- Get the variables for the HTML page --- %>
@@ -81,8 +81,7 @@
   	channel=$(iw dev |grep -A 1 managed | grep channel | cut -d " " -f2)
   fi
 %>
-
-
+  
 <%# --- Present the HTML page --- %>
 <!DOCTYPE html>
 <html lang="en">
@@ -111,77 +110,110 @@ function host_keyFunction() {
 
 <body>
 <%inc /www/cgi-bin/inc/menu.inc %>
-<h2>WiFi</h2>
+<h2 class="pageTitle">WiFi</h2>
 
-<div class="container" style="margin: 50px">
+<div class="container" style="margin: 50px; margin-top: 0px;">
 <form name="SYSTEM-WIFI" id="SYSTEM-WIFI" action="<% echo -n $SCRIPT_NAME %>" method="POST">
 
-	<h3>Radio Settings</h3>
+<table class="configTable">
+	<tr><td colspan="4"><h3>Radio Settings</h3></td></tr>
 
-	<label for="CHANNEL"> Channel (1-11) </label>
-	<input type="text" name="CHANNEL" maxlength="2" VALUE="<% echo -n $channel %>"   pattern="(1[0-1]|[1-9])$">
+	<tr>
+		<td><label for="CHANNEL"> Channel (1-11) </label></td>
+		<td><input class="shortText" type="text" name="CHANNEL" maxlength="2" VALUE="<% echo -n $channel %>"   pattern="(1[0-1]|[1-9])$"></td>
 
-	<label for="TXPOWER"> Tx Power (0-18) dBm</label>
-	<input type="text" name="TXPOWER" maxlength="2" VALUE="<% echo -n $txpower %>" pattern="(1[0-8]|[0-9])$">
-  <br></br>
+		<td><label for="TXPOWER"> Tx Power (0-18) dBm</label></td>
+		<td><input class="shortText" type="text" name="TXPOWER" maxlength="2" VALUE="<% echo -n $txpower %>" pattern="(1[0-8]|[0-9])$"></td>
+	</tr>	
+  
+	<tr>
+		<td colspan="4"><h3 class="pad">WiFi Access Point Settings</h3>
+		<input type="checkbox" name="AP_ENABLE" value="checked" <% echo -n $ap_enable %> > <font size="4"> Enable WiFi Access Point </font></td>
+	</tr>
+  
+	<tr>
+		<td><label for="SSID">WiFi Name SSID</label></td>
+		<td><input type="text" name="SSID" required maxlength="128" VALUE="<% echo -n $ssid %>" pattern="[a-zA-Z0-9_*.$%<>;:?@=!^|&+()#~\{\}\-]{1,128}" ></td>
+	</tr>
 
-	<h3>WiFi Access Point Settings</h3>
+	<tr>
+		<td><label for="KEY"> Passphrase (8-32 char)</label></td>
+		<td><input type="password" name="KEY" id="key" required maxlength="32" VALUE="<% echo -n $key %>" pattern="[a-zA-Z0-9_*.$%<>;:?@=!^|&+()#~\{\}\-]{8,32}" >
+	    <input type="checkbox" onclick="keyFunction()"></td>
 
-  <input type="checkbox" name="AP_ENABLE" value="checked" <% echo -n $ap_enable %> > <font size="4"> Enable WiFi Access Point </font>
-  <br><br>
-
-	<label for="SSID">WiFi Name SSID</label>
-	<input type="text" name="SSID" required maxlength="128" VALUE="<% echo -n $ssid %>" pattern="[a-zA-Z0-9_*.$%<>;:?@=!^|&+()#~\{\}\-]{1,128}" >
-  <br></br>
-
-	<label for="KEY"> Passphrase (8-32 char)</label>
-	<input type="password" name="KEY" id="key" required maxlength="32" VALUE="<% echo -n $key %>" pattern="[a-zA-Z0-9_*.$%<>;:?@=!^|&+()#~\{\}\-]{8,32}" > 
-
-  <input type="checkbox" onclick="keyFunction()"> 
-
-	<label for="ENCRYPTION"> Encryption</label>
-  <SELECT name="ENCRYPTION" id="encryption">
+		<td><label for="ENCRYPTION"> Encryption</label></td>
+	    <td><SELECT name="ENCRYPTION" id="encryption">
 		<option value="mixed-psk">WPA/WPA2</option>
 		<option value="psk2">WPA2</option>
 		<option value="psk">WPA</option>
 		<option value="wep">WEP</option>
 		<option value="none">None</option>
-	</SELECT>
-	<script>document.getElementById("encryption").value="<% echo -n $encryption %>";</script>
+		</SELECT></td>
+
+		<script>document.getElementById("encryption").value="<% echo -n $encryption %>";</script>
+	</tr>	
+
+	<tr><td colspan="4"><h3 class="pad">WiFi WAN Client Settings</h3>
+		<input type="checkbox" name="WIFI_WAN_ENABLE" value="checked" <% echo -n $wifi_wan_enable %> > <font size="4"> Enable WiFi WAN Client </font>
+		<font size="4" color="red"> <% echo -n $wan_str %> </font></td>
+	</tr>
+
+	<tr>
+		<td><label for="HOST_SSID">Host WiFi Name SSID</label></td>
+		<td><input type="text" name="HOST_SSID" id="host_ssid" maxlength="128" VALUE="<% echo -n $host_ssid %>" pattern="[a-zA-Z0-9_*.$%<>;:?@=!^|&+()#~\{\}\-\s]{1,128}" ></td>
+
+		<td><label for="SSID_SURVEY">WiFi Survey</label></td>
+		<td><select name="SSID_SURVEY" id="ssid_survey" onchange="writeToHostSSID()" >
+		<option> Loading... </option>
+		</select></td>
+	</tr>
+  
+	<tr>
+		<td><label for="HOST_KEY"> Passphrase </label></td>
+		<td><input type="password" name="HOST_KEY" id="host_key" maxlength="128" VALUE="<% echo -n $host_key %>" pattern="[a-zA-Z0-9_*.$%<>;:?@=!^|&+()#~\{\}\-\s\/]{8,128}" > 
+  		<input type="checkbox" onclick="host_keyFunction()"> </td>
+
+		<td><label for="HOST_ENCRYPTION">Encryption</label></td>
+	  	<td><SELECT name="HOST_ENCRYPTION" id="host_encryption">
+			<option value="mixed-psk">WPA/WPA2</option>
+			<option value="psk2">WPA2</option>
+			<option value="psk">WPA</option>
+			<option value="wep">WEP</option>
+			<option value="none">None</option>
+			</SELECT></td>
+	</tr>	
+	</table>
+
+<script>document.getElementById("host_encryption").value="<% echo -n $host_encryption %>";</script>
   <br><br>
 
-
-	<h3>WiFi WAN Client Settings</h3>
-
-  <input type="checkbox" name="WIFI_WAN_ENABLE" value="checked" <% echo -n $wifi_wan_enable %> > <font size="4"> Enable WiFi WAN Client </font>
-	<font size="4" color="red"> <% echo -n $wan_str %> </font>
-  <br><br>
-
-	<label for="HOST_SSID">Host WiFi Name SSID</label>
-	<input type="text" name="HOST_SSID" required maxlength="128" VALUE="<% echo -n $host_ssid %>" pattern="[a-zA-Z0-9_*.$%<>;:?@=!^|&+()#~\{\}\-\s]{1,128}" >
-  <br></br>
-
-	<label for="HOST_KEY"> Passphrase </label>
-	<input type="password" name="HOST_KEY" id="host_key" required maxlength="128" VALUE="<% echo -n $host_key %>" pattern="[a-zA-Z0-9_*.$%<>;:?@=!^|&+()#~\{\}\-\s\/]{8,128}" > 
-
-  <input type="checkbox" onclick="host_keyFunction()"> 
-
-	<label for="HOST_ENCRYPTION">Encryption</label>
-  <SELECT name="HOST_ENCRYPTION" id="host_encryption">
-		<option value="mixed-psk">WPA/WPA2</option>
-		<option value="psk2">WPA2</option>
-		<option value="psk">WPA</option>
-		<option value="wep">WEP</option>
-		<option value="none">None</option>
-	</SELECT>
-	<script>document.getElementById("host_encryption").value="<% echo -n $host_encryption %>";</script>
-  <br><br>
-
-<!--	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save"> -->
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save"> 
 	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
 	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
 
 </form>
+
+<script>
+function writeToHostSSID(){
+	document.getElementById("host_ssid").value = document.getElementById("ssid_survey").value;
+}
+
+<%
+	# Scan SSIDs  
+  ssid_str=$(iw dev wlan0 scan | grep SSID |grep -v \x00 |cut -d : -f 2 | sed 's/.*/<option>&<\/option>/')
+  ssid_str="<option selected disabled>Choose WiFi SSID...</option>"$ssid_str
+  #ssid_str="<option selected="selected" disabled> </option>"$ssid_str
+%>
+</script>
+
+<span  id="survey_str" style="visibility:hidden; display:none;">
+	<% echo -n $ssid_str %>
+</span>
+
+<script>
+document.getElementById("ssid_survey").innerHTML = document.getElementById("survey_str").innerHTML;
+</script>
+
 </div>
 </body>
 </html>

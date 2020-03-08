@@ -45,11 +45,8 @@
 	server_type="$(uci -q get gateway.general.server_type)"
 	debug="$(uci -q get gateway.general.DEB)"
 
-	provider="$(uci -q get gateway.general.provider)"
-	if [ $provider == "custom" ];then
-		server_address="$(uci -q get gateway.general.custom_server)"
-	fi
-
+	custom_server="$(uci -q get gateway.general.custom_server)"
+	
 	platform="$(uci -q get gateway.general.platform)"
 
 	port="$(uci -q get gateway.general.port)"
@@ -111,7 +108,7 @@
 	<%inc /www/cgi-bin/inc/head.inc %>
 </head>
 
-<body>
+<body onload="displayCustomURL()">
 <%inc /www/cgi-bin/inc/menu.inc %>
 <h2>LoRaWAN Configuration</h2>
 
@@ -119,20 +116,20 @@
 <form id="lora" action="<% echo -n $SCRIPT_NAME %>" method="POST">
 
 	<h3>Server Settings</h3>
+	
 	<label for="PLATFORM">LoRaWAN Service Provider</label>
-	<select id='platform' name='PLATFORM' style="width: 205px;">
+	
+	<select id='platform' name='PLATFORM' style="width: 245px;" onchange="displayCustomURL()">
 		<%inc /www/cgi-bin/inc/providers.txt %>
 	  <option value="local,127.0.0.1" >Built-in</option>
 	  <option value="custom" >Custom</option>
 	</select>
 	<script>document.getElementById("platform").value="<% echo -n $platform %>";</script>
 
-	<%# Display the field for Custom provider %>
-	<% if [ $provider == "custom" ]; then %>
-			<label for="SERVER_ADDRESS">Server Address</label>
-		<input type="text" name="SERVER_ADDRESS" VALUE="<% echo -n $server_address %>"  >
-	<% fi %>
+	<label for="SERVER_ADDRESS" id="server_address_label" style="visibility:hidden";>Server Address</label>
+	<input type="text" id="server_address" name="SERVER_ADDRESS" VALUE="<% echo -n $custom_server %>" style="visibility:hidden";>	
 	<br></br>
+	
 
 	<label for="GWID">Gateway ID</label>                                       
 	<input type="text" name="GWID" maxlength="32" VALUE=<% echo -n $gwid %> >
@@ -163,12 +160,25 @@
 	<br></br>
 	
 	&nbsp;&nbsp;&nbsp;&nbsp;
-<!--	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save">&nbsp;&nbsp; -->
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">&nbsp;&nbsp;
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save" style="display:inline">	
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
 	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
 
 </form>
 </div>
+
+<script>
+function displayCustomURL(){
+	document.getElementById("server_address").style.visibility = "hidden";
+	document.getElementById("server_address_label").style.visibility = "hidden";
+	var x = document.getElementById("platform").value;
+	if (x == "custom") {
+	document.getElementById("server_address").style.visibility = "visible";
+	document.getElementById("server_address_label").style.visibility = "visible";
+	}
+}
+</script>
+
 </body>
 </html>
 

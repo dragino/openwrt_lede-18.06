@@ -1,0 +1,73 @@
+#!/usr/bin/haserl 
+
+<%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
+
+<%
+	if [ $FORM_BUTTON == "INSTALL" ]; then
+		if [ -n "$FORM_PACKAGE" ]; then
+			install_info=`opkg install $FORM_PACKAGE`
+		fi
+	fi
+
+	if [ $FORM_BUTTON == "CHECK" ]; then
+		#if [ ! -f /var/opkgupdate ];then 
+			opkgupdate=`opkg update`
+			opkglist=`opkg list`
+			CHECK_FLAG=1
+		#fi		
+	fi
+	
+	CORE_PKG="lg02_pkt_fwd lora-gateway"
+	for PKG in $CORE_PKG;do
+		if [ $FORM_BUTTON == "Upgrade_$PKG" ]; then
+			install_info="$(opkg upgrade $PKG -V)"
+		fi
+	done	
+%>
+
+<%# --- Present the HTML page --- %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%inc /www/cgi-bin/inc/head.inc %>
+</head>
+
+<body>
+<%inc /www/cgi-bin/inc/menu.inc %>
+<h2>Package Manage</h2>
+
+<div class="container" style="margin: 50px">
+  <form action="<% echo -n $SCRIPT_NAME %>" method=POST enctype="multipart/form-data" >
+
+    <h3> Check for Update </h3>
+    <text>Click CHECK will wait for a while to update</text><INPUT TYPE="SUBMIT" name="BUTTON" VALUE="CHECK">
+	<br>
+	<textarea cols="155" rows="10" > <% echo $opkgupdate%><% echo $opkglist %></textarea>"
+    <br><br>
+	
+    <h3> Install Package  </h3>
+		<label for="PACKAGE">Package Name:</label> <input type="text" size="30" name="PACKAGE">
+		
+		<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="INSTALL">
+    <br>
+	<br></br>
+
+    <h3> Core Package  </h3>
+		<text>PACKAGE &nbsp&nbsp|&nbsp&nbsp Cur Version &nbsp&nbsp|&nbsp&nbsp Remote version&nbsp&nbsp|&nbsp&nbsp Action </text>
+		<br>
+		<% for PKG in $CORE_PKG;do %>
+			<text><% echo $PKG %> : <% echo $(opkg list_installed | grep ^$PKG | awk '{print $3}') %>&nbsp&nbsp&nbsp&nbsp <% echo $(opkg list | grep ^$PKG | awk '{print $3}') %></text>
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Upgrade_<% echo -n $PKG %>">
+			<br>
+		<% done %> 
+    <br>
+	<br></br>
+	<textarea cols="155" rows="10" ><% echo $install_info %></textarea>
+    <br><br>
+
+  </form>
+</div>
+</body>
+</html>
+
+
