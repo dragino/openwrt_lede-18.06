@@ -42,30 +42,45 @@
 
 <body>
 <%inc /www/cgi-bin/inc/menu.inc %>
+<div class="page-container">
 <h2>Network</h2>
 
-<div class="container" style="margin: 50px">
 <form name="SYSTEM" id="SYSTEM" action="<% echo -n $SCRIPT_NAME %>" method="POST">
+	<table class="configTable">
+		<tr><td colspan="20"></td></tr> <!--Determines column widths-->
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="19"><h3>LAN Settings</h3></td>
+		</tr>
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="2"><label for="IPADDR">IP Address</label></td>
+			<td colspan="3"><input type="text" name="IPADDR" value="<% echo -n $ipaddr %>" required pattern="(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}$"></td>
+			<td colspan="1"></td>
+			<td colspan="2"><label for="GATEWAY">Gateway</label></td>
+			<td colspan="3"><input type="text" name="GATEWAY" VALUE="<% echo -n $gateway %>" required pattern="(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}$"></td>
+		</tr>
+		<tr class="rowSpacer"></tr>
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="2"><label for="NETMASK">Netmask</label></td>
+			<td colspan="3"><input type="text" name="NETMASK" VALUE="<% echo -n $netmask %>" required pattern="(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}$"></td>
+			<td colspan="1"></td>
+			<td colspan="2"><label for="DNS">DNS</label></td>
+			<td colspan="3"><input type="text" name="DNS" VALUE="<% echo -n $dns %>" required pattern="(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}$"></td>
+		</tr>
 
-	<h3>LAN Settings</h3>
-
-	<label for="IPADDR">IP Address</label>
-	<input type="text" name="IPADDR" value="<% echo -n $ipaddr %>" required pattern="(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}$">
-
-	<label for="GATEWAY">Gateway</label>
-	<input type="text" name="GATEWAY" VALUE="<% echo -n $gateway %>" required pattern="(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}$">
-  <br></br>
-
-	<label for="NETMASK">Netmask</label>
-	<input type="text" name="NETMASK" VALUE="<% echo -n $netmask %>" required pattern="(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}$">
-
-	<label for="DNS">DNS</label>
-	<input type="text" name="DNS" VALUE="<% echo -n $dns %>" required pattern="(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}$">
-  <br><br><br>
-
-<!--	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save"> -->
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
+		<tr class="rowSpacer"></tr>
+		<tr class="rowSpacer"></tr>
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="19">
+				<INPUT class="hiddenKey" TYPE="SUBMIT" name="BUTTON" VALUE="Save" accesskey="s"> 
+				<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
+				<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
+			</td>
+		</tr>
+	</table>
 
 </form>
 </div>

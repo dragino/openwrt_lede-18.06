@@ -18,31 +18,40 @@ MEMSTR="Free Memory: "$MEMFREE" / Total Memory: "$MEMTOT
 <body>
 <%inc /www/cgi-bin/inc/menu.inc %>
   
+<div class="page-container">
 <h2>LogRead</h2>
 
-<div class="container" style="margin: 50px">
-	<br>
+<table class="configTable"> <!--This is a one column table-->
+	<tr><td>
+		<h4>	<% echo "FreqINFO:  " %> 	</h4>
+		<% cat /etc/lora/desc | sed  's/$/ <br>/' %>
+	</td></tr>
 
-	<h4>	<% echo "FreqINFO:  " %> 	</h4>
-	<% cat /etc/lora/desc | sed  's/$/ <br>/' %>
-	<br><br>
+	<tr class="rowSpacer"></tr>
+	<tr><td>
+		<h4>	<% echo "Logread Error:  " %> 	</h4>
+		<% logread -e "ERROR~" | sed  's/$/ <br>/' %>
+	</td></tr>
 
-	<h4>	<% echo "Logread Error:  " %> 	</h4>
-	<% logread -e "ERROR~" | sed  's/$/ <br>/' %>
-	<br><br>
+	<tr class="rowSpacer"></tr>
+	<tr><td>
+		<h4>	<% echo "Logread RxTxJson:  " %> 	</h4>
+		<% logread -l 50 -e "RXTX~" | sed  's/$/ <br>/' %>
+	</td></tr>
 
-	<h4>	<% echo "Logread RxTxJson:  " %> 	</h4>
-	<% logread -l 50 -e "RXTX~" | sed  's/$/ <br>/' %>
-	<br><br>
+	<tr class="rowSpacer"></tr>
+	<tr><td>
+		<h4>	<% echo "Logread REPORT:  " %> 	</h4>
+		<% logread -e REPORT | sed  's/$/ <br>/' %>
+	</td></tr>
 
-	<h4>	<% echo "Logread REPORT:  " %> 	</h4>
-	<% logread -e REPORT | sed  's/$/ <br>/' %>
-	<br><br>
+	<tr class="rowSpacer"></tr>
+	<tr><td>
+		<h4>	<% echo "Logread INFO (json):  " %> 	</h4>
+		<% logread -e "INFO~ (json):" | cut -d "~" -f 2 | sed  's/$/ <br>/' %>
+	</td></tr>
 
-	<h4>	<% echo "Logread INFO (json):  " %> 	</h4>
-	<% logread -e "INFO~ (json):" | cut -d "~" -f 2 | sed  's/$/ <br>/' %>
-	<br><br>
-
+</table>
 </div>
 
 </body>

@@ -38,15 +38,21 @@
 
 <body>
 <%inc /www/cgi-bin/inc/menu.inc %>
+<div class="page-container">
 <h2>System Status</h2>
 
-<div class="container" style="margin: 50px">
 <form name="SYSTEM_STATUS" id="SYSTEM_STATUS" action="<% echo -n $SCRIPT_NAME %>" method="POST">
-
-	<h3>Network / WiFi Status</h3>
-	<iframe id="NET_WIFI_STATUS" src="/net_wifi_status.txt"  width="75%" height="550" ></iframe>
-
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Refresh">
+<table class="configTable">
+	<tr><td><h3>Network / WiFi Status</h3></td></tr>
+	<tr>
+		<td>
+		<iframe id="NET_WIFI_STATUS" src="/tmp/net_wifi_status.txt"  width="850px" height="550" ></iframe>
+		</td>
+	</tr>
+	<tr class="rowSpacer"></tr>
+	<tr><td><INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Refresh"></td></tr>
+	<tr class="rowSpacer"></tr>
+</table>
 
 </form>
 </div>

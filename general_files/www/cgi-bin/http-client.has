@@ -4,7 +4,7 @@
 
 <%# --- Process the form submission --- %>
 <%
-	if [ $FORM_BUTTON == "Save" ]; then
+	if [ $FORM_BUTTON == "Save" ] || [ $FORM_BUTTON == "Save&Apply" ]; then
 
     if [ $FORM_SSL_ENABLE == "checked" ]; then
       ssl_enable="1"
@@ -30,6 +30,7 @@
 	
 	if [ $FORM_BUTTON == "Save&Apply" ]; then
 		/etc/init.d/iot-http reload > /dev/null
+		rm /var/iot/status
 	fi
 %>
 
@@ -66,46 +67,72 @@
 
 <body >
 <%inc /www/cgi-bin/inc/menu.inc %>
+<div class="page-container">
 <h2>HTTP/HTTPS Client Configuration</h2>
 
-<div class="container" style="margin: 50px">
+
 <form action="<% echo -n $SCRIPT_NAME %>" method="POST">
-
-  <label for="SSL_ENABLE">Enable SSL Connection</label>
-  <input type="checkbox" name="SSL_ENABLE" value="checked" <% echo -n $ssl_enable %>>
-  <br></br>
-
-  <label for="DOWN_ENABLE">Enable HTTP Downlink</label>
-  <input type="checkbox" name="DOWN_ENABLE" value="checked" <% echo -n $down_enable %>>
-  <label>Forward downlink data via LoRa</label>
-  <br></br>
-
-	<label for="URL">Downlink URL</label>
-	<input type="text" name="URL" size="40" VALUE="<% echo -n $url %>">
-  <br></br>
-
-	<label for="data_type">Data Type</label>
-	<select id="data_type" name="DATA_TYPE" onChange="changeFunc();" >
-		<option selected="<% echo -n $data_type %>"><% echo -n $data_type %></option>
-	  <option value="JSON" >JSON - One Level</option>
-	</select> 
-  <br></br>
-
-	<label for="PARAM">Downlink Parameter</label>
-	<input type="text" name="PARAM" VALUE="<% echo -n $param %>">
-  <br></br>
-
-  <label for="POLL">Poll Period (secs)</label>                                       
-  <input type="text" name="POLL" VALUE=<% echo -n $poll %>>
-  <br></br>
-
-<!--	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save"> -->
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
+  <table class="configTable">
+    <tr class="rowSpacer"><td colspan="15"></td></tr> <!--Determines column widths-->
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="4"><label for="SSL_ENABLE">Enable SSL Connection&nbsp;</label>
+      <input type="checkbox" name="SSL_ENABLE" value="checked" <% echo -n $ssl_enable %>></td>
+      <td colspan="10"></td>
+    </tr>
+    <tr class="rowSpacer"></td></tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="4"><label for="DOWN_ENABLE">Enable HTTP Downlink&nbsp;</label>
+      <input type="checkbox" name="DOWN_ENABLE" value="checked" <% echo -n $down_enable %>></td>
+      <td colspan="10"><label>Forward downlink data via LoRa</label></td>
+    </tr>
+    <tr class="rowSpacer"></td></tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="4"><label for="URL">Downlink URL</label></td>
+      <td colspan="4"><input type="text" name="URL" size="40" VALUE="<% echo -n $url %>"></td>
+      <td colspan="6"></td>
+    </tr>
+    <tr class="rowSpacer"></td></tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="4"><label for="data_type">Data Type</label></td>
+      <td colspan="4"><select id="data_type" name="DATA_TYPE" onChange="changeFunc();" >
+		    <option selected="<% echo -n $data_type %>"><% echo -n $data_type %></option>
+	      <option value="JSON" >JSON - One Level</option>
+        </select> </td>
+      <td colspan="6"></td>
+    </tr>
+    <tr class="rowSpacer"></td></tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="4"><label for="PARAM">Downlink Parameter</label></td>
+      <td colspan="4"><input type="text" name="PARAM" VALUE="<% echo -n $param %>"></td>
+      <td colspan="6"></td>
+    </tr>
+    <tr class="rowSpacer"></td></tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="4"><label for="POLL">Poll Period (secs)</label></td>
+      <td colspan="4"><input type="text" name="POLL" VALUE=<% echo -n $poll %>></td>
+      <td colspan="6"></td>
+    </tr>
+    <tr class="rowSpacer"></tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="4">
+	<INPUT class="hiddenKey" TYPE="SUBMIT" name="BUTTON" VALUE="Save" accesskey="s"> 
+    	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
+      <INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
+      </td>
+    </tr>
+  </table>  
 
 </form>
 </div>
 </body>
 </html>
+
 
 

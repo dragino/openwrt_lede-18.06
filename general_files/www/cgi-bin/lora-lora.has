@@ -4,17 +4,9 @@
 
 <%# --- Process the form submission --- %>
 <%
-  # Update Freq Plan for changeFunct()
-	if [ -e /tmp/changeFunct.flag ]; then
-    rm /tmp/changeFunct.flag
-    if [ $FORM_GWCFG != "" ]; then  # Make sure it is a real change
-   	  uci set gateway.general.gwcfg=$FORM_GWCFG
-      uci commit gateway
-    fi
-  fi
-
 	if [ $FORM_BUTTON == "Save" ] || [ $FORM_BUTTON == "Save&Apply" ]; then
 		uci set gateway.general.DEB="$FORM_DEBUG"
+		uci set gateway.general.stat="$FORM_KEEPALIVE"
 		uci set gateway.general.RFPOWER="$FORM_RFPOWER"
 
 		uci set gateway.radio1.RFFREQ="$FORM_RFFREQ"
@@ -37,10 +29,16 @@
 		uci set gateway.radio2.TXPRLEN="$FORM_TXPRLEN"
 		uci set gateway.radio2.SYNCWD="$FORM_TXSYNCWD"
 		
+		# Save Band and Sub-Band
 		uci set gateway.general.gwcfg="$FORM_GWCFG"
-		[ -n "$FORM_SUBBAND" ] && uci set gateway.general.subband="$FORM_SUBBAND"
-		
-		#Use the FORM_RADIO0_FREQ to check if the customized form is provided
+		if [ "$FORM_GWCFG" == "AU" ]; then
+			uci set gateway.general.subband="$FORM_SUBBAND_AU"
+		fi
+		if [ "$FORM_GWCFG" == "US" ]; then
+			uci set gateway.general.subband="$FORM_SUBBAND_US"
+		fi
+		 
+		# Use the FORM_RADIO0_FREQ to check if the customized form is provided
 		if [ -n "$FORM_RADIO0_FREQ" ]; then
 			if [ "$FORM_RADIO0_ENABLE" == "checked" ]; then
 				uci set gateway.general.radio0_enable=1
@@ -93,31 +91,52 @@
 		fi
 
 		uci commit gateway
+		
+		# Set up LoRa Relay mode
+		server_type=$(uci get gateway.general.server_type)
+		relay_enable=$FORM_RELAY_ENABLE
+
+		if [ $server_type == "relay" ] && [[ "$relay_enable" != "checked" ]]; then
+			uci set gateway.general.server_type="disabled"
+			uci commit gateway
+		fi
+
+		if [ $relay_enable == "checked" ]; then
+			uci set gateway.general.server_type="relay"
+			uci commit gateway
+		fi
 	fi
 
   if [ $FORM_BUTTON == "Save&Apply" ]; then
+		killall -q mosquitto_sub  # Remove any remaining MQTT subscribe process
     /etc/init.d/lora_gw reload > /dev/null
     sleep 2
     /etc/init.d/iot reload > /dev/null
+		rm /var/iot/status
   fi
 
   if [ $FORM_BUTTON == "Disable" ]; then
 		uci set gateway.general.server_type="disabled"
 		uci commit gateway
+		killall -q mosquitto_sub  # Remove any remaining MQTT subscribe process
     /etc/init.d/lora_gw reload > /dev/null
     sleep 2
     /etc/init.d/iot reload > /dev/null
+		rm /var/iot/status
   fi
-  
-    rm /tmp/changeFunct.flag   # Just to be sure
-
 %>
 
 <%# --- Get the variables for the HTML page --- %>
 <% 
 	server_type="$(uci -q get gateway.general.server_type)"
+	if [ $server_type == "relay" ]; then
+		relay_enable="checked"
+	else
+		relay_enable="0"
+	fi
 	
 	debug="$(uci -q get gateway.general.DEB)"
+	keepalive="$(uci -q get gateway.general.stat)"
 	rfpower="$(uci -q get gateway.general.RFPOWER)"
 
 	rffreq="$(uci -q get gateway.radio1.RFFREQ)"
@@ -140,6 +159,7 @@
 	txprlen="$(uci -q get gateway.radio2.TXPRLEN)"
 	txsyncwd="$(uci -q get gateway.radio2.SYNCWD)"
 	
+	# Get Band and Sub-Band
 	gwcfg="$(uci -q get gateway.general.gwcfg)"
 	subband="$(uci -q get gateway.general.subband)"
 	
@@ -195,15 +215,14 @@
 	lorachan_radio="$(uci -q get gateway.general.lorachan_radio)"
 	lorachan="$(uci -q get gateway.general.lorachan)"
 	lorachan_sf="$(uci -q get gateway.general.lorachan_sf)"
-	lorachan_bw="$(uci -q get gateway.general.lorachan_bw)"	
-		
+	lorachan_bw="$(uci -q get gateway.general.lorachan_bw)"		
 %>
 
 
 <%# --- Set up field display --- %>
 <% 
   # Set up display defaults
-  disp1="inline"; disp2="none";disp3="none";disp4="none"
+  disp1="inline"; disp2="none";disp3="none"
 
   # Adjust display for board type
   board=`cat /var/iot/board`
@@ -216,7 +235,6 @@
   fi
 %>
 
-
 <%# --- Present the HTML page --- %>
 <html lang="en">
 
@@ -228,329 +246,497 @@
  	   document.getElementById("div2").style.display = "<% echo -n $disp2 %>"; 
 	   document.getElementById("div3").style.display = "<% echo -n $disp3 %>"; 
     }
-    
-    function changeFunc(val) {
-     <% touch /tmp/changeFunct.flag %>
-     document.forms["lora"].submit();
-    }
-
 	</script>
 </head>
 
 <body onload="displayFunction()">
 
 <%inc /www/cgi-bin/inc/menu.inc %>
-
+<div class="page-container">
 <h2>LoRa Configuration</h2>
-<div class="container" style="margin: 50px">
 <form id="lora" action="<% echo -n $SCRIPT_NAME %>" method="POST">
 
-	<label for="debug">Debug Level</label>
-	<select id="debug" name="DEBUG" >
-	  <option value="0" >Disabled</option>
-	  <option value="1" >Low</option>
-	  <option value="2" >Medium</option>
-	  <option value="3" >High</option>
-	  <option value="10" >Test</option>
-	</select> 
-	<script>document.getElementById("debug").value="<% echo -n $debug %>";</script>
-  <br><br>
+	<table class="configTable">
+		<tr><td colspan="18"></td></tr> <!--Determines the column widths-->
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="4"><label for="debug">Debug Level</label></td>
+			<td colspan="3"><select id="debug" name="DEBUG" >
+			  <option value="0" >Disabled</option>
+			  <option value="1" >Low</option>
+			  <option value="2" >Medium</option>
+			  <option value="3" >High</option>
+			  <option value="10" >Test</option>
+			</select> </td>
+			<td colspan="10"></td>
+			</tr>
+		<script>document.getElementById("debug").value="<% echo -n $debug %>";</script>
+	</table>
 
- <div id="div1">
-  <h3>Radio Settings</h3>
+	<div id="div1" <% echo -n $disp1 %> >
+	<table class="configTable">
+		<tr>
+			<td colspan="18"><h3>Radio Settings</h3></td>
+		</tr>
 
-  <label for="RFFREQ">Frequency (Hz)</label>                                       
-  <input type="text" name="RFFREQ" maxlength="9" VALUE=<% echo -n $rffreq %> pattern="([0-9]{9})$" >
-
-  <label for="RFBW">RF Bandwidth (Hz)</label>                                       
-	<select id="rfbw" style="padding-right:130px" name="RFBW">
-	  <option value="7800" >7.8kHz</option>
-	  <option value="10400" >10.4kHz</option>
-	  <option value="15600" >15.6kHz</option>
-	  <option value="20800" >20.8kHz</option>
-	  <option value="31250" >31.25kHz</option>
-	  <option value="62500" >62.5kHz</option>
-	  <option value="125000" >125kHz</option>
-	  <option value="250000" >250kHz</option>
-	  <option value="500000" >500kHz</option>
-	</select> 
-	<script>document.getElementById("rfbw").value="<% echo -n $rfbw %>";</script>
-  <br><br>
-
-  <label for="RFSF">Spreading Factor</label>                                       
-	<select id="rfsf" style="padding-right:130px" name="RFSF">
-	  <option value="6" >SF6</option>
-	  <option value="7" >SF7</option>
-	  <option value="8" >SF8</option>
-	  <option value="9" >SF9</option>
-	  <option value="10" >SF10</option>
-	  <option value="11" >SF11</option>
-	  <option value="12" >SF12</option>
-	</select> 
-	<script>document.getElementById("rfsf").value="<% echo -n $rfsf %>";</script>
-
-
-  <label for="RFCR" style="padding-left:70px" style="padding-right:80px">Coding Rate</label>                                       
-	<select id="rfcr" style="padding-right:130px" name="RFCR">
-	  <option value="5" >4/5</option>
-	  <option value="6" >4/6</option>
-	  <option value="7" >4/7</option>
-	  <option value="8" >4/8</option>
-	</select> 
-	<script>document.getElementById("rfcr").value="<% echo -n $rfcr %>";</script>
-  <br><br>
-
-  <label for="RFPRLEN">Preamble Length</label>                                       
-  <input type="text" name="RFPRLEN" maxlength="2" VALUE=<% echo -n $rfprlen %> pattern="[0-9]{1,2}" >
-
-  <label for="SYNCWD">LoRa Sync Word</label>                                       
-  <input type="text" name="SYNCWD" maxlength="2" VALUE=<% echo -n $syncwd %> pattern="[0-9]{1,2}" >
-  <br><br> 
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="4"><label for="RFFREQ">Frequency (Hz)</label></td>
+			<td colspan="3"><input type="text" name="RFFREQ" maxlength="9" VALUE=<% echo -n $rffreq %> pattern="([0-9]{9})$" ></td>
+			<td colspan="2"></td>
+			<td colspan="4"><label for="RFBW">RF Bandwidth (Hz)</label></td>
+			<td colspan="3"><select id="rfbw" name="RFBW">
+			  <option value="7800" >7.8kHz</option>
+			  <option value="10400" >10.4kHz</option>
+			  <option value="15600" >15.6kHz</option>
+			  <option value="20800" >20.8kHz</option>
+			  <option value="31250" >31.25kHz</option>
+			  <option value="62500" >62.5kHz</option>
+			  <option value="125000" >125kHz</option>
+			  <option value="250000" >250kHz</option>
+			  <option value="500000" >500kHz</option>
+			</select></td>
+			<td></td>
+		</tr>
+		<script>document.getElementById("rfbw").value="<% echo -n $rfbw %>";</script>
   
-  <label for="RFPOWER">RF Power (0-20) dBm</label>                                       
-  <input type="text" name="RFPOWER" maxlength="2" VALUE=<% echo -n $rfpower %> pattern="(20|1[0-9]|[0-9])$" >
-  <br><br>
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="4"><label for="RFSF">Spreading Factor</label></td>
+			<td colspan="3"><select id="rfsf" name="RFSF">
+			  <option value="6" >SF6</option>
+			  <option value="7" >SF7</option>
+			  <option value="8" >SF8</option>
+			  <option value="9" >SF9</option>
+			  <option value="10" >SF10</option>
+			  <option value="11" >SF11</option>
+			  <option value="12" >SF12</option>
+			</select> </td>
+			<td colspan="2"></td>
+			<td colspan="4"><label for="RFCR">Coding Rate</label></td>
+			<td colspan="3"><select id="rfcr" name="RFCR">
+			  <option value="5" >4/5</option>
+			  <option value="6" >4/6</option>
+			  <option value="7" >4/7</option>
+			  <option value="8" >4/8</option>
+			</select> </td>
+			<td></td>
+		</tr>
+			<script>document.getElementById("rfsf").value="<% echo -n $rfsf %>";</script>
+			<script>document.getElementById("rfcr").value="<% echo -n $rfcr %>";</script>
   
- </div>
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="4"><label for="RFPRLEN">Preamble Length</label></td>
+			<td colspan="3"><input class="shortText" type="text" name="RFPRLEN" maxlength="2" VALUE=<% echo -n $rfprlen %> pattern="[0-9]{1,2}" ></td>
+			<td colspan="2"></td>
+			<td colspan="4"><label for="SYNCWD">LoRa Sync Word</label></td>
+			<td colspan="3"><input type="text" name="SYNCWD" maxlength="2" VALUE=<% echo -n $syncwd %> pattern="[0-9]{1,2}" ></td>
+			<td></td>
+		</tr>
 
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="4"><label for="RFPOWER">RF Power (0-20) dBm</label></td>
+			<td colspan="3"><input class="shortText" type="text" name="RFPOWER" maxlength="2" VALUE=<% echo -n $rfpower %> pattern="(20|1[0-9]|[0-9])$" ></td>
+		</tr>
+	</table>
+ 	</div> <!-- End of div1 -->
 
- <div id="div2">
-  <h3>Radio 1 RX Settings</h3>
+	<div id="div2" <% echo -n $disp2 %> >
+	<table class="configTable">
+		<tr class="rowSpacer"></tr>
+		<tr><td colspan="18"><h3>Radio 1 RX Settings</h3></td></tr>
 
-  <label for="RXFREQ">Frequency (Hz)</label>                                       
-  <input type="text" name="RXFREQ" maxlength="9" VALUE=<% echo -n $rxfreq %> pattern="([0-9]{9})$" >
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="4"><label for="RXFREQ">Frequency (Hz)</label></td>
+			<td colspan="3"><input type="text" name="RXFREQ" maxlength="9" VALUE=<% echo -n $rxfreq %> pattern="([0-9]{9})$" ></td>
+			<td colspan="2"></td>
+			<td colspan="4"><label for="RXBW">RF Bandwidth (Hz)</label></td>
+			<td colspan="3"><select id="rxbw" name="RXBW">
+			  <option value="7800" >7.8kHz</option>
+			  <option value="10400" >10.4kHz</option>
+			  <option value="15600" >15.6kHz</option>
+	 		  <option value="20800" >20.8kHz</option>
+			  <option value="31250" >31.25kHz</option>
+			  <option value="62500" >62.5kHz</option>
+			  <option value="125000" >125kHz</option>
+			  <option value="250000" >250kHz</option>
+			  <option value="500000" >500kHz</option>
+			</select></td> 
+			<td></td>
+		</tr>
+		<script>document.getElementById("rxbw").value="<% echo -n $rxbw %>";</script>
 
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="4"><label for="RXSF">Spreading Factor</label> </td>                                      
+			<td colspan="3"><select id="rxsf" name="RXSF">
+			  <option value="6" >SF6</option>
+			  <option value="7" >SF7</option>
+			  <option value="8" >SF8</option>
+			  <option value="9" >SF9</option>
+			  <option value="10" >SF10</option>
+			  <option value="11" >SF11</option>
+			  <option value="12" >SF12</option>
+			</select> </td>
+			<td colspan="2"></td>
+			<td colspan="4"><label for="RXCR">Coding Rate</label> </td>                                      
+			<td colspan="3"><select id="rxcr" name="RXCR">
+			  <option value="5" >4/5</option>
+			  <option value="6" >4/6</option>
+			  <option value="7" >4/7</option>
+	 		  <option value="8" >4/8</option>
+			</select></td>
+			<td></td>
+		</tr>
 
-  <label for="RXBW">RF Bandwidth (Hz)</label>                                       
-	<select id="rxbw" style="padding-right:130px" name="RXBW">
-	  <option value="7800" >7.8kHz</option>
-	  <option value="10400" >10.4kHz</option>
-	  <option value="15600" >15.6kHz</option>
-	  <option value="20800" >20.8kHz</option>
-	  <option value="31250" >31.25kHz</option>
-	  <option value="62500" >62.5kHz</option>
-	  <option value="125000" >125kHz</option>
-	  <option value="250000" >250kHz</option>
-	  <option value="500000" >500kHz</option>
-	</select> 
-	<script>document.getElementById("rxbw").value="<% echo -n $rxbw %>";</script>
-  <br><br>
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="4"><label for="RXPRLEN">Preamble Length</label></td>
+			<td colspan="3"><input class="shortText" type="text" name="RXPRLEN" maxlength="2" VALUE=<% echo -n $rxprlen %> pattern="[0-9]{1,2}" ></td>
+			<td colspan="2"></td>
+			<td colspan="4"><label for="SYNCWD">LoRa Sync Word</label></td>
+			<td colspan="3"><input class="shortText" type="text" name="SYNCWD" maxlength="2" VALUE=<% echo -n $syncwd %> pattern="[0-9]{1,2}" ></td>
+			<td></td>
+		</tr>
+		<script>document.getElementById("rxsf").value="<% echo -n $rxsf %>";</script>
+		<script>document.getElementById("rxcr").value="<% echo -n $rxcr %>";</script>
 
-  <label for="RXSF">Spreading Factor</label>                                       
-	<select id="rxsf" style="padding-right:130px" name="RXSF">
-	  <option value="6" >SF6</option>
-	  <option value="7" >SF7</option>
-	  <option value="8" >SF8</option>
-	  <option value="9" >SF9</option>
-	  <option value="10" >SF10</option>
-	  <option value="11" >SF11</option>
-	  <option value="12" >SF12</option>
-	</select> 
-	<script>document.getElementById("rxsf").value="<% echo -n $rxsf %>";</script>
+		<tr class="rowSpacer"></tr>
+		<tr><td colspan="18"><h3>Radio 2 TX Settings</h3></td></tr>
 
-  <label for="RXCR" style="padding-left:70px" style="padding-right:80px">Coding Rate</label>                                       
-	<select id="rxcr" style="padding-right:130px" name="RXCR">
-	  <option value="5" >4/5</option>
-	  <option value="6" >4/6</option>
-	  <option value="7" >4/7</option>
-	  <option value="8" >4/8</option>
-	</select> 
-	<script>document.getElementById("rxcr").value="<% echo -n $rxcr %>";</script>
-  <br><br>
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="4"><label for="TXFREQ">Frequency (Hz)</label> </td>                                      
+			<td colspan="3"><input type="text" name="TXFREQ" maxlength="9" VALUE=<% echo -n $txfreq %> pattern="([0-9]{9})$" ></td>
+			<td colspan="2"></td>
+			<td colspan="4"><label for="TXBW">RF Bandwidth (Hz)</label></td>
+			<td colspan="3"><select id="txbw" name="TXBW">
+			  <option value="7800" >7.8kHz</option>
+			  <option value="10400" >10.4kHz</option>
+			  <option value="15600" >15.6kHz</option>
+			  <option value="20800" >20.8kHz</option>
+			  <option value="31250" >31.25kHz</option>
+			  <option value="62500" >62.5kHz</option>
+			  <option value="125000" >125kHz</option>
+			  <option value="250000" >250kHz</option>
+			  <option value="500000" >500kHz</option>
+			</select> </td>
+			<td></td>
+		</tr>
+		<script>document.getElementById("txbw").value="<% echo -n $txbw %>";</script>
 
-  <label for="RXPRLEN">Preamble Length</label>                                       
-  <input type="text" name="RXPRLEN" maxlength="2" VALUE=<% echo -n $rxprlen %> pattern="[0-9]{1,2}" >
-
-  <label for="SYNCWD">LoRa Sync Word</label>                                       
-  <input type="text" name="SYNCWD" maxlength="2" VALUE=<% echo -n $syncwd %> pattern="[0-9]{1,2}" >
-
-
-  <h3>Radio 2 TX Settings</h3>
-
-  <label for="TXFREQ">Frequency (Hz)</label>                                       
-  <input type="text" name="TXFREQ" maxlength="9" VALUE=<% echo -n $txfreq %> pattern="([0-9]{9})$" >
-
-  <label for="TXBW">RF Bandwidth (Hz)</label>                                       
-	<select id="txbw" style="padding-right:130px" name="TXBW">
-	  <option value="7800" >7.8kHz</option>
-	  <option value="10400" >10.4kHz</option>
-	  <option value="15600" >15.6kHz</option>
-	  <option value="20800" >20.8kHz</option>
-	  <option value="31250" >31.25kHz</option>
-	  <option value="62500" >62.5kHz</option>
-	  <option value="125000" >125kHz</option>
-	  <option value="250000" >250kHz</option>
-	  <option value="500000" >500kHz</option>
-	</select> 
-	<script>document.getElementById("txbw").value="<% echo -n $txbw %>";</script>
-  <br><br>
-
-  <label for="TXSF">Spreading Factor</label>                                       
-	<select id="txsf" style="padding-right:130px" name="TXSF">
-	  <option value="6" >SF6</option>
-	  <option value="7" >SF7</option>
-	  <option value="8" >SF8</option>
-	  <option value="9" >SF9</option>
-	  <option value="10" >SF10</option>
-	  <option value="11" >SF11</option>
-	  <option value="12" >SF12</option>
-	</select> 
-	<script>document.getElementById("txsf").value="<% echo -n $txsf %>";</script>
-
-  <label for="TXCR"style="padding-left:70px" style="padding-right:80px">Coding Rate</label>                                       
-	<select id="txcr" style="padding-right:130px" name="TXCR">
-	  <option value="5" >4/5</option>
-	  <option value="6" >4/6</option>
-	  <option value="7" >4/7</option>
-	  <option value="8" >4/8</option>
-	</select> 
-	<script>document.getElementById("txcr").value="<% echo -n $txcr %>";</script>
-  <br><br>
-
-  <label for="TXPRLEN">Preamble Length</label>                                       
-  <input type="text" name="TXPRLEN" maxlength="2" VALUE=<% echo -n $txprlen %> pattern="[0-9]{1,2}" >
-
-  <label for="TXSYNCWD">LoRa Sync Word</label>                                       
-  <input type="text" name="TXSYNCWD" maxlength="2" VALUE=<% echo -n $txsyncwd %> pattern="[0-9]{1,2}" >
-
-  <br><br>  
-  <label for="RFPOWER">RF Power (0-20) dBm</label>                                       
-  <input type="text" name="RFPOWER" maxlength="2" VALUE=<% echo -n $rfpower %> pattern="(20|1[0-9]|[0-9])$" >
-  <br><br>
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="4"><label for="TXSF">Spreading Factor</label></td>                                      
+			<td colspan="3"><select id="txsf" name="TXSF">
+			  <option value="6" >SF6</option>
+			  <option value="7" >SF7</option>
+			  <option value="8" >SF8</option>
+			  <option value="9" >SF9</option>
+			  <option value="10" >SF10</option>
+			  <option value="11" >SF11</option>
+			  <option value="12" >SF12</option>
+			</select></td> 
+			<td colspan="2"></td>
+			<td colspan="4"><label for="TXCR">Coding Rate</label> </td>                                      
+			<td colspan="3"><select id="txcr" name="TXCR">
+			  <option value="5" >4/5</option>
+			  <option value="6" >4/6</option>
+			  <option value="7" >4/7</option>
+			  <option value="8" >4/8</option>
+			</select></td> 
+			<td></td>
+		</tr>
+		<script>document.getElementById("txsf").value="<% echo -n $txsf %>";</script>
+		<script>document.getElementById("txcr").value="<% echo -n $txcr %>";</script>
   
- </div>
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="4"><label for="TXPRLEN">Preamble Length</label></td>                                       
+  			<td colspan="3"><input class="shortText" type="text" name="TXPRLEN" maxlength="2" VALUE=<% echo -n $txprlen %> pattern="[0-9]{1,2}" ></td>
+			<td colspan="2"></td>
+			<td colspan="4"><label for="TXSYNCWD">LoRa Sync Word</label></td>
+			<td colspan="3"><input type="text" name="TXSYNCWD" maxlength="2" VALUE=<% echo -n $txsyncwd %> pattern="[0-9]{1,2}" ></td>
+			<td></td>
+		</tr>
+
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="4"><label for="RFPOWER">RF Power (0-20) dBm</label></td>                                       
+  			<td colspan="3"><input class="shortText" type="text" name="RFPOWER" maxlength="2" VALUE=<% echo -n $rfpower %> pattern="(20|1[0-9]|[0-9])$" ></td>
+		</tr>
+		<tr class="rowSpacer"></tr>
+			<tr><td colspan="18"><h3>Enable LoRaWAN/RAW Relay Mode</h3></td></tr>
+			<tr>
+			<td colspan="1"></td>
+			<td colspan="5" style="font-size: 1.1em;">Enable Relay Mode&nbsp;
+			<input type="checkbox" name="RELAY_ENABLE" value="checked" <% echo -n $relay_enable %> ></td>
+			<td colspan="12" class="impact-light"> Caution: Enabling Relay Mode will disable other LoRaWAN modes</td>
+		</tr>
+	</table>
+	</div> <!-- End of div2 -->
  
- <div id="div3">
-  <h3>Radio Settings</h3>
- 
-  <label for="GWCFG">Frequency Plan</label>                                       
-	<select id="gwcfg" name="GWCFG" onchange="changeFunc(this.value)" >
-	  <option value="EU" >Europe 868Mhz(863~870)-- EU868</option>
-	  <option value="CN" >China 470~510MHz -- CN470</option>
-	  <option value="US" >United States 915Mhz(902~928) -- US915</option>
-	  <option value="AU" >Australia 915Mhz(915~928) -- AU915</option>
-	  <option value="IN" >India 865~867MHz -- IN865</option>
-	  <option value="KR" >Korea 920~923MHz -- KR920</option>
-	  <option value="AS1" >Asia 920~923MHz -- AS923-1</option>
-	  <option value="AS2" >Asia 923~925MHz -- AS923-2</option>
-	  <option value="RU" >Russia 864~870MHz -- RU864</option>
-	  <option value="CUS" >Customized Bands</option>	 
-	 </select> 
-	<script>document.getElementById("gwcfg").value="<% echo -n $gwcfg %>";</script>
-  <br><br>
-  
-	<% if [[ "$gwcfg" == "US" || "$gwcfg" == "AU" ]]; then %>
-	<label for="SUBBAND">Frequency Sub Band</label>                                       
-	<select id="subband" name="SUBBAND">
-	  <option value="1" >1: US915(902.3~903.7) / AU915(915.2~916.6)</option>
-	  <option value="2" >2: US915(903.9~905.3) / AU915(916.8~918.2)</option> 
-	  <option value="3" >3: US915(905.5~906.9) / AU915(918.4~919.8)</option>
-	  <option value="4" >4: US915(907.1~908.5) / AU915(920.0~921.4)</option>
-	  <option value="5" >5: US915(908.7~910.1) / AU915(921.6~923.0)</option>
-	  <option value="6" >6: US915(910.3~911.7) / AU915(923.2~924.6)</option>
-	  <option value="7" >7: US915(911.9~913.3) / AU915(924.8~926.2)</option>
-	  <option value="8" >8: US915(913.5~914.9) / AU915(926.4~927.8)</option>	 
-	 </select> 
-	<script>document.getElementById("subband").value="<% echo -n $subband %>";</script>
-	<br><br>
-	<% fi %>
-   
+ 	<div id="div3" <% echo -n $disp3 %> >
+	<table class="configTable">
+		<tr class="rowSpacer"></tr>
+		<tr><td colspan="18"><h3>Radio Settings</h3></td></tr>
 
-  <% if [ $gwcfg == "CUS" ]; then %>
-    <h3>Customized Radio Settings</h3> 
-	<label for="RADIO0_ENABLE">Enable Radio 0</label>
-	<input type="checkbox" name="RADIO0_ENABLE" value="checked" <% echo -n $radio0_enable %>>
-	<label for="RADIO0_FREQ">Radio_0 Frequency(Hz)</label>                                       
-	<input type="text" name="RADIO0_FREQ" maxlength="9" VALUE=<% echo -n $radio0_freq %> pattern="([0-9]{9})$" >
-	<br><br>	
-	<label for="RADIO0_TX">Enable Radio 0 TX</label>
-	<input type="checkbox" name="RADIO0_TX" value="checked" <% echo -n $radio0_tx %>>	
-	<label for="RADIO0_TXFREQ_MIN">Radio_0 tx min Freq(Hz)</label>                                       
-	<input type="text" name="RADIO0_TXFREQ_MIN" maxlength="9" VALUE=<% echo -n $radio0_txfreq_min %> pattern="([0-9]{9})$" >
-	<label for="RADIO0_TXFREQ_MAX">Radio_0 tx max Freq(Hz)</label>                                       
-	<input type="text" name="RADIO0_TXFREQ_MAX" maxlength="9" VALUE=<% echo -n $radio0_txfreq_max %> pattern="([0-9]{9})$" >	
-	<br><br>
-	
-	<br><br>	
-	<label for="RADIO1_ENABLE">Enable Radio 1</label>
-	<input type="checkbox" name="RADIO1_ENABLE" value="checked" <% echo -n $radio1_enable %>>
-	<label for="RADIO1_FREQ">Radio_1 Frequency(Hz)</label>                                       
-	<input type="text" name="RADIO1_FREQ" maxlength="9" VALUE=<% echo -n $radio1_freq %> pattern="([0-9]{9})$" >
-	<br><br>	
-	<label for="RADIO1_TX">Enable Radio 1 TX</label>
-	<input type="checkbox" name="RADIO1_TX" value="checked" <% echo -n $radio1_tx %>>	
-	<label for="RADIO1_TXFREQ_MIN">Radio_1 tx min Freq(Hz)</label>                                       
-	<input type="text" name="RADIO1_TXFREQ_MIN" maxlength="9" VALUE=<% echo -n $radio1_txfreq_min %> pattern="([0-9]{9})$" >
-	<label for="RADIO1_TXFREQ_MAX">Radio_1 tx max Freq(Hz)</label>                                       
-	<input type="text" name="RADIO1_TXFREQ_MAX" maxlength="9" VALUE=<% echo -n $radio1_txfreq_max %> pattern="([0-9]{9})$" >
-	<br><br>
-	
-	<h3>Customized Channel Settings</h3> 	
-	<% for num in 0 1 2 3 4 5 6 7; do %>   
-	<label for="CHAN<% echo -n "$num" %>_ENABLE">MultiSF Channel <% echo -n "$num" %> Enable</label>
-	<input type="checkbox" name="CHAN<% echo -n "$num" %>_ENABLE" value="checked" <% eval echo -n '$'{chan${num}_enable} %>>
-	<label for="CHAN<% echo -n "$num" %>_RADIO">Radio For Channel <% echo -n "$num" %></label>                                       
-	<select id="chan<% echo -n "$num" %>_radio" style="padding-right:50px" name="CHAN<% echo -n "$num" %>_RADIO">
-	  <option value="0" >Radio0</option>
-	  <option value="1" >Radio1</option>	 
-	 </select> 
-	<script>document.getElementById("chan<% echo -n "$num" %>_radio").value="<% eval echo -n '$'{chan${num}_radio} %>";</script>	
-	<label for="CHAN<% echo -n "$num" %>">IF(Offset in Hz)</label>                                       
-	<input type="text" name="CHAN<% echo -n "$num" %>" maxlength="7" VALUE=<% eval echo -n '$'{chan$num} %>>
-	<br><br>                                   
-    <% done %>
-	
-	<br><br> 	
-	<label for="LORACHAN_ENABLE">LoRa STD Channel Enable</label>
-	<input type="checkbox" name="LORACHAN_ENABLE" value="checked" <% echo -n $lorachan_enable %>>
-	<label for="LORACHAN_RADIO">Radio</label>                                       
-	<select id="lorachan_radio" style="padding-right:50px" name="LORACHAN_RADIO">
-	  <option value="0" >Radio0</option>
-	  <option value="1" >Radio1</option>	 
-	 </select> 
-	<script>document.getElementById("lorachan_radio").value="<% echo -n $lorachan_radio %>";</script>	
-	<label for="LORACHAN">IF(Offset in Hz)</label>                                       
-	<input type="text" name="LORACHAN" maxlength="7" VALUE=<% echo -n $lorachan %>>
-	<br><br> 
-	<label for="LORACHAN_SF">Spreading Factor</label>                                       
-	<select id="lorachan_sf" style="padding-right:130px" name="LORACHAN_SF">
-	  <option value="6" >SF6</option>
-	  <option value="7" >SF7</option>
-	  <option value="8" >SF8</option>
-	  <option value="9" >SF9</option>
-	  <option value="10" >SF10</option>
-	  <option value="11" >SF11</option>
-	  <option value="12" >SF12</option>
-	</select> 
-	<script>document.getElementById("lorachan_sf").value="<% echo -n $lorachan_sf %>";</script>
-	<label for="LORACHAN_BW">RF Bandwidth (Hz)</label>                                       
-	<select id="lorachan_bw" style="padding-right:130px" name="LORACHAN_BW">
-	  <option value="7800" >7.8kHz</option>
-	  <option value="10400" >10.4kHz</option>
-	  <option value="15600" >15.6kHz</option>
-	  <option value="20800" >20.8kHz</option>
-	  <option value="31250" >31.25kHz</option>
-	  <option value="62500" >62.5kHz</option>
-	  <option value="125000" >125kHz</option>
-	  <option value="250000" >250kHz</option>
-	  <option value="500000" >500kHz</option>
-	</select> 
-	<script>document.getElementById("lorachan_bw").value="<% echo -n $lorachan_bw %>";</script>
-	<br><br>
-	
-  <% fi %>
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="4"><label for="KEEPALIVE">Keep Alive Period (sec)</label></td>
+			<td colspan="3"><input type="text" name="KEEPALIVE" maxlength="6" VALUE="<% echo -n $keepalive %>" pattern="[0-9]{1,6}" ></td>
+			<td></td>
+		</tr>
+
+		<tr>
+			<td></td>
+			<td colspan="4"><label for="GWCFG">Frequency Plan</label></td>
+			<td colspan="7"><select id="gwcfg" name="GWCFG" onchange="displaySubband()" >
+				<%inc /www/cgi-bin/inc/band.inc %>
+			  <option value="CUS" >Customized Bands</option> 
+			</select> </td>
+			<td colspan="6"></td>
+		</tr>
+		<script>document.getElementById("gwcfg").value="<% echo -n $gwcfg %>";</script>
   
- </div>
+		<tr>
+			<td></td>
+			<td colspan="4"><label for="SUBBAND" id="subband_label" style="visibility:hidden;">Frequency Sub Band</label></td>
+			
+			<td colspan="7">
+			<select id="subband-us" name="SUBBAND_US" style="visibility:hidden; display:none;">
+				<%inc /www/cgi-bin/inc/subband-us.inc %> 
+			</select> 
+
+			<select id="subband-au" name="SUBBAND_AU" style="visibility:hidden; display:none;">
+				<%inc /www/cgi-bin/inc/subband-au.inc %>
+			</select> 
+			</td>
+			
+			<td colspan="6"></td>
+		</tr>
+		<script>document.getElementById("subband-us").value="<% echo -n $subband %>";</script>	
+		<script>document.getElementById("subband-au").value="<% echo -n $subband %>";</script>	
+	</table>
+	
+ <div id="custom" style="visibility:hidden; display:none">
+	<table class="configTable">
+    	<tr><td colspan="18"><h3>Customized Radio Settings</h3></td></tr> 
+
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="3"><label for="RADIO0_ENABLE">Enable Radio 0</label></td>
+			<td colspan="1"><input type="checkbox" name="RADIO0_ENABLE" value="checked" <% echo -n $radio0_enable %>></td>
+			<td colspan="1"></td>
+			<td colspan="4"><label for="RADIO0_FREQ">Radio_0 Frequency(Hz)</label>  </td>                                     
+			<td colspan="3"><input type="text" name="RADIO0_FREQ" maxlength="9" VALUE=<% echo -n $radio0_freq %> pattern="([0-9]{9})$" ></td>
+			<td colspan="5"></td>
+		</tr>
+
+		<tr class="rowSpacer"></tr>
+				
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="3"><label for="RADIO0_TX">Enable Radio 0 TX</label></td>
+			<td colspan="1"><input type="checkbox" name="RADIO0_TX" value="checked" <% echo -n $radio0_tx %>></td>
+			<td colspan="1"></td>
+			<td colspan="4"><label for="RADIO0_TXFREQ_MIN">Radio_0 tx min Freq(Hz)</label></td>
+			<td colspan="3"><input type="text" name="RADIO0_TXFREQ_MIN" maxlength="9" VALUE=<% echo -n $radio0_txfreq_min %> pattern="([0-9]{9})$" ></td>
+			<td colspan="5"></td>
+		</tr>
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="4"></td>
+			<td colspan="1"></td>
+			<td colspan="4"><label for="RADIO0_TXFREQ_MAX">Radio_0 tx max Freq(Hz)</label></td>                                    
+			<td colspan="3"><input type="text" name="RADIO0_TXFREQ_MAX" maxlength="9" VALUE=<% echo -n $radio0_txfreq_max %> pattern="([0-9]{9})$" ></td>
+			<td colspan="5"></td>
+		</tr>
+
+		<tr class="rowSpacer"></tr>
+		
+		<tr>	
+			<td colspan="1"></td>
+			<td colspan="3"><label for="RADIO1_ENABLE">Enable Radio 1</label></td>
+			<td colspan="1"><input type="checkbox" name="RADIO1_ENABLE" value="checked" <% echo -n $radio1_enable %>></td>
+			<td colspan="1"></td>
+			<td colspan="4"><label for="RADIO1_FREQ">Radio_1 Frequency(Hz)</label></td>                                       
+			<td colspan="3"><input type="text" name="RADIO1_FREQ" maxlength="9" VALUE=<% echo -n $radio1_freq %> pattern="([0-9]{9})$" ></td>
+			<td colspan="5"></td>
+		</tr>
+			
+		<tr class="rowSpacer"></tr>
+
+		<tr>	
+			<td colspan="1"></td>
+			<td colspan="3"><label for="RADIO1_TX">Enable Radio 1 TX</label></td>
+			<td colspan="1"><input type="checkbox" name="RADIO1_TX" value="checked" <% echo -n $radio1_tx %>></td>
+			<td colspan="1"></td>
+			<td colspan="4"><label for="RADIO1_TXFREQ_MIN">Radio_1 tx min Freq(Hz)</label><br>                                       
+			<td colspan="3"><input type="text" name="RADIO1_TXFREQ_MIN" maxlength="9" VALUE=<% echo -n $radio1_txfreq_min %> pattern="([0-9]{9})$" ></td>
+			<td colspan="5"></td>
+		</tr>
+
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="4"></td>
+			<td colspan="1"></td>
+			<td colspan="4"><label for="RADIO1_TXFREQ_MAX">Radio_1 tx max Freq(Hz)</label></td>                                       
+			<td colspan="3"><input type="text" name="RADIO1_TXFREQ_MAX" maxlength="9" VALUE=<% echo -n $radio1_txfreq_max %> pattern="([0-9]{9})$" ></td>
+			<td colspan="5"></td>
+		</tr>
+	</table>
+	
+	<table class="configTable">
+		<tr class="rowSpacer"></tr>
+			<tr><td colspan="18"><h3>Customized Channel Settings</h3></td></tr>
+
+		<% for num in 0 1 2 3 4 5 6 7; do %>  
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="6">
+				<label for="CHAN<% echo -n "$num" %>_ENABLE">MultiSF Channel <% echo -n "$num" %> Enable</label>
+				<input type="checkbox" name="CHAN<% echo -n "$num" %>_ENABLE" value="checked" <% eval echo -n '$'{chan${num}_enable} %>>
+			</td>
+			<td colspan="4"><label for="CHAN<% echo -n "$num" %>_RADIO">Radio For Channel <% echo -n "$num" %></label></td>
+			<td colspan="3"><select id="chan<% echo -n "$num" %>_radio" name="CHAN<% echo -n "$num" %>_RADIO">
+			  <option value="0" >Radio0</option>echo
+			  <option value="1" >Radio1</option>	 
+			  </select> </td>
+			  <td colspan="4"></td>
+			</tr>
+		<tr>
+			<td colspan="7">
+			<td colspan="4"><label for="CHAN<% echo -n "$num" %>">IF(Offset in Hz)</label></td>
+			<td colspan="3"><input type="text" name="CHAN<% echo -n "$num" %>" maxlength="7" VALUE=<% eval echo -n '$'{chan$num} %>></td>
+			<td colspan="4"></td>
+		</tr>
+		<tr class="rowSpacer"></tr>
+
+		<script>document.getElementById("chan<% echo -n "$num" %>_radio").value="<% eval echo -n '$'{chan${num}_radio} %>";</script>
+    	<% done %>
+	
+		<tr> 	
+			<td colspan="1"></td>
+			<td colspan="17">
+				<label for="LORACHAN_ENABLE">LoRa STD Channel Enable</label>
+				<input type="checkbox" name="LORACHAN_ENABLE" value="checked" <% echo -n $lorachan_enable %>>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"></td>
+			<td colspan="3"><label for="LORACHAN_RADIO">Radio</label></td>
+			<td colspan="3"><select id="lorachan_radio" name="LORACHAN_RADIO">
+			  <option value="0" >Radio0</option>
+			  <option value="1" >Radio1</option>	 
+			 </select></td> 
+			<td colspan="1">
+			<td colspan="3"><label for="LORACHAN">IF(Offset in Hz)</label></td>
+			<td colspan="3"><input type="text" name="LORACHAN" maxlength="7" VALUE=<% echo -n $lorachan %>></td>
+			<td colspan="3"></td>
+		</tr>
+		<script>document.getElementById("lorachan_radio").value="<% echo -n $lorachan_radio %>";</script>	
+
+		<tr>
+			<td colspan="2"></td>
+			<td colspan="3"><label for="LORACHAN_SF">Spreading Factor</label> </td>
+			<td colspan="3"><select id="lorachan_sf" name="LORACHAN_SF">
+			  <option value="6" >SF6</option>
+			  <option value="7" >SF7</option>
+			  <option value="8" >SF8</option>
+			  <option value="9" >SF9</option>
+			  <option value="10" >SF10</option>
+			  <option value="11" >SF11</option>
+	 		  <option value="12" >SF12</option>
+			</select> </td>
+			<td colspan="1">
+			<td colspan="3"><label for="LORACHAN_BW">RF Bandwidth (Hz)</label></td>
+			<td colspan="3"><select id="lorachan_bw" name="LORACHAN_BW">
+			  <option value="7800" >7.8kHz</option>
+			  <option value="10400" >10.4kHz</option>
+			  <option value="15600" >15.6kHz</option>
+			  <option value="20800" >20.8kHz</option>
+			  <option value="31250" >31.25kHz</option>
+			  <option value="62500" >62.5kHz</option>
+			  <option value="125000" >125kHz</option>
+			  <option value="250000" >250kHz</option>
+			  <option value="500000" >500kHz</option>
+			</select> </td>
+			<td colspan="3"></td>
+		</tr>
+		<script>document.getElementById("lorachan_sf").value="<% echo -n $lorachan_sf %>";</script>
+		<script>document.getElementById("lorachan_bw").value="<% echo -n $lorachan_bw %>";</script>
+	
+	</table>  
+	</div>  <!-- End of custom div -->
+ </div> <!-- End of div3 -->
  
-  <br><br>
-  <br><br>
-	&nbsp;&nbsp;&nbsp;&nbsp;
-<!--	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save">&nbsp;&nbsp; -->
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">&nbsp;&nbsp;
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Disable">&nbsp;&nbsp;
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
+<table class="configTable">
+	<tr class="rowSpacer"></tr>
+	<tr class="rowSpacer"></tr>
+	<tr>
+		<td colspan="1"></td>
+		<td colspan="17">
+			<INPUT class="hiddenKey" TYPE="SUBMIT" name="BUTTON" VALUE="Save" accesskey="s"> 
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Disable">
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
+		</td>
+	</tr>
+</table>
+
+<text id="subband" name="SUBBAND";></text>
+
 </form>
-</div>
+
+<script>  
+	var x = document.getElementById("gwcfg").value;
+	if (x == "AU") {
+	document.getElementById("subband-au").style.visibility = "visible"; 
+	document.getElementById("subband-au").style.display = "inline"; 
+	document.getElementById("subband_label").style.visibility = "visible";
+	}
+	if (x == "US") {
+	document.getElementById("subband-us").style.visibility = "visible";
+	document.getElementById("subband-us").style.display = "inline";
+	document.getElementById("subband_label").style.visibility = "visible";
+	}
+	if (x == "CUS") {
+	document.getElementById("custom").style.visibility = "visible";
+	document.getElementById("custom").style.display = "inline";
+	}
+
+function displaySubband(){
+	document.getElementById("subband_label").style.visibility = "hidden";
+	document.getElementById("subband-au").style.visibility = "hidden";
+	document.getElementById("subband-us").style.visibility = "hidden";
+	document.getElementById("subband-au").style.display = "none";
+	document.getElementById("subband-us").style.display = "none";
+	document.getElementById("custom").style.visibility = "hidden";
+	document.getElementById("custom").style.display = "none";
+	
+	var x = document.getElementById("gwcfg").value;
+	if (x == "AU") {
+	document.getElementById("subband-au").style.visibility = "visible";
+	document.getElementById("subband-au").style.display = "inline";
+	document.getElementById("subband_label").style.visibility = "visible";
+	}
+	if (x == "US") {
+	document.getElementById("subband-us").style.visibility = "visible";
+	document.getElementById("subband-us").style.display = "inline";
+	document.getElementById("subband_label").style.visibility = "visible";
+	}
+	if (x == "CUS") {
+	document.getElementById("custom").style.visibility = "visible";
+	document.getElementById("custom").style.display = "inline";
+	}
+}
+</script>
+
+</div> <!-- End of page div -->
 </body>
 </html>
 

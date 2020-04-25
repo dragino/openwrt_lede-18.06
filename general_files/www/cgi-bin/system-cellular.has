@@ -57,67 +57,82 @@
 <html lang="en">
 <head>
 <%inc /www/cgi-bin/inc/head.inc %>
-  <script>
-	 	function passwordFunction() {
-	  	var x = document.getElementById("pass");
-	  	if (x.type === "password") {
-	  	  x.type = "text";
-	  	} else {
-	  	  x.type = "password";
-	  	}
-		} 
-	</script>
 </head>
 
 <body>
 <%inc /www/cgi-bin/inc/menu.inc %>
+<div class="page-container">
 <h2>Cellular Settings</h2>
 
-<div class="container" style="margin: 50px">
 <form name="SYSTEM-CELL" id="SYSTEM-CELL" action="<% echo -n $SCRIPT_NAME %>" method="POST">
-
+	<table class=configTable>
+		<tr class="rowSpacer"><td colspan="20"></td></tr>  <!--Determines column widths-->
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="19">
   <% if [ "$cell_detect" == "1" ]; then %>
-       <input type="checkbox" name="CELL_ENABLE" value="checked" <% echo -n $cell_enable %> > <font size="4"> Enable Cellular WAN </font>
+       		<input type="checkbox" name="CELL_ENABLE" value="checked" <% echo -n $cell_enable %> > <font size="4"> Enable Cellular WAN </font>
   <% else %>
-       <font size="4" color="red"> Cellular device not detected </font>
+       		<span class="impact"> Cellular device not detected </span>
   <% fi %>
-    <br><br>
+			</td>
+		</tr>
+		<tr class="rowSpacer"></tr>
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="3"><label for="APN"> APN </label></td>
+			<td colspan="6"><input type="text" name="APN" placeholder="Service Provider APN" maxlength="32" VALUE="<% echo -n $apn %>" ></td>
+		</tr>
+		<tr class="rowSpacer"></tr>
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="3"><label for="SERVICE"> Service</label></td>
+			<td colspan="6"><SELECT name="SERVICE" id="service">
+				<option value="umts">UMTS / GPRS</option>
+				<option value="umts_only">UMTS</option>
+				<option value="gprs_only">GPRS</option>
+				<option value="evdo">CDMA/EVDO</option>
+				</SELECT></td>
+		</tr>
 
-	<label for="APN"> APN </label>
-	<input type="text" name="APN" placeholder="Service Provider APN" maxlength="32" VALUE="<% echo -n $apn %>" >
-  <br><br>
-  
-	<label for="SERVICE"> Service</label>
-  <SELECT name="SERVICE" id="service">
-		<option value="umts">UMTS / GPRS</option>
-		<option value="umts_only">UMTS</option>
-		<option value="gprs_only">GPRS</option>
-		<option value="evdo">CDMA/EVDO</option>
-	</SELECT>
-	<script>document.getElementById("service").value="<% echo -n $service %>";</script>
-  <br><br>
-  
-	<label for="DIALNUMBER"> Dial Number </label>
-	<input type="text" name="DIALNUMBER" placeholder="*99#" maxlength="32" VALUE="<% echo -n $dialnumber %>" >
-  <br><br>
-  
-	<label for="PINCODE"> Pincode </label>
-	<input type="text" name="PINCODE" placeholder="SIM Pincode" maxlength="32" VALUE="<% echo -n $pincode %>" >
-  <br><br>
-  
-	<label for="USER"> Username </label>
-	<input type="text" name="USER" placeholder="SIM Acct Username" maxlength="32" VALUE="<% echo -n $user %>" >
-  <br><br>
-  
-	<label for="PASS"> Password </label>
-	<input type="password" name="PASS" id="pass" placeholder="SIM Acct Password" maxlength="32" VALUE="<% echo -n $pass %>" > 
-  <input type="checkbox" onclick="passwordFunction()"> 
-  <br><br>
+		<script>document.getElementById("service").value="<% echo -n $service %>";</script>
 
-<!--	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save"> -->
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
-
+		<tr class="rowSpacer"></tr>
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="3"><label for="DIALNUMBER"> Dial Number </label></td>
+			<td colspan="6"><input type="text" name="DIALNUMBER" placeholder="*99#" maxlength="32" VALUE="<% echo -n $dialnumber %>" ></td>
+		</tr>
+		<tr class="rowSpacer"></tr>
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="3"><label for="PINCODE"> Pincode </label></td>
+			<td colspan="6"><input type="text" name="PINCODE" placeholder="SIM Pincode" maxlength="32" VALUE="<% echo -n $pincode %>" ></td>
+		</tr>
+		<tr class="rowSpacer"></tr>
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="3"><label for="USER"> Username </label></td>
+			<td colspan="6"><input type="text" name="USER" placeholder="SIM Acct Username" maxlength="32" VALUE="<% echo -n $user %>" ></td>
+		</tr>
+		<tr class="rowSpacer"></tr>
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="3"><label for="PASS"> Password </label></td>
+			<td colspan="6"><input type="password" name="PASS" id="pass" placeholder="SIM Acct Password" maxlength="32" VALUE="<% echo -n $pass %>" ></td>
+			<td colspan="1"><span class="btnShow" onclick="toggleVis('pass')">Show</span></td>
+		</tr>
+		<tr class="rowSpacer"></tr>
+		<tr class="rowSpacer"></tr>
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="19">
+				<INPUT class="hiddenKey" TYPE="SUBMIT" name="BUTTON" VALUE="Save" accesskey="s"> 
+				<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
+				<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
+			</td>
+		</tr>
+	</table>
 </form>
 </div>
 </body>

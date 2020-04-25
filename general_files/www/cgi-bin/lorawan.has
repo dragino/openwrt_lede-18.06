@@ -34,9 +34,11 @@
   if [ $FORM_BUTTON == "Save&Apply" ]; then
 		uci set gateway.general.server_type="lorawan"
 		uci commit gateway
+		killall -q mosquitto_sub  # Remove any remaining MQTT subscribe process
     /etc/init.d/lora_gw reload > /dev/null
     sleep 2
     /etc/init.d/iot reload > /dev/null
+		rm /var/iot/status
   fi
 %>
 
@@ -110,60 +112,85 @@
 
 <body onload="displayCustomURL()">
 <%inc /www/cgi-bin/inc/menu.inc %>
+<div class="page-container">
 <h2>LoRaWAN Configuration</h2>
 
-<div class="container" style="margin: 50px">
 <form id="lora" action="<% echo -n $SCRIPT_NAME %>" method="POST">
 
-	<h3>Server Settings</h3>
+<table class="configTable">
+	<tr><td colspan="17"><h3>Server Settings</h3></td></tr> <!-- Determines the column widths -->
 	
-	<label for="PLATFORM">LoRaWAN Service Provider</label>
-	
-	<select id='platform' name='PLATFORM' style="width: 245px;" onchange="displayCustomURL()">
+	<tr>
+		<td colspan="1"></td>
+		<td colspan="4"><label for="PLATFORM">LoRaWAN Service Provider</label></td>
+		<td colspan="4"><select id='platform' name='PLATFORM' onchange="displayCustomURL()">
 		<%inc /www/cgi-bin/inc/providers.txt %>
-	  <option value="local,127.0.0.1" >Built-in</option>
-	  <option value="custom" >Custom</option>
-	</select>
+		  <option value="local,127.0.0.1" >Built-in</option>
+		  <option value="custom" >Custom</option>
+		</select></td>
+
 	<script>document.getElementById("platform").value="<% echo -n $platform %>";</script>
 
-	<label for="SERVER_ADDRESS" id="server_address_label" style="visibility:hidden";>Server Address</label>
-	<input type="text" id="server_address" name="SERVER_ADDRESS" VALUE="<% echo -n $custom_server %>" style="visibility:hidden";>	
-	<br></br>
+		<td colspan="1"></td>
+		<td colspan="3"><label for="SERVER_ADDRESS" id="server_address_label" style="visibility:hidden;">Server Address</label></td>
+		<td colspan="3"><input type="text" id="server_address" name="SERVER_ADDRESS" VALUE="<% echo -n $custom_server %>" style="visibility:hidden;"></td>
+	</tr>
+
+	<tr>
+		<td colspan="1"></td>
+		<td colspan="4"><label for="GWID">Gateway ID</label></td>
+		<td colspan="4"><input type="text" name="GWID" maxlength="32" VALUE=<% echo -n $gwid %> ></td>
+		<td colspan="8"></td>
+	</tr>
+
+	<tr>
+		<td colspan="1"></td>
+		<td colspan="4"><label for="PORT">Server Port Upstream</label></td>
+		<td colspan="4"><input type="text" name="PORT" maxlength="8" VALUE="<% echo -n $port %>" pattern="[0-9]{1,8}" ></td>
+		<td colspan="2"></td>
+		<td colspan="2"><label for="LAT">Latitude</label></td>
+		<td colspan="3"><input type="text" name="LAT" maxlength="32" VALUE=<% echo -n $lat %> pattern="^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)$" ></td>
+		<td colspan="1"></td>
+	</tr>
+
+	<tr>	
+		<td colspan="1"></td>
+		<td colspan="4"><label for="DWPORT">Server Port Downstream</label></td>
+		<td colspan="4"><input type="text" name="DWPORT" maxlength="8" VALUE="<% echo -n $dwport %>" pattern="[0-9]{1,8}" ></td>
+		<td colspan="2"></td>
+		<td colspan="2"><label for="LON">Longitude</label></td>
+		<td colspan="3"><input type="text" name="LON" maxlength="32" VALUE=<% echo -n $lon %> pattern="^[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$" ></td>
+		<td colspan="1"></td>
+	</tr>
+
+	<tr class="rowSpacer"></tr>
+	<tr>
+		<td colspan="1"></td>
+		<td colspan="1"><label for="EMAIL">Email</label></td>
+		<td colspan="6"><input type="text" name="EMAIL" maxlength="128" VALUE=<% echo -n $email %> pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" ></td>
+		<td colspan="9"></td>
+	</tr>
+
+	<tr class="rowSpacer"></tr>
+	<tr><td colspan="17"><h3>Packet Filter</h3></td></tr>
+	<tr>
+		<td colspan="1"></td>
+		<td colspan="2"><label for="FPORTNUM"><abbr title="Value:0~243:&#10 *0 for no filter&#10 *Filter Unconfirmed Data Up & Confirmed Data Up if Fport doesn't match)">Fport Filter</abbr></label></td>
+		<td colspan="2"><input type="text" name="FPORTNUM" maxlength="3" VALUE=<% echo -n $fportnum %> ></td>
+	</tr>
 	
-
-	<label for="GWID">Gateway ID</label>                                       
-	<input type="text" name="GWID" maxlength="32" VALUE=<% echo -n $gwid %> >
-	<br><br>
-
-	<label for="PORT">Server Port Upstream</label>
-	<input type="text" name="PORT" maxlength="8" VALUE="<% echo -n $port %>" pattern="[0-9]{1,8}" >
-
-	<label for="DWPORT">Server Port Downstream</label>
-	<input type="text" name="DWPORT" maxlength="8" VALUE="<% echo -n $dwport %>" pattern="[0-9]{1,8}" >
-	<br></br>
-
-	<label for="LAT">Latitude</label>                                       
-	<input type="text" name="LAT" maxlength="32" VALUE=<% echo -n $lat %> pattern="^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)$" >
-
-	<label for="LON">Longitude</label>                                       
-	<input type="text" name="LON" maxlength="32" VALUE=<% echo -n $lon %> pattern="^[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$" >
-	<br></br>
-
-	<label for="EMAIL">Email</label>                                       
-	<input type="text" name="EMAIL" maxlength="128" VALUE=<% echo -n $email %> pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" >
-	<br></br>
+	<tr class="rowSpacer"></tr>
+	<tr class="rowSpacer"></tr>
+	<tr>
+		<td colspan="1"></td>
+		<td colspan="16">
+			<INPUT class="hiddenKey" TYPE="SUBMIT" name="BUTTON" VALUE="Save" accesskey="s"> 
+		<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
+		<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
+		</td>
+	</tr>
+</table>
 	
-	<h3>Packet Filter</h3>
-	<label for="FPORTNUM"><abbr title="Value:0~243:&#10 *0 for no filter&#10 *Filter Unconfirmed Data Up & Confirmed Data Up if Fport doesn't match)">Fport Filter</abbr></label>                                       
-	<input type="text" name="FPORTNUM" maxlength="3" VALUE=<% echo -n $fportnum %> >
-	<br><br>
-	<br></br>
-	
-	&nbsp;&nbsp;&nbsp;&nbsp;
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save" style="display:inline">	
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
-
 </form>
 </div>
 
@@ -178,7 +205,6 @@ function displayCustomURL(){
 	}
 }
 </script>
-
 </body>
 </html>
 

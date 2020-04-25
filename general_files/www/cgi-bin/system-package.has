@@ -2,27 +2,63 @@
 
 <%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
 
+<%	
+	if [ ! -f /tmp/opkglist.html ]; then 
+		echo "<pre>" > /tmp/opkglist.html
+		echo "Package data is not loaded. Click on Reload to download package data." >> /tmp/opkglist.html
+		echo "</pre>" >> /tmp/opkglist.html
+	fi
+	if [ ! -f /tmp/opkglist-installed.html ]; then	
+		echo "<pre>" > /tmp/opkglist-installed.html
+		opkg list_installed >> /tmp/opkglist-installed.html
+		echo "</pre>" >> /tmp/opkglist-installed.html
+	fi
+
+	# Clear Install info
+ 	echo "<pre>" > /tmp/install-info.html
+	echo "</pre>" >> /tmp/install-info.html
+
+	# Update the Installed list
+	if [ ! -f /tmp/opkglist-installed.html ]; then 
+		echo "<pre>" > /tmp/opkglist-installed.html
+		opkg list_installed >> /tmp/opkglist-installed.html
+		echo "</pre>" >> /tmp/opkglist-installed.html
+	fi
+
+%>
+	
+
+<%# --- Process the form submission --- %>
 <%
-	if [ $FORM_BUTTON == "INSTALL" ]; then
+	if [ $FORM_BUTTON == "Install" ]; then
 		if [ -n "$FORM_PACKAGE" ]; then
-			install_info=`opkg install $FORM_PACKAGE`
+			installing="1"
+			package=$FORM_PACKAGE
 		fi
 	fi
 
-	if [ $FORM_BUTTON == "CHECK" ]; then
-		#if [ ! -f /var/opkgupdate ];then 
-			opkgupdate=`opkg update`
-			opkglist=`opkg list`
-			CHECK_FLAG=1
-		#fi		
+	if [ $FORM_BUTTON == "Reload" ]; then
+		echo "<pre>" > /tmp/opkglist.html
+		echo "<span class="impact-light">Package data is being loaded. Click on Refresh to display data when loaded. \
+		<br><br>This may take several minutes.</span>" >> /tmp/opkglist.html
+		echo "</pre>" >> /tmp/opkglist.html		
+		
+		# Download package list in the background
+		( (opkg update > /tmp/opkgupdate.txt); \
+		echo "<pre>" > /tmp/opkglist.html; \
+		(opkg list | sed 's/ - /\t/g' | cut -c 1-130 >> /tmp/opkglist.html); \
+		echo "</pre>" >> /tmp/opkglist.html; ) &
 	fi
 	
+	# Process core package upgrades
 	CORE_PKG="lg02_pkt_fwd lora-gateway"
 	for PKG in $CORE_PKG;do
 		if [ $FORM_BUTTON == "Upgrade_$PKG" ]; then
-			install_info="$(opkg upgrade $PKG -V)"
+			upgrading="1"
+			package=$PKG
 		fi
 	done	
+	
 %>
 
 <%# --- Present the HTML page --- %>
@@ -34,38 +70,109 @@
 
 <body>
 <%inc /www/cgi-bin/inc/menu.inc %>
-<h2>Package Manage</h2>
 
-<div class="container" style="margin: 50px">
-  <form action="<% echo -n $SCRIPT_NAME %>" method=POST enctype="multipart/form-data" >
+<div class="page-container">
+<h2>Package Management</h2>
 
-    <h3> Check for Update </h3>
-    <text>Click CHECK will wait for a while to update</text><INPUT TYPE="SUBMIT" name="BUTTON" VALUE="CHECK">
-	<br>
-	<textarea cols="155" rows="10" > <% echo $opkgupdate%><% echo $opkglist %></textarea>"
-    <br><br>
+<form action="<% echo -n $SCRIPT_NAME %>" method=POST enctype="multipart/form-data" >
+	<table class="configTable">
+		<tr> <td><h3> Package List </h3></td></tr>
+		<tr>
+			<td><label id="loading"><span class="impact-light">Downloading package information. Please wait...</span></label></td>
+		</tr>
+		<tr>
+			<td><iframe id="listframe" width="1140px" scrolling="auto" src="/tmp/opkglist.html" ></iframe></td>
+		</tr>
+		<tr class="rowSpacer"></tr>
+
+		<tr>
+			<td><INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Refresh">
+				<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Reload">
+				<text> Click Reload to download package list. This will take a while.</text>
+			</td>
+		</tr>
+	</table>
 	
-    <h3> Install Package  </h3>
-		<label for="PACKAGE">Package Name:</label> <input type="text" size="30" name="PACKAGE">
+	<script>	document.getElementById("loading").style.display = "none"; 	</script>
+	 
+
+
+	<table class="configTable">
+		<tr> <td colspan="10"><h3> Installed Package List </h3></td></tr>
+		<tr>
+			<td colspan="10"><iframe id="installed-listframe" width="1140px" scrolling="auto" src="/tmp/opkglist-installed.html" ></iframe></td>
+		</tr>
+		<tr class="rowSpacer"></tr>
+
+		<tr> <td colspan="10"><h3> Install Package </h3></td></tr>
+	
+<% 	if [ $installing == "1" ]; then %>
+		<tr><td colspan="10"><p class="impact-light" id="installing">Installing package. Please wait...</p></td></tr>
+<% fi %>
+		<tr>
+			<td colspan="2"><label for="PACKAGE">Package Name:</label></td>
+			<td colspan="5"> <input type="text" size="30" name="PACKAGE"></td>
+			<td colspan="1"><INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Install"></td>
+		</tr>
+	</table>
+
+	<table class="configTable">
+		<tr> <td colspan="10"><h3> Core Packages  </h3></td></tr>
+
+<% 	if [ $upgrading == "1" ]; then %>
+		<tr><td colspan="10"><p class="impact-light" id="upgrading">Upgrading package. Please wait...</p></td></tr>
+<% fi %>
+		<tr style="font-weight: bold">
+			<td colspan="3">PACKAGE</td>
+			<td colspan="2">Cur Version</td>
+			<td colspan="2">Remote version</td>
+			<td colspan="2">Action</td>
+		</tr>			
 		
-		<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="INSTALL">
-    <br>
-	<br></br>
+		<% for PKG in $CORE_PKG; do %>
 
-    <h3> Core Package  </h3>
-		<text>PACKAGE &nbsp&nbsp|&nbsp&nbsp Cur Version &nbsp&nbsp|&nbsp&nbsp Remote version&nbsp&nbsp|&nbsp&nbsp Action </text>
-		<br>
-		<% for PKG in $CORE_PKG;do %>
-			<text><% echo $PKG %> : <% echo $(opkg list_installed | grep ^$PKG | awk '{print $3}') %>&nbsp&nbsp&nbsp&nbsp <% echo $(opkg list | grep ^$PKG | awk '{print $3}') %></text>
-			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Upgrade_<% echo -n $PKG %>">
-			<br>
+		<tr><td colspan="3"><% echo $PKG %>:</td>
+			<td colspan="2" ><% echo $(cat /tmp/opkglist-installed.html | grep ^$PKG | awk '{print $3}') %></td>
+			<td colspan="2"><% echo $(cat /tmp/opkglist.html | grep ^$PKG | awk '{print $2}') %></td>
+			<td colspan="2"><INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Upgrade_<% echo -n $PKG %>"</td>
+		</tr>
+
 		<% done %> 
-    <br>
-	<br></br>
-	<textarea cols="155" rows="10" ><% echo $install_info %></textarea>
-    <br><br>
 
-  </form>
+		<tr class="rowSpacer"></tr>
+		<tr> <td colspan="10"><h4> Installation Progress  </h4></td></tr>
+		<tr>
+			<td colspan="10"><iframe id="install-infoframe" width="1140px" scrolling="auto" src="/tmp/install-info.html" ></iframe></td>
+		</tr>
+	</table>
+
+<%
+	if [ $installing == "1" ]; then 
+		installing="0"
+   	echo "<pre>" > /tmp/install-info.html
+		opkg install $FORM_PACKAGE > /tmp/install-info.html
+		echo "</pre>" >> /tmp/install-info.html
+		# Update the installed list
+		echo "<pre>" > /tmp/opkglist-installed.html
+		opkg list_installed >> /tmp/opkglist-installed.html
+		echo "</pre>" >> /tmp/opkglist-installed.html
+	fi
+%>    
+<script>	document.getElementById("installing").style.display = "none"; 	</script>
+
+<%
+	if [ $upgrading == "1" ]; then 
+			upgrading="0"
+  	 	echo "<pre>" > /tmp/install-info.html
+			echo "Upgrading $package <br>" >> /tmp/install-info.html
+			opkg upgrade $package -V >> /tmp/install-info.html
+			echo "</pre>" >> /tmp/install-info.html
+	fi
+%>
+<script>	document.getElementById("upgrading").style.display = "none"; 	</script>
+<script> document.getElementById("install-infoframe").src = "/tmp/install-info.html"; </script>
+
+</form>
 </div>
 </body>
 </html>

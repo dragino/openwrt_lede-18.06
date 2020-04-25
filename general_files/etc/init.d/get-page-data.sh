@@ -12,7 +12,6 @@ kill -9 $pid
 
 start()
 {
-
 # Initialise mouseovers.
 # Mouseovers should be set, cleared, and reset if necessary, for any SAT requiring
 # a popup, on every reload of the page. Mouseouts never need to be changed.
@@ -79,11 +78,15 @@ satvis12="hidden"
 # Generate the txt files every 10 seconds
 while (true); do 
 
+# Get model type
+model=$(cat /tmp/iot/model.txt)
+
 # Get base network config data
 cable=$(ifconfig | grep -c eth1)
 wifi=$(ifconfig  | grep -c wlan0-2)
-#cell=$(ifconfig  | grep -c 3g-cellular) # Is interface present
-cell=$(uci -q get network.cellular.auto) # Is interface enabled
+
+cell_en=$(uci -q get network.cellular.auto) # Is interface enabled
+cell_if=$(ifconfig  | grep -c 3g-cellular) # Is interface present
 
 # Get server type
 server_type=$(uci get gateway.general.server_type)
@@ -92,12 +95,29 @@ server_type=$(uci get gateway.general.server_type)
 route=$(ip route|grep default | cut -d " " -f 5)
 
 # Check Internet connectivity
-HOST="1.1.1.1"
-ping -c1 $HOST 1>/dev/null 2>/dev/null; SUCCESS=$?
-if [ $SUCCESS -eq "0" ]; then
+host1="1.1.1.1"
+host2="www.dragino.com"
+
+fping -q $host1 
+if [ $? -eq "0" ]; then
   internet="1"
 else
-  internet="0"
+	fping $host2
+	if [ $? -eq "0" ]; then
+  	internet="1"
+	else
+		fping -q -w2 $host1
+		if [ $? -eq "0" ]; then
+  		internet="1"
+  	else
+  		fping -q -w2 $host2
+			if [ $? -eq "0" ]; then
+  			internet="1"
+  		else
+  			internet="0"
+  		fi
+  	fi
+  fi
 fi
 
 ##################################
@@ -112,29 +132,60 @@ fi
 
 satlink1="/cgi-bin/system-cellular.has"
 
-if [ $cell == "1" ]; then
+if [ $cell_en == "1" ]; then
   satvis1="visible"
   mouseover1='info-1'
 else
-	sat1="/static/img/SAT-Space-Blank.png" # No Cell image reqd
+	sat1="/static/img/SAT-Space-Blank.png" # No Cell image reqd if cell not enabled
   mouseover1=''
   satlink1="#"
   satvis1="hidden"
 fi
 
+# Cell Internet check	
+fping -q -I 3g-cellular $host1 
+if [ $? -eq "0" ]; then
+ 	internet_cell="1"
+else
+	fping -q -I 3g-cellular $host2
+	if [ $? -eq "0" ]; then
+ 		internet_cell="1"
+ 	else
+		fping -q -w2 $host1
+		if [ $? -eq "0" ]; then
+  		internet_cell="1"
+  	else
+  		fping -q -w2 $host2
+			if [ $? -eq "0" ]; then
+  			internet_cell="1"
+  		else
+				internet_cell="0"
+			fi
+		fi
+	fi
+fi
+
 # Set up the SAT image
-if [ $route == "3g-cellular" ] && [ $internet == "1" ]; then
+if [ $route == "3g-cellular" ] && [ $internet_cell == "1" ]; then
   sat1="/static/img/SAT-Int-Cell-tick.png"
-elif [ $route == "3g-cellular" ] && [ $internet == "0" ]; then  
-  sat1="/static/img/SAT-Int-Cell-cross.png"
-elif [ $cell == "1" ] && [ $route != "3g-cellular" ]; then  
+elif [ $route == "3g-cellular" ] && [ $internet_cell == "0" ]; then  
+  sat1="/static/img/SAT-Int-Cell-cross-amber.png"
+elif [ $cell_if == "0" ]; then
+	sat1="/static/img/SAT-Int-Cell-cross.png"
+elif [ $cell_if == "1" ] && [ $route != "3g-cellular" ] && [ $internet_cell == "1" ]; then  
   sat1="/static/img/SAT-Int-Cell-tick-amber.png"
+elif [ $cell_if == "1" ] && [ $route != "3g-cellular" ] && [ $internet_cell == "0" ]; then  
+  sat1="/static/img/SAT-Int-Cell-cross.png"
 fi
 
 ################
 # Setup SAT2 - Eth/WiFi WAN
 
 cable=$(ifconfig | grep -c eth1)
+# Allow for Fallback interface
+if [ $cable == "2" ];then
+	cable="1"
+fi
 wifi=$(ifconfig  | grep -c wlan0-2)
 
 satvis2="visible"
@@ -181,7 +232,7 @@ if [ $server_type == "disabled" ]; then
 
 elif [ $server_type == "lorawan" ]; then
 	satlink3="/cgi-bin/lorawan.has"
-  status=$(cat /tmp/iot/status)
+		status=$(cat /var/iot/status)
 	if [ $status == "online" ] && [ $internet == "1" ];then
 		sat3="/static/img/SAT-LoRaWAN-tick.png"
 	else
@@ -193,9 +244,11 @@ elif [ $server_type == "lorawan" ]; then
 	
 elif [ $server_type == "mqtt" ]; then
 	satlink3="/cgi-bin/mqtt.has"
-	mqttstatus=$(ps | grep -c mqtt_process)
-	if [ $mqttstatus == "2" ];then
+	pubstatus=$(ps | grep -c mqtt_process)
+	substatus=$(ps | grep -c mosquitto_sub)
+	if [ $pubstatus == "2" ] || [ $substatus == "2" ]; then
 		sat3="/static/img/SAT-MQTT-tick.png"
+		mqttstatus="1"
 	else
 		sat3="/static/img/SAT-MQTT-cross.png"
 	fi
@@ -222,10 +275,19 @@ elif [ $server_type == "customized" ]; then
 	satlink3="/cgi-bin/custom.has"
 	script_name=$(uci get customized_script.general.script_name)
 	customstatus=$(ps | grep -c $script_name)
-	if [ $customstatus == "2" ];then
+	if [ $customstatus -ge 2 ];then
 		sat3="/static/img/SAT-Custom-tick.png"
 	else
 		sat3="/static/img/SAT-Custom-cross.png"
+	fi
+	
+elif [ $server_type == "relay" ]; then
+	satlink3="/cgi-bin/lora-lora.has"
+	relaystatus=$(ps | grep -c pkt_fwd)
+	if [ $relaystatus == "2" ];then
+		sat3="/static/img/SAT-Relay-tick.png"
+	else
+		sat3="/static/img/SAT-Relay-cross.png"
 	fi
 	
 else
@@ -249,7 +311,14 @@ fi
  
 satlink10="/cgi-bin/lora-lora.has"
 satvis10="visible"
-mouseover10='info-10'
+
+if [ $model == "LG308" ] || [ $model == "LPS8" ] || [ $model == "DLOS8" ]; then
+  mouseover10='info-10b'
+else
+  mouseover10='info-10a'
+fi
+
+#mouseover10='info-10'
 
 ################
 # Setup SAT11 - WiFi Access Point
@@ -297,16 +366,20 @@ EOF
 ################
 # Centre Data - System
 
-model0=$(cat /tmp/iot/model.txt)
+model0=$model
 firmware0=$(cat /etc/banner | grep Version | cut -d : -f 2)
 system0=$(cat /etc/os-release | grep _RELEASE | cut -d = -f2)
 load0=$(uptime | sed -n 's/average:/&\n/;s/.*\n//p')
 ip0=$(uci -q get network.lan.ipaddr)
 
+# Info bar data
+system_time=$(date)
+uptime_str=$(uptime  | cut -d " " -f4,5 | tr , " ")
+
 ################
 # SAT1 Data - Cellular WAN
 
-if [ $cell == "1" ]; then
+if [ $cell_en == "1" ]; then
 	info_title1="Cellular Internet"
 
   ip1=$(ifconfig 3g-cellular|grep "inet addr"|cut -d ":" -f 2|cut -d " " -f 1)
@@ -316,15 +389,26 @@ if [ $cell == "1" ]; then
   # Get cell status and save to file
   cp /tmp/celltmp.txt /tmp/cell1.txt 
   killall comgt
-  (comgt -d /dev/ttyUSB3 > /tmp/celltmp.txt) &
+  (comgt -d /dev/ttyModemAT > /tmp/celltmp.txt) &
   
   # Extract data for Info box
   sim1=$(cat /tmp/cell1.txt|grep SIM)
   sig1=$(cat /tmp/cell1.txt | grep Signal)
   net1=$(cat /tmp/cell1.txt | grep network: | cut -d : -f 2)
-  time1=$(date | cut -d " " -f 4-6)
-  #rm /tmp/cell1.txt
-  
+  time1=$(date | cut -d " " -f 5-6)
+
+	# Fast Cell Internet check	
+	fping -q -I 3g-cellular $host1 
+	if [ $? -eq "0" ]; then
+  	internet1="OK"
+	else
+		fping -q -I 3g-cellular $host2
+		if [ $? -eq "0" ]; then
+  		internet1="OK"
+		else
+			internet1="<font size="2" color="red">Fail</font"
+		fi
+	fi
 fi
 
 ################
@@ -353,39 +437,68 @@ fi
 # Get server type
 server_type=$(uci get gateway.general.server_type)
 # Initialise
+process3=" "
 status3="0"
 server3=" "
 
 if [ $server_type == "lorawan" ]; then
 	info_title3="LoRaWAN Service"
 	server3=$(uci get gateway.general.platform | cut -d "," -f 2)  
-  status3=$(cat /tmp/iot/status)
+	lorawanstatus=$(ps|grep -c lora_pkt_fwd)
+	if [ $lorawanstatus == "2" ]; then
+		process3="LoRaWAN process <b>Running</b>"
+		status3=$(cat /var/iot/status)
+	else
+		process3="LoRaWAN process <b>Not Running</b>"
+	fi
 
 elif [ $server_type == "mqtt" ]; then
 	info_title3="MQTT Service"
 	server3=$(uci -q get mqtt.common.server_type)
-	if [ $mqttstatus == "2" ];then
-		status3="MQTT process running"
+	if [ $mqttstatus == "1" ];then
+		process3="MQTT process(es) <b>Running</b>"
+		status3=$(cat /var/iot/status)
+	else
+		process3="MQTT process <b>Not Running</b>"
 	fi
 
 elif [ $server_type == "tcpudp" ]; then
 	info_title3="TCP/UDP Service"
 	server3=$(uci -q get tcp_client.general.server_address)
-	if [ $tcpstatus == "2" ];then
-		status3="TCP/UDP process running"
+	if [ $tcpstatus == "2" ]; then
+		process3="TCP/UDP process <b>Running</b>"
+		status3=$(cat /var/iot/status)
+	else
+		process3="TCP/UDP process <b>Not Running</b>"
 	fi
 	
 elif [ $server_type == "http" ]; then
 	info_title3="HTTP Service"
 	server3=$(uci -q get http_iot.general.server_type)
 	if [ $httpstatus == "2" ];then
-		status3="HTTP process running"
+		process3="HTTP process <b>Running</b>"
+		status3=$(cat /var/iot/status)
+	else
+		process3="HTTP process <b>Not Running</b>"
 	fi
 	
 elif [ $server_type == "customized" ]; then
 	info_title3="Custom Service"
-	if [ $customstatus == "2" ];then
-		status3="Process $script_name running"
+	if [ $customstatus -ge 2 ];then
+		process3=" $script_name <b>Running</>"
+		status3=$(cat /var/iot/status)
+	else
+		process3=" $script_name <b>Not Running</>"
+	fi
+
+elif [ $server_type == "relay" ]; then
+	info_title3="LoRaWAN Relay Service"
+	server3=" "
+	if [ $relaystatus == "2" ];then
+		process3="Process pkt_fwd <b>Running</b>"
+		status3=$(cat /var/iot/status)
+	else
+		process3=" Process pkt_fwd <b>Not Running</b>"
 	fi
 fi
 
@@ -396,7 +509,7 @@ fi
 
 info_title10="LoRa Radio"
 
-if [ $board == "LG01" ];then
+if [ $model == "LG01" ];then
 	rxfreq10=$(uci get gateway.radio1.RFFREQ)
 	txfreq10=$(uci get gateway.radio1.RFFREQ)
 	rxbw10=$(uci get gateway.radio1.RFBW)
@@ -405,7 +518,7 @@ if [ $board == "LG01" ];then
 	txcr10=$(uci get gateway.radio1.TFCR)
 	rxsf10=$(uci get gateway.radio1.RFSF)
 	txsf10=$(uci get gateway.radio1.TFSF)
-else
+elif [ $model == "LG02" ];then
 	rxfreq10=$(uci get gateway.radio1.RXFREQ)
 	txfreq10=$(uci get gateway.radio2.TXFREQ)
 	rxbw10=$(uci get gateway.radio1.RXBW)
@@ -414,6 +527,24 @@ else
 	txcr10=$(uci get gateway.radio2.TXCR)
 	rxsf10=$(uci get gateway.radio1.RXSF)
 	txsf10=$(uci get gateway.radio2.TXSF)
+fi
+
+if [ $model == "LG308" ] || [ $model == "LPS8" ] || [ $model == "DLOS8" ]; then
+	gwcfg=$(uci get gateway.general.gwcfg)
+	subband=$(uci get gateway.general.subband)
+	
+	band10=$(grep -e \"$gwcfg\" /www/cgi-bin/inc/band.inc | cut -d ">" -f 2 | cut -d "<" -f 1)
+	
+	if [ $gwcfg == "AU" ]; then
+		subband10=$(grep -e \"$subband\" /www/cgi-bin/inc/subband-au.inc | cut -d ">" -f 2 | cut -d " " -f 1,2,3)
+	elif [ $gwcfg == "US" ]; then
+		subband10=$(grep -e \"$subband\" /www/cgi-bin/inc/subband-us.inc | cut -d ">" -f 2 | cut -d " " -f 1,2,3)
+	elif [ $gwcfg == "CUS" ]; then
+		band10="Custom"
+		subband10=" "
+	else
+		subband10=" "
+	fi
 fi
 
 ################
@@ -441,6 +572,8 @@ cat > /tmp/popup-data.txt << EOF
 		<tr>	  <td>System:</td><td>$system0 </td>	</tr>
 		<tr>	  <td>LAN IP:</td><td>$ip0 </td>	</tr>
 		<tr>	  <td>Load Avg:</td><td>$load0 </td>	</tr>
+		<tr>	  <td>Date:</td><td>$system_time </td>	</tr>
+		<tr>	  <td>Uptime:</td><td>$uptime_str </td>	</tr>
 		</table>
 </div>	
 
@@ -453,6 +586,7 @@ cat > /tmp/popup-data.txt << EOF
 	<tr>	  <td>SIM:</td><td>$sim1 </td>	</tr>
 	<tr>	  <td>Network:</td><td>$net1 </td>	</tr>
 	<tr>	  <td>Signal:</td><td>$sig1 </td>	</tr>
+	<tr>	  <td>Internet:</td><td><b>$internet1</b></td>	</tr>
 	<tr>	  <td>Time:</td><td>$time1 </td>	</tr>
 	</table>
 </div>	
@@ -481,18 +615,27 @@ cat > /tmp/popup-data.txt << EOF
 <div class="info" id="info-3">
 	<table>
 	<tr>	  <th colspan="2">$info_title3 </th>	</tr>
-	<tr>	  <td>Server:</td><td>$server3 </td>	</tr>
+	<tr>	  <td>Process:</td><td>$process3 </td>	</tr>
 	<tr>	  <td>Status:</td><td>$status3 </td>	</tr>
+	<tr>	  <td>Server:</td><td>$server3 </td>	</tr>
 	</table>
 </div>	
 
-<div class="info" id="info-10">
+<div class="info" id="info-10a">
 	<table>
 		<tr>	  <th colspan="2">$info_title10 </th>	</tr>
 		<tr>	  <td>Rx Freq:</td><td>$rxfreq10 </td>	</tr>
 		<tr>	  <td>Tx Freq:</td><td>$txfreq10 </td>	</tr>
 		<tr>	  <td>Rx BW / CR / SF:</td><td>$rxbw10 / $rxcr10 / $rxsf10 </td>	</tr>
 		<tr>	  <td>Tx BW / CR / SF:</td><td>$txbw10 / $txcr10 / $txsf10 </td>	</tr>
+	</table>
+	</div>	
+
+<div class="info" id="info-10b">
+	<table>
+		<tr>	  <th colspan="2">$info_title10 </th>	</tr>
+		<tr>	  <td>Freq Band:</td><td>$band10</td>	</tr>
+		<tr>	  <td>Sub Band:</td><td>$subband10</td>	</tr>
 	</table>
 	</div>	
 
@@ -506,6 +649,8 @@ cat > /tmp/popup-data.txt << EOF
 	<tr>	  <td>RX Bytes:</td><td>$rxb11 </td>	</tr>
 	</table>
 </div>	
+
+|||$system_time|||$uptime_str
 
 EOF
 #####################

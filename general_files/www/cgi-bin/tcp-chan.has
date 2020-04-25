@@ -9,14 +9,14 @@
     uci set tcp_client.chan$FORM_CHAN_NO.local_id=$FORM_LOCAL_ID
     uci commit tcp_client
   elif [ $FORM_BUTTON == "Add" ]; then
-    add_chan_error="<b>Invalid channel number: $FORM_CHAN_NO. <sp><sp> Use 1 - 99</b>"
+    add_chan_error="Invalid channel number: $FORM_CHAN_NO <sp><sp> Use 1 - 99"
 	fi
 
 	if [ $FORM_BUTTON == "Delete" ] && [ $FORM_DEL_CHAN_NO -ge "1" ] && [ $FORM_DEL_CHAN_NO -le "99" ]; then
     uci delete tcp_client.chan$FORM_DEL_CHAN_NO
     uci commit tcp_client
   elif [ $FORM_BUTTON == "Delete" ]; then
-    del_chan_error="<b>Invalid channel number: $FORM_DEL_CHAN_NO. <sp><sp> Use 1 - 99</b>"
+    del_chan_error="Invalid channel number: $FORM_DEL_CHAN_NO <sp><sp> Use 1 - 99"
 	fi
 %>
 
@@ -30,37 +30,54 @@
 
 <body>
 <%inc /www/cgi-bin/inc/menu.inc %>
-	<h2>TCP Channel Management</h2>
+<div class="page-container">
+<h2>TCP Channel Management</h2>
 
   <form action="<% echo -n $SCRIPT_NAME %>" method=POST enctype="multipart/form-data" >
-	<div class="container" style="margin: 50px">
-    <h3> Add / Edit Channel </h3>
-    <br>
-	  <label for="CHAN_NO">Channel Number</label>
-	  <input type="text" size="4" name="CHAN_NO" >
-    Number 0 - 99
-    <br>
-	  <label for="LOCAL_ID">Local ID</label>
-	  <input type="text" name="LOCAL_ID">
-    <br>
-    <INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Add">
-    <br>
-    <% echo $add_chan_error %>
-    <br><br>
+  <table class="configTable">
+    <tr class="rowSpacer"></tr>
+    <tr><td colspan="12"><h3> Add / Edit Channel </h3></td></tr> <!-- Determines the column widths -->
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="2"><label for="CHAN_NO">Channel Number</label></td>
+      <td colspan="1"><input type="text" size="4" name="CHAN_NO" ></td>
+      <td colspan="3">Number 0 - 99</td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="2"><label for="LOCAL_ID">Local ID</label></td>
+      <td colspan="3"><input type="text" name="LOCAL_ID"></td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="3"><INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Add"></td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td class="error" colspan="8"><% echo $add_chan_error %></td>
+    </tr>
 
-    <h3> Delete Channel </h3>
-    <br>
-	  <label for="DEL_CHAN_NO">Channel Number</label>
-	  <input type="text" size="4" name="DEL_CHAN_NO" >
-    Number 0 - 99
-    <br>
-    <INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Delete">
-    <br>
-    <% echo $del_chan_error %>
+    <tr class="rowSpacer"></tr>
+    <tr><td colspan="12"><h3> Delete Channel </h3></td></tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="2"><label for="DEL_CHAN_NO">Channel Number</label></td>
+      <td colspan="1"><input type="text" size="4" name="DEL_CHAN_NO" ></td>
+      <td colspan="3">Number 0 - 99</td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="3"><INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Delete"></td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td class="error" colspan="8"><% echo $del_chan_error %></td>
+    </tr>
 
-    <br>
-    <br>
-    <h3>Saved Channels:</h3>
+    <tr class="rowSpacer"></tr>
+    <tr><td colspan="12"><h3>Saved Channels:</h3></td></tr>
+    <tr>
+      <td colspan="12">
 		<%
 			rm /tmp/tcp_chan.txt; 
       touch /tmp/tcp_chan.txt
@@ -71,13 +88,15 @@
 			done
 		%>
 
-		<iframe id="TCP_CHAN_LIST" src="/tcp_chan.txt"  width="100%" height="150" ></iframe>
-
-    <br>
-    <INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Refresh">
+    <iframe id="TCP_CHAN_LIST" src="/tmp/tcp_chan.txt"  width="100%" height="150" ></iframe>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="12"><INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Refresh"></td>
+    </tr>
+  </table>
   </form>
 </div>
-
 </body>
 </html>
 

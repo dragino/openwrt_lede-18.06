@@ -19,17 +19,24 @@ elif [ $route == "3g-cellular" ]; then
 fi
 
 # Check Internet connectivity
-HOST="1.1.1.1"
-ping -c1 $HOST 1>/dev/null 2>/dev/null
-SUCCESS=$?
+host1="1.1.1.1"
+host2="www.dragino.com"
+ping -w2 $host1 1>/dev/null 2>/dev/null; SUCCESS=$?
 if [ $SUCCESS -eq "0" ]; then
-  connection="<font size="4"> Internet Connection OK </font>"
-  connect_img=$img"-tick.png"
   internet="1"
+  connection="<span class="impactOK"> Internet Connection OK </span>"
+  connect_img=$img"-tick.png"
 else
-  connection="<font size="4" color="red"> No Internet Connection </font>"
-  connect_img=$img"-cross.png"
-  internet="0"
+	ping -w2 $host2 1>/dev/null 2>/dev/null; SUCCESS=$?
+	if [ $SUCCESS -eq "0" ]; then
+  	internet="1"
+	  connection="<span class="impactOK"> Internet Connection OK </span>"
+	  connect_img=$img"-tick.png"
+	else  
+  	internet="0"
+	  connection="<span class="impact-light"> No Internet Connection </span>"
+	  connect_img="/static/img/SAT-Space-Blank.png"
+  fi
 fi
 
 # Check LoRaWAN connection
@@ -42,10 +49,10 @@ if [ -e /tmp/iot/status ] && [ $internet == "1" ] && [ $server_type == "lorawan"
   status=$(cat /tmp/iot/status)
   lorawan_disp="1"
   if [ $status == "online" ]; then
-    lorawan_str="<font size="4"> LoRaWAN Connection OK </font>"
+    lorawan_str="<span class="impactOK"> LoRaWAN Connection OK </span>"
     lorawan_img="/static/img/SAT-LoRaWAN-tick.png"
   else
-    lorawan_str="<font size="4" color="red"> No LoRaWAN Connection </font>"
+    lorawan_str="<span class="impact-light"> No LoRaWAN Connection </span>"
   fi
 fi
 
@@ -63,30 +70,37 @@ model=$(cat /tmp/iot/model.txt)
 
 <body>
 <%inc /www/cgi-bin/inc/menu.inc %>
-<h2>System Overview</h2></div>
+<div class="page-container" id="SysOverview">
+<h2>System Overview</h2>
   
-<div class="container" style="margin: 50px">
-	
-	<% echo "Firmware:  "; cat /etc/banner | grep Version | cut -d : -f 2 %>
-	<br><br>
-	<% echo "System:  "; cat /etc/os-release | grep _RELEASE | cut -d = -f2 %>
-	<br><br>
-	<% echo "Hostname:  "; uci get system.@[0].hostname %>
-	<br><br>
-	<% echo "Device Model:  $model" %>
-	<br><br>
-	<% echo "System Time:  "; date %>
-	<br><br>
-	<% echo "Uptime:  "; uptime | cut -d " " -f4,5 | tr , " " %>
-	<br><br>
-	<% echo "Load Avg:  "; uptime | cut -d , -f2,3,4 | cut -d : -f2 %>
-	<br><br>
-	<% echo $MEMSTR %>
-	<br><br>
-	<% echo "IoT Service:  $server_type" %>
-	<br><br>
+<table class="configTable">
+	<tr><td colspan="20"></td></tr> <!--Determines column widths-->
+	<tr class="rowSpacer"></tr>
+	<tr><td colspan="3">Firmware:</td><td colspan="17"><% cat /etc/banner | grep Version | cut -d : -f 2 %></td></tr>
+	<tr class="rowSpacer"></tr>
+	<tr><td colspan="3">System:</td><td colspan="17"><% cat /etc/os-release | grep _RELEASE | cut -d = -f2 %></td></tr>
+	<tr class="rowSpacer"></tr>
+	<tr><td colspan="3">Hostname:</td><td colspan="17"><% uci get system.@[0].hostname %></td></tr>
+	<tr class="rowSpacer"></tr>
+	<tr><td colspan="3">Device Model:</td><td colspan="17"><% echo $model %></td></tr>
+	<tr class="rowSpacer"></tr>
+	<tr><td colspan="3">System Time:</td><td colspan="17"><% date %></td></tr>
+	<tr class="rowSpacer"></tr>
+	<tr><td colspan="3">Uptime:</td><td colspan="17"><% uptime | cut -d " " -f4,5 | tr , " " %></td></tr>
+	<tr class="rowSpacer"></tr>
+	<tr><td colspan="3">Load Avg:</td><td colspan="17"><% uptime | cut -d , -f2,3,4 | cut -d : -f2 %></td></tr>
+	<tr class="rowSpacer"></tr>
+	<tr><td colspan="3">Memory:</td><td colspan="17"><% echo $MEMSTR %></td></tr>
+	<tr class="rowSpacer"></tr>
+	<tr><td colspan="3">IoT Service:</td><td colspan="17"><% echo $server_type %></td></tr>
+	<tr class="rowSpacer"></tr>
 
-  <% echo $connection %> <img src="<% echo -n $connect_img %>" width="50" height="50"> 
+	<tr><td colspan="5"><% echo $connection %> <img src="<% echo -n $connect_img %>" width="50" height="50"></td></tr>
+	<tr class="rowSpacer"></tr>
+
+	<tr>
+		<td colspan="20">
+   
   <% 
      if [ $lorawan_disp == "1" ]; then
        echo $lorawan_str
@@ -97,9 +111,10 @@ model=$(cat /tmp/iot/model.txt)
        fi
      fi 
   %> 
-
+		</td>
+	</tr>
+</table>
 </div>
-
 </body>
 </html>
 

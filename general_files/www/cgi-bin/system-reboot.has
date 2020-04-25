@@ -12,38 +12,48 @@
 
 <body>
 <%inc /www/cgi-bin/inc/menu.inc %>
+<div class="page-container">
 <h2>Reboot / Reset</h2>
 
-<div class="container" style="margin: 50px">
-  <form action="<% echo -n $SCRIPT_NAME %>" method=POST enctype="multipart/form-data" >
-
-    <h3> Reboot </h3>
+<form action="<% echo -n $SCRIPT_NAME %>" method=POST enctype="multipart/form-data" >
+  <table class="configTable">
+    <!--This table is only 1 column wide-->
+    <tr><td><h3> Reboot </h3></td></tr>
+    <tr>
+      <td>
     <%
     	if [ $FORM_BUTTON == "REBOOT" ]; then
-			echo "<br><font size="4">*** Rebooting... </font><br>"
-			echo "<br><font size="4">*** Please wait 2 minutes and connect again. </font><br>"
+			echo "<p style="font-weight: bold;">*** Rebooting... </p>"
+			echo "<p style="font-weight: bold;">*** Please wait 2 minutes and connect again. </p>"
     		reboot
-			echo "<br><font size="4" color="red">*** Rebooting...</font><br>"
+			echo "<p class="impact">*** Rebooting...</p>"
 		fi
     %>
-    <INPUT TYPE="SUBMIT" name="BUTTON" VALUE="REBOOT">
-    <br><br>
+      </td>
+    </tr>
+    <tr><td><INPUT TYPE="SUBMIT" name="BUTTON" VALUE="REBOOT"></td></tr>
 
-
-    <br><br>
-    <h3> Reset to Factory Default </h3>
+    <tr class="rowSpacer"></tr>
+    <tr class="rowSpacer"></tr>
+    <tr class="rowSpacer"></tr>
+    <tr><td><h3> Reset to Factory Default </h3></td></tr>
+    <tr>
+      <td>
     <%
     	if [ $FORM_BUTTON == "RESET" ]; then
-			echo "<br><font size="4">*** RESET to Factory Default... </font><br>"
-			echo "<br><font size="4">*** Please wait 2 minutes and connect again. </font><br>"
+			echo "<p style="font-weight: bold;">*** RESET to Factory Default... </p>"
+			echo "<p style="font-weight: bold;">*** Please wait 2 minutes and connect again. </p>"
     		mtd -r erase rootfs_data
-			echo "<br><font size="4" color="red">*** Reseting...</font><br>"
+			echo "<p class="impact">*** Reseting...</p>"
 		fi
     %>
-    <INPUT TYPE="SUBMIT" name="BUTTON" VALUE="RESET">
+      </td>
+    </tr>
+    <tr>
+      <td><INPUT TYPE="SUBMIT" name="BUTTON" VALUE="RESET"></td></tr>
+  </table>
 
-
-  </form>
+</form>
 </div>
 </body>
 </html>

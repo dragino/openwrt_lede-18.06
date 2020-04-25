@@ -51,9 +51,10 @@
   if [ $FORM_BUTTON == "Save&Apply" ]; then
 		uci set gateway.general.server_type="mqtt"
 		uci commit gateway
-    /usr/bin/reset_lgw.sh restart > /dev/null
+    /etc/init.d/lora_gw restart > /dev/null
     sleep 2
     /etc/init.d/iot reload > /dev/null
+		rm /var/iot/status
   fi
   
   rm /tmp/changeFunct.flag   # Just to be sure
@@ -65,27 +66,36 @@
 # --- Get the variables for the HTML page ---
 	board=`cat /var/iot/board`
 	iot_service="$(uci -q get gateway.general.server_type)"
-	server_type="$(uci -q get mqtt.common.server_type)"
+  server_type="$(uci -q get mqtt.common.server_type)"
 
 	url="$(uci -q get mqtt.$server_type.url)"
 	port="$(uci -q get mqtt.$server_type.port)"
-	user="$(uci -q get mqtt.$server_type.user)"                                                                          
+  user="$(uci -q get mqtt.$server_type.user)"                                                                          
 	pwd="$(uci -q get mqtt.$server_type.pwd)"
 	cert="$(uci -q get mqtt.$server_type.cert)"
-	key="$(uci -q get mqtt.$server_type.key)"
+  key="$(uci -q get mqtt.$server_type.key)"
 	cafile="$(uci -q get mqtt.$server_type.cafile)"
 	cid="$(uci -q get mqtt.$server_type.cid)"
 
 	pub_enable="$(uci -q get mqtt.common.pub_enable)"
-	pub_qos="$(uci -q get mqtt.$server_type.pub_qos)"                                                                      
+  pub_qos="$(uci -q get mqtt.$server_type.pub_qos)"                                                                      
 	topic="$(uci -q get mqtt.$server_type.pub_topic)"
-	data="$(uci -q get mqtt.$server_type.data)"
+  data="$(uci -q get mqtt.$server_type.data)"
 
 	sub_enable="$(uci -q get mqtt.common.sub_enable)"
-	sub_qos="$(uci -q get mqtt.$server_type.sub_qos)"
+  sub_qos="$(uci -q get mqtt.$server_type.sub_qos)"
 	sub_topic="$(uci -q get mqtt.$server_type.sub_topic)"
-
-
+	
+  # Prepare script select list
+  certdir="/etc/iot/cert"
+  rm /tmp/certs.txt
+  touch /tmp/certs.txt
+  cert_list=$(ls -1 $certdir)
+  for x in $cert_list; do
+  	echo "<option value=\"$x\">$x</option>" >> /tmp/certs.txt
+  done
+	
+	
 # --- Set up server specific display fields ---
 
 	pub_topic_default=" "
@@ -102,7 +112,7 @@
 	fi
 
 # --- Set up field display ---
- 
+
   # Set up display defaults
   disp1="inline"; disp2="none";disp3="none"
 
@@ -137,110 +147,164 @@
 
 <body onload="displayFunction()">
 <%inc /www/cgi-bin/inc/menu.inc %>
+<div class="page-container">
 <h2>MQTT Client Configuration</h2>
 
-<div class="container" style="margin: 50px">
 <form id="mqtt" action="<% echo -n $SCRIPT_NAME %>" method="POST">
-	
-	<label for="server_type">MQTT Server Profile</label>
-	<select id="server_type" style="padding-right:80px" name="SERVER_TYPE" onchange="changeFunc(this.value)" >
-		<option selected="<% echo -n $server_type %>"><% echo -n $server_type %></option>
-	  <option value="General" >General</option>
-	  <option value="Lewei50" >Lewei50</option>
-	  <option value="ThingSpeak" >ThingSpeak</option>
-	  <option value="myDevices" >myDevices</option>
-	  <option value="Azure" >Azure</option>
-	  <option value="AWS" >AWS</option>
-	  <option value="Alibaba" >Alibaba</option>
-	</select> 
-  <br><br>
 
-	<label for="URL">Broker Address [-h]</label>
-	<input type="text" name="URL" size="40" Placeholder="Server URL" maxlength="256" VALUE="<% echo -n $url %>" >
-  <br><br>
+<table class="configTable">
+	<tr class="rowSpacer"><td colspan="20"></td></tr> <!--Determines the column widths-->
+	<tr>
+		<td></td>
+		<td colspan="4"><label for="server_type">MQTT Server Profile</label></td>
+		<td colspan="5">
+			<select id="server_type" style="padding-right:80px" name="SERVER_TYPE" onchange="changeFunc(this.value)" >
+	  		<option value="General" >General</option>
+	  		<option value="Lewei50" >Lewei50</option>
+	  		<option value="ThingSpeak" >ThingSpeak</option>
+	  		<option value="myDevices" >myDevices</option>
+	  		<option value="Azure" >Azure</option>
+	  		<option value="AWS" >AWS</option>
+	  		<option value="Alibaba" >Alibaba</option>
+			</select></td>
+		<td colspan="10"></td>
+	</tr>
+	<script>document.getElementById("server_type").value="<% echo -n $server_type %>";</script>
 
-	<label for="PORT">Broker Port [-p]</label>
-	<input type="number" min="1" max="65535" name="PORT" Placeholder="Server Port" maxlength="5" VALUE="<% echo -n $port %>" >
-  <br><br>
+	<tr class="rowSpacer"><td colspan="20"></td></tr>
+	<tr>
+		<td></td>
+		<td colspan="4"><label for="URL">Broker Address [-h]</label></td>
+		<td colspan="5"><input type="text" name="URL" size="40" Placeholder="Server URL" maxlength="256" VALUE="<% echo -n $url %>" ></td>
+		<td colspan="1"></td>
+  		<td colspan="3"><label for="PORT">Broker Port [-p]</label></td>
+		<td colspan="4"><input type="number" min="1" max="65535" name="PORT" Placeholder="Server Port" maxlength="5" VALUE="<% echo -n $port %>" ></td>
+		<td colspan="1"></td>
+	</tr>
+</table>
 
-  <div id="div1">
-	  <label for="USER">User ID [-u]</label>
-	  <input type="text" name="USER" Placeholder="User ID" maxlength="256" VALUE="<% echo -n $user %>" >
+<div id="div1">
+<table class="configTable">
+	<tr class="rowSpacer"><td colspan="20"></td></tr>
+	<tr>
+		<td></td>
+		<td colspan="4"><label for="USER">User ID [-u]</label></td>
+	  	<td colspan="5"><input type="text" name="USER" Placeholder="User ID" maxlength="256" VALUE="<% echo -n $user %>" ></td>
+		<td colspan="1"></td>
+		<td colspan="3"><label for="PWD">Password [-P]</label></td>
+		<td colspan="4"><input type="password" name="PWD" id="mqtt_pwd" Placeholder="Password" maxlength="128" VALUE="<% echo -n $pwd %>" ></td>
+		<td colspan="1"><span class="btnShow" onclick="toggleVis('mqtt_pwd')">Show</span></td>
+	</tr>
+</table>
+</div>
 
-	  <label for="PWD" style="padding-left:60px">Password [-P]</label>
-	  <input type="text" size="30" name="PWD" Placeholder="Password" maxlength="256" VALUE="<% echo -n $pwd %>" >
-    <br><br>
-  </div>
+<div id="div2">
+<table class="configTable">
+	<tr class="rowSpacer"><td colspan="20"></td></tr>
+	<tr>
+		<td></td>
+		<td colspan="4"><label for="CERT">Certificate [--cert]</label></td>
+			<td colspan="5">
+				<select id="cert" name="CERT" style="padding-right:80px">
+	  			<% cat /tmp/certs.txt %>
+	  			<option value=" " > </option>
+				</select>
+			</td>
+		<td colspan="1"></td>
+		<td colspan="3"><label for="KEY">Key [--key]</label></td>
+			<td colspan="5">
+				<select id="key" name="KEY" style="padding-right:80px">
+	  			<% cat /tmp/certs.txt %>
+	  			<option value=" " > </option>
+				</select>
+			</td>
+	</tr>
+	<script>document.getElementById("cert").value="<% echo -n $cert %>";</script>
+	<script>document.getElementById("key").value="<% echo -n $key %>";</script>
+</table>
+</div>
 
-  <div id="div2">
-	  <label for="CERT">Certificate [--cert]</label>
-	  <input type="text" maxlength="128" name="CERT" Placeholder="Certificate File" VALUE="<% echo -n $cert %>" >
+<div id="div3">
+<table class="configTable">
+	<tr class="rowSpacer"><td colspan="20"></td></tr>
+	<tr>
+		<td></td>
+		<td colspan="4"><label for="CAFILE">CA File [--cafile]</label>                                       
+			<td colspan="5">
+				<select id="cafile" name="CAFILE" style="padding-right:80px">
+	  			<% cat /tmp/certs.txt %>
+	  			<option value=" " > </option>
+				</select>
+			</td>
+		<td colspan="1"></td>
+	</tr>
+	<script>document.getElementById("cafile").value="<% echo -n $cafile %>";</script>
+</table>
+</div>   
 
-	  <label for="KEY" style="padding-left:60px">Key [--key]</label>
-	  <input type="text" maxlength="128" name="KEY" Placeholder="Key File" VALUE="<% echo -n $key %>" >
-    <br><br>
-  </div>
+<table class="configTable">
+	<tr class="rowSpacer"><td colspan="20"></td></tr>
+	<tr>
+		<td></td>
+		<td colspan="4"><label for="CID">Client ID [-i]</label></td>
+		<td colspan="5"><input type="text" maxlength="256" name="CID" Placeholder="Client ID" VALUE="<% echo -n $cid %>" ></td>
+	</tr>
+	<tr class="rowSpacer"><td colspan="20"></td></tr>
+	<tr><td colspan="20"><h3>Publish</h3></td></tr>
+	<tr>
+		<td></td>
+		<td colspan="4"><label for="PUB_ENABLE">Enable Publish</label>
+  		<input type="checkbox" name="PUB_ENABLE" value="checked" <% echo -n $pub_enable %>></td>
+		<td colspan="4"><label for="PUB_QOS">Quality of Service [-q]</label></td>
+		<td colspan="2"><select id="pub_qos" name="PUB_QOS" >
+	  		<option value="0" >QoS 0</option>
+	  		<option value="1" >QoS 1</option>
+	  		<option value="2" >QoS 2</option>
+			</select> </td>
+		<td colspan="1"></td>
+		<td colspan="3"><label for="TOPIC">Topic Format [-t]</label></td>
+  		<td colspan="5"><input type="text" maxlength="128" name="TOPIC" size="40"  VALUE="<% echo -n $topic %>" >
+		<% echo -n $pub_topic_default %></td>
+	</tr>
+	<script> document.getElementById("pub_qos").value = "<% echo -n $pub_qos %>"; </script>
 
-  <div id="div3">
-    <label for="CAFILE">CA File [--cafile]</label>                                       
-    <input type="text" maxlength="128" name="CAFILE" Placeholder="Certificate Authority File" VALUE="<% echo -n $cafile %>" > 
-    <br><br>
-  </div>   
+	<tr>
+		<td></td>
+		<td colspan="11"></td>
+  		<td colspan="3"><label for="DATA">Data Format [-m]</label></td>
+		<td colspan="5"><input type="text" size="40" maxlength="128" name="DATA" VALUE="<% echo -n $data %>" ></td>
+	</tr>
 
-  <label for="CID">Client ID [-i]</label>
-  <input type="text" maxlength="256" name="CID" Placeholder="Client ID" VALUE="<% echo -n $cid %>" >
-  <br><br>
+<tr class="rowSpacer"><td colspan="20"></td></tr>
+<tr><td colspan="20"><h3>Subscribe</h3></td></tr>
+<tr>
+	<td></td>
+	<td colspan="4"><label for="SUB_ENABLE">Enable Subscribe</label>
+  	<input type="checkbox" name="SUB_ENABLE" value="checked" <% echo -n $sub_enable %>></td>
+	<td colspan="4"><label for="SUB_QOS">Quality of Service [-q]</label></td>
+	<td colspan="2"><select id="sub_qos" name="SUB_QOS" >
+	  	<option value="0" >QoS 0</option>
+	  	<option value="1" >QoS 1</option>
+	  	<option value="2" >QoS 2</option>
+		</select> </td>
+	<td colspan="1"></td>
+	<td colspan="3"><label for="SUB_TOPIC">Topic Format [-t]</label></td>
+  	<td colspan="5"><input type="text" maxlength="128" name="SUB_TOPIC" size="40" VALUE="<% echo -n $sub_topic %>" >
+	<% echo -n $sub_topic_default %></td>
+</tr>
+<script> document.getElementById("sub_qos").value = "<% echo -n $sub_qos %>"; </script>
 
-  <h3>Publish</h3>
+<tr class="rowSpacer"><td colspan="20"></td></tr>
+<tr class="rowSpacer"><td colspan="20"></td></tr>
+<tr>
+	<td colspan="20">
 
-  <label for="PUB_ENABLE">Enable Publish</label>
-  <input type="checkbox" name="PUB_ENABLE" value="checked" <% echo -n $pub_enable %>>
-  <br><br>
-
-  <label for="PUB_QOS">Quality of Service [-q]</label>
-	<select id="pub_qos" name="PUB_QOS" >
-		<option selected="<% echo -n $qos %>"><% echo -n $pub_qos %></option>
-	  <option value="0" >QoS 0</option>
-	  <option value="1" >QoS 1</option>
-	  <option value="2" >QoS 2</option>
-	</select> 
-  <br><br>
-
-  <label for="TOPIC">Topic Format [-t]</label>
-  <input type="text" maxlength="128" name="TOPIC" size="40"  VALUE="<% echo -n $topic %>" >
-
-	<% echo -n $pub_topic_default %>
-  <br><br>
-
-  <label for="DATA">Data Format [-m]</label>
-  <input type="text" size="40" maxlength="128" name="DATA" VALUE="<% echo -n $data %>" >
-  <br><br>
-
-  <h3>Subscribe</h3>
-
-  <label for="SUB_ENABLE">Enable Subscribe</label>
-  <input type="checkbox" name="SUB_ENABLE" value="checked" <% echo -n $sub_enable %>>
-  <br><br>
-
-  <label for="SUB_QOS">Quality of Service [-q]</label>
-	<select id="sub_qos" name="SUB_QOS" >
-		<option selected="<% echo -n $sub_qos %>"><% echo -n $sub_qos %></option>
-	  <option value="0" >QoS 0</option>
-	  <option value="1" >QoS 1</option>
-	  <option value="2" >QoS 2</option>
-	</select> 
-  <br><br>
-
-  <label for="SUB_TOPIC">Topic Format [-t]</label>
-  <input type="text" maxlength="128" name="SUB_TOPIC" size="40" VALUE="<% echo -n $sub_topic %>" >
-
-	<% echo -n $sub_topic_default %>
-  <br><br>
-
-<!--	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save"> -->
-
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">	
+	<INPUT class="hiddenKey" TYPE="SUBMIT" name="BUTTON" VALUE="Save" accesskey="s"> 
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
 	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
+	</td>
+</tr>
+</table>
 
 </form>
 </div>

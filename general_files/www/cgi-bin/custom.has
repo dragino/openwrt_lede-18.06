@@ -2,6 +2,8 @@
 
 <%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
 
+<%	scriptdir="/etc/lora/customized_scripts"  %>
+
 <%# --- Process the form submission --- %>
 <%
 
@@ -24,9 +26,11 @@
   if [ $FORM_BUTTON == "Save&Apply" ]; then
 		uci set gateway.general.server_type="customized"
 		uci commit gateway
+		killall -q mosquitto_sub  # Remove any remaining MQTT subscribe process
     /etc/init.d/lora_gw reload > /dev/null
     sleep 2
     /etc/init.d/iot reload > /dev/null
+		rm /var/iot/status
   fi
 %>
 
@@ -43,6 +47,14 @@
   para8="$(uci -q get customized_script.general.para8)"
   para9="$(uci -q get customized_script.general.para9)"
   para10="$(uci -q get customized_script.general.para10)"
+  
+  # Prepare script select list
+  rm /tmp/scripts.txt
+  touch /tmp/scripts.txt
+  script_list=$(ls -1 $scriptdir)
+  for x in $script_list; do
+  	echo "<option value=\"$x\">$x</option>" >> /tmp/scripts.txt
+  done
 %>
 
 <%# --- Present the HTML page --- %>
@@ -53,56 +65,87 @@
 
 <body>
 <%inc /www/cgi-bin/inc/menu.inc %>
+<div class="page-container">
 <h2>Custom Script</h2>
 
-<div class="container" style="margin: 50px">
 <form action="<% echo -n $SCRIPT_NAME %>" method="POST">
-
-	<a>Run a Custom Script to process LoRa Data. Parameters are optional and defined in the script.</a>
-	<br><br>
-	<label for="script_name">Script Name</label>
-	<input type="text" name="SCRIPT_NAME" VALUE="<% echo -n $script_name %>">
-  <br><br>
-
-	<label for="PARA1">Parameter 1</label>
-	<input type="text" name="PARA1" VALUE="<% echo -n $para1 %>">
-
-	<label for="PARA2">Parameter 2</label>
-	<input type="text" name="PARA2" VALUE="<% echo -n $para2 %>">
-  <br><br>
-
-	<label for="PARA3">Parameter 3</label>
-	<input type="text" name="PARA3" VALUE="<% echo -n $para3 %>">
-
-	<label for="PARA4">Parameter 4</label>
-	<input type="text" name="PARA4" VALUE="<% echo -n $para4 %>">
-  <br><br>
-
-	<label for="PARA5">Parameter 5</label>
-	<input type="text" name="PARA5" VALUE="<% echo -n $para5 %>">
-
-	<label for="PARA6">Parameter 6</label>
-	<input type="text" name="PARA6" VALUE="<% echo -n $para6 %>">
-  <br><br>
-
-	<label for="PARA7">Parameter 7</label>
-	<input type="text" name="PARA7" VALUE="<% echo -n $para7 %>">
-
-	<label for="PARA8">Parameter 8</label>
-	<input type="text" name="PARA8" VALUE="<% echo -n $para8 %>">
-  <br><br>
-
-	<label for="PARA9">Parameter 9</label>
-	<input type="text" name="PARA9" VALUE="<% echo -n $para9 %>">
-
-	<label for="PARA10">Parameter 10</label>
-	<input type="text" name="PARA10" VALUE="<% echo -n $para10 %>">
-  <br><br>
-
-<!--	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save"> -->
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
-  <INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
-
+<table class="configTable">
+	<tr class="rowSpacer"><td colspan="15"></td></tr> <!--determines column widths-->
+	<tr>
+		<td colspan="1"></td>
+		<td colspan="14">
+			Run a Custom Script to process LoRa Data. Parameters are optional and defined in the script.
+		</td>
+	</tr>
+	<tr class="rowSpacer"></tr>
+	<tr>
+		<td colspan="1"></td>
+		<td colspan="2"><label for="script_name">Script Name</label></td>
+		<td colspan="4">
+			<select id="script_name" style="padding-right:80px" name="SCRIPT_NAME">
+	  		<% cat /tmp/scripts.txt %>
+			</select>
+			</td>
+	</tr>
+	<script>document.getElementById("script_name").value="<% echo -n $script_name %>";</script>
+	
+	
+	<tr class="rowSpacer"></tr>
+	<tr>
+		<td colspan="1"></td>
+		<td colspan="2"><label for="PARA1">Parameter 1</label></td>
+		<td colspan="4"><input type="text" name="PARA1" VALUE="<% echo -n $para1 %>"></td>
+		<td colspan="1"></td>
+		<td colspan="2"><label for="PARA2">Parameter 2</label></td>
+		<td colspan="4"><input type="text" name="PARA2" VALUE="<% echo -n $para2 %>"></td>
+	</tr>
+	<tr class="rowSpacer"></tr>
+	<tr>
+		<td colspan="1"></td>
+		<td colspan="2"><label for="PARA3">Parameter 3</label></td>
+		<td colspan="4"><input type="text" name="PARA3" VALUE="<% echo -n $para3 %>"></td>
+		<td colspan="1"></td>
+		<td colspan="2"><label for="PARA4">Parameter 4</label></td>
+		<td colspan="4"><input type="text" name="PARA4" VALUE="<% echo -n $para4 %>"></td>
+	</tr>
+	<tr class="rowSpacer"></tr>
+	<tr>
+		<td colspan="1"></td>
+		<td colspan="2"><label for="PARA5">Parameter 5</label></td>
+		<td colspan="4"><input type="text" name="PARA5" VALUE="<% echo -n $para5 %>"></td>
+		<td colspan="1"></td>
+		<td colspan="2"><label for="PARA6">Parameter 6</label></td>
+		<td colspan="4"><input type="text" name="PARA6" VALUE="<% echo -n $para6 %>"></td>
+	</tr>
+	<tr class="rowSpacer"></tr>
+	<tr>
+		<td colspan="1"></td>
+		<td colspan="2"><label for="PARA7">Parameter 7</label></td>
+		<td colspan="4"><input type="text" name="PARA7" VALUE="<% echo -n $para7 %>"></td>
+		<td colspan="1"></td>
+		<td colspan="2"><label for="PARA8">Parameter 8</label></td>
+		<td colspan="4"><input type="text" name="PARA8" VALUE="<% echo -n $para8 %>"></td>
+	</tr>
+	<tr class="rowSpacer"></tr>
+	<tr>
+		<td colspan="1"></td>
+		<td colspan="2"><label for="PARA9">Parameter 9</label></td>
+		<td colspan="4"><input type="text" name="PARA9" VALUE="<% echo -n $para9 %>"></td>
+		<td colspan="1"></td>
+		<td colspan="2"><label for="PARA10">Parameter 10</label></td>
+		<td colspan="4"><input type="text" name="PARA10" VALUE="<% echo -n $para10 %>"></td>
+	</tr>
+	<tr class="rowSpacer"></tr>
+	<tr class="rowSpacer"></tr>
+	<tr>
+		<td colspan="1"></td>
+		<td colspan="14">
+			<INPUT class="hiddenKey" TYPE="SUBMIT" name="BUTTON" VALUE="Save" accesskey="s"> 
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
+		</td>
+	</tr>
+</table>
 </form>
 </div>
 </body>

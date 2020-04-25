@@ -18,29 +18,33 @@ MEMSTR="Free Memory: "$MEMFREE" / Total Memory: "$MEMTOT
 <body>
 <%inc /www/cgi-bin/inc/menu.inc %>
   
+<div class="page-container">
 <h2>System Log</h2>
 
-<div class="container" style="margin: 50px">
-	<br>
+<div style="margin-left: 35px">
 
-	<h4>	<% echo "USB Devices:  " %> 	</h4>
+	<p class="impact-light" id="loading">Loading data. Please wait...</p>
+
+	<h4><% echo "USB Devices:  " %></h4>
 	<textarea cols="155" rows="8" ><% lsusb %></textarea>
 	<br><br>	
 	
-	<h4>	<% echo "Boot Info:  " %> 	</h4>
+	<h4><% echo "Boot Info:  " %></h4>
 	<textarea cols="155" rows="10" ><% dmesg %></textarea>
 	<br><br>
 
-	<h4>	<% echo "Previous Log:  " %> 	</h4>
+	<h4><% echo "Previous Log:  " %></h4>
 	<textarea cols="155" rows="20" ><% logread %></textarea>
 	<br><br>
+
+<script>	document.getElementById("loading").style.display = "none"; 	</script>
 
 	<h4>	<% echo "Realtime Log: " %> 	</h4>
 	<textarea cols="155" rows="20" ><% logread -f %></textarea>
 	<br><br>
 
 </div>
-
+</div> <!-- End page container -->
 </body>
 </html>
 

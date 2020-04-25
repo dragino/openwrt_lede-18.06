@@ -24,9 +24,11 @@
   if [ $FORM_BUTTON == "Save&Apply" ]; then
 		uci set gateway.general.server_type="tcpudp"
 		uci commit gateway
+		killall -q mosquitto_sub  # Remove any remaining MQTT subscribe process
     /etc/init.d/lora_gw reload > /dev/null
     sleep 2
     /etc/init.d/iot reload > /dev/null
+		rm /var/iot/status
   fi
 
 %>
@@ -62,33 +64,50 @@
 <body>
 <%inc /www/cgi-bin/inc/menu.inc %>
 </div>
+<div class="page-container">
 <h2>TCP Client Configuration</h2>
 
-<div class="container" style="margin: 50px">
 <form action="<% echo -n $SCRIPT_NAME %>" method="POST">
 
-	<label for="ADDR">Server Address</label>
-	<input type="text" name="ADDR" size="40" VALUE="<% echo -n $addr %>">
-  <br></br>
+  <table class="configTable">
+    <tr class="rowSpacer"><td colspan="15"></td></tr> <!-- Determines the column widths -->
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="3"><label for="ADDR">Server Address</label></td>
+      <td colspan="5"><input type="text" name="ADDR" size="40" VALUE="<% echo -n $addr %>"></td>
+    </tr>
+    <tr class="rowSpacer"></tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="3"><label for="PORT">Server Port</label></td>
+      <td colspan="5"><input type="text" name="PORT" VALUE="<% echo -n $port %>"></td>
+    </tr>
+    <tr class="rowSpacer"></tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="3"><label for="UPDATE">Update Interval (secs)</label></td>
+      <td colspan="1"><input type="text" name="UPDATE" VALUE=<% echo -n $update %>></td>
+      <td colspan="6"><label>Set to 0 to disable perodic update</label></td>
+    </tr>
+    <tr class="rowSpacer"></tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="3"><label for="CHANGE">Update on Change</label>
+        <input type="checkbox" name="CHANGE" value="checked" <% echo -n $change %>></td>
+      <td colspan="1"></td>
+      <td colspan="6"><label>Send to server when a new value arrives</label></td>
+    </tr>
+    <tr class="rowSpacer"></tr>
+    <tr class="rowSpacer"></tr>
 
-	<label for="PORT">Server Port</label>
-	<input type="text" name="PORT" VALUE="<% echo -n $port %>">
-  <br></br>
-
-  <label for="UPDATE">Update Interval (secs)</label>                                       
-  <input type="text" name="UPDATE" VALUE=<% echo -n $update %>>
-  <label>Set to 0 to disable perodic update</label>
-  <br></br>
-
-  <label for="CHANGE">Update on Change</label>
-  <input type="checkbox" name="CHANGE" value="checked" <% echo -n $change %>>
-  <label>Send to server when a new value arrives</label>
-  <br></br>
-
-<!--	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save"> -->
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
-
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="6">
+			<INPUT class="hiddenKey" TYPE="SUBMIT" name="BUTTON" VALUE="Save" accesskey="s"> 
+    	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
+      <INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel"></td>
+    </tr>
+  </table>
 </form>
 </div>
 </body>

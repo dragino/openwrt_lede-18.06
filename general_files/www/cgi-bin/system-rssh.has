@@ -66,9 +66,9 @@
 	ssh_ok=$(ps|grep -c -e "-i /etc/dropbear/id_dropbear -f -N -T -R" )
 	
 	if [ $ping_ok -eq "0" ] && [ $ssh_ok -eq "2" ]; then
-		connection_status="<font size="4" color="blue">RSSH Host connection OK</font>"
+		connection_status="<span class="impactOK">RSSH Host connection OK</span>"
 	else
-		connection_status="<font size="4" color="red">Not connected to RSSH Host</font>"
+		connection_status="<span class="impact">Not connected to RSSH Host</span>"
 	fi
 %>
 
@@ -82,47 +82,68 @@
 
 <body>
 <%inc /www/cgi-bin/inc/menu.inc %>
+<div class="page-container">
 <h2>R-SSH Host Settings</h2>
 
-<div class="container" style="margin: 50px">
 <form name="REMOTE" id="REMOTE" action="<% echo -n $SCRIPT_NAME %>" method="POST">
+<table class="configTable">
+	<tr class="rowSpacer"></tr>
+	<tr><td colspan="20"></td></tr> <!--Determines column widths-->
+	<tr>
+		<td colspan="1"></td>
+		<td colspan="3""><label for="HOST_ID">Login ID</label></td>
+		<td colspan="4"><input type="text" name="HOST_ID" placeholder="sshuser" value="<% echo -n $host_id %>" ></td>
+	</tr>
+	<tr class="rowSpacer"></tr>
+	<tr>
+		<td colspan="1"></td>
+		<td colspan="3"><label for="HOST_ADDR">Host Address</label></td>
+		<td colspan="4"><input type="text" name="HOST_ADDR" placeholder="rssh.support.dragino.com" value="<% echo -n $host_addr %>" ></td>
+		<td colspan="1"></td>
+		<td colspan="2"><label for="HOST_PORT">Host Port</label></td>
+		<td colspan="4"><input type="text" name="HOST_PORT" VALUE="<% echo -n $host_port %>" ></td>
+	</tr>
+	<tr class="rowSpacer"></tr>
+	<tr>
+		<td colspan="1"></td>
+		<td colspan="6"><label for="RSSH_ENABLE">Connect at Startup</label>
+			  <input type="checkbox" name="RSSH_ENABLE" value="checked" <% echo -n $rssh_enable %>></td>
+	</tr>
+	<tr class="rowSpacer"></tr>
+	<tr>
+		<td colspan="1"></td>
+		<td colspan="15"><label>Connection Status: </label><% echo -n $connection_status %></td>
+	</tr>
+	<tr class="rowSpacer"></tr>
+	<tr>
+		<td colspan="1"></td>
+		<td colspan="15">
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save">
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Connect">
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Disconnect">
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel/Refresh">
+		</td>
+	</tr>
+	<tr class="rowSpacer"></tr>
 
-
-	<label for="HOST_ID">Login ID</label>
-	<input type="text" name="HOST_ID" placeholder="sshuser" value="<% echo -n $host_id %>" >
-  <br><br>
-
-	<label for="HOST_ADDR">Host Address</label>
-	<input type="text" name="HOST_ADDR" placeholder="rssh.support.dragino.com" value="<% echo -n $host_addr %>" >
-
-	<label for="HOST_PORT">Host Port</label>
-	<input type="text" name="HOST_PORT" VALUE="<% echo -n $host_port %>" >
-  <br><br>
-
-  <label for="RSSH_ENABLE">Connect at Startup</label>
-  <input type="checkbox" name="RSSH_ENABLE" value="checked" <% echo -n $rssh_enable %>>
-  <br></br>
-  
- 	<label>Connection Status: </label> <% echo -n $connection_status %>
-  <br></br>
-
-<!--	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save"> -->
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Connect">
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Disconnect">
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel/Refresh">
-
-  <br><br><br><br>
-
-	<h3>Generate New Keys</h3>
-
-	<label>Current Key ID: </label> <font size="4"><% echo -n $fingerprint %></font>
-
-  <br><br>
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Generate">
-	<font size="4"> &nbsp;&nbsp;&nbsp; Caution: Generating new keys will break any existing server connections!! </font>
-
-  <br><br>
-  <a href="/id_rsa_pub"><font size="4">Download Public Key</font></a>
+	<tr><td colspan="10"><h3>Generate New Keys</h3></td></tr>
+	<tr>
+		<td colspan="1"></td>
+		<td colspan="12"><label>Current Key ID:&nbsp;&nbsp;</label> <b><% echo -n $fingerprint %></b></td>
+	</tr>
+	<tr class="rowSpacer"></tr>
+	<tr>
+		<td colspan="1"></td>
+		<td colspan="2"><INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Generate"></td>
+		<td colspan="1"></td>
+		<td colspan="16"><span class="impact-light">Caution: Generating new keys will break any existing server connections!! </span></td>
+	</tr>
+	<tr class="rowSpacer"></tr>
+	<tr>
+		<td colspan="1"></td>
+		<td colspan="12"><a class="impactOK" href="/id_rsa_pub">Download Public Key</a></td>
+	</tr>
+</table>
 
 </form>
 </div>

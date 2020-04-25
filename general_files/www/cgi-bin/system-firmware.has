@@ -24,15 +24,24 @@
 
 <body>
 <%inc /www/cgi-bin/inc/menu.inc %>
+<div class="page-container">
 <h2>Firmware Update</h2>
 
-<div class="container" style="margin: 50px">
-  <form action="<% echo -n $SCRIPT_NAME %>" method=POST enctype="multipart/form-data" >
-
-    <h3> Upload Firmware File </h3>
-    <input type=file name=uploadfile>
-    <br><br>
-    <INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Upload">
+<form action="<% echo -n $SCRIPT_NAME %>" method=POST enctype="multipart/form-data" >
+  <table class="configTable">  
+    <tr><td colspan="20"></td></tr> <!--Determines column widths-->
+    <tr>
+      <td colspan="10"><h3> Upload Firmware File </h3></td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="2"><input type=file name=uploadfile></td>
+    </tr>
+    <tr class="rowSpacer"></tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="2"><INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Upload"></td>
+      <td colspan="17">
 
     <% if [ $FORM_BUTTON == "Upload" ]; then %>
       <p>
@@ -48,20 +57,33 @@
       Upload selected file.
     <% fi %>
 
-    <br><br>
-    <h3> Proceed with Flash </h3>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="5"><h3> Proceed with Flash </h3></td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="19">
     <%
     	if [ $FORM_BUTTON == "Proceed" ]; then
-				echo "<br><font size="4">*** Sysupgrade now... </font><br>"
-				echo "<br><font size="4">*** Please wait 3 minutes to complete flash operation. </font><br>"
+				echo "<p style="font-weight: bold;">*** Sysupgrade now... </p>"
+				echo "<p style="font-weight: bold;">*** Please wait 3 minutes to complete flash operation. </p>"
     		sysupgrade -n -v /tmp/flash.bin
-				echo "<br><font size="4" color="red">*** Sysupgrade terminated...</font><br>"
+				echo "<p class="impact">*** Sysupgrade terminated...</p>"
 			fi
     %>
-    	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Proceed">
-    	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
-
-  </form>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="19">
+      	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Proceed">
+        <INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
+      </td>
+    </tr>
+  </table>
+</form>
 </div>
 </body>
 </html>

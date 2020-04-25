@@ -1,20 +1,29 @@
+<div class="logo-container">
+  <a href="www.dragino.com">  <!-- Set the URL link for the logo -->
+    <img class="logoImage" src="/static/img/logo.png">
+  </a>
+</div>
+
 <div class="topnav" id="docTopnav">
 
-  <div style="background-color: white; padding-right: 15px">
-    <a href="http://www.dragino.com">
-    <img class="toplogo" src="/static/img/DRAGINO_logo_transparent.png">
-    </a>
-  </div>
+  <div></div> <!-- Space for the logo -->
 
+	<% # Set up LoRa menu for board type
+	board=$(cat /var/iot/board)
+	if [ $board == "LG08" ]; then
+	%>
   <div class="dropdown"> <!-- LoRa Parameter -->
     <button class="dropbtn">LoRa <span class="fas fa-caret-down"></span></button>
     <div class="dropdown-content">
       <a href="/cgi-bin/lora-lora.has">LoRa</a>
       <a href="/cgi-bin/lora-abp.has">ABP Decryption</a>
     </div>
-  </div> 
+  </div>
+  <% else %>
+  <a href="/cgi-bin/lora-lora.has">LoRa</a>
+  <% fi %>
   
-  <div><a href="/cgi-bin/lorawan.has">LoRaWAN</a></div>
+  <a href="/cgi-bin/lorawan.has">LoRaWAN</a>
 
   <div class="dropdown"> <!-- MQTT -->
 	<button class="dropbtn">MQTT <span class="fas fa-caret-down"></span></button>
@@ -33,20 +42,15 @@
     </div>
   </div> 
 
-  <div><a href="/cgi-bin/http-client.has">HTTP</a></div>
+  <a href="/cgi-bin/http-client.has">HTTP</a>
 
-  <div class="dropdown"> <!-- Custom -->
-    <button class="dropbtn">Custom <span class="fas fa-caret-down"></span></button>
-    <div class="dropdown-content">
-      <a href="/cgi-bin/custom.has">Custom Script</a>
-      <a href="/cgi-bin/custom-script.has">Script Management</a>
-    </div>
-  </div> 
+  <a href="/cgi-bin/custom.has">Custom</a>
   
  <div class="dropdown"> <!-- System -->
     <button class="dropbtn">System <span class="fas fa-caret-down"></span></button>
     <div class="dropdown-content">
 		<a href="/cgi-bin/system-overview.has">System Overview</a>
+		<a href="/cgi-bin/system-general.has">General</a>
 		<a href="/cgi-bin/system-network.has">Network</a>
 		<a href="/cgi-bin/system-wifi.has">WiFi</a>
 		<a href="/cgi-bin/system-cellular.has">Cellular</a>
@@ -66,11 +70,11 @@
     </div>
   </div> 
 
-  <div><a href="/cgi-bin/luci">LuCI</a></div>
+  <a href="/cgi-bin/home.has">Home</a>
 
-  <div><a href="/cgi-bin/dragino.has">Home</a></div>
+  <a href="/cgi-bin/logout.has">Logout</a>
 
-  <div id="refreshIndicate">AUTO REFRESH</div>
+  <div id="refreshIndicate" style="display: none;">AUTO<br>REFRESH</div>
 
   <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="toggleNavbar()">&#9776;</a>
   

@@ -1,4 +1,5 @@
 config uhttpd 'main'
+				option 'config' '/etc/config/http.conf'
         list listen_http '0.0.0.0:80'
         list listen_http '[::]:80'
         list listen_https '0.0.0.0:443'

@@ -2,6 +2,8 @@
 
 <%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
 
+<% sql_file="/etc/lora/devskey" %>
+
 <%# --- Process the form submission --- %>
 <%
   if [ $FORM_BUTTON == "ADD_KEY" ];then
@@ -9,14 +11,14 @@
 		dev_addr=$(echo $FORM_DEV_ADDR | tr '[a-z]' '[A-Z]')
 		appskey=$(echo $FORM_APPSKEY | tr '[a-z]' '[A-Z]')
 		nwkskey=$(echo $FORM_NWKSKEY | tr '[a-z]' '[A-Z]')
-		sqlite3 /etc/lora/devskey "INSERT INTO abpdevs (devaddr, appskey, nwkskey) VALUES  ('$dev_addr', '$appskey', '$nwkskey');"
+		sqlite3 $sql_file "INSERT INTO abpdevs (devaddr, appskey, nwkskey) VALUES  ('$dev_addr', '$appskey', '$nwkskey');"
 	else
-		add_key_error="<b>Invalid Keys.</b>"
+		add_key_error="Invalid Keys"
 	fi 
   fi
   
   if [ $FORM_BUTTON == "DELETE" ];then
-		sqlite3 /etc/lora/devskey "DELETE FROM abpdevs where devaddr = '$FORM_DEVADDR';"
+		sqlite3 $sql_file "DELETE FROM abpdevs where devaddr = '$FORM_DEVADDR';"
   fi
 
   if [ $FORM_BUTTON == "SAVE" ]; then
@@ -51,7 +53,6 @@
 
 %>
 
-
 <%# --- Present the HTML page --- %>
 <html lang="en">
 <head>
@@ -60,57 +61,79 @@
 
 <body>
 <%inc /www/cgi-bin/inc/menu.inc %>
-</div>
+<div class="page-container">
 <h2>Decrypt ABP End Node Packets</h2>
 
-<div class="container" style="margin: 50px">
 <form action="<% echo -n $SCRIPT_NAME %>" method="POST">
-	<label for="ENABLE">Enable ABP Decryption</label>
-	<input type="checkbox" name="ENABLE" value="checked" <% echo -n $abp_decrypt %>>
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="SAVE">
-	<br></br>
-	<br></br>
+<table class="configTable">
+	<tr class="rowSpacer"></tr>
+	<tr>
+		<td colspan="3"><label for="ENABLE">Enable ABP Decryption &nbsp;</label>
+		<input type="checkbox" name="ENABLE" value="checked" <% echo -n $abp_decrypt %>></td>
+		<td colspan="7"><INPUT TYPE="SUBMIT" name="BUTTON" VALUE="SAVE"></td>
+	</tr>
+	<tr class="rowSpacer"></tr>
+
+	<tr><td colspan="10"><h3> Add Key </h3></td></tr> <!-- Determines the column widths -->
 	
-    <h3> Add Key </h3>
-		<label for="DEV_ADDR">Dev ADDR:</label> <input type="text" size="16" name="DEV_ADDR" pattern="([a-fA-F0-9]{8})$" placeholder="MSB,4 Bytes">
-		<br>
+	<tr>
+		<td></td>
+		<td colspan="2"><label for="DEV_ADDR">Dev ADDR:</label></td>
+		<td colspan="3"><input type="text" size="16" name="DEV_ADDR" pattern="([a-fA-F0-9]{8})$" placeholder="MSB,4 Bytes"></td>
+		<td colspan="4"></td>
+	</tr>
 		
-		<label for="APPSKEY">APP Session Key:</label> <input type="text" size="50" name="APPSKEY" pattern="([a-fA-F0-9]{32})$" placeholder="MSB,16 Bytes">
-		<br>
+	<tr>
+		<td></td>
+		<td colspan="2"><label for="APPSKEY">APP Session Key:</label></td>
+		<td colspan="5"><input type="text" size="50" name="APPSKEY" pattern="([a-fA-F0-9]{32})$" placeholder="MSB,16 Bytes"></td>
+		<td colspan="2"></td>
+	</tr>
 		
-		<label for="NWKSKEY">Network Session Key:</label> <input type="text" size="50" name="NWKSKEY" pattern="([a-fA-F0-9]{32})$" placeholder="MSB,16 Bytes">
-		<br>
+	<tr>
+		<td></td>
+		<td colspan="2"><label for="NWKSKEY">Network Session Key:</label></td>
+		<td colspan="5"><input type="text" size="50" name="NWKSKEY" pattern="([a-fA-F0-9]{32})$" placeholder="MSB,16 Bytes"></td>
+		<td colspan="2"></td>
+	</tr>
 		
-		<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="ADD_KEY">
-		<br>
-		<% echo $add_key_error %>
-    <br>
-	<br></br>
-	
-    <h3> Delete Key </h3>
-		<label for="DEL_DEV_ADDR">Dev ADDR</label>
-		<select id="devaddr" style="padding-right:130px" name="DEVADDR">
-		<% for dev_addr in `sqlite3 /etc/lora/devskey "SELECT *from abpdevs" | awk -F '\\|' '{print $1}'`; do %>   
+	<tr>
+		<td></td>
+		<td colspan="2"></td>
+		<td colspan="7"><INPUT TYPE="SUBMIT" name="BUTTON" VALUE="ADD_KEY"></td>
+	</tr>
+
+	<tr>
+		<td colspan="3"></td>
+		<td class="impact" colspan="7"><% echo $add_key_error %></td>
+	</tr>
+	<tr class="rowSpacer"></tr>
+
+	<tr>
+		<td colspan="2"><h3> Delete Key </h3></td>
+		<td colspan="1"><label for="DEL_DEV_ADDR">Dev ADDR:</label></td>
+		<td colspan="3"><select id="devaddr" style="padding-right:130px" name="DEVADDR">
+		<% for dev_addr in $(sqlite3 $sql_file "SELECT *from abpdevs" | awk -F '\\|' '{print $1}'); do %>   
 			<option value="<% echo -n "$dev_addr" %>" ><% echo -n "$dev_addr" %></option>                                  
-		<% done %>				
-		<script>document.getElementById("devaddr").value="<% echo -n $devaddr %>";</script>
-		
-		<br>
-		<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="DELETE">
-		<br>
-		<% echo $del_key_error %>
-    <br>
-	
-	<br></br>
-	
-	<h3> ABP Keys:</h3>
-	<text>DEV ADDR&nbsp&nbsp|&nbsp&nbspAPP Session Key&nbsp&nbsp|&nbsp&nbspNetwork Session Key </text>
-	<textarea cols="155" rows="20" ><% sqlite3 /etc/lora/devskey "SELECT *from abpdevs" | awk -F '\\|' '{print $1"  |  "$2"  |  "$3}' %></textarea>
-    <br>
+		<% done %>
+		</select></td>
+		<td colspan="4"><INPUT TYPE="SUBMIT" name="BUTTON" VALUE="DELETE"></td>
+		</tr>
+
+	<script>document.getElementById("devaddr").value="<% echo -n $devaddr %>";</script>
+
+	<tr>
+		<td colspan="3"></td>
+		<td class="impact" colspan="7"><% echo $del_key_error %></td>
+	</tr>
+	<tr class="rowSpacer"></tr>
+	<tr><td colspan="10"><h3>ABP Keys:</h3></td></tr>
+	<tr><td colspan="10"><text>Dev ADDR&nbsp;&nbsp;|&nbsp;&nbsp;APP Session Key&nbsp;&nbsp;|&nbsp;&nbsp;Network Session Key </text></td></tr>
+</table>
+
+<textarea cols="155" rows="20" ><% sqlite3 $sql_file "SELECT *from abpdevs" | awk -F '\\|' '{print $1"  |  "$2"  |  "$3}' %></textarea>
 	
 </form>
 </div>
 </body>
 </html>
-
-
