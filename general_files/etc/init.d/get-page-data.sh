@@ -128,96 +128,48 @@ fi
 # Nothing to do
 
 ################
-# Setup SAT1 - Cellular WAN
+# Setup SAT1 - WiFi WAN
 
-satlink1="/cgi-bin/system-cellular.has"
+satvis1="visible"
+img1="/static/img/SAT-Int-Wifi"
+satlink1="/cgi-bin/system-wifi.has"
+mouseover1='info-1'
 
-if [ $cell_en == "1" ]; then
-  satvis1="visible"
-  mouseover1='info-1'
-else
-	sat1="/static/img/SAT-Space-Blank.png" # No Cell image reqd if cell not enabled
+#wifi=$(ifconfig  | grep -c wlan0-2)
+wifi_wan=$(ip route|grep -c wlan0-2)
+wifi_wan_disable=$(uci -q get wireless.sta_0.disabled)
+
+# Set up the SAT icon
+if [[ $wifi_wan_disable == "1" ]]; then   # No WiFiWAN icon reqd if not enabled
+  sat1="/static/img/SAT-Space-Blank.png"
   mouseover1=''
-  satlink1="#"
-  satvis1="hidden"
-fi
-
-# Cell Internet check	
-fping -q -I 3g-cellular $host1 
-if [ $? -eq "0" ]; then
- 	internet_cell="1"
+elif [ $internet == "1" ] && [[ $route == "wlan0-2" ]]; then
+  sat1=$img1"-tick.png"
+elif [[ $wifi_wan == "1" ]]; then
+  sat1=$img1"-tick-amber.png"
 else
-	fping -q -I 3g-cellular $host2
-	if [ $? -eq "0" ]; then
- 		internet_cell="1"
- 	else
-		fping -q -w2 $host1
-		if [ $? -eq "0" ]; then
-  		internet_cell="1"
-  	else
-  		fping -q -w2 $host2
-			if [ $? -eq "0" ]; then
-  			internet_cell="1"
-  		else
-				internet_cell="0"
-			fi
-		fi
-	fi
-fi
-
-# Set up the SAT image
-if [ $route == "3g-cellular" ] && [ $internet_cell == "1" ]; then
-  sat1="/static/img/SAT-Int-Cell-tick.png"
-elif [ $route == "3g-cellular" ] && [ $internet_cell == "0" ]; then  
-  sat1="/static/img/SAT-Int-Cell-cross-amber.png"
-elif [ $cell_if == "0" ]; then
-	sat1="/static/img/SAT-Int-Cell-cross.png"
-elif [ $cell_if == "1" ] && [ $route != "3g-cellular" ] && [ $internet_cell == "1" ]; then  
-  sat1="/static/img/SAT-Int-Cell-tick-amber.png"
-elif [ $cell_if == "1" ] && [ $route != "3g-cellular" ] && [ $internet_cell == "0" ]; then  
-  sat1="/static/img/SAT-Int-Cell-cross.png"
+  sat1=$img1"-cross.png"
 fi
 
 ################
-# Setup SAT2 - Eth/WiFi WAN
-
-cable=$(ifconfig | grep -c eth1)
-# Allow for Fallback interface
-if [ $cable == "2" ];then
-	cable="1"
-fi
-wifi=$(ifconfig  | grep -c wlan0-2)
+# Setup SAT2 - Eth WAN
 
 satvis2="visible"
+img2="/static/img/SAT-Int-Cable"
+satlink2="/cgi-bin/system-network.has"
+mouseover2='info-2'
+
 eth_wan=$(ip route|grep -c eth1)
-wifi_wan=$(ip route|grep -c wlan0-2)
 
-mouseover2=''
-	
-if [ $cable == "1" ]; then
-	img2="/static/img/SAT-Int-Cable"
-	satlink2="/cgi-bin/system-network.has"
-  mouseover2='info-2a'
-elif [ $wifi == "1" ]; then
-	img2="/static/img/SAT-Int-Wifi"
-	satlink2="/cgi-bin/system-wifi.has"
-  mouseover2='info-2b'
-fi
-
-if [ $internet == "1" ] && [[ $route == "eth1" || $route == "wlan0-2" ]]; then
+# Set up the SAT icon
+if [ $internet == "1" ] && [[ $route == "eth1" ]]; then
   sat2=$img2"-tick.png"
-elif [[ $eth_wan == "1" || $wifi_wan == "1" ]]; then
+elif [[ $eth_wan -ge "1" ]]; then
   sat2=$img2"-tick-amber.png"
 else
   sat2=$img2"-cross.png"
 fi
 
-# No valid WAN config
-if [ $cable != "1" ] && [ $wifi != "1" ]; then 
-  sat2="/static/img/SAT-Disabled.png"
-  mouseover2='' 
-	satlink2="#"
-fi
 
 ################
 # Setup SAT3 - IoT Service
@@ -228,8 +180,12 @@ fi
 
 if [ $server_type == "disabled" ]; then
 	satlink3="/cgi-bin/lora-lora.has"
-		sat3="/static/img/SAT-Disabled.png"
-
+	sat3="/static/img/SAT-Disabled.png"
+		
+elif [ $server_type == "loriot" ]; then
+	satlink3="/cgi-bin/loriot.has"
+	sat3="/static/img/SAT-Loriot.png"
+  mouseover3='info-3a'
 elif [ $server_type == "lorawan" ]; then
 	satlink3="/cgi-bin/lorawan.has"
 		status=$(cat /var/iot/status)
@@ -239,14 +195,11 @@ elif [ $server_type == "lorawan" ]; then
 		sat3="/static/img/SAT-LoRaWAN-cross.png"
 	fi
 
-# TBD  Additional status tests for IoT Service
-# Current test is just whether the process is running.
-	
 elif [ $server_type == "mqtt" ]; then
 	satlink3="/cgi-bin/mqtt.has"
 	pubstatus=$(ps | grep -c mqtt_process)
 	substatus=$(ps | grep -c mosquitto_sub)
-	if [ $pubstatus == "2" ] || [ $substatus == "2" ]; then
+	if [ $pubstatus -ge "2" ] || [ $substatus == "2" ]; then
 		sat3="/static/img/SAT-MQTT-tick.png"
 		mqttstatus="1"
 	else
@@ -297,28 +250,84 @@ else
 fi
 
 ################
+# Setup SAT5 - Cellular WAN
+
+satlink5="/cgi-bin/system-cellular.has"
+
+if [ $cell_en == "1" ]; then
+  satvis5="visible"
+  mouseover5='info-5'
+else
+	sat5="/static/img/SAT-Space-Blank.png" # No Cell icon reqd if cell not enabled
+  mouseover5=''
+  satlink5="#"
+  satvis5="hidden"
+fi
+
+# Cell Internet check	
+fping -q -I 3g-cellular $host1 
+if [ $? -eq "0" ]; then
+ 	internet_cell="1"
+else
+	fping -q -I 3g-cellular $host2
+	if [ $? -eq "0" ]; then
+ 		internet_cell="1"
+ 	else
+		fping -q -w2 $host1
+		if [ $? -eq "0" ]; then
+  		internet_cell="1"
+  	else
+  		fping -q -w2 $host2
+			if [ $? -eq "0" ]; then
+  			internet_cell="1"
+  		else
+				internet_cell="0"
+			fi
+		fi
+	fi
+fi
+
+# Set up the SAT icon
+if [ $route == "3g-cellular" ] && [ $internet_cell == "1" ]; then
+  sat5="/static/img/SAT-Int-Cell-tick.png"
+elif [ $route == "3g-cellular" ] && [ $internet_cell == "0" ]; then  
+  sat5="/static/img/SAT-Int-Cell-cross-amber.png"
+elif [ $cell_if == "0" ]; then
+	sat5="/static/img/SAT-Int-Cell-cross.png"
+elif [ $cell_if == "1" ] && [ $route != "3g-cellular" ] && [ $internet_cell == "1" ]; then  
+  sat5="/static/img/SAT-Int-Cell-tick-amber.png"
+elif [ $cell_if == "1" ] && [ $route != "3g-cellular" ] && [ $internet_cell == "0" ]; then  
+  sat5="/static/img/SAT-Int-Cell-cross.png"
+fi
+
+################
 # Setup SAT10 - LoRa Radios
 
 # TBD  Other status indicator for LoRa radio operation
 
-pscount=$(ps | grep -c pkt_fwd) # Check is process is running
+if [ $server_type == "loriot" ]; then
+	pscount=$(ps | grep -c loriot_dragino) # Check is process is running
+	satlink10="/cgi-bin/loriot.has"
+else
+	pscount=$(ps | grep -c pkt_fwd) # Check is process is running
+	satlink10="/cgi-bin/lora-lora.has"
+fi
 
 if [[ "$pscount" == "2" ]];then
- 	sat10="/static/img/SAT-LoRa-tick.png"
+	sat10="/static/img/SAT-LoRa-tick.png"
 else
- 	sat10="/static/img/SAT-LoRa-cross.png"
+	sat10="/static/img/SAT-LoRa-cross.png"
 fi
  
-satlink10="/cgi-bin/lora-lora.has"
 satvis10="visible"
 
-if [ $model == "LG308" ] || [ $model == "LPS8" ] || [ $model == "DLOS8" ]; then
-  mouseover10='info-10b'
+if [ $server_type == "loriot" ]; then
+ 	mouseover10='info-10c'
+elif [ $model == "LG308" ] || [ $model == "LPS8" ] || [ $model == "DLOS8" ]; then
+ 	mouseover10='info-10b'
 else
-  mouseover10='info-10a'
+ 	mouseover10='info-10a'
 fi
-
-#mouseover10='info-10'
 
 ################
 # Setup SAT11 - WiFi Access Point
@@ -412,24 +421,26 @@ if [ $cell_en == "1" ]; then
 fi
 
 ################
-# SAT2 Data - Eth/WiFi WAN
+# SAT2 Data - Eth WAN
 
-if [ $cable == "1" ]; then
-	info_title2="Cable Internet"
-	ip2=$(ifconfig eth1|grep "inet addr"|cut -d ":" -f 2|cut -d " " -f 1)
-	txb2=$(ifconfig eth1 |grep "TX bytes"|cut -d " " -f 18-20)
-	rxb2=$(ifconfig eth1 |grep "RX bytes"|cut -d " " -f 13-15)
-elif [ $wifi == "1" ]; then
-  info_title2="WiFi Internet"
-	ip2=$(ifconfig wlan0-2|grep "inet addr"|cut -d ":" -f 2|cut -d " " -f 1)
-	txb2=$(ifconfig wlan0-2 |grep "TX bytes"|cut -d " " -f 18-20)
-	rxb2=$(ifconfig wlan0-2 |grep "RX bytes"|cut -d " " -f 13-15)
-	signal2=$(iwinfo|grep -A 5 wlan0-2 | grep Signal: | cut -d " " -f 11-13)
-	noise2=$(iwinfo|grep -A 5 wlan0-2 | grep Signal: | cut -d " " -f 15-17)
-	rate2=$(iwinfo|grep -A 5 wlan0-2 | grep Rate: | cut -d " " -f 11-15)
-else
-	info_title2="No WAN Data"
-fi
+info_title2="Cable Internet"
+ip2a=$(ifconfig eth1|grep "inet addr"|cut -d ":" -f 2|cut -d " " -f 1)
+ip2b=$(ifconfig eth1:9|grep "inet addr"|cut -d ":" -f 2|cut -d " " -f 1)
+ip2="$ip2a  $ip2b" 
+txb2=$(ifconfig eth1 |grep "TX bytes"|cut -d " " -f 18-20)
+rxb2=$(ifconfig eth1 |grep "RX bytes"|cut -d " " -f 13-15)
+
+################
+# SAT5 Data - WiFi WAN
+
+info_title5="WiFi Internet"
+ssid5=$(iwinfo wlan0-2 info | grep ESSID |cut -d : -f 2)
+ip5=$(ifconfig wlan0-2|grep "inet addr"|cut -d ":" -f 2|cut -d " " -f 1)
+txb5=$(ifconfig wlan0-2 |grep "TX bytes"|cut -d " " -f 18-20)
+rxb5=$(ifconfig wlan0-2 |grep "RX bytes"|cut -d " " -f 13-15)
+signal5=$(iwinfo|grep -A 5 wlan0-2 | grep Signal: | cut -d " " -f 11-13)
+noise5=$(iwinfo|grep -A 5 wlan0-2 | grep Signal: | cut -d " " -f 15-17)
+rate5=$(iwinfo|grep -A 5 wlan0-2 | grep Rate: | cut -d " " -f 11-15)
 
 ################
 # SAT3 Data - IoT Service
@@ -444,12 +455,23 @@ server3=" "
 if [ $server_type == "lorawan" ]; then
 	info_title3="LoRaWAN Service"
 	server3=$(uci get gateway.general.platform | cut -d "," -f 2)  
-	lorawanstatus=$(ps|grep -c lora_pkt_fwd)
+	lorawanstatus=$(ps|grep -c _pkt_fwd)
 	if [ $lorawanstatus == "2" ]; then
-		process3="LoRaWAN process <b>Running</b>"
+		process3="LoRaWAN process pkt_fwd <b>Running</b>"
 		status3=$(cat /var/iot/status)
 	else
-		process3="LoRaWAN process <b>Not Running</b>"
+		process3="LoRaWAN process pkt_fwd <b>Not Running</b>"
+	fi
+
+elif [ $server_type == "loriot" ]; then
+	info_title3="LORIOT Service"
+	server3=$(uci -q get loriot.loriot.url)
+	version3=$(uci -q get loriot.loriot.version)
+	loriotps=$(ps | grep -c loriot_dragino)
+	if [ $loriotps == "2" ];then
+		process3="LORIOT process <b>Running</b>"
+	else
+		process3="LORIOT process <b>Not Running</b>"
 	fi
 
 elif [ $server_type == "mqtt" ]; then
@@ -505,9 +527,13 @@ fi
 ################
 # SAT10 Data - LoRa Radios
 
-# TBD  Add any other status indicator for LoRa radio operation
-
-info_title10="LoRa Radio"
+# Check for LORIOT mode
+if [ $server_type == "loriot" ]; then
+	info_title10="LORIOT Mode"
+	server10="$server3"
+else
+	info_title10="LoRa Radio"
+fi
 
 if [ $model == "LG01" ];then
 	rxfreq10=$(uci get gateway.radio1.RFFREQ)
@@ -579,36 +605,23 @@ cat > /tmp/popup-data.txt << EOF
 
 <div class="info" id="info-1">
 	<table>
-	<tr>	  <th colspan="2">$info_title1 </th>	</tr>
-	<tr>	  <td>IP Addr:</td><td>$ip1 </td>	</tr>
-	<tr>	  <td>TX Bytes:</td><td>$txb1 </td>	</tr>
-	<tr>	  <td>RX Bytes:</td><td>$rxb1 </td>	</tr>
-	<tr>	  <td>SIM:</td><td>$sim1 </td>	</tr>
-	<tr>	  <td>Network:</td><td>$net1 </td>	</tr>
-	<tr>	  <td>Signal:</td><td>$sig1 </td>	</tr>
-	<tr>	  <td>Internet:</td><td><b>$internet1</b></td>	</tr>
-	<tr>	  <td>Time:</td><td>$time1 </td>	</tr>
+	<tr>	  <th colspan="2">$info_title5 </th>	</tr>
+	<tr>	  <td>SSID:</td><td>$ssid5 </td>	</tr>
+	<tr>	  <td>IP Addr:</td><td>$ip5 </td>	</tr>
+	<tr>	  <td>TX Bytes:</td><td>$txb5 </td>	</tr>
+	<tr>	  <td>RX Bytes:</td><td>$rxb5 </td>	</tr>
+	<tr>	  <td>Signal:</td><td>$signal5 </td>	</tr>
+	<tr>	  <td>Noise:</td><td>$noise5 </td>	</tr>
+	<tr>	  <td>Bit Rate:</td><td>$rate5 </td>	</tr>
 	</table>
 </div>	
 
-<div class="info" id="info-2a">
+<div class="info" id="info-2">
 	<table>
 	<tr>	  <th colspan="2">$info_title2 </th>	</tr>
 	<tr>	  <td>IP Addr:</td><td>$ip2 </td>	</tr>
 	<tr>	  <td>TX Bytes:</td><td>$txb2 </td>	</tr>
 	<tr>	  <td>RX Bytes:</td><td>$rxb2 </td>	</tr>
-	</table>
-</div>	
-
-<div class="info" id="info-2b">
-	<table>
-	<tr>	  <th colspan="2">$info_title2 </th>	</tr>
-	<tr>	  <td>IP Addr:</td><td>$ip2 </td>	</tr>
-	<tr>	  <td>TX Bytes:</td><td>$txb2 </td>	</tr>
-	<tr>	  <td>RX Bytes:</td><td>$rxb2 </td>	</tr>
-	<tr>	  <td>Signal:</td><td>$signal2 </td>	</tr>
-	<tr>	  <td>Noise:</td><td>$noise2 </td>	</tr>
-	<tr>	  <td>Bit Rate:</td><td>$rate2 </td>	</tr>
 	</table>
 </div>	
 
@@ -618,6 +631,29 @@ cat > /tmp/popup-data.txt << EOF
 	<tr>	  <td>Process:</td><td>$process3 </td>	</tr>
 	<tr>	  <td>Status:</td><td>$status3 </td>	</tr>
 	<tr>	  <td>Server:</td><td>$server3 </td>	</tr>
+	</table>
+</div>	
+
+<div class="info" id="info-3a">
+	<table>
+	<tr>	  <th colspan="2">$info_title3 </th>	</tr>
+	<tr>	  <td>Process:</td><td>$process3 </td>	</tr>
+	<tr>	  <td>Ver:</td><td>$version3 </td>	</tr>
+	<tr>	  <td>Server:</td><td>$server3 </td>	</tr>
+	</table>
+</div>	
+
+<div class="info" id="info-5">
+	<table>
+	<tr>	  <th colspan="2">$info_title1 </th>	</tr>
+	<tr>	  <td>IP Addr:</td><td>$ip1 </td>	</tr>
+	<tr>	  <td>TX Bytes:</td><td>$txb1 </td>	</tr>
+	<tr>	  <td>RX Bytes:</td><td>$rxb1 </td>	</tr>
+	<tr>	  <td>SIM:</td><td>$sim1 </td>	</tr>
+	<tr>	  <td>Network:</td><td>$net1 </td>	</tr>
+	<tr>	  <td>Signal:</td><td>$sig1 </td>	</tr>
+	<tr>	  <td>Internet:</td><td><b>$internet1</b></td>	</tr>
+	<tr>	  <td>Time:</td><td>$time1 </td>	</tr>
 	</table>
 </div>	
 
@@ -636,6 +672,13 @@ cat > /tmp/popup-data.txt << EOF
 		<tr>	  <th colspan="2">$info_title10 </th>	</tr>
 		<tr>	  <td>Freq Band:</td><td>$band10</td>	</tr>
 		<tr>	  <td>Sub Band:</td><td>$subband10</td>	</tr>
+	</table>
+	</div>	
+
+<div class="info" id="info-10c">
+	<table>
+		<tr>	  <th colspan="2">$info_title10 </th>	</tr>
+		<tr>	  <td>Server:</td><td>$server10</td>	</tr>
 	</table>
 	</div>	
 

@@ -1,0 +1,4 @@
+
+config settings 'loriot'
+	option url 'au1.loriot.io'
+

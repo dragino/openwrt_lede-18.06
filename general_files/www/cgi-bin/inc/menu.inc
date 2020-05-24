@@ -23,14 +23,29 @@
   <a href="/cgi-bin/lora-lora.has">LoRa</a>
   <% fi %>
   
-  <a href="/cgi-bin/lorawan.has">LoRaWAN</a>
+  
+	<% # Set up LoRa menu for board type
+	model=$(cat /tmp/iot/model.txt)
+	if [ $model == "LG308" ] || [ $model == "LPS8" ] || [ $model == "DLOS8" ]; then
+	%>
+  <div class="dropdown"> <!-- LoRa Parameter -->
+    <button class="dropbtn">LoRaWAN <span class="fas fa-caret-down"></span></button>
+    <div class="dropdown-content">
+      <a href="/cgi-bin/lorawan.has">LoRaWAN</a>
+      <a href="/cgi-bin/loriot.has">LORIOT</a>
+    </div>
+  </div>
+  <% else %>  
+    <a href="/cgi-bin/lorawan.has">LoRaWAN</a>
+  <% fi %>
+
 
   <div class="dropdown"> <!-- MQTT -->
 	<button class="dropbtn">MQTT <span class="fas fa-caret-down"></span></button>
     <div class="dropdown-content">
       <a href="/cgi-bin/mqtt.has">MQTT Client</a>
       <a href="/cgi-bin/mqtt-chan.has">Channels</a>
-      <a href="/cgi-bin/mqtt-cert.has">Certificates</a>
+      <a href="/cgi-bin/iot-cert.has">Certificates</a>
     </div>
   </div> 
 

@@ -28,7 +28,7 @@
 <body>
 <%inc /www/cgi-bin/inc/menu.inc %>
 <div class="page-container">
-<h2>MQTT Certificate Management</h2>
+<h2>IoT Certificate Management</h2>
 
 <form action="<% echo -n $SCRIPT_NAME %>" method=POST enctype="multipart/form-data" >
 <table class="configTable">

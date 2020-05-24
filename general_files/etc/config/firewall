@@ -10,11 +10,12 @@ config zone
 	list network 'lan'
 	option input 'ACCEPT'
 	option output 'ACCEPT'
-	option forward 'REJECT'
+	option forward 'REJECT'  
 
 config zone
 	option name 'wan'
 	list network 'wan'
+	list network 'wwan'
 	list network 'wan6'
 	option input 'REJECT'
 	option output 'ACCEPT'

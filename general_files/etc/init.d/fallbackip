@@ -7,23 +7,23 @@ start()
     logger "Checking bridge mode or not"
     IS_BRIDGE=`uci get network.lan.type`
 	
-	#Only WAN port model: lps8/los8
-	IS_SINGLE_WAN=`hexdump -v -e '11/1 "%_p"' -s $((0x908)) -n 11 /dev/mtd6 |grep -E 'lps8|los8' -c`
-	
-	
+	# Check only WAN port model: lps8/los8
+	IS_SINGLE_WAN=$(hexdump -v -e '11/1 "%_p"' -s $((0x908)) -n 11 /dev/mtd6 |grep -E 'lps8|los8' -c)
+
 	if [ "$IS_SINGLE_WAN" = "1" ];then
 		logger "Set up WAN port for fall back ip"
 		ifconfig eth1:9 172.31.255.254 netmask 255.255.255.252
-    else 
+    	else 
 		if [ "$IS_BRIDGE" = "bridge" ];then
 			logger "Device is in bridging mode."
 			ifconfig br-lan:9 172.31.255.254 netmask 255.255.255.252
 		else 
 			logger "Device is not in bridging mode."
 			ifconfig eth0:9 172.31.255.254 netmask 255.255.255.252
-    	fi
+    		fi
 	fi
 	
 	ps | grep "iot_keep_alive" | grep -v grep | awk '{print $1}' | xargs kill -s 9
-    /usr/bin/iot_keep_alive.sh &
+    	/usr/bin/iot_keep_alive.sh &>/dev/null  &
+	exit
 }

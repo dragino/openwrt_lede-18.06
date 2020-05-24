@@ -13,6 +13,12 @@
 		uci set network.cellular.username="$FORM_USER"
 		uci set network.cellular.password="$FORM_PASS"
 				
+		if [ "$FORM_CELL_BACKUP" == "checked" ]; then
+			uci set network.cellular.backup="1"
+		else
+			uci set network.cellular.backup="0"
+		fi
+
 		uci commit network
 	fi
 
@@ -28,7 +34,6 @@
     # Run in background    
 		(sleep 1; /etc/init.d/network restart) &
 		(sleep 20; /etc/init.d/fallbackip start) &
-    #/etc/init.d/DR_wifi_wan start &  # Check that WiFi WAN is operating correctly, else disable after 30 seconds.
   fi
 %>
 
@@ -48,6 +53,12 @@
   else
   	cell_enable="checked"
   fi
+  
+  cell_backup=$(uci -q get network.cellular.backup)
+  if [ $cell_backup == "1" ]; then
+  	cell_backup="checked"
+  fi
+  
   cat /sys/kernel/debug/usb/devices | grep "Vendor=2c7c ProdID=0125" -c > /tmp/cell_detect.txt
   cell_detect=$(cat /tmp/cell_detect.txt)
 %>
@@ -77,6 +88,16 @@
   <% fi %>
 			</td>
 		</tr>
+
+		<tr>
+			<td colspan="1"></td>
+			<td colspan="19">
+  <% if [ "$cell_detect" == "1" ]; then %>
+       		<input type="checkbox" name="CELL_BACKUP" value="checked" <% echo -n $cell_backup %> > <font size="4"> Use Cellular as Backup WAN</font>
+  <% fi %>
+			</td>
+		</tr>
+
 		<tr class="rowSpacer"></tr>
 		<tr>
 			<td colspan="1"></td>

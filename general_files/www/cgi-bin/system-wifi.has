@@ -2,8 +2,6 @@
 
 <%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
 
-<%#  ssid_str=$(iw dev wlan0 scan | grep SSID |grep -v \x00 |cut -d : -f 2 | sed 's/.*/<option>&<\/option>/') %>
-
 <%# --- Process the form submission --- %>
 <%
 	if [ $FORM_BUTTON == "Save" ] || [ $FORM_BUTTON == "Save&Apply" ]; then
@@ -20,7 +18,6 @@
 		uci set wireless.sta_0.encryption="$FORM_HOST_ENCRYPTION"
 		uci set wireless.sta_0.key="$FORM_HOST_KEY"
 
-		uci commit network
     uci commit wireless 
 	fi
 
@@ -35,13 +32,10 @@
 		# Set up WiFi WAN Client
 		if [ "$FORM_WIFI_WAN_ENABLE" == "checked" ]; then
 			uci set wireless.sta_0.disabled="0"
-      uci set network.wan.ifname="wlan0-2"
 		else
 			uci set wireless.sta_0.disabled="1"
-      uci set network.wan.ifname="eth1"
 		fi
 		
-		uci commit network
     uci commit wireless 
 
     # Run in background    
@@ -77,10 +71,11 @@
   sta_disabled="$(uci -q get wireless.sta_0.disabled)"
   if [ $sta_disabled == "0" ]; then
   	wifi_wan_enable="checked"
-  	wan_str="&nbsp; &nbsp; Note: Ethernet WAN port will be disabled "
+  	#wan_str="&nbsp; &nbsp; Note: Ethernet WAN port will be disabled "
   	channel=$(iw dev |grep -A 1 managed | grep channel | cut -d " " -f2)
   fi
 %>
+
   
 <%# --- Present the HTML page --- %>
 <!DOCTYPE html>
@@ -132,9 +127,12 @@
 		<td colspan="2"></td>
 		<td colspan="3"><label for="ENCRYPTION"> Encryption</label></td>
 	    <td colspan="4"><SELECT name="ENCRYPTION" id="encryption">
-		<option value="mixed-psk">WPA/WPA2</option>
+		<option value="psk-mixed">WPA/WPA2</option>
 		<option value="psk2">WPA2</option>
 		<option value="psk">WPA</option>
+		<option value="psk-mixed+aes">WPA/WPA2+AES</option>
+		<option value="psk2+aes">WPA2+AES</option>
+		<option value="psk+aes">WPA+AES</option>
 		<option value="wep">WEP</option>
 		<option value="none">None</option>
 		</SELECT></td>
@@ -146,12 +144,11 @@
 	<tr><td colspan="20"><h3>WiFi WAN Client Settings</h3></td></tr>
 	<tr><td colspan="20"><font size="4"> Enable WiFi WAN Client &nbsp;</font>
 		<input type="checkbox" name="WIFI_WAN_ENABLE" value="checked" <% echo -n $wifi_wan_enable %> > 
-		<font size="4" color="red"> <% echo -n $wan_str %> </font></td>
 	</tr>
 
 	<tr>
 		<td colspan="1"></td>
-		<td colspan="4"><label for="HOST_SSID">Host WiFi Name SSID</label></td>
+		<td colspan="4"><label for="HOST_SSID">Host WiFi SSID</label></td>
 		<td colspan="3"><input type="text" name="HOST_SSID" id="host_ssid" maxlength="128" VALUE="<% echo -n $host_ssid %>" pattern="[a-zA-Z0-9_*.$%<>;:?@=!^|&+()#~\{\}\-\s]{1,128}" ></td>
 		<td colspan="3"></td>
 		<td colspan="3"><label for="SSID_SURVEY">WiFi Survey</label></td>
@@ -169,18 +166,38 @@
 		<td colspan="2"></td>
 		<td colspan="3"><label for="HOST_ENCRYPTION">Encryption</label></td>
 	  	<td colspan="4"><SELECT name="HOST_ENCRYPTION" id="host_encryption">
-			<option value="mixed-psk">WPA/WPA2</option>
-			<option value="psk2">WPA2</option>
-			<option value="psk">WPA</option>
-			<option value="wep">WEP</option>
-			<option value="none">None</option>
+		<option value="psk-mixed">WPA/WPA2</option>
+		<option value="psk2">WPA2</option>
+		<option value="psk">WPA</option>
+		<option value="psk-mixed+aes">WPA/WPA2+AES</option>
+		<option value="psk2+aes">WPA2+AES</option>
+		<option value="psk+aes">WPA+AES</option>
+		<option value="wep">WEP</option>
+		<option value="none">None</option>
 			</SELECT></td>
 			<td colspan="2"></td>
 	</tr>	
 	<script>document.getElementById("host_encryption").value="<% echo -n $host_encryption %>";</script>
   
-	<tr class="rowSpacer"></tr>
-	<tr class="rowSpacer"></tr>
+<!-- WiFi Diagnostics -->
+	<tr>
+		<td colspan="20"><span id="wifi_str" class="impact" style="visibility:hidden; display:none;">
+		 	WiFi status: FAIL. Check configuration. Click Refresh to check status.
+		 	</span></td>
+	</tr>
+	<tr>
+		<td colspan="20"><span id="wifi_str2" style="visibility:hidden; display:none; color:green">
+		 	WiFi status: OK.   Click Refresh to check status.
+		 	</span></td>
+	</tr>
+	<tr>
+		<td colspan="20"><span id="host_str" class="impact" style="visibility:hidden; display:none;">
+		 	Warning: WiFi WAN Host SSID is not present in scan.
+		 	</span></td>
+	</tr>
+	
+	<tr><td></td></tr>
+  
 	<tr>
 		<td colspan="10">
 			<INPUT class="hiddenKey" TYPE="SUBMIT" name="BUTTON" VALUE="Save" accesskey="s"> 
@@ -194,15 +211,38 @@
 </form>
 </div>
 
+<!-- WiFi Diagnostics -->
+<%
+	# Check wifi operation
+	wifi_op=$(iw dev | grep -c channel)
+%>
+<%	if [ $wifi_wan_enable == "checked" ] && [ $wifi_op == "0" ]; then %>
+	<script>document.getElementById("wifi_str").style.visibility="visible";</script>
+	<script>document.getElementById("wifi_str").style.display="inline";</script>
+<% elif [ $wifi_wan_enable == "checked" ] && [ $wifi_op -gt "0" ]; then %>
+	<script>document.getElementById("wifi_str2").style.visibility="visible";</script>
+	<script>document.getElementById("wifi_str2").style.display="inline";</script>
+<% fi %>	
+	
+<%
+	# Scan for SSID information and store.
+	iwinfo radio0 scan > /tmp/scan.txt
+%>
 
 <%
-	# Collect SSID information and store.
-	#iwlist wlan0 scan | grep -f /www/cgi-bin/inc/pattern.txt > /tmp/scan.txt
-	iwinfo radio0 scan > /tmp/scan.txt
+	# Check for wwan host
+	host_chk=$(cat /tmp/scan.txt | grep -c "\"$host_ssid\"")
+	if [ $wifi_wan_enable == "checked" ] && [ $host_chk == "0" ]; then
+%>
+	<script>document.getElementById("host_str").style.visibility="visible";</script>
+	<script>document.getElementById("host_str").style.display="inline";</script>
+<% fi %>
+
+<!-- WiFi Scan List -->
+<%
+	# Build scan SSID list
   ssid_str="<option selected disabled>Choose WiFi SSID...</option>"$ssid_str
-
 	str=$(cat /tmp/scan.txt | grep "Address" | cut -d : -f 2-7)
-
 	for addr in $str
 	do
 		if [ $(cat /tmp/scan.txt |grep -w -A 4 "$addr" |grep -c "mixed WPA/WPA2 PSK") == "1" ]; then
@@ -230,18 +270,14 @@
 		ssid=$(cat /tmp/scan.txt| grep -w -A 1 "$addr" | grep "ESSID" | cut -d : -f2 | sed 's/"//g')
 		
 		ssid_str="<option	value="$ssid::$encr"><pre> $ssid  (Ch: $chan  Encr: $encr_str Sig: $sig) </pre> </option>"$ssid_str
-	done
-%>
+	done	
+%>	
 
 <!-- Store the list of SSIDs -->
-<span  id="survey_str" style="visibility:hidden; display:none;">
-	<% echo -n $ssid_str %>
-</span>
+<span  id="survey_str" style="visibility:hidden; display:none;"> <% echo -n $ssid_str %> </span>
 
-<script>
-/* Populate the select control with list of SSIDs */
-document.getElementById("ssid_survey").innerHTML = document.getElementById("survey_str").innerHTML;
-</script>
+<!-- Populate the select control with list of SSIDs -->
+<script> document.getElementById("ssid_survey").innerHTML = document.getElementById("survey_str").innerHTML; </script>
 
 <script>
 function writeToHostSSID(){

@@ -118,7 +118,9 @@
   if [ $FORM_BUTTON == "Disable" ]; then
 		uci set gateway.general.server_type="disabled"
 		uci commit gateway
-		killall -q mosquitto_sub  # Remove any remaining MQTT subscribe process
+		killall -q mosquitto_sub             # Remove any remaining MQTT subscribe process
+		killall inotifywait                  # Remove any inotfywait process
+		killall -q loriot_dragino_lg308_spi  # Remove any remaining LORIOT process
     /etc/init.d/lora_gw reload > /dev/null
     sleep 2
     /etc/init.d/iot reload > /dev/null
@@ -522,7 +524,7 @@
 		<script>document.getElementById("subband-au").value="<% echo -n $subband %>";</script>	
 	</table>
 	
- <div id="custom" style="visibility:hidden; display:none">
+  <div id="custom" style="visibility:hidden; display:none">
 	<table class="configTable">
     	<tr><td colspan="18"><h3>Customized Radio Settings</h3></td></tr> 
 
@@ -672,7 +674,7 @@
 	
 	</table>  
 	</div>  <!-- End of custom div -->
- </div> <!-- End of div3 -->
+  </div> <!-- End of div3 -->
  
 <table class="configTable">
 	<tr class="rowSpacer"></tr>

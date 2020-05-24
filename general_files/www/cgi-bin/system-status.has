@@ -10,13 +10,17 @@
 <%# --- Get the variables for the HTML page --- %>
 	<%
 		rm /tmp/net_wifi_status.txt; touch /tmp/net_wifi_status.txt
+		
 		echo "Network"                             > /tmp/net_wifi_status.txt
 		echo "-------"                            >> /tmp/net_wifi_status.txt
 		echo "Lan IP Address:"                    >> /tmp/net_wifi_status.txt
 		ifconfig br-lan|grep "inet addr:"         >> /tmp/net_wifi_status.txt
+		ifconfig br-lan:9|grep "inet addr:"       >> /tmp/net_wifi_status.txt
 		echo ""                                   >> /tmp/net_wifi_status.txt
-		echo "WAN IP Address:"                    >> /tmp/net_wifi_status.txt
+		echo "Eth WAN IP Address:"                >> /tmp/net_wifi_status.txt
 		ifconfig eth1|grep "inet addr:"           >> /tmp/net_wifi_status.txt
+		ifconfig eth1:9|grep "inet addr:"         >> /tmp/net_wifi_status.txt
+		echo "WiFi WAN IP Address:"               >> /tmp/net_wifi_status.txt
 		ifconfig wlan0-2|grep "inet addr:"        >> /tmp/net_wifi_status.txt
 		echo "Cellular:"                    			>> /tmp/net_wifi_status.txt
 		ifconfig 3g-cellular|grep "inet addr:"    >> /tmp/net_wifi_status.txt

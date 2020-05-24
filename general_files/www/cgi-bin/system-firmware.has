@@ -67,10 +67,27 @@
       <td colspan="19">
     <%
     	if [ $FORM_BUTTON == "Proceed" ]; then
-				echo "<p style="font-weight: bold;">*** Sysupgrade now... </p>"
-				echo "<p style="font-weight: bold;">*** Please wait 3 minutes to complete flash operation. </p>"
-    		sysupgrade -n -v /tmp/flash.bin
-				echo "<p class="impact">*** Sysupgrade terminated...</p>"
+		%>
+		
+				<p class="impact">*** Sysupgrade starting now... </p>
+				<p class="impact">*** Please allow 3 minutes to complete flash operation. </p>
+  			<p>Time remaining:	<span id="seconds"> Starting </span>.</p>
+				<script>
+	  			var seconds = 180; /* Set time (secs) to reload */
+    			setInterval(
+      			function(){
+        			if (seconds<=0){
+          			window.location.href = "/cgi-bin/home.has"; /* Reload Home page */
+        			} else {
+          			document.getElementById('seconds').innerHTML = --seconds;
+        			}
+      			}, 1000
+    			);
+				</script>
+				
+		<%					
+    		sysupgrade -n -v /tmp/flash.bin                             # Perform the firmware upgrade
+				echo "<p class="impact">*** Sysupgrade terminated...</p>"   # Show Fail message if sysupgrade returns
 			fi
     %>
       </td>
