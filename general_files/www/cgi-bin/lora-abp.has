@@ -8,10 +8,11 @@
 <%
   if [ $FORM_BUTTON == "ADD_KEY" ];then
 	if [ -n "$FORM_DEV_ADDR" ] && [ -n "$FORM_APPSKEY" ] && [ -n "$FORM_NWKSKEY" ];then
-		dev_addr=$(echo $FORM_DEV_ADDR | tr '[a-z]' '[A-Z]')
-		appskey=$(echo $FORM_APPSKEY | tr '[a-z]' '[A-Z]')
-		nwkskey=$(echo $FORM_NWKSKEY | tr '[a-z]' '[A-Z]')
-		sqlite3 $sql_file "INSERT INTO abpdevs (devaddr, appskey, nwkskey) VALUES  ('$dev_addr', '$appskey', '$nwkskey');"
+		dev_addr=$(echo $FORM_DEV_ADDR | tr -d " " | tr '[a-z]' '[A-Z]')
+		appskey=$(echo $FORM_APPSKEY | tr -d " " | tr '[a-z]' '[A-Z]')
+		nwkskey=$(echo $FORM_NWKSKEY | tr -d " " | tr '[a-z]' '[A-Z]')
+		decoder=$(echo $FORM_DECODER)
+		sqlite3 $sql_file "INSERT INTO abpdevs (devaddr, appskey, nwkskey , decoder) VALUES  ('$dev_addr', '$appskey', '$nwkskey' , '$decoder');"
 	else
 		add_key_error="Invalid Keys"
 	fi 
@@ -86,14 +87,26 @@
 	<tr>
 		<td></td>
 		<td colspan="2"><label for="APPSKEY">APP Session Key:</label></td>
-		<td colspan="5"><input type="text" size="50" name="APPSKEY" pattern="([a-fA-F0-9]{32})$" placeholder="MSB,16 Bytes"></td>
+		<td colspan="5"><input type="text" size="50" name="APPSKEY" pattern="([a-fA-F0-9\s]{32,})$" placeholder="MSB,16 Bytes"></td>
 		<td colspan="2"></td>
 	</tr>
 		
 	<tr>
 		<td></td>
 		<td colspan="2"><label for="NWKSKEY">Network Session Key:</label></td>
-		<td colspan="5"><input type="text" size="50" name="NWKSKEY" pattern="([a-fA-F0-9]{32})$" placeholder="MSB,16 Bytes"></td>
+		<td colspan="5"><input type="text" size="50" name="NWKSKEY" pattern="([a-fA-F0-9\s]{32,})$" placeholder="MSB,16 Bytes"></td>
+		<td colspan="2"></td>
+	</tr>
+	
+	<tr>
+		<td></td>
+		<td colspan="2"><label for="DECODER">Decoder:</label></td>
+		<td colspan="3"><select id="decoder" style="padding-right:130px" name="DECODER">
+			<option value="ASCII" selected = "selected" >ASCII String</option>
+		<% for file in $(ls /etc/lora/decoder/); do %>   
+			<option value="<% echo -n "$file" %>" ><% echo -n "$file" %></option>                                  
+		<% done %>
+		</select></td>
 		<td colspan="2"></td>
 	</tr>
 		
@@ -128,10 +141,10 @@
 	</tr>
 	<tr class="rowSpacer"></tr>
 	<tr><td colspan="10"><h3>ABP Keys:</h3></td></tr>
-	<tr><td colspan="10"><text>Dev ADDR&nbsp;&nbsp;|&nbsp;&nbsp;APP Session Key&nbsp;&nbsp;|&nbsp;&nbsp;Network Session Key </text></td></tr>
+	<tr><td colspan="10"><text>Dev ADDR&nbsp;&nbsp;|&nbsp;&nbsp;APP Session Key&nbsp;&nbsp;|&nbsp;&nbsp;Network Session Key &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;Decoder  </text></td></tr>
 </table>
 
-<textarea cols="155" rows="20" ><% sqlite3 $sql_file "SELECT *from abpdevs" | awk -F '\\|' '{print $1"  |  "$2"  |  "$3}' %></textarea>
+<textarea cols="155" rows="20" ><% sqlite3 $sql_file "SELECT *from abpdevs" | awk -F '\\|' '{print $1"  |  "$2"  |  "$3"  |  "$4 }' %></textarea>
 	
 </form>
 </div>

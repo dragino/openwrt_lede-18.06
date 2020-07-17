@@ -10,7 +10,6 @@
 		uci set wireless.ap_0.key="$FORM_KEY"
 
 		uci set wireless.radio0.txpower="$FORM_TXPOWER"
-		uci set wireless.radio0.channel="$FORM_CHANNEL"
 		uci set wireless.radio0.wifi_mode="$FORM_WIFI_MODE"
 		uci set wireless.radio0.wan_lan="$FORM_WAN_LAN"
 
@@ -18,6 +17,12 @@
 		uci set wireless.sta_0.encryption="$FORM_HOST_ENCRYPTION"
 		uci set wireless.sta_0.key="$FORM_HOST_KEY"
 
+		# Set channel only if wwan sta mode not in use, and channel is not null
+		sta_chk=$(uci get wireless.sta_0.disabled)
+		if [ "$sta_chk" == "1" ] && [ ! -z "$FORM_CHANNEL" ]; then
+			uci set wireless.radio0.channel="$FORM_CHANNEL"
+		fi
+		
     uci commit wireless 
 	fi
 
@@ -201,9 +206,9 @@
 	<tr>
 		<td colspan="10">
 			<INPUT class="hiddenKey" TYPE="SUBMIT" name="BUTTON" VALUE="Save" accesskey="s"> 
-			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
-			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
-			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Refresh">
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply" onclick="showPageLoaderIcon()">
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel" onclick="showPageLoaderIcon()">
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Refresh" onclick="showPageLoaderIcon()">
 		</td>
 	</tr>
 
@@ -246,7 +251,7 @@
 	for addr in $str
 	do
 		if [ $(cat /tmp/scan.txt |grep -w -A 4 "$addr" |grep -c "mixed WPA/WPA2 PSK") == "1" ]; then
-			encr="mixed-psk"
+			encr="psk-mixed"
 			encr_str="WPA/WPA2"
 		elif [ $(cat /tmp/scan.txt |grep -w -A 4 "$addr" |grep -c "WPA2 PSK") == "1" ]; then
 			encr="psk2"
@@ -261,7 +266,7 @@
 			encr="none"
 			encr_str="None"
 		else
-			encr="mixed-psk"
+			encr="psk-mixed"
 			encr_str="WPA/WPA2"
 		fi
 

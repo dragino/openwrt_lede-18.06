@@ -142,7 +142,9 @@ wifi_wan_disable=$(uci -q get wireless.sta_0.disabled)
 # Set up the SAT icon
 if [[ $wifi_wan_disable == "1" ]]; then   # No WiFiWAN icon reqd if not enabled
   sat1="/static/img/SAT-Space-Blank.png"
-  mouseover1=''
+  mouseover1=""
+  satlink1=""
+  satvis1="hidden"
 elif [ $internet == "1" ] && [[ $route == "wlan0-2" ]]; then
   sat1=$img1"-tick.png"
 elif [[ $wifi_wan == "1" ]]; then
@@ -376,7 +378,7 @@ EOF
 # Centre Data - System
 
 model0=$model
-firmware0=$(cat /etc/banner | grep Version | cut -d : -f 2)
+firmware0=$(cat /etc/banner | grep Version | awk '{print $3}')
 system0=$(cat /etc/os-release | grep _RELEASE | cut -d = -f2)
 load0=$(uptime | sed -n 's/average:/&\n/;s/.*\n//p')
 ip0=$(uci -q get network.lan.ipaddr)
@@ -386,39 +388,16 @@ system_time=$(date)
 uptime_str=$(uptime  | cut -d " " -f4,5 | tr , " ")
 
 ################
-# SAT1 Data - Cellular WAN
+# SAT1 Data - WiFi WAN
 
-if [ $cell_en == "1" ]; then
-	info_title1="Cellular Internet"
-
-  ip1=$(ifconfig 3g-cellular|grep "inet addr"|cut -d ":" -f 2|cut -d " " -f 1)
-	txb1=$(ifconfig 3g-cellular |grep "TX bytes"|cut -d " " -f 18-20)
-	rxb1=$(ifconfig 3g-cellular |grep "RX bytes"|cut -d " " -f 13-15)
-
-  # Get cell status and save to file
-  cp /tmp/celltmp.txt /tmp/cell1.txt 
-  killall comgt
-  (comgt -d /dev/ttyModemAT > /tmp/celltmp.txt) &
-  
-  # Extract data for Info box
-  sim1=$(cat /tmp/cell1.txt|grep SIM)
-  sig1=$(cat /tmp/cell1.txt | grep Signal)
-  net1=$(cat /tmp/cell1.txt | grep network: | cut -d : -f 2)
-  time1=$(date | cut -d " " -f 5-6)
-
-	# Fast Cell Internet check	
-	fping -q -I 3g-cellular $host1 
-	if [ $? -eq "0" ]; then
-  	internet1="OK"
-	else
-		fping -q -I 3g-cellular $host2
-		if [ $? -eq "0" ]; then
-  		internet1="OK"
-		else
-			internet1="<font size="2" color="red">Fail</font"
-		fi
-	fi
-fi
+info_title1="WiFi Internet"
+ssid1=$(iwinfo wlan0-2 info | grep ESSID |cut -d : -f 2)
+ip1=$(ifconfig wlan0-2|grep "inet addr"|cut -d ":" -f 2|cut -d " " -f 1)
+txb1=$(ifconfig wlan0-2 |grep "TX bytes"|cut -d " " -f 18-20)
+rxb1=$(ifconfig wlan0-2 |grep "RX bytes"|cut -d " " -f 13-15)
+signal1=$(iwinfo|grep -A 5 wlan0-2 | grep Signal: | cut -d " " -f 11-13)
+noise1=$(iwinfo|grep -A 5 wlan0-2 | grep Signal: | cut -d " " -f 15-17)
+rate1=$(iwinfo|grep -A 5 wlan0-2 | grep Rate: | cut -d " " -f 11-15)
 
 ################
 # SAT2 Data - Eth WAN
@@ -430,17 +409,6 @@ ip2="$ip2a  $ip2b"
 txb2=$(ifconfig eth1 |grep "TX bytes"|cut -d " " -f 18-20)
 rxb2=$(ifconfig eth1 |grep "RX bytes"|cut -d " " -f 13-15)
 
-################
-# SAT5 Data - WiFi WAN
-
-info_title5="WiFi Internet"
-ssid5=$(iwinfo wlan0-2 info | grep ESSID |cut -d : -f 2)
-ip5=$(ifconfig wlan0-2|grep "inet addr"|cut -d ":" -f 2|cut -d " " -f 1)
-txb5=$(ifconfig wlan0-2 |grep "TX bytes"|cut -d " " -f 18-20)
-rxb5=$(ifconfig wlan0-2 |grep "RX bytes"|cut -d " " -f 13-15)
-signal5=$(iwinfo|grep -A 5 wlan0-2 | grep Signal: | cut -d " " -f 11-13)
-noise5=$(iwinfo|grep -A 5 wlan0-2 | grep Signal: | cut -d " " -f 15-17)
-rate5=$(iwinfo|grep -A 5 wlan0-2 | grep Rate: | cut -d " " -f 11-15)
 
 ################
 # SAT3 Data - IoT Service
@@ -525,6 +493,49 @@ elif [ $server_type == "relay" ]; then
 fi
 
 ################
+# SAT5 Data - Cellular WAN
+
+if [ $cell_en == "1" ]; then
+	info_title5="Cellular Internet"
+
+  ip5=$(ifconfig 3g-cellular|grep "inet addr"|cut -d ":" -f 2|cut -d " " -f 1)
+	txb5=$(ifconfig 3g-cellular |grep "TX bytes"|cut -d " " -f 18-20)
+	rxb5=$(ifconfig 3g-cellular |grep "RX bytes"|cut -d " " -f 13-15)
+
+  # Get cell status and save to file
+  cp /tmp/celltmp.txt /tmp/cell1.txt 
+  killall comgt
+  (comgt -d /dev/ttyModemAT > /tmp/celltmp.txt; ) &
+  
+  # Extract data for Info box
+  sim5=$(cat /tmp/cell1.txt|grep SIM)
+  sig=$(cat /tmp/cell1.txt | grep Signal)
+  net5=$(cat /tmp/cell1.txt | grep network: | cut -d : -f 2)
+  
+  # Get signal in dBm
+  signal=$(echo $sig | cut -d : -f2 | cut -d , -f1)
+  if [ $signal -ge "2" ] && [ $signal -le "30" ]; then
+  	dbm=$(expr $signal + $signal - "113")
+  	sig5="$sig  $dbm dBm" 
+	else
+		sig5=" $sig"
+	fi
+	
+	# Fast Cell Internet check	
+	fping -q -I 3g-cellular $host1 
+	if [ $? -eq "0" ]; then
+  	internet5="OK"
+	else
+		fping -q -I 3g-cellular $host2
+		if [ $? -eq "0" ]; then
+  		internet5="OK"
+		else
+			internet5="<font size="2" color="red">Fail</font"
+		fi
+	fi
+fi
+
+################
 # SAT10 Data - LoRa Radios
 
 # Check for LORIOT mode
@@ -605,14 +616,14 @@ cat > /tmp/popup-data.txt << EOF
 
 <div class="info" id="info-1">
 	<table>
-	<tr>	  <th colspan="2">$info_title5 </th>	</tr>
-	<tr>	  <td>SSID:</td><td>$ssid5 </td>	</tr>
-	<tr>	  <td>IP Addr:</td><td>$ip5 </td>	</tr>
-	<tr>	  <td>TX Bytes:</td><td>$txb5 </td>	</tr>
-	<tr>	  <td>RX Bytes:</td><td>$rxb5 </td>	</tr>
-	<tr>	  <td>Signal:</td><td>$signal5 </td>	</tr>
-	<tr>	  <td>Noise:</td><td>$noise5 </td>	</tr>
-	<tr>	  <td>Bit Rate:</td><td>$rate5 </td>	</tr>
+	<tr>	  <th colspan="2">$info_title1 </th>	</tr>
+	<tr>	  <td>SSID:</td><td>$ssid1 </td>	</tr>
+	<tr>	  <td>IP Addr:</td><td>$ip1 </td>	</tr>
+	<tr>	  <td>TX Bytes:</td><td>$txb1 </td>	</tr>
+	<tr>	  <td>RX Bytes:</td><td>$rxb1 </td>	</tr>
+	<tr>	  <td>Signal:</td><td>$signal1 </td>	</tr>
+	<tr>	  <td>Noise:</td><td>$noise1 </td>	</tr>
+	<tr>	  <td>Bit Rate:</td><td>$rate1 </td>	</tr>
 	</table>
 </div>	
 
@@ -645,15 +656,14 @@ cat > /tmp/popup-data.txt << EOF
 
 <div class="info" id="info-5">
 	<table>
-	<tr>	  <th colspan="2">$info_title1 </th>	</tr>
-	<tr>	  <td>IP Addr:</td><td>$ip1 </td>	</tr>
-	<tr>	  <td>TX Bytes:</td><td>$txb1 </td>	</tr>
-	<tr>	  <td>RX Bytes:</td><td>$rxb1 </td>	</tr>
-	<tr>	  <td>SIM:</td><td>$sim1 </td>	</tr>
-	<tr>	  <td>Network:</td><td>$net1 </td>	</tr>
-	<tr>	  <td>Signal:</td><td>$sig1 </td>	</tr>
-	<tr>	  <td>Internet:</td><td><b>$internet1</b></td>	</tr>
-	<tr>	  <td>Time:</td><td>$time1 </td>	</tr>
+	<tr>	  <th colspan="2">$info_title5 </th>	</tr>
+	<tr>	  <td>IP Addr:</td><td>$ip5 </td>	</tr>
+	<tr>	  <td>TX Bytes:</td><td>$txb5 </td>	</tr>
+	<tr>	  <td>RX Bytes:</td><td>$rxb5 </td>	</tr>
+	<tr>	  <td>SIM:</td><td>$sim5 </td>	</tr>
+	<tr>	  <td>Network:</td><td>$net5 </td>	</tr>
+	<tr>	  <td>Signal:</td><td>$sig5 </td>	</tr>
+	<tr>	  <td>Internet:</td><td><b>$internet5</b></td>	</tr>
 	</table>
 </div>	
 

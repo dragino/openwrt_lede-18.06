@@ -86,8 +86,8 @@
 		<tr class="rowSpacer"></tr>
 
 		<tr>
-			<td><INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Refresh">
-				<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Reload">
+			<td><INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Refresh" onclick="showPageLoaderIcon()">
+				<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Reload" onclick="showPageLoaderIcon()">
 				<text> Click Reload to download package list. This will take a while.</text>
 			</td>
 		</tr>
@@ -112,7 +112,7 @@
 		<tr>
 			<td colspan="2"><label for="PACKAGE">Package Name:</label></td>
 			<td colspan="5"> <input type="text" size="30" name="PACKAGE"></td>
-			<td colspan="1"><INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Install"></td>
+			<td colspan="1"><INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Install" onclick="showPageLoaderIcon()"></td>
 		</tr>
 	</table>
 

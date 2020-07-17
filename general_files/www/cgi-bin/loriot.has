@@ -70,6 +70,7 @@
   	echo "<option value=\"$x\">$x</option>" >> /tmp/certs.txt
   done
 	
+	eui=$(ifconfig eth0|grep "HWaddr" | awk '{print $5}')
 %>
 
 <%# --- Present the HTML page --- %>
@@ -162,23 +163,25 @@
 <table class="configTable">
 	<tr class="rowSpacer"><td colspan="20"></td></tr>
 	<tr>
-		<td></td>
-		
-		<td colspan="4"><a href="/cgi-bin/iot-cert.has"><label >Certificate Management </label></a></td>
-		
-		<td colspan="1"></td>
+		<td colspan="12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eth0 MAC Address: &nbsp;&nbsp; <% echo -n $eui %></td>
 	</tr>
-	<script>document.getElementById("cafile").value="<% echo -n $cafile %>";</script>
+	
+	<tr class="rowSpacer"><td colspan="20"></td></tr>
+	<tr>
+		<td></td>
+		<td colspan="4"><a href="/cgi-bin/iot-cert.has"><label >Certificate Management </label></a></td>
+	</tr>
+	<script>document.getElementById("cafile").value="<% echo -n $cafile %>";</script>	
 </table>
 
 <table class="configTable">
 	<td colspan="20">
 	<br>
 	<INPUT class="hiddenKey" TYPE="SUBMIT" name="BUTTON" VALUE="Save" accesskey="s"> 
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Refresh">
-	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Install">
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply" onclick="showPageLoaderIcon()">
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel" onclick="showPageLoaderIcon()">
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Refresh" onclick="showPageLoaderIcon()">
+	<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Install" onclick="showPageLoaderIcon()">
 	</td>
 </tr>
 </table>

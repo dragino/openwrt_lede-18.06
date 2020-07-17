@@ -5,7 +5,7 @@
 <%# --- Get the variables for the HTML page --- %>
 <%
 # Get Info bar data
-fw_str=$(cat /etc/banner | grep Version | cut -d : -f 2)
+fw_str=$(cat /etc/banner | grep Version | awk '{print $3}')
 date_str=$(date)
 up_str=$(uptime | cut -d " " -f4,5 | tr , " ")
 host_str=$(echo $HOSTNAME)

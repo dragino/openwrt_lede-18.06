@@ -14,20 +14,21 @@
 		uci set gateway.radio1.RFCR="$FORM_RFCR"
 		uci set gateway.radio1.RFBW="$FORM_RFBW"
 		uci set gateway.radio1.RFPRLEN="$FORM_RFPRLEN"
-		uci set gateway.radio1.SYNCWD="$FORM_SYNCWD"
+		uci set gateway.radio1.RFSYNC="$FORM_RFSYNC"
 
 		uci set gateway.radio1.RXFREQ="$FORM_RXFREQ"
 		uci set gateway.radio1.RXSF="$FORM_RXSF"
 		uci set gateway.radio1.RXCR="$FORM_RXCR"
 		uci set gateway.radio1.RXBW="$FORM_RXBW"
 		uci set gateway.radio1.RXPRLEN="$FORM_RXPRLEN"
+		uci set gateway.radio1.RXSYNC="$FORM_RXSYNC"
 
 		uci set gateway.radio2.TXFREQ="$FORM_TXFREQ"
 		uci set gateway.radio2.TXSF="$FORM_TXSF"
 		uci set gateway.radio2.TXCR="$FORM_TXCR"
 		uci set gateway.radio2.TXBW="$FORM_TXBW"
 		uci set gateway.radio2.TXPRLEN="$FORM_TXPRLEN"
-		uci set gateway.radio2.SYNCWD="$FORM_TXSYNCWD"
+		uci set gateway.radio2.TXSYNC="$FORM_TXSYNC"
 		
 		# Save Band and Sub-Band
 		uci set gateway.general.gwcfg="$FORM_GWCFG"
@@ -146,20 +147,21 @@
 	rfcr="$(uci -q get gateway.radio1.RFCR)"
 	rfbw="$(uci -q get gateway.radio1.RFBW)"
 	rfprlen="$(uci -q get gateway.radio1.RFPRLEN)"
-	syncwd="$(uci -q get gateway.radio1.SYNCWD)"
+	rfsync="$(uci -q get gateway.radio1.RFSYNC)" # For LG01
 
 	rxfreq="$(uci -q get gateway.radio1.RXFREQ)"
 	rxsf="$(uci -q get gateway.radio1.RXSF)"
 	rxcr="$(uci -q get gateway.radio1.RXCR)"
 	rxbw="$(uci -q get gateway.radio1.RXBW)"
 	rxprlen="$(uci -q get gateway.radio1.RXPRLEN)"
+	rxsync="$(uci -q get gateway.radio1.RXSYNC)"
 
 	txfreq="$(uci -q get gateway.radio2.TXFREQ)"
 	txsf="$(uci -q get gateway.radio2.TXSF)"
 	txcr="$(uci -q get gateway.radio2.TXCR)"
 	txbw="$(uci -q get gateway.radio2.TXBW)"
 	txprlen="$(uci -q get gateway.radio2.TXPRLEN)"
-	txsyncwd="$(uci -q get gateway.radio2.SYNCWD)"
+	txsync="$(uci -q get gateway.radio2.TXSYNC)"
 	
 	# Get Band and Sub-Band
 	gwcfg="$(uci -q get gateway.general.gwcfg)"
@@ -332,8 +334,8 @@
 			<td colspan="4"><label for="RFPRLEN">Preamble Length</label></td>
 			<td colspan="3"><input class="shortText" type="text" name="RFPRLEN" maxlength="2" VALUE=<% echo -n $rfprlen %> pattern="[0-9]{1,2}" ></td>
 			<td colspan="2"></td>
-			<td colspan="4"><label for="SYNCWD">LoRa Sync Word</label></td>
-			<td colspan="3"><input type="text" name="SYNCWD" maxlength="2" VALUE=<% echo -n $syncwd %> pattern="[0-9]{1,2}" ></td>
+			<td colspan="4"><label for="SYNC">LoRa Sync Word</label></td>
+			<td colspan="3"><input type="text" name="RFSYNC" maxlength="2" VALUE=<% echo -n $rfsync %> pattern="[0-9]{1,2}" ></td>
 			<td></td>
 		</tr>
 
@@ -399,8 +401,8 @@
 			<td colspan="4"><label for="RXPRLEN">Preamble Length</label></td>
 			<td colspan="3"><input class="shortText" type="text" name="RXPRLEN" maxlength="2" VALUE=<% echo -n $rxprlen %> pattern="[0-9]{1,2}" ></td>
 			<td colspan="2"></td>
-			<td colspan="4"><label for="SYNCWD">LoRa Sync Word</label></td>
-			<td colspan="3"><input class="shortText" type="text" name="SYNCWD" maxlength="2" VALUE=<% echo -n $syncwd %> pattern="[0-9]{1,2}" ></td>
+			<td colspan="4"><label for="SYNC">LoRa Sync Word</label></td>
+			<td colspan="3"><input class="shortText" type="text" name="RXSYNC" maxlength="2" VALUE=<% echo -n $rxsync %> pattern="[0-9]{1,2}" ></td>
 			<td></td>
 		</tr>
 		<script>document.getElementById("rxsf").value="<% echo -n $rxsf %>";</script>
@@ -460,8 +462,8 @@
 			<td colspan="4"><label for="TXPRLEN">Preamble Length</label></td>                                       
   			<td colspan="3"><input class="shortText" type="text" name="TXPRLEN" maxlength="2" VALUE=<% echo -n $txprlen %> pattern="[0-9]{1,2}" ></td>
 			<td colspan="2"></td>
-			<td colspan="4"><label for="TXSYNCWD">LoRa Sync Word</label></td>
-			<td colspan="3"><input type="text" name="TXSYNCWD" maxlength="2" VALUE=<% echo -n $txsyncwd %> pattern="[0-9]{1,2}" ></td>
+			<td colspan="4"><label for="TXSYNC">LoRa Sync Word</label></td>
+			<td colspan="3"><input type="text" name="TXSYNC" maxlength="2" VALUE=<% echo -n $txsync %> pattern="[0-9]{1,2}" ></td>
 			<td></td>
 		</tr>
 
@@ -683,9 +685,9 @@
 		<td colspan="1"></td>
 		<td colspan="17">
 			<INPUT class="hiddenKey" TYPE="SUBMIT" name="BUTTON" VALUE="Save" accesskey="s"> 
-			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
-			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Disable">
-			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply" onclick="showPageLoaderIcon()">
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Disable" onclick="showPageLoaderIcon()">
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel" onclick="showPageLoaderIcon()">
 		</td>
 	</tr>
 </table>

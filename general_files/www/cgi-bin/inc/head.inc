@@ -1,5 +1,5 @@
-
-  <title>Dragino LoRa Gateway</title>
+<% vendor_name=$(uci get system.vendor.name) %>
+  <title><% echo $vendor_name %> LoRa Gateway</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -42,6 +42,10 @@
 				y.className = "btnShow"; 
   		}
 	} 
+
+	function showPageLoaderIcon() {
+		document.getElementById("pageLoader").style.display = "block";
+	}
 
 	</script>
 

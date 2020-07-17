@@ -1,5 +1,30 @@
 body {margin:0; font-family:Arial; background-color: #FAF6F7}
 
+div.pageLoader {
+  position: absolute;
+  width: 50%;
+  height:30%;
+  margin-left: 20%;
+  margin-top: 10%;
+  z-index: 50;
+  background-color: #FAF6F7;
+  opacity: 0.8;
+  border: 20px solid #FAF6F7;
+  border-radius: 30%;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.5em;
+  color: rgb(43, 43, 43);
+  display: none;
+}
+
+.loaderSpinner {
+  display: inline;
+  transform: translate(-50%, -50%);
+  font-size: 7vw;
+  color: rgb(41, 196, 243);
+}
+
 input:invalid {
   border: 2px solid red;
   background-color: rgb(253, 167, 181);

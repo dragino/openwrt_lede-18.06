@@ -143,8 +143,8 @@
 		<td colspan="1"></td>
 		<td colspan="14">
 			<INPUT class="hiddenKey" TYPE="SUBMIT" name="BUTTON" VALUE="Save" accesskey="s"> 
-			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply">
-			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel">
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save&Apply" onclick="showPageLoaderIcon()">
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel" onclick="showPageLoaderIcon()">
 		</td>
 	</tr>
 </table>

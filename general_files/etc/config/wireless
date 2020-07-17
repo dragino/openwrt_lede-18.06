@@ -9,6 +9,8 @@ config wifi-device 'radio0'
 	option disabled '0'
 	option noscan '1'
 	option txpower '17'
+	option channel '11'
+	option country 'DE'
 
 config wifi-iface 'ap_0'
 	option device 'radio0'

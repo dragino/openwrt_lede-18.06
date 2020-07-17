@@ -68,8 +68,17 @@
     <%
     	if [ $FORM_BUTTON == "Proceed" ]; then
 		%>
-		
 				<p class="impact">*** Sysupgrade starting now... </p>
+			<%				
+				if [ $FORM_SETTINGS_ENABLE == "checked" ]; then
+					echo "Configuration settings will be retained."
+					settings=" "
+				else
+					echo "Configuration settings will be reset to Factory Default."
+					settings=" -n "
+				fi 
+			%> 
+			
 				<p class="impact">*** Please allow 3 minutes to complete flash operation. </p>
   			<p>Time remaining:	<span id="seconds"> Starting </span>.</p>
 				<script>
@@ -86,12 +95,18 @@
 				</script>
 				
 		<%					
-    		sysupgrade -n -v /tmp/flash.bin                             # Perform the firmware upgrade
+    		sysupgrade $settings -v /tmp/flash.bin                      # Perform the firmware upgrade
 				echo "<p class="impact">*** Sysupgrade terminated...</p>"   # Show Fail message if sysupgrade returns
 			fi
     %>
       </td>
     </tr>
+    
+		<tr>
+			<td colspan="20"><font size="4"> Preserve Settings </font>
+			<input type="checkbox" name="SETTINGS_ENABLE" value="checked" ></td>
+		</tr>
+    
     <tr>
       <td colspan="1"></td>
       <td colspan="19">

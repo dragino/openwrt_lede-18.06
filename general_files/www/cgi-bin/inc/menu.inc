@@ -1,5 +1,12 @@
+<div id="pageLoader" class="pageLoader">
+  Please wait...<br><br>
+  <div class="loaderSpinner"><span class="fas fa-spinner fa-spin"></span></div>
+</div>
+
+<% vendor_url=$(uci get system.vendor.company_url) %>
+
 <div class="logo-container">
-  <a href="www.dragino.com">  <!-- Set the URL link for the logo -->
+  <a href="<% echo $vendor_url %>">  <!-- Set the URL link for the logo -->
     <img class="logoImage" src="/static/img/logo.png">
   </a>
 </div>
@@ -24,7 +31,7 @@
   <% fi %>
   
   
-	<% # Set up LoRa menu for board type
+	<% # Set up LoRaWAN menu for board type
 	model=$(cat /tmp/iot/model.txt)
 	if [ $model == "LG308" ] || [ $model == "LPS8" ] || [ $model == "DLOS8" ]; then
 	%>
@@ -82,6 +89,7 @@
     <div class="dropdown-content">
       <a href="/cgi-bin/log-lora.has">LoRa Log</a>
       <a href="/cgi-bin/log-sys.has">System Log</a>
+      <a href="/cgi-bin/log-record.has">Record Log</a>
     </div>
   </div> 
 

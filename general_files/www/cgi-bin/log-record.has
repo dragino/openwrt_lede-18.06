@@ -1,0 +1,121 @@
+#!/usr/bin/haserl
+
+<%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
+
+<%# --- Initial processing --- %>
+<% 
+	# Get logging flag
+	if [ -e "/tmp/logging.flag" ]; then
+		logging="1"
+	else
+		logging="0"
+	fi
+	
+	# Check the size of the log file
+	#maxfilesize="85000"     # Test max: 85kB
+	maxfilesize="2000000"  # Max:  2MB
+	
+	filesize=$(wc -c /tmp/logfile.log | cut -d " " -f1)
+	if [ $filesize -gt $maxfilesize ]; then
+		rm -f /tmp/logging.flag
+		logging="0"
+		maxsize="1"
+		logready="1"
+		killall logread
+	fi
+%>
+
+<%# --- Process the form submission --- %>
+<%
+	if [ $FORM_BUTTON == "StartLog" ]; then
+		touch /tmp/logging.flag
+		logging="1"
+		logready="0"
+		killall logread
+		echo "DMESG:" > /tmp/logfile.log 
+		dmesg >> /tmp/logfile.log
+		echo "LOGREAD:" >> /tmp/logfile.log
+		logread >> /tmp/logfile.log
+		echo "LOGREAD -f:" >> /tmp/logfile.log
+		/usr/bin/save_log.sh &
+	fi
+	
+	if [ $FORM_BUTTON == "StopLog" ]; then
+		rm /tmp/logging.flag
+		logging="0"
+		logready="1"
+		maxsize="0"
+		killall logread
+	fi
+	
+	if [ $FORM_BUTTON == "ResetLog" ]; then
+		rm /tmp/logfile.log
+		rm /tmp/logging.flag
+		logging="0"
+		logready="0"
+		maxsize="0"
+		killall logread
+	fi
+	
+	# Just to be sure
+	if [$logging != "1" ]; then
+		killall logread
+	fi
+%>
+  
+<%# --- Present the HTML page --- %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<%inc /www/cgi-bin/inc/head.inc %>
+	
+	<% if [ $logging == "1" ]; then %>
+	<meta http-equiv="refresh" content="10" >
+	<% fi %>
+</head>
+
+<body>
+<%inc /www/cgi-bin/inc/menu.inc %>
+    
+<div class="page-container">
+<h2>Record Log</h2>
+<br><br>
+
+<form name="LOG-RECORD" id="LOG-RECORD" action="<% echo -n $SCRIPT_NAME %>" method="POST">
+    
+<table class="configTable">
+
+	<tr>
+		<td colspan="10">
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="StartLog">
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="StopLog">
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="ResetLog">
+		</td>
+		<td colspan="12"><a class="impactOK" href="/tmp/logfile.log">Download Log File</a></td>
+	</tr>
+	<tr class="rowSpacer"></tr>
+	
+	<tr>
+	<td colspan="12">
+	<p class="impact-light" id="logrecording" style="visibility:hidden" >Log is being recorded.</p>
+	<p class="impact-light" id="logstopped" style="visibility:hidden" >Logging is stopped. Max file size reached.</p>
+	<p class="impact-light" id="logready" style="visibility:hidden" >Log available for download.</p>
+	</td>
+	</tr>
+</table>
+
+</div> <!-- End page container -->
+
+	<% if [ $logging == "1" ]; then %>
+	<script> document.getElementById("logrecording").style.visibility="visible"; </script>
+	<% fi %>
+	<% if [ $maxsize == "1" ]; then %>
+	<script> document.getElementById("logstopped").style.visibility="visible"; </script>
+	<% fi %>
+	<% if [ $logready == "1" ]; then %>
+	<script> document.getElementById("logready").style.visibility="visible"; </script>
+	<% fi %>
+
+</body>
+</html>
+

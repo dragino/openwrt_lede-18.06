@@ -76,9 +76,9 @@ model=$(cat /tmp/iot/model.txt)
 <table class="configTable">
 	<tr><td colspan="20"></td></tr> <!--Determines column widths-->
 	<tr class="rowSpacer"></tr>
-	<tr><td colspan="3">Firmware:</td><td colspan="17"><% cat /etc/banner | grep Version | cut -d : -f 2 %></td></tr>
+	<tr><td colspan="3">Firmware:</td><td colspan="17"><% cat /etc/banner | grep Version | awk '{print $3}' %></td></tr>
 	<tr class="rowSpacer"></tr>
-	<tr><td colspan="3">System:</td><td colspan="17"><% cat /etc/os-release | grep _RELEASE | cut -d = -f2 %></td></tr>
+	<tr><td colspan="3">Build Time:</td><td colspan="17"><% cat /etc/banner | grep Build %></td></tr>
 	<tr class="rowSpacer"></tr>
 	<tr><td colspan="3">Hostname:</td><td colspan="17"><% uci get system.@[0].hostname %></td></tr>
 	<tr class="rowSpacer"></tr>

@@ -7,6 +7,13 @@ hostname_prefix=$(uci get system.vendor.name)
 company_domain=$(uci get system.vendor.mail_domain)
 DHCP_DOMAIN="$hostname_prefix-net"
 hostname="$hostname_prefix-$(hexdump -v -e '1/1 "%.2x"' -s $((0x1005)) -n 3 /dev/mtd6)"
+is_dlos8=$(hexdump -v -e '11/1 "%_p"' -s $((0x908)) -n 11 /dev/mtd6 | grep -c "los8")
+
+if [ $is_dlos8 == "1" ]; then 
+	GWID="a84041ffff"$(xxd -ps -l 3 -s 0x1005 /dev/mtd6)
+else
+	GWID=$(xxd -ps -l 8 -s 0x1002 /dev/mtd6)
+fi
 
 uci -q batch <<-EOF
     set wireless.ap_0.ssid=$SSID
@@ -14,7 +21,7 @@ uci -q batch <<-EOF
     set network.wan.hostname="$hostname"
     set system.@system[0].hostname="$hostname"
     set gateway.general.email="$hostname@$company_domain"
-    set gateway.general.GWID=$(xxd -ps -l 8 -s 0x1002 /dev/mtd6)
+    set gateway.general.GWID=$GWID
     commit
 EOF
 

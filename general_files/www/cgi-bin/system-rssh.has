@@ -2,6 +2,22 @@
 
 <%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
 
+<%
+	# Default Host Addr and ID
+	default_host_addr="support.dragino.com"
+	default_host_id="sshuser"
+
+	# Calculate port no. from GWID
+  pos="8"; len="4"
+  gwid=$(uci get gateway.general.GWID)
+  str=${gwid:pos:len}
+  x=$(echo $((0x$str)))
+  if [ $x -ge "32768" ]; then
+    x=$(($x - 32768))
+  fi
+  port=$((x + 20000))
+
+%>
 <%# --- Process the form submission --- %>
 <%
 # Save parameters
@@ -10,7 +26,10 @@
 		uci set rssh.rssh.host_addr="$FORM_HOST_ADDR"
 		uci set rssh.rssh.host_port="$FORM_HOST_PORT"
 
-		if [ "$FORM_RSSH_ENABLE" == "checked" ]; then
+		# Enable re-connection at startup if required, only if certificate and connection params have been set up.
+		if [ "$FORM_RSSH_ENABLE" == "checked" ] \
+			&& [ ! -z "$FORM_HOST_ID" ] && [ ! -z "$FORM_HOST_ADDR" ] && [ ! -z "$FORM_HOST_PORT" ] \
+			&& [ -e /etc/dropbear/id_dropbear ]; then
 			uci set rssh.rssh.rssh_enable="$FORM_RSSH_ENABLE"
 			/etc/init.d/DR_enable_rssh.sh enable
 		else
@@ -26,6 +45,8 @@
 		uci set rssh.rssh.host_id="$FORM_HOST_ID"
 		uci set rssh.rssh.host_addr="$FORM_HOST_ADDR"
 		uci set rssh.rssh.host_port="$FORM_HOST_PORT"
+
+		uci set rssh.rssh.manual_connect="1"
 		uci commit rssh
 	
 		/etc/init.d/DR_enable_rssh.sh start
@@ -44,6 +65,18 @@
     dropbearkey -y -f /etc/dropbear/id_dropbear | grep -v "Public key" | grep -v "Fingerprint" > /etc/dropbear/id_rsa.pub
   fi
 
+	if [ $FORM_BUTTON == "SetDefault" ]; then
+		# Set User ID
+		host_id=$default_host_id
+		uci set rssh.rssh.host_id=$default_host_id
+		# Assign Server URL
+		host_addr=$default_host_addr
+		uci set rssh.rssh.host_addr=$default_host_addr
+		# Assign auto port number
+		host_port=$port
+		uci set rssh.rssh.host_port=$port
+		uci commit rssh
+	fi
 %>
 
 
@@ -63,8 +96,10 @@
 	# Check connectivity to host
 	ping -c1 $host_addr 1>/dev/null 2>/dev/null; 	ping_ok=$?
 	# Check ssh process running - should be "2" processes
-	ssh_ok=$(ps|grep -c -e "-i /etc/dropbear/id_dropbear -f -N -T -R" )
+#	ssh_ok=$(ps|grep -c -e "-i /etc/dropbear/id_dropbear -f -N -T -R" )
+	ssh_ok=$(ps|grep -c -e "-i /etc/dropbear/id_dropbear " )
 	
+#	if [ $ping_ok -eq "0" ] && [ $ssh_ok -ge "1" ]; then
 	if [ $ping_ok -eq "0" ] && [ $ssh_ok -eq "2" ]; then
 		connection_status="<span class="impactOK">RSSH Host connection OK</span>"
 	else
@@ -98,7 +133,7 @@
 	<tr>
 		<td colspan="1"></td>
 		<td colspan="3"><label for="HOST_ADDR">Host Address</label></td>
-		<td colspan="4"><input type="text" name="HOST_ADDR" placeholder="rssh.support.dragino.com" value="<% echo -n $host_addr %>" ></td>
+		<td colspan="4"><input type="text" name="HOST_ADDR" placeholder="<% echo -n $default_host_addr %>" value="<% echo -n $host_addr %>" ></td>
 		<td colspan="1"></td>
 		<td colspan="2"><label for="HOST_PORT">Host Port</label></td>
 		<td colspan="4"><input type="text" name="HOST_PORT" VALUE="<% echo -n $host_port %>" ></td>
@@ -106,9 +141,11 @@
 	<tr class="rowSpacer"></tr>
 	<tr>
 		<td colspan="1"></td>
-		<td colspan="6"><label for="RSSH_ENABLE">Connect at Startup</label>
+		<td colspan="8"><label for="RSSH_ENABLE">Connect at Startup</label>
 			  <input type="checkbox" name="RSSH_ENABLE" value="checked" <% echo -n $rssh_enable %>></td>
+		<td colspan="6"> GWID: <% echo -n $gwid %> </td>
 	</tr>
+
 	<tr class="rowSpacer"></tr>
 	<tr>
 		<td colspan="1"></td>
@@ -118,13 +155,15 @@
 	<tr>
 		<td colspan="1"></td>
 		<td colspan="15">
-			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save">
-			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Connect">
-			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Disconnect">
-			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel/Refresh">
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Save" onclick="showPageLoaderIcon()">
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Connect" onclick="showPageLoaderIcon()">
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Disconnect" onclick="showPageLoaderIcon()">
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="SetDefault" onclick="showPageLoaderIcon()">
+			<INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Cancel/Refresh" onclick="showPageLoaderIcon()">
 		</td>
 	</tr>
 	<tr class="rowSpacer"></tr>
+	<tr><td colspan="10"><pre>     Note: Auto connection after startup may take up to 5 minutes to clear previous connection </pre></td></tr>
 
 	<tr><td colspan="10"><h3>Generate New Keys</h3></td></tr>
 	<tr>
@@ -134,7 +173,7 @@
 	<tr class="rowSpacer"></tr>
 	<tr>
 		<td colspan="1"></td>
-		<td colspan="2"><INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Generate"></td>
+		<td colspan="2"><INPUT TYPE="SUBMIT" name="BUTTON" VALUE="Generate" onclick="showPageLoaderIcon()"></td>
 		<td colspan="1"></td>
 		<td colspan="16"><span class="impact-light">Caution: Generating new keys will break any existing server connections!! </span></td>
 	</tr>
