@@ -1,8 +1,0 @@
-#!/usr/bin/haserl
-
-<%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
-
-<%# --- Present only the popup info data --- %>
-
-<% cat /tmp/popup-data.txt %>
-

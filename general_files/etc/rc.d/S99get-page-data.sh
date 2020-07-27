@@ -1,1 +1,0 @@
-../init.d/get-page-data.sh

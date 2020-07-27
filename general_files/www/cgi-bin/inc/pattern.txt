@@ -1,6 +1,0 @@
-Address
-Frequency
-Quality
-Encryption
-ESSID
-WPA

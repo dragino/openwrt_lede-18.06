@@ -149,7 +149,7 @@ if [ ! -f ./$target_path/$file_prefix-squashfs-sysupgrade.bin ];then
 	echo ""
 	echo "Build Fails, run below commands to build the image in single thread and check what is wrong"
 	echo "**************"
-	echo "	./build_image.sh -s"
+	echo "	./build_image.sh -s V=99"
 	echo "**************"
 	exit 0
 fi

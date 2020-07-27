@@ -1,7 +1,0 @@
-#!/usr/bin/haserl
-
-<%  echo -en "content-type: text/html\r\n\r\n"  # RF2616 Compliance %>
-
-<%# --- Present only the SAT HTML (data for a JS array) --- %>
-
-<% cat /tmp/sat-data.txt %>
