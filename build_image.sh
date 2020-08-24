@@ -5,7 +5,8 @@ SFLAG=
 AFLAG=
 BFLAG=
 
-APP=LG02_LG08
+DEFAULT_APP="lgw"
+APP="lgw"
 APP2=
 IMAGE_SUFFIX=
 BUILD_TIME=`date +%s`
@@ -76,9 +77,11 @@ echo "Remove custom files from last build"
 
 rm -rf $OPENWRT_PATH/files
 
+echo "***Copy general_files to OpenWrt***"
 cp -r general_files $OPENWRT_PATH/files
 
-cp .config.LG02_LG08 $OPENWRT_PATH/.config
+echo "***.config.$DEFAULT_APP to OpenWrt/.config***"
+cp .config.$DEFAULT_APP $OPENWRT_PATH/.config
 
 cd $OPENWRT_PATH/feeds/dragino
 
@@ -90,6 +93,10 @@ if [ -d files-$APP ];then
 	echo "***Copy files-$APP to default files directory***"
 	echo ""
 	cp -r files-$APP/?* $OPENWRT_PATH/files/
+elif [ "$APP" != "$DEFAULT_APP" ];then 
+	echo "***Can't find files-$APP***"
+	echo "Use default files files-$DEFAULT_APP"
+	echo ""
 fi
 
 if [ -f .config.$APP ];then
@@ -98,6 +105,11 @@ if [ -f .config.$APP ];then
 	echo "Replace default .config file with .config.$APP"
 	echo ""
 	cp .config.$APP $OPENWRT_PATH/.config
+else 
+	echo ""
+	echo "***Can't find .config.$APP file***"
+	echo "Use default .config.$DEFAULT_APP"
+	echo ""
 fi
 
 

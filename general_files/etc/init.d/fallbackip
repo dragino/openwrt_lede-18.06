@@ -25,5 +25,9 @@ start()
 	
 	ps | grep "iot_keep_alive" | grep -v grep | awk '{print $1}' | xargs kill -s 9
     	/usr/bin/iot_keep_alive.sh &>/dev/null  &
+		
+	# Make sure wifi is started 
+	wifi
+
 	exit
 }

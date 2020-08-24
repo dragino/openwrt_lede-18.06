@@ -30,7 +30,7 @@ define Package/libmpsse
 $(call Package/libmpsse/Default)
   SECTION:=libs
   CATEGORY:=Libraries
-  DEPENDS:=+libftdi +libftdi1
+  DEPENDS:=+libftdi1
 endef
 
 define Package/libmpsse/description

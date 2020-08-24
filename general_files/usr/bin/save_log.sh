@@ -10,7 +10,7 @@ maxfilesize="2001000"  # Max:  2MB+
 while [ 1 ]
 do
 	filesize=$(wc -c /tmp/logfile.log | cut -d " " -f1)
-	echo "Filesize: $filesize"
+	#echo "Filesize: $filesize"
 	# Exit if max file size has been reached
 	if [ $filesize -gt $maxfilesize ]; then
 		killall -q logread
@@ -18,7 +18,7 @@ do
 		exit
 	fi
 	# Exit if logging has been stopped
-	if [ !-e /tmp/logging.flag ]; then
+	if [ ! -e /tmp/logging.flag ]; then
 		exit
 	fi
 	sleep 10
