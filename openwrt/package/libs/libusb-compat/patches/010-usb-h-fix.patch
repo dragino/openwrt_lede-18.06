@@ -1,0 +1,15 @@
+Index: libusb-compat-0.1.5/libusb/usb.h
+===================================================================
+--- libusb-compat-0.1.5.orig/libusb/usb.h
++++ libusb-compat-0.1.5/libusb/usb.h
+@@ -67,6 +67,10 @@
+ #define USB_DT_PHYSICAL			0x23
+ #define USB_DT_HUB			0x29
+ 
++#ifndef PATH_MAX
++#define PATH_MAX            64
++#endif
++
+ /*
+  * Descriptor sizes per descriptor type
+  */
