@@ -67,14 +67,14 @@ The build process will auto overwrite the default files or pacakges with the cus
 ## How to develop a C software before build the image
 The fastest way is to use the SDK. 
 
-### Download the [LEDE-SDK](http://www.dragino.com/downloads/downloads/LoRa_Gateway/LG02-OLG02/lede-sdk.tar.gz) 
+### Download the [LEDE-SDK](http://www.dragino.com/downloads/downloads/LoRa_Gateway/LG02-OLG02/openwrt-sdk-8-29-Linux-x86_64.tar.bz2) 
 ``` bash
-   wget http://www.dragino.com/downloads/downloads/LoRa_Gateway/LG02-OLG02/lede-sdk.tar.gz
+   wget http://www.dragino.com/downloads/downloads/LoRa_Gateway/LG02-OLG02/openwrt-sdk-8-29-Linux-x86_64.tar.bz2
 ```
 
 ### Extra the SDK to Linux OS. 
 ``` bash
-   tar -xzvf lede-sdk.tar.gz
+   tar -xjvf openwrt-sdk-8-29-Linux-x86_64.tar.bz2
 ```
 ### Download the demo [hello package](http://www.dragino.com/downloads/downloads/LoRa_Gateway/LG02-OLG02/hello.tgz) and put it in the lede-sdk/package/
 
