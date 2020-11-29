@@ -154,11 +154,15 @@ root@dragino-1b6fb0:~#
 ```
 
 ### Useful Packages
-Below is the LoRa Control packages used in LG01-N, LG02,LG308, LPS8
+Below is the LoRa Control packages used in LG01-N, LG02,LG308,LPS8, DLOS8
 - [lg01n,lg02_lora_control](https://github.com/dragino/dragino-packages/tree/lg02/lg02-pkt-fwd)
-- [lg308 lora control](https://github.com/dragino/dragino-packages/tree/lg02/lora-gateway)
+- [lg308，lps8, dlos8 lora control](https://github.com/dragino/dragino-packages/tree/lg02/lora-gateway)
 
 A video instruction can be seen from [LEDE SDK Video](https://youtu.be/SVtAVF93cpw)
+
+
+## Have problem to download some package from source? 
+If fail to download by build_image.sh, developer can download from web and put the package in openwrt/dl directory.
 
 Have Fun!
 

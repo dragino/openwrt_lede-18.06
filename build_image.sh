@@ -153,7 +153,7 @@ if [ ! -z $SFLAG ];then
 	echo "***Run make for dragion ms14, HE in single thread ***"
 	make V=s
 else
-	echo "***Run make for dragion ms14, HE, LG01N, LG02, LG308, LPS8"
+	echo "***Run make for dragion ms14, HE, LG01N, LG02, LG308, LPS8, DLOS8"
 	make -j8 V=99
 fi
 
