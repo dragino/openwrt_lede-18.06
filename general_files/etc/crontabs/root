@@ -10,3 +10,6 @@
 # * * * * * user-name command to be executed
 
 #*/10 * * * *  checklog
+
+* 23 * * *  /etc/init.d/auto_update start
+*/5 * * * * /etc/init.d/DR_enable_rssh.sh start

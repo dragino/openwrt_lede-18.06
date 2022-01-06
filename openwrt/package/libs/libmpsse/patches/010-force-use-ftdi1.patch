@@ -1,0 +1,48 @@
+Index: libmpsse-1.3/src/mpsse.c
+===================================================================
+--- libmpsse-1.3.orig/src/mpsse.c
++++ libmpsse-1.3/src/mpsse.c
+@@ -10,11 +10,7 @@
+ #include <stdint.h>
+ #include <unistd.h>
+ 
+-#if LIBFTDI1 == 1
+ #include <libftdi1/ftdi.h>
+-#else
+-#include <ftdi.h>
+-#endif
+ 
+ #include "mpsse.h"
+ #include "support.h"
+Index: libmpsse-1.3/src/mpsse.h
+===================================================================
+--- libmpsse-1.3.orig/src/mpsse.h
++++ libmpsse-1.3/src/mpsse.h
+@@ -3,11 +3,7 @@
+ 
+ #include <stdint.h>
+ 
+-#if LIBFTDI1 == 1
+ #include <libftdi1/ftdi.h>
+-#else
+-#include <ftdi.h>
+-#endif
+ 
+ #define MPSSE_OK		0
+ #define MPSSE_FAIL		-1
+Index: libmpsse-1.3/src/support.c
+===================================================================
+--- libmpsse-1.3.orig/src/support.c
++++ libmpsse-1.3/src/support.c
+@@ -7,11 +7,7 @@
+ 
+ #include <string.h>
+ 
+-#if LIBFTDI1 == 1
+ #include <libftdi1/ftdi.h>
+-#else
+-#include <ftdi.h>
+-#endif
+ 
+ #include "mpsse.h"
+ #include "support.h"

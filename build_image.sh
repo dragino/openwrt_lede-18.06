@@ -80,10 +80,10 @@ rm -rf $OPENWRT_PATH/files
 echo "***Copy general_files to OpenWrt***"
 cp -r general_files $OPENWRT_PATH/files
 
-echo "***.config.$DEFAULT_APP to OpenWrt/.config***"
-cp .config.$DEFAULT_APP $OPENWRT_PATH/.config
+echo "***.config.$APP to OpenWrt/.config***"
+cp .config.$APP $OPENWRT_PATH/.config
 
-cd $OPENWRT_PATH/feeds/dragino
+#cd $OPENWRT_PATH/feeds/dragino
 
 #git pull 
 

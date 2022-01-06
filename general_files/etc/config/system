@@ -3,6 +3,9 @@ config system
 	option hostname 'dragino2'
 	option firstboot '1'
 	option debug_inet '0'
+	option provision_server 'eth1_net'
+	option config_ver '0'
+	option iot_interval '15'
 
 config timeserver 'ntp'
 	list server '0.openwrt.pool.ntp.org'
