@@ -12,7 +12,7 @@ PKG_VERSION:=1.3
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://libmpsse.googlecode.com/files/
+PKG_SOURCE_URL:=https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/libmpsse/
 PKG_MD5SUM:=628eb9a7d7250070f5841ed44a248f84
 
 PKG_FIXUP:=autoreconf
