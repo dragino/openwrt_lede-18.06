@@ -43,11 +43,7 @@ RUN apt-get update -qq &&\
         && apt-get clean \
         && rm -rf /var/lib/apt/lists/*
 
-COPY . /usr/local/src/dragino-lede-18.06/
+VOLUME ['/usr/local/src/dragino-lede-18.06/']
 WORKDIR /usr/local/src/dragino-lede-18.06/
 
-RUN ./set_up_build_environment.sh
-
-RUN ./build_image.sh
-
-#RUN ./build_image.sh -s V=99
+CMD ./set_up_build_environment.sh && ./build_image.sh
