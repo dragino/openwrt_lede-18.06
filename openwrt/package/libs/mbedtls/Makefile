@@ -8,15 +8,21 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mbedtls
-PKG_VERSION:=2.6
-PKG_RELEASE:=0
+PKG_VERSION:=2.28.0
+PKG_RELEASE:=$(AUTORELEASE)
 PKG_USE_MIPS16:=0
 
-PKG_SOURCE_URL:=https://github.com/ARMmbed/mbedtls.git
-PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=4f0929189ab43e020b0d441919abf6bab02baf11
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=https://codeload.github.com/ARMmbed/mbedtls/tar.gz/v$(PKG_VERSION)?
+PKG_HASH:=6519579b836ed78cc549375c7c18b111df5717e86ca0eeff4cb64b2674f424cc
 
-PKG_LICENSE:=Apache 2.0
+PKG_LICENSE:=GPL-2.0-or-later
+PKG_LICENSE_FILES:=gpl-2.0.txt
+PKG_CPE_ID:=cpe:/a:arm:mbed_tls
+
+PKG_CONFIG_DEPENDS := \
+	CONFIG_LIBMBEDTLS_DEBUG_C \
+	CONFIG_LIBMBEDTLS_HKDF_C
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
@@ -37,7 +43,29 @@ $(call Package/mbedtls/Default)
   CATEGORY:=Libraries
   SUBMENU:=SSL
   TITLE+= (library)
-  ABI_VERSION:=$(PKG_VERSION)-$(PKG_RELEASE)
+  ABI_VERSION:=12
+endef
+
+define Package/libmbedtls/config
+config LIBMBEDTLS_DEBUG_C
+	depends on PACKAGE_libmbedtls
+	bool "Enable debug functions"
+	default n
+	help
+	 This option enables mbedtls library's debug functions.
+
+	 It increases the uncompressed libmbedtls binary size
+	 by around 60 KiB (for an ARMv5 platform).
+
+	 Usually, you don't need this, so don't select this if you're unsure.
+
+config LIBMBEDTLS_HKDF_C
+	depends on PACKAGE_libmbedtls
+	bool "Enable the HKDF algorithm (RFC 5869)"
+	default n
+	help
+	 This option adds support for the Hashed Message Authentication Code
+	 (HMAC)-based key derivation function (HKDF).
 endef
 
 define Package/mbedtls-util
@@ -59,15 +87,34 @@ This package contains mbedtls helper programs for private key and
 CSR generation (gen_key, cert_req)
 endef
 
-PKG_INSTALL:=1
-
 TARGET_CFLAGS += -ffunction-sections -fdata-sections
+TARGET_CFLAGS := $(filter-out -O%,$(TARGET_CFLAGS))
 
 CMAKE_OPTIONS += \
-	-DCMAKE_BUILD_TYPE:String="Release" \
 	-DUSE_SHARED_MBEDTLS_LIBRARY:Bool=ON \
 	-DENABLE_TESTING:Bool=OFF \
 	-DENABLE_PROGRAMS:Bool=ON
+
+define Build/Configure
+	$(Build/Configure/Default)
+
+	awk 'BEGIN { rc = 1 } \
+	     /#define MBEDTLS_DEBUG_C/ { $$$$0 = "$(if $(CONFIG_LIBMBEDTLS_DEBUG_C),,// )#define MBEDTLS_DEBUG_C"; rc = 0 } \
+	     { print } \
+	     END { exit(rc) }' $(PKG_BUILD_DIR)/include/mbedtls/config.h \
+	     >$(PKG_BUILD_DIR)/include/mbedtls/config.h.new && \
+	mv $(PKG_BUILD_DIR)/include/mbedtls/config.h.new $(PKG_BUILD_DIR)/include/mbedtls/config.h
+
+	awk 'BEGIN { rc = 1 } \
+	     /#define MBEDTLS_HKDF_C/ { $$$$0 = "$(if $(CONFIG_LIBMBEDTLS_HKDF_C),,// )#define MBEDTLS_HKDF_C"; rc = 0 } \
+	     { print } \
+	     END { exit(rc) }' $(PKG_BUILD_DIR)/include/mbedtls/config.h \
+	     >$(PKG_BUILD_DIR)/include/mbedtls/config.h.new && \
+	mv $(PKG_BUILD_DIR)/include/mbedtls/config.h.new $(PKG_BUILD_DIR)/include/mbedtls/config.h
+
+	sed -i '/fuzz/d' $(PKG_BUILD_DIR)/programs/CMakeLists.txt
+	sed -i '/test/d' $(PKG_BUILD_DIR)/programs/CMakeLists.txt
+endef
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include
@@ -79,7 +126,7 @@ endef
 
 define Package/libmbedtls/install
 	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib*.so* $(1)/usr/lib/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib*.so.* $(1)/usr/lib/
 endef
 
 define Package/mbedtls-util/install

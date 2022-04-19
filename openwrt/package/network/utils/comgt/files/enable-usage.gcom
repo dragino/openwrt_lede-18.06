@@ -1,0 +1,44 @@
+opengt
+ set com 115200n81
+ set comecho off
+ set senddelay 0.02
+ waitquiet 0.2 0.2
+ flash 0.1
+
+:start
+ send "AT+QNVFR=\"/nv/item_files/modem/mmode/ue_usage_setting\"^m"
+ waitfor 1 "00","01","ERROR"
+ if % = -1 goto timeout
+ if % = 0 goto inactive
+ if % = 1 goto activated
+ if % = 2 goto error
+ exit 0
+
+:inactive
+ print "Start activate QNVFR\n"
+ send "AT+QNVFW=\"/nv/item_files/modem/mmode/ue_usage_setting\",01^m"
+ send "AT+QNVFR=\"/nv/item_files/modem/mmode/ue_usage_setting\"^m"
+ waitfor 1 "00","01","ERROR"
+ if % = -1 goto timeout
+ if % = 0 goto inactive
+ if % = 1 goto succeed
+ if % = 2 goto error
+ exit 0
+ 
+:succeed
+ print "QNVFR activated successfully\n"
+ print "Restart model"
+ send "AT+CFUN^m"
+ exit 0
+ 
+:activated
+ print "QNVFR activated\n"
+ exit 0
+ 
+:timeout
+ print "Time Out\n"
+ exit 0
+ 
+:error
+ print "Error\n"
+ exit 0

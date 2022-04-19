@@ -44,8 +44,9 @@ sleep 2
 echo " "
 
 #Add new fwd packages
-git clone -b lgw-7.0-dev https://github.com/dragino/dragino-packages dragino-packages-lgw-7.0
-cp -r dragino-packages-lgw-6.0/dragino-gw-fwd $OPENWRT_PATH/feeds/dragino/
+# No need this step, already include in feeds/dragino
+#git clone -b lgw-7.0-dev https://github.com/dragino/dragino-packages dragino-packages-lgw-7.0
+#cp -r dragino-packages-lgw-6.0/dragino-gw-fwd $OPENWRT_PATH/feeds/dragino/
 
 echo "*** Install OpenWrt extra packages"
 sleep 2

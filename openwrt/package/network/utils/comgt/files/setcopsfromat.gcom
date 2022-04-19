@@ -1,0 +1,20 @@
+opengt
+ set com 115200n81
+ set comecho off
+ set senddelay 0.02
+ waitquiet 0.2 0.2
+ flash 0.1
+
+:start
+	send "AT+COPS?^m"
+	get 1 "^m" $s
+	get 2 "^m" $s
+	let $s = $mid($s,8,48)
+	let $c = $mid($s,5,5)
+	let $x = $right($s,1)
+	let n=val($c)
+	let m=val($x)
+	send "AT+COPS=3,0,\""$n"\","$m"^m"
+
+
+	
