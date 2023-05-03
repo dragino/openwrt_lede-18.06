@@ -8,7 +8,7 @@ start()
     IS_BRIDGE=`uci get network.lan.type`
 	
 	# Check only WAN port model: lps8/los8
-	IS_SINGLE_WAN=$(hexdump -v -e '11/1 "%_p"' -s $((0x908)) -n 11 /dev/mtd6 |grep -E 'lps8|los8|ig16|ps8n' -c)
+	IS_SINGLE_WAN=$(hexdump -v -e '11/1 "%_p"' -s $((0x908)) -n 11 /dev/mtd6 |grep -E 'lps8|los8|ig16|ps8n|ps8g|os8n|os8l|ps8l' -c)
 
 	if [ "$IS_SINGLE_WAN" = "1" ];then
 		logger "Set up WAN port for fall back ip"

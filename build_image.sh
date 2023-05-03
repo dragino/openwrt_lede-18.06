@@ -10,7 +10,6 @@ APP="lgw"
 APP2=
 IMAGE_SUFFIX=
 BUILD_TIME=`date +%s`
-
 REPO_PATH=$(pwd)
 VERSION="5.4.$BUILD_TIME"
 OPENWRT_PATH="openwrt"

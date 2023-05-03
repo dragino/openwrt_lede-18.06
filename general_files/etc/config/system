@@ -46,3 +46,6 @@ config led 'led_wan'
         option trigger 'netdev'
         option dev 'eth1'
         option mode 'link tx rx'
+
+config log 'level'
+	option log_level 'info'

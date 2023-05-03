@@ -18,6 +18,8 @@ export NEED_IMAGE=
 export HELP=0
 export FORCE=0
 export TEST=0
+export SAVE_GENERAL=0
+export SAVE_REMOTE=0
 
 # parse options
 while [ -n "$1" ]; do
@@ -27,6 +29,8 @@ while [ -n "$1" ]; do
 		-q) export VERBOSE="$(($VERBOSE - 1))";;
 		-n) export SAVE_CONFIG=0;;
 		-c) export SAVE_OVERLAY=1;;
+		-general) export SAVE_GENERAL=1;;
+		-remoteit) export SAVE_REMOTE=1;;
 		-p) export SAVE_PARTITIONS=0;;
 		-b|--create-backup) export CONF_BACKUP="$2" NEED_IMAGE=1; shift;;
 		-r|--restore-backup) export CONF_RESTORE="$2" NEED_IMAGE=1; shift;;
@@ -116,11 +120,33 @@ list_changed_conffiles() {
 }
 
 add_uci_conffiles() {
+export SAVE_GENERAL=0
+export SAVE_REMOTE=0
+	if [ $SAVE_GENERAL == 1 ] && [ $SAVE_REMOTE == 1 ]; then
+		path="/lib/upgrade/keep.d/* /lib/upgrade/custom/remoteit/remoteit /etc/sysupgrade.conf "
+		SAVE_TYPE=1
+	elif [ $SAVE_GENERAL == 1 ]; then
+		path="/lib/upgrade/keep.d/* /etc/sysupgrade.conf "
+		SAVE_TYPE=1
+	elif [ $SAVE_REMOTE == 1 ]; then
+		path="/lib/upgrade/custom/remoteit/remoteit"
+		SAVE_TYPE=2
+	else
+		path="/lib/upgrade/keep.d/* /lib/upgrade/custom/remoteit/remoteit /etc/sysupgrade.conf "
+		SAVE_TYPE=1
+	fi
+	
 	local file="$1"
-	( find $(sed -ne '/^[[:space:]]*$/d; /^#/d; p' \
-		/etc/sysupgrade.conf /lib/upgrade/keep.d/* 2>/dev/null) \
-		-type f -o -type l 2>/dev/null;
-	  list_changed_conffiles ) | sort -u > "$file"
+	if [ $SAVE_TYPE == 1 ]; then
+		( find $(sed -ne '/^[[:space:]]*$/d; /^#/d; p' \
+			$path 2>/dev/null) \
+			-type f -o -type l 2>/dev/null;
+		list_changed_conffiles ) | sort -u > "$file"
+	else
+		( find $(sed -ne '/^[[:space:]]*$/d; /^#/d; p' \
+			$path 2>/dev/null) \
+			-type f -o -type l 2>/dev/null;) | sort -u > "$file"
+	fi
 	return 0
 }
 

@@ -11,5 +11,6 @@
 
 #*/10 * * * *  checklog
 
-* 23 * * *  /etc/init.d/auto_update start
+0 23 * * *  /etc/init.d/auto_update start
+0 2 * * *  /etc/init.d/opkg-update start
 */5 * * * * /etc/init.d/DR_enable_rssh.sh start

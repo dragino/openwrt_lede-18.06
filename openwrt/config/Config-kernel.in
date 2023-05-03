@@ -22,7 +22,7 @@ config KERNEL_BUILD_DOMAIN
 
 config KERNEL_PRINTK
 	bool "Enable support for printk"
-	default y
+	default n
 
 config KERNEL_CRASHLOG
 	bool "Crash logging"
