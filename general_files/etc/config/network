@@ -30,5 +30,3 @@ config interface 'cellular'
 	option apn ''
 	option auto '0'
     option backup '1'
-
-

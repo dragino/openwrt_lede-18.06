@@ -17,11 +17,11 @@ OPENWRT_PATH="openwrt"
 while getopts 'a:b:p:v:sh' OPTION
 do
 	case $OPTION in
-	a)	
+	a)
 		AFLAG=1
 		APP="$OPTARG"
 		;;
-	b)	
+	b)
 		BFLAG=1
 		APP2="$OPTARG"
 		;;
@@ -53,7 +53,6 @@ shift $(($OPTIND - 1))
 BUILD=$APP-$VERSION
 
 BUILD_TIME="`date`"
-
 ARCH="ar71xx"
 
 file_prefix="openwrt-ar71xx-generic-dragino2"
@@ -69,6 +68,23 @@ if [ $APP = "duo" ];then
 	ARCH="ramips"
 	file_prefix="openwrt-ramips-mt7628-DUO"
 fi
+
+:<<!
+if [ $APP != "Navitas" ]; then
+    echo "$APP: PATCH enable UART"
+    rm  -vf openwrt/target/linux/ar71xx/patches-4.9/520-MIPS-ath79-disable-UART-function.patch
+    cp -vf openwrt/target/linux/ar71xx/520-MIPS-ath79-enable-UART-function.patch.normal  openwrt/target/linux/ar71xx/patches-4.9/openwrt/target/linux/ar71xx/520-MIPS-ath79-enable-UART-function.patch
+    cp -vf openwrt/target/linux/ar71xx/521-MIPS-ath79-enable-UART-for-early_serial.patch openwrt/target/linux/ar71xx/patches-4.9
+    cp -vf openwrt/target/linux/ar71xx/config-4.9.lgw  openwrt/target/linux/ar71xx/config-4.9
+else
+    echo "$APP: PATCH disable UART"
+    rm  -vf openwrt/target/linux/ar71xx/patches-4.9/520-MIPS-ath79-enable-UART-function.patch
+    rm -vf openwrt/target/linux/ar71xx/patches-4.9/521-MIPS-ath79-enable-UART-for-early_serial.patch
+    cp  -vf openwrt/target/linux/ar71xx/520-MIPS-ath79-enable-UART-function.patch.disable-uart openwrt/target/linux/ar71xx/patches-4.9/520-MIPS-ath79-disable-UART-function.patch
+    cp -vf openwrt/target/linux/ar71xx/config-4.9.navitas  openwrt/target/linux/ar71xx/config-4.9
+fi
+
+!
 
 echo ""
 
@@ -92,7 +108,7 @@ if [ -d files-$APP ];then
 	echo "***Copy files-$APP to default files directory***"
 	echo ""
 	cp -r files-$APP/?* $OPENWRT_PATH/files/
-elif [ "$APP" != "$DEFAULT_APP" ];then 
+elif [ "$APP" != "$DEFAULT_APP" ];then
 	echo "***Can't find files-$APP***"
 	echo "Use default files files-$DEFAULT_APP"
 	echo ""
@@ -104,7 +120,7 @@ if [ -f .config.$APP ];then
 	echo "Replace default .config file with .config.$APP"
 	echo ""
 	cp .config.$APP $OPENWRT_PATH/.config
-else 
+else
 	echo ""
 	echo "***Can't find .config.$APP file***"
 	echo "Use default .config.$DEFAULT_APP"
@@ -168,6 +184,7 @@ fi
 echo "Copy Image"
 echo "Set up new directory name with date"
 DATE=`date +%Y%m%d-%H%M`
+
 mkdir -p $REPO_PATH/image/$APP-$APP2-build-v$VERSION-$DATE
 IMAGE_DIR=$REPO_PATH/image/$APP-$APP2-build-v$VERSION-$DATE
 

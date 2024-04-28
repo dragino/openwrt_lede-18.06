@@ -22,12 +22,19 @@ start()
 			ifconfig eth0:9 172.31.255.254 netmask 255.255.255.252
     		fi
 	fi
-	
+
 	ps | grep "iot_keep_alive" | grep -v grep | awk '{print $1}' | xargs kill -s 9
-    	/usr/bin/iot_keep_alive.sh &>/dev/null  &
-		
+    /usr/bin/iot_keep_alive.sh &>/dev/null  &
+
 	# Make sure wifi is started 
 	wifi
+
+	if [ -f /usr/bin/wg ]; then
+		wg genkey | tee /etc/wireguard/wgclient.key | wg pubkey > /etc/wireguard/wgclient.pub
+	fi
+
+	[ -f /usr/lib/opkg/info/dragino_gw_fwd.prerm ] && echo "#!/bin/sh" > /usr/lib/opkg/info/dragino_gw_fwd.prerm
+	[ -f /usr/lib/opkg/info/haserl-ui.prerm ] && echo "#!/bin/sh" > /usr/lib/opkg/info/haserl-ui.prerm
 
 	exit
 }

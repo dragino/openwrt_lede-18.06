@@ -15,8 +15,6 @@ else
 	GWID=$(xxd -ps -l 8 -s 0x1002 /dev/mtd6)
 fi
 
-
-
 uci -q batch <<-EOF
     set wireless.ap_0.ssid=$SSID
     set dhcp.setup.domain=$DHCP_DOMAIN
@@ -30,5 +28,7 @@ uci -q batch <<-EOF
 EOF
 
 sed "s/cid ' '/cid '$hostname'/g" /etc/config/mqtt -i
+[ -f /usr/lib/opkg/info/haserl-ui.prerm ] && echo "#!/bin/sh" > /usr/lib/opkg/info/haserl-ui.prerm
+[ -f /usr/lib/opkg/info/dragino_gw_fwd.prerm ] && echo "#!/bin/sh" > /usr/lib/opkg/info/dragino_gw_fwd.prerm
 
 exit 0
