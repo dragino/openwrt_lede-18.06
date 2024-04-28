@@ -11,6 +11,60 @@ This repository is a generic OpenWrt version from Dragino devices such as:
 
 ## How to compile the firmware
 
+### Method 1 Dragino SDK
+``` bash
+git clone https://github.com/dragino/openwrt_lede-18.06 dragino-lede-18.06
+cd dragino-lede-18.06
+./set_up_build_environment.sh
+#build default IoT App on openwrt directory
+./build_image.sh
+```
+
+After complination, the images can be found on **openwrt_lede-18.06/image** folder. The folder includes:
+
+- dragino-xxx--vxxxx-kernel.bin kernel files, for upgrade in u-boot
+- dragino-xxx--vxxxx-rootfs-squashfs.bin rootfs file, for upgrade in u-boot
+- dragino-xxx--vxxxx-squashfs-sysupgrade.bin sysupgrade file, used for web-ui upgrade
+- md5sum md5sum for above files
+
+More build option can be viewed by running:
+``` bash
+./build_image.sh -h
+```
+
+How to debug if build fails?
+``` bash
+./build_image.sh -s
+```
+Above commands will enable verbose and build in single thread to get a view of the error during build.
+
+### Method 2 Dragino Docker images
+1. Pull `images`
+``` bash
+docker pull ghcr.io/mikayong/dragino-gw-os/dragino-wrt-env:latest
+```
+3. Run `container`
+``` bash
+docker run \
+    -itd \
+    --name dragino-wrt-env \
+    -h Dragino \
+    -p 10022:22 \
+    ghcr.io/mikayong/dragino-gw-os/dragino-wrt-env:latest
+```
+5. Enter `container`
+``` bash
+docker exec -it dragino-wrt-env /bin/bash
+```
+7.  Build `OpenWRT-lede-18.06`
+``` bash
+cd /root/dragino-wrt-build
+./build_image.sh
+```
+
+
+## How to compile the firmware
+
 ``` bash
 git clone https://github.com/dragino/openwrt_lede-18.06 dragino-lede-18.06
 cd dragino-lede-18.06
