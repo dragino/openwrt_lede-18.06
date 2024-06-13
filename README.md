@@ -91,6 +91,8 @@ How to debug if build fails?
 ```
 Above commands will enable verbose and build in single thread to get a view of the error during build.
 
+---
+
 ## How to customize a build
 
 As a example, if user want to customize a build named mybuild. mybuild include different packages and default files from the default build. User can do as below: To customize the packages
@@ -117,6 +119,42 @@ Then run the customzied build by running:
 ./build_image.sh -a mybuild
 ```
 The build process will auto overwrite the default files or pacakges with the customized one. User can customize only default files or pacakges. The build will use the default from IoT build if not specify.
+
+---
+
+## How to Docker build
+### 1. Pull image
+docker pull ghcr.io/mikayong/dragino-gw-os/dragino-wrt-env:latest
+
+### 2. Run container
+```
+docker run \
+    -itd \
+    --name dragino-wrt-env \
+    -h Dragino \
+    -p 10022:22 \
+    ghcr.io/mikayong/dragino-gw-os/dragino-wrt-env:latest
+```
+### 3. Enter container
+```
+docker exec -it dragino-wrt-env /bin/bash
+```
+#### 3.1. Connect via SSH.
+```
+ssh root@IP -p 10022
+```
+#### 3.2. Change password:
+ ```
+ docker exec -it dragino-wrt-env sudo passwd root
+```
+
+### 4. Build openwrt-lede-18.06
+```
+cd /root/dragino-wrt-build
+./build_image.sh
+```
+
+---
 
 ## How to develop a C software before build the image
 The fastest way is to use the SDK. 
