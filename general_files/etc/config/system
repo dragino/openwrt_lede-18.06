@@ -7,6 +7,8 @@ config system
 	option config_ver '0'
 	option iot_interval '15'
 	option internet_detect 'checked'
+	option network_type 'Disable Detect'
+    option detect_type 'Auto Detect'
 
 config timeserver 'ntp'
 	list server '0.openwrt.pool.ntp.org'

@@ -1,0 +1,12 @@
+## This file contains files and directories that should
+## be preserved during an upgrade.
+
+# /etc/example.conf
+# /etc/openvpn/
+
+/lib/modules/4.9.109/wireguard.ko
+/etc/modules.d/wireguard
+/usr/bin/wg
+/lib/netifd/proto/wireguard.sh
+/etc/wireguard/
+/etc/config/network

@@ -69,22 +69,22 @@ if [ $APP = "duo" ];then
 	file_prefix="openwrt-ramips-mt7628-DUO"
 fi
 
-:<<!
-if [ $APP != "Navitas" ]; then
-    echo "$APP: PATCH enable UART"
-    rm  -vf openwrt/target/linux/ar71xx/patches-4.9/520-MIPS-ath79-disable-UART-function.patch
-    cp -vf openwrt/target/linux/ar71xx/520-MIPS-ath79-enable-UART-function.patch.normal  openwrt/target/linux/ar71xx/patches-4.9/openwrt/target/linux/ar71xx/520-MIPS-ath79-enable-UART-function.patch
-    cp -vf openwrt/target/linux/ar71xx/521-MIPS-ath79-enable-UART-for-early_serial.patch openwrt/target/linux/ar71xx/patches-4.9
-    cp -vf openwrt/target/linux/ar71xx/config-4.9.lgw  openwrt/target/linux/ar71xx/config-4.9
-else
-    echo "$APP: PATCH disable UART"
-    rm  -vf openwrt/target/linux/ar71xx/patches-4.9/520-MIPS-ath79-enable-UART-function.patch
-    rm -vf openwrt/target/linux/ar71xx/patches-4.9/521-MIPS-ath79-enable-UART-for-early_serial.patch
-    cp  -vf openwrt/target/linux/ar71xx/520-MIPS-ath79-enable-UART-function.patch.disable-uart openwrt/target/linux/ar71xx/patches-4.9/520-MIPS-ath79-disable-UART-function.patch
-    cp -vf openwrt/target/linux/ar71xx/config-4.9.navitas  openwrt/target/linux/ar71xx/config-4.9
-fi
+# :<<!
+# if [ $APP != "Navitas" ]; then
+#     echo "$APP: PATCH enable UART"
+#     rm  -vf openwrt/target/linux/ar71xx/patches-4.9/520-MIPS-ath79-disable-UART-function.patch
+#     cp -vf openwrt/target/linux/ar71xx/520-MIPS-ath79-enable-UART-function.patch.normal  openwrt/target/linux/ar71xx/patches-4.9/openwrt/target/linux/ar71xx/520-MIPS-ath79-enable-UART-function.patch
+#     cp -vf openwrt/target/linux/ar71xx/521-MIPS-ath79-enable-UART-for-early_serial.patch openwrt/target/linux/ar71xx/patches-4.9
+#     cp -vf openwrt/target/linux/ar71xx/config-4.9.lgw  openwrt/target/linux/ar71xx/config-4.9
+# else
+#     echo "$APP: PATCH disable UART"
+#     rm  -vf openwrt/target/linux/ar71xx/patches-4.9/520-MIPS-ath79-enable-UART-function.patch
+#     rm -vf openwrt/target/linux/ar71xx/patches-4.9/521-MIPS-ath79-enable-UART-for-early_serial.patch
+#     cp  -vf openwrt/target/linux/ar71xx/520-MIPS-ath79-enable-UART-function.patch.disable-uart openwrt/target/linux/ar71xx/patches-4.9/520-MIPS-ath79-disable-UART-function.patch
+#     cp -vf openwrt/target/linux/ar71xx/config-4.9.navitas  openwrt/target/linux/ar71xx/config-4.9
+# fi
 
-!
+# !
 
 echo ""
 

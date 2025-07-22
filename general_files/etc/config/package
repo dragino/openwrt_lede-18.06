@@ -1,0 +1,5 @@
+
+config settings 'general'
+	option boot_enable 'checked'
+	option day_enable 'checked'
+

@@ -30,7 +30,9 @@ start()
 	wifi
 
 	if [ -f /usr/bin/wg ]; then
-		wg genkey | tee /etc/wireguard/wgclient.key | wg pubkey > /etc/wireguard/wgclient.pub
+		if [ ! -f /etc/wireguard/wgclient.pub ]; then
+			wg genkey | tee /etc/wireguard/wgclient.key | wg pubkey > /etc/wireguard/wgclient.pub
+		fi
 	fi
 
 	[ -f /usr/lib/opkg/info/dragino_gw_fwd.prerm ] && echo "#!/bin/sh" > /usr/lib/opkg/info/dragino_gw_fwd.prerm

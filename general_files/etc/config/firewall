@@ -17,6 +17,7 @@ config zone
 	list network 'wan'
 	list network 'wwan'
 	list network 'wan6'
+	list network 'cellular'
 	option input 'REJECT'
 	option output 'ACCEPT'
 	option forward 'ACCEPT'

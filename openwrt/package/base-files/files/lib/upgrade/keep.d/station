@@ -1,0 +1,6 @@
+/etc/station/lns.trust
+/etc/station/cups.trust
+/etc/station/lns.uri
+/etc/station/cups.crt
+/etc/station/tc.uri
+/etc/station/tc.trust
