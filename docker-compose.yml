@@ -1,0 +1,13 @@
+version: "2.4"
+services:
+  bobthebuilder:
+    build:
+      context: .
+      network: host
+    volumes:
+      - ./:/usr/local/src/dragino-lede-18.06/
+    ulimits:
+      nofile:
+        soft: 64000
+        hard: 64000
+

@@ -1,6 +1,6 @@
-src-git packages https://git.openwrt.org/feed/packages.git;openwrt-18.06
-src-git routing https://git.openwrt.org/feed/routing.git;openwrt-18.06
-src-git telephony https://git.openwrt.org/feed/telephony.git;openwrt-18.06
+src-git packages https://github.com/openwrt/packages.git;openwrt-18.06
+src-git routing https://github.com/openwrt/routing.git;openwrt-18.06
+src-git telephony https://github.com/openwrt/telephony.git;openwrt-18.06
 src-git dragino https://github.com/dragino/dragino-packages.git;lg02
 src-link luci ../../luci
 #src-git video https://github.com/openwrt/video.git
